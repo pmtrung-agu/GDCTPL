@@ -88,7 +88,8 @@ return  [
                 array('title' => 'Doanh nghiệp tham gia', 'path' => 'doanh-nghiep-tham-gia'),
                 array('title' => 'Kết quả khảo sát mức độ CĐS', 'path' => 'ket-qua-khao-sat-muc-do-chuyen-doi-so'),
                 array('title' => 'Tư vấn chuyển đổi số', 'path' => 'tu-van-chuyen-doi-so'),
-                array('title' => 'Gởi yêu cầu, nhu cầu chuyển đổi số', 'path' => 'goi-yeu-cau-nhu-cau-chuyen-doi-so'),
+                array('title' => 'Gởi yêu cầu', 'path' => 'goi-yeu-cau'),
+                array('title' => 'Tư vấn chuyển đổi số', 'path' => 'tu-van-chuyen-doi-so'),
                 array('title' => 'Khảo sát mức độ CĐS', 'path' => 'khao-sat-muc-do-cds'),
                 array('title' => 'Đăng ký thành viên', 'path' => 'dang-ky-thanh-vien')
             )

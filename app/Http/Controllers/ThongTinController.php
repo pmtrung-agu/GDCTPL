@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use App\Http\Controllers\ObjectController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\ImageController;
@@ -160,5 +161,13 @@ class ThongTinController extends Controller
         //LogController::addLog($logQuery);
         Session::flash('msg', 'Xóa thành công');
         return redirect(env('APP_URL').'admin/thong-tin');
+    }
+
+    function download(Request $request, $id='', $key = 0) {
+        $ds = ThongTin::find($id);
+        $key = intval($key);
+        $file_path = storage_path('app/public/files/' . $ds['attachments'][$key]['aliasname']);
+        $name  = Str::slug($ds['attachments'][$key]['title'], '-') . '.' . $ds['attachments'][$key]['type'];
+        return response()->download($file_path, $name);
     }
 }

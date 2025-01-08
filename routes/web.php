@@ -20,6 +20,12 @@ Route::get('/', [FrontendController::class, 'index']);
 Route::get('thong-tin', [FrontendController::class, 'thong_tin']);
 Route::get('thong-tin/{taxonomy}', [FrontendController::class, 'thong_tin']);
 Route::get('thong-tin-chi-tiet/{slug}', [FrontendController::class, 'thong_tin_chi_tiet']);
+Route::get('goi-yeu-cau', [FrontendController::class, 'goi_yeu_cau']);
+Route::get('tu-van-chuyen-doi-so', [FrontendController::class, 'tu_van_chuyen_doi_so']);
+Route::post('tu-van-chuyen-doi-so-submit', [FrontendController::class, 'tu_van_chuyen_doi_so_submit']);
+Route::get('thong-tin/tai-ve/{id}/{key}', [ThongTinController::class, 'download']);
+Route::get('goi-yeu-cau', [FrontendController::class, 'goi_yeu_cau']);
+Route::post('goi-yeu-cau-submit', [FrontendController::class, 'goi_yeu_cau_submit']);
 
 Route::get('auth/login', [AuthController::class, 'getLogin'])->name('auth-login-get');
 Route::get('auth/logout', [AuthController::class, 'logout'])->name('auth-logout-get');

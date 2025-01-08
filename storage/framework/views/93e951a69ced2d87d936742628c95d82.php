@@ -40,7 +40,7 @@
         <div class="loading-container">
           <div class="loading"></div>
           <div class="preloader-logo">
-            <a class="icon-masking" href="home-hr-management.html">
+            <a class="icon-masking" href="<?php echo e(env('APP_URL')); ?>">
               <span data-mask-src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/preloader.svg" class="mask-icon"></span>
               <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/preloader.svg" alt="Cổng thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang">
             </a>
@@ -101,7 +101,7 @@
             <div class="row align-items-center justify-content-between">
               <div class="col-auto">
                 <div class="header-logo">
-                  <a href="home-hr-management.html">
+                  <a href="<?php echo e(env('APP_URL')); ?>">
                     <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/logo.png" alt="Cổng thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang" style="height: 90px; width:270px;">
                   </a>
                 </div>
@@ -129,7 +129,7 @@
                         <?php if(isset($m['childs'])): ?>
                             <ul class="sub-menu">
                                 <?php $__currentLoopData = $m['childs']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><a href="<?php echo e(env('APP_URL')); ?>"><?php echo e($c['title']); ?></a></li>
+                                    <li><a href="<?php echo e(env('APP_URL')); ?><?php echo e($m['path']); ?>/<?php echo e($c['path']); ?>"><?php echo e($c['title']); ?></a></li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         <?php endif; ?>

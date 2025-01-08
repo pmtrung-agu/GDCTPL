@@ -40,7 +40,7 @@
         <div class="loading-container">
           <div class="loading"></div>
           <div class="preloader-logo">
-            <a class="icon-masking" href="home-hr-management.html">
+            <a class="icon-masking" href="{{ env('APP_URL') }}">
               <span data-mask-src="{{ env('APP_URL') }}assets/frontend/img/preloader.svg" class="mask-icon"></span>
               <img src="{{ env('APP_URL') }}assets/frontend/img/preloader.svg" alt="Cổng thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang">
             </a>
@@ -101,7 +101,7 @@
             <div class="row align-items-center justify-content-between">
               <div class="col-auto">
                 <div class="header-logo">
-                  <a href="home-hr-management.html">
+                  <a href="{{ env('APP_URL') }}">
                     <img src="{{ env('APP_URL') }}assets/frontend/img/logo.png" alt="Cổng thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang" style="height: 90px; width:270px;">
                   </a>
                 </div>
@@ -129,7 +129,7 @@
                         @if(isset($m['childs']))
                             <ul class="sub-menu">
                                 @foreach($m['childs'] as $c)
-                                    <li><a href="{{ env('APP_URL') }}">{{ $c['title'] }}</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ $m['path'] }}/{{ $c['path'] }}">{{ $c['title'] }}</a></li>
                                 @endforeach
                             </ul>
                         @endif

@@ -9,7 +9,7 @@
           <div class="hero-style3 text-center">
           <h3 class="hero-title">DANH NGHIỆP CÓ NHU CẦU VỀ CHUYỂN ĐỔI SỐ VUI LÒNG:</h3>
             <div class="btn-group justify-content-center">
-              <a href="<?php echo e(env('APP_URL')); ?>goi-yeu-cau" class="th-btn">Gởi yêu cầu Chuyển đổi số</a>
+              <a href="<?php echo e(env('APP_URL')); ?>goi-yeu-cau" class="th-btn">Gởi nhu cầu Chuyển đổi số</a>
               <a href="<?php echo e(env('APP_URL')); ?>tu-van-chuyen-doi-so" class="th-btn style5">Tư vấn Chuyển đổi số</a>
             </div>
           </div>
@@ -35,10 +35,35 @@
       <div class="slider-area text-center">
         <div class="swiper th-slider brand-slider1" id="brandSlider1" data-slider-options='{"breakpoints":{"0":{"slidesPerView":2},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"3"},"992":{"slidesPerView":"4"},"1200":{"slidesPerView":"5"},"1400":{"slidesPerView":"6"}}}'>
           <div class="swiper-wrapper">
-            <?php for($i=1;$i<10;$i++): ?>
+            <?php for($i=1;$i<3;$i++): ?>
             <div class="swiper-slide">
-              <a href="https://cict.agu.edu.vn" class="brand-box">
+              <a href="https://cict.agu.edu.vn" class="brand-box" target="_blank">
                 <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/cict-logo.png" alt="Trung tâm Tin học" style="height:50px;">
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="https://dx.gov.vn/" class="brand-box" target="_blank">
+                <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/brand/link1.png" alt="" style="height:50px;">
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="https://mic.gov.vn" class="brand-box" target="_blank">
+                <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/brand/link2.png" alt="" style="height:50px;">
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="https://langso.dx.gov.vn" class="brand-box" target="_blank">
+                <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/brand/link3.png" alt="" style="height:50px;">
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="https://sotttt.angiang.gov.vn/" class="brand-box" target="_blank">
+                <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/brand/link4.png" alt="" style="height:50px;">
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="https://dx.gov.vn/" class="brand-box" target="_blank">
+                <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/brand/link5.png" alt="" style="height:50px;">
               </a>
             </div>
             <?php endfor; ?>
@@ -47,7 +72,6 @@
       </div>
     </div>
   </div>
-
   <div class="ms-80 me-80 th-radius5 bg-smoke2 overflow-hidden space" id="about-sec">
     <div class="container">
       <div class="row gy-4 align-items-center">
@@ -82,45 +106,48 @@
     <div class="shape-mockup d-none d-xl-block" data-bottom="0%" data-right="0%">
       <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/shape/circle_1.png" alt="">
     </div>
-  </div>
-  
-  <section class="th-blog-wrapper space-top space-extra-bottom">
+</div>
+<?php if($thong_tin): ?>
+<section class="th-blog-wrapper space-top">
     <div class="container">
         <div class="title-area text-center">
             <span class="sub-title sub-title2">Thông tin & Sự kiện</span>
             <h2 class="sec-title sec-title2">Tin tức <span>Chuyển đổi số</span> </h2>
         </div>
       <div class="row">
-        <?php for($i=0; $i<6; $i++): ?>
+        <?php $__currentLoopData = $thong_tin; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <?php
+          $date_post = App\Http\Controllers\ObjectController::getDate($tt['date_post'], "d/m/Y");
+        ?>
         <div class="col-xxl-4 col-lg-4 col-md-4">
           <div class="th-blog blog-single has-post-thumbnail">
             <div class="blog-img">
-              <a href="blog-details.html">
-                <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/blog/blog-s-1-1.jpg" alt="Blog Image" style="height:250px;">
+              <a href="<?php echo e(env('APP_URL')); ?>thong-tin-chi-tiet/<?php echo e($tt['slug']); ?>">
+                <?php if(isset($tt['photos'][0]['aliasname']) && $tt['photos'][0]['aliasname']): ?>
+                  <img src="<?php echo e(env('APP_URL')); ?>storage/images/thumb_360x200/<?php echo e($tt['photos'][0]['aliasname']); ?>" alt="<?php echo e($tt['ten']); ?>">
+                <?php else: ?>
+                  <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/blog/blog-s-1-1.jpg" alt="Blog Image" style="height:250px;">
+                <?php endif; ?>
               </a>
             </div>
             <div class="blog-content">
               <div class="blog-meta">
-                <a href="blog.html">
-                  <i class="fa-regular fa-calendar"></i>10 July, 2024 </a>
-                <a href="blog.html">
-                  <i class="fa-regular fa-clock"></i>08 min read </a>
+                <a href="<?php echo e(env('APP_URL')); ?>thong-tin-chi-tiet/<?php echo e($tt['slug']); ?>">
+                  <i class="fa-regular fa-calendar"></i> <?php echo e($date_post); ?> </a>
               </div>
               <h2 class="blog-title">
-                <a href="blog-details.html">How a Digital Marketing Agency Can Boost Your Business</a>
+                <a href="<?php echo e(env('APP_URL')); ?>thong-tin-chi-tiet/<?php echo e($tt['slug']); ?>"><?php echo e($tt['ten']); ?></a>
               </h2>
-              <p class="blog-text">Digital agencies work with a diverse range of clients across industries, including small businesses, startups, midsize companies, and large enterprises. Clients may span various sectors such as e-commerce, technology, healthcare, finance, retail, hospitality, and more.</p>
-              <a href="blog-details.html" class="line-btn">Read Details <i class="fa-solid fa-angles-right"></i>
-              </a>
+              <p class="blog-text"><?php echo e($tt['mo_ta']); ?></p>
             </div>
           </div>
         </div>
-        <?php endfor; ?>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </div>
     </div>
 </section>
-
-  <section class="team-sec space">
+<?php endif; ?>
+<section class="team-sec space-top bg-smoke4">
     <div class="container z-index-common">
       <div class="title-area text-center">
         <span class="sub-title sub-title2">Nhóm chuyên gia</span>
@@ -129,6 +156,7 @@
       <div class="slider-area">
         <div class="swiper th-slider has-shadow" id="teamSlider1" data-slider-options='{"loop":true,"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1300":{"slidesPerView":"4"}}}'>
           <div class="swiper-wrapper">
+            <?php for($i=1;$i<6;$i++): ?>
             <div class="swiper-slide">
               <div class="th-team team-card">
                 <div class="box-img">
@@ -137,7 +165,7 @@
                 <div class="box-content">
                   <div>
                     <h3 class="box-title">
-                      <a href="team-details.html">Đoàn Thanh Nghị</a>
+                      <a href="#">Đoàn Thanh Nghị</a>
                     </h3>
                     <span class="team-desig">Chuyên gia tư vấn TƯ VẤN KINH DOANH - CHUYỂN ĐỔI SỐ DOANH NGHIỆP</span>
                   </div>
@@ -146,17 +174,11 @@
                       <i class="fa-light fa-plus"></i>
                     </div>
                     <div class="th-social">
-                      <a target="_blank" href="https://facebook.com/">
-                        <i class="fab fa-facebook-f"></i>
+                      <a target="_blank" href="tel:">
+                        <i class="fas fa-mobile-alt"></i>
                       </a>
-                      <a target="_blank" href="https://twitter.com/">
-                        <i class="fab fa-twitter"></i>
-                      </a>
-                      <a target="_blank" href="https://instagram.com/">
-                        <i class="fab fa-instagram"></i>
-                      </a>
-                      <a target="_blank" href="https://linkedin.com/">
-                        <i class="fab fa-linkedin-in"></i>
+                      <a target="_blank" href="mailto:">
+                        <i class="fas fa-envelope"></i>
                       </a>
                     </div>
                   </div>
@@ -197,7 +219,7 @@
                   </div>
                 </div>
               </div>
-          
+            <?php endfor; ?>
           </div>
         </div>
         <button data-slider-prev="#teamSlider1" class="slider-arrow style3 slider-prev">
@@ -209,8 +231,39 @@
       </div>
     </div>
   </section>
-
-  <section class="cta-sec2" data-pos-for=".footer-wrapper" data-sec-pos="bottom-half">
+<?php if($thong_tin): ?>
+  <section class="th-blog-wrapper space-top">
+    <div class="container">
+        <div class="title-area text-center">
+            <span class="sub-title sub-title2">Thông tin & Sự kiện</span>
+            <h2 class="sec-title sec-title2">Videos <span>Chuyển đổi số</span> </h2>
+        </div>
+      <div class="row">
+        <?php $__currentLoopData = $thong_tin; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <div class="col-xxl-4 col-lg-4 col-md-4">
+          <div class="th-blog blog-single has-post-thumbnail">
+            <div class="blog-img">
+              <a href="blog-details.html">
+                <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/blog/blog-s-1-1.jpg" alt="<?php echo e($tt['title']); ?>" style="height:250px;">
+              </a>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <a href="blog.html">
+                  <i class="fa-regular fa-calendar"></i>10 July, 2024 </a>
+              </div>
+              <h2 class="blog-title">
+                <a href="blog-details.html"><?php echo e($tt['ten']); ?></a>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+      </div>
+    </div>
+</section>
+<?php endif; ?>
+  <section class="space-top space-bottom cta-sec2">
     <div class="container th-container">
       <div class="cta-area space bg-theme text-center" data-bg-src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/bg/cta_shape_2.png">
         <div class="row justify-content-center">
@@ -220,8 +273,8 @@
               <p class="cta-text2">Các doanh nghiệp có nhu cầu xây dựng phần mềm quản lý, Website doanh nghiệp,... vui lòng chọn Gởi yêu cầu chuyển đổi số hoặc cần tư vấn về chuyển đổi số doanh nghiệp vui lòng chọ Tư vấn chuyển đổi số.</p>
             </div>
             <div class="btn-group justify-content-center">
-              <a href="<?php echo e(env('APP_URL')); ?>" class="th-btn style3">Gởi yêu cầu chuyển đổi số</a>
-              <a href="<?php echo e(env('APP_URL')); ?>" class="th-btn style6">Tư vấn chuyển đổi số</a>
+              <a href="<?php echo e(env('APP_URL')); ?>goi-yeu-cau" class="th-btn style3">Gởi nhu cầu chuyển đổi số</a>
+              <a href="<?php echo e(env('APP_URL')); ?>tu-van-chuyen-doi-so" class="th-btn style6">Tư vấn chuyển đổi số</a>
             </div>
           </div>
         </div>

@@ -1,6 +1,5 @@
 ! function(e) {
     "use strict";
-
     function t(t) {
         e(t).length > 0 && e(t).each((function() {
             var t = e(this).find("a");
@@ -200,14 +199,17 @@
                 a = a.split(",");
                 for (var n = 0; n < a.length; n++) t = l + " " + a[n], e(t).val() ? (e(t).removeClass("is-invalid"), i = !0) : (e(t).addClass("is-invalid"), i = !1)
             }
-            a('[name="name"],[name="email"],[name="subject"],[name="number"],[name="message"]'), e(d).val() && e(d).val().match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/) ? (e(d).removeClass("is-invalid"), i = !0) : (e(d).addClass("is-invalid"), i = !1);
+            a('[name="ho_ten"],[name="email"],[name="nhu_cau"],[name="dien_thoai"],[name="noi_dung"]'), e(d).val() && e(d).val().match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/) ? (e(d).removeClass("is-invalid"), i = !0) : (e(d).addClass("is-invalid"), i = !1);
             return i
         })() && jQuery.ajax({
             url: e(l).attr("action"),
             data: t,
             type: "POST"
         }).done((function(t) {
-            p.removeClass("error"), p.addClass("success"), p.text(t), e(l + ' input:not([type="submit"]),' + l + " textarea").val("")
+            alert(t);
+            //p.removeClass("error"), p.addClass("success"), p.text(t), e(l + ' input:not([type="submit"]),' + l + " textarea").val("")
+            e(l + ' input:not([type="submit"]),' + l + " textarea").val("")
+            location.reload();
         })).fail((function(e) {
             p.removeClass("success"), p.addClass("error"), "" !== e.responseText ? p.html(e.responseText) : p.html("Oops! An error occured and your message could not be sent.")
         }))
