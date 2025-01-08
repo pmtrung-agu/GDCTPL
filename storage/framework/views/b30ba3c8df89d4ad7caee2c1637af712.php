@@ -1,0 +1,1 @@
+<?php /**PATH E:\Lara_Projects\ABAPortal\resources\views/Frontend/thong-tin.blade.php ENDPATH**/ ?>
