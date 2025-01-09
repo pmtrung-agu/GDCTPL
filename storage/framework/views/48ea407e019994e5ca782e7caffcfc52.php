@@ -90,8 +90,14 @@
                             </li>
                             <?php $__currentLoopData = $menu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <li class="has-submenu">
-                                    <a href="<?php echo e(env('APP_URL')); ?>admin/<?php echo e($m['path']); ?>" class="has-submenu"><i class="<?php echo e($m['icon']); ?>"></i> <?php echo e($m['title']); ?> </a>
-                                    
+                                    <a href="<?php echo e(env('APP_URL')); ?>admin/<?php echo e($m['path']); ?>" class="has-submenu"><i class="<?php echo e($m['icon']); ?>"></i> <?php echo e($m['title']); ?> <?php if(isset($m['childs']) && $m['childs']): ?> <div class="arrow-down"></div> <?php endif; ?></a>
+                                    <?php if(isset($m['childs']) && $m['childs']): ?>
+                                        <ul class="submenu">
+                                            <?php $__currentLoopData = $m['childs']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <li><a href="<?php echo e(env('APP_URL')); ?>admin/<?php echo e($m['path']); ?>/<?php echo e($c['path']); ?>"><?php echo e($c['title']); ?></a></li>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </ul>
+                                    <?php endif; ?>
                                 </li>                           
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>

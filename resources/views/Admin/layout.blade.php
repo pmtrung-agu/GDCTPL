@@ -90,14 +90,14 @@
                             </li>
                             @foreach($menu as $k => $m)
                                 <li class="has-submenu">
-                                    <a href="{{ env('APP_URL') }}admin/{{ $m['path'] }}" class="has-submenu"><i class="{{ $m['icon'] }}"></i> {{ $m['title']}} {{-- <div class="arrow-down"></div> --}}</a>
-                                    {{-- @if($m['childs'])
+                                    <a href="{{ env('APP_URL') }}admin/{{ $m['path'] }}" class="has-submenu"><i class="{{ $m['icon'] }}"></i> {{ $m['title']}} @if(isset($m['childs']) && $m['childs']) <div class="arrow-down"></div> @endif</a>
+                                    @if(isset($m['childs']) && $m['childs'])
                                         <ul class="submenu">
                                             @foreach($m['childs'] as $c)
                                                 <li><a href="{{ env('APP_URL') }}admin/{{ $m['path'] }}/{{ $c['path'] }}">{{ $c['title'] }}</a></li>
                                             @endforeach
                                         </ul>
-                                    @endif --}}
+                                    @endif
                                 </li>                           
                             @endforeach
                         </ul>

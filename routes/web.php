@@ -23,6 +23,8 @@ Route::get('thong-tin-chi-tiet/{slug}', [FrontendController::class, 'thong_tin_c
 Route::get('goi-yeu-cau', [FrontendController::class, 'goi_yeu_cau']);
 Route::get('tu-van-chuyen-doi-so', [FrontendController::class, 'tu_van_chuyen_doi_so']);
 Route::post('tu-van-chuyen-doi-so-submit', [FrontendController::class, 'tu_van_chuyen_doi_so_submit']);
+Route::get('doanh-nghiep/goi-yeu-cau', [FrontendController::class, 'goi_yeu_cau']);
+Route::get('doanh-nghiep/tu-van-chuyen-doi-so', [FrontendController::class, 'tu_van_chuyen_doi_so']);
 Route::get('thong-tin/tai-ve/{id}/{key}', [ThongTinController::class, 'download']);
 Route::get('goi-yeu-cau', [FrontendController::class, 'goi_yeu_cau']);
 Route::post('goi-yeu-cau-submit', [FrontendController::class, 'goi_yeu_cau_submit']);

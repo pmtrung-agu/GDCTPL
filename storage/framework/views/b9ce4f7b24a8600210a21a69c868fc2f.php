@@ -4,7 +4,7 @@
 <div class="space">
     <div class="container">
       <div class="row gy-4 flex-row-reverse">
-        <div class="col-lg-6 col-xl-8">
+        <div class="col-lg-12 col-xl-12">
         <form action="<?php echo e(env('APP_URL')); ?>tu-van-chuyen-doi-so-submit" method="POST" class="contact-form2 input-smoke ajax-contact">
             <?php echo e(csrf_field()); ?>
 
@@ -48,7 +48,7 @@
             
           </form>
         </div>
-        <div class="col-lg-6 col-xl-4">
+        <div class="col-lg-12 col-xl-12">
           <div class="contact-item-wrap">
             <div class="title-area mt-n2 mb-40">
               <h3 class="sec-title">Thông tin liên hệ</h3>
