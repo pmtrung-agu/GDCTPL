@@ -10,8 +10,13 @@ use App\Models\DMLinhVuc;
 class DMNganhNgheController extends Controller
 {
     //
-    function list(){
-    	$danhsach = DMNganhNghe::orderBy('created_at', 'desc')->get()->toArray();
+    function list(Request $request){
+        $id_linh_vuc = $request->input('id_linh_vuc');
+        if($id_linh_vuc){
+            $danhsach = DMNganhNghe::where('id_dm_linh_vuc', '=', $id_linh_vuc)->orderBy('created_at', 'desc')->get()->toArray();
+        } else {
+    	    $danhsach = DMNganhNghe::orderBy('created_at', 'desc')->get()->toArray();
+        }
     	return view('Admin.DanhMuc.NganhNghe.list')->with(compact('danhsach'));
     }
 
@@ -42,7 +47,6 @@ class DMNganhNgheController extends Controller
     	$db->ten = $data['ten'];
         $db->id_dm_linh_vuc = $data['id_dm_linh_vuc'] ? ObjectController::ObjectId($data['id_dm_linh_vuc']) : '';
     	$db->ghi_chu = $data['ghi_chu'];
-
     	$db->save();
     	return redirect(env('APP_URL').'admin/danh-muc/nganh-nghe');
     }

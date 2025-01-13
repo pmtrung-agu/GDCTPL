@@ -1,4 +1,5 @@
 @extends('Admin.layout')
+@section('title', 'Danh mục Lĩnh vực')
 @section('body')
 <div class="wrapper">
     <div class="container-fluid">
@@ -12,14 +13,20 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Tên</th>
+                                <th>Số ngành nghề</th>
                                 <th>#</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach($namhoc as $k => $ct)
+                        @php
+                            //$id_dm_linh_vuc = App\Http\Controllers\ObjectController::ObjectId($ct['_id']);
+                            $so_nn = App\Models\DMNganhNghe::where('id_dm_linh_vuc', '=', $ct['_id'])->count();
+                        @endphp
                             <tr>
                                 <td class="text-center">{{ $k+1 }}</td>
                                 <td>{{ $ct['ten'] }}</td>
+                                <td class="text-center"><a href="{{ env('APP_URL') }}admin/danh-muc/nganh-nghe?id_linh_vuc={{ $ct['_id'] }}" target="_blank">{{ $so_nn }}</a></td>
                                 <td class="text-center">
                                     <a href="{{ env('APP_URL') }}admin/danh-muc/linh-vuc/delete/{{ $ct['_id'] }}" onclick="return confirm('Chắc chắn xóa?');" ><i class="fa fa-trash text-danger"></i></a>
                                     <a href="{{ env('APP_URL') }}admin/danh-muc/linh-vuc/edit/{{ $ct['_id'] }}"><i class="fas fa-pencil-alt"></i></a>

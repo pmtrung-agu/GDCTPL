@@ -19,7 +19,7 @@ class CheckAuth
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) return $next($request);
-        else return redirect(env('APP_URL').'auth/login');
+        else return redirect(env('APP_URL').'auth/login?url='.$request->fullUrl());
         return $next($request);
     }
 }

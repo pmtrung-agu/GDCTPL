@@ -1,4 +1,5 @@
 
+<?php $__env->startSection('title', 'Danh mục Lĩnh vực'); ?>
 <?php $__env->startSection('body'); ?>
 <div class="wrapper">
     <div class="container-fluid">
@@ -12,14 +13,20 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Tên</th>
+                                <th>Số ngành nghề</th>
                                 <th>#</th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php $__currentLoopData = $namhoc; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $ct): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php
+                            //$id_dm_linh_vuc = App\Http\Controllers\ObjectController::ObjectId($ct['_id']);
+                            $so_nn = App\Models\DMNganhNghe::where('id_dm_linh_vuc', '=', $ct['_id'])->count();
+                        ?>
                             <tr>
                                 <td class="text-center"><?php echo e($k+1); ?></td>
                                 <td><?php echo e($ct['ten']); ?></td>
+                                <td class="text-center"><a href="<?php echo e(env('APP_URL')); ?>admin/danh-muc/nganh-nghe?id_linh_vuc=<?php echo e($ct['_id']); ?>" target="_blank"><?php echo e($so_nn); ?></a></td>
                                 <td class="text-center">
                                     <a href="<?php echo e(env('APP_URL')); ?>admin/danh-muc/linh-vuc/delete/<?php echo e($ct['_id']); ?>" onclick="return confirm('Chắc chắn xóa?');" ><i class="fa fa-trash text-danger"></i></a>
                                     <a href="<?php echo e(env('APP_URL')); ?>admin/danh-muc/linh-vuc/edit/<?php echo e($ct['_id']); ?>"><i class="fas fa-pencil-alt"></i></a>

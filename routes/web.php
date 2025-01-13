@@ -13,6 +13,7 @@ use App\Http\Controllers\DMThongTinController;
 use App\Http\Controllers\DMSanPhamController;
 use App\Http\Controllers\DMTaiLieuController;
 use App\Http\Controllers\ThongTinController;
+use App\Http\Controllers\CDSKhaoSatController;
 
 use App\Http\Controllers\FrontendController;
 
@@ -60,6 +61,12 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::post('thong-tin/update', [ThongTinController::class,'update'])->name('admin-thong-tin-update')->middleware('role:Admin');
     Route::get('thong-tin/delete/{id}', [ThongTinController::class, 'delete'])->name('admin-thong-tin-delete-id')->middleware('role:Admin');
 
+    
+    Route::get('khao-sat-muc-do-cds', [CDSKhaoSatController::class, 'du_lieu'])->middleware('role:Admin');
+    Route::get('khao-sat-muc-do-cds/du-lieu', [CDSKhaoSatController::class, 'du_lieu'])->middleware('role:Admin');
+    Route::get('khao-sat-muc-do-cds/chi-tiet/{id}', [CDSKhaoSatController::class, 'chi_tiet'])->middleware('role:Admin');
+    Route::get('khao-sat-muc-do-cds/phan-tich', [CDSKhaoSatController::class, 'phan_tich'])->middleware('role:Admin');
+
     Route::group(['prefix' => 'danh-muc',  'middleware' => 'checkauth'], function(){
         Route::get('linh-vuc', [DMLinhVucController::class, 'list'])->name('admin-linh-vuc')->middleware('role:Admin');
         Route::get('linh-vuc/change-password', [DMLinhVucController::class, 'change_password'])->name('admin-linh-vuc-change-password')->middleware('checkauth');
@@ -105,7 +112,6 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
         Route::get('tai-lieu/edit/{id}', [DMTaiLieuController::class, 'edit'])->name('admin-dm-tai-lieu-edit-id')->middleware('role:Admin');
         Route::post('tai-lieu/update', [DMTaiLieuController::class,'update'])->name('admin-dm-tai-lieu-update')->middleware('role:Admin');
         Route::get('tai-lieu/delete/{id}', [DMTaiLieuController::class, 'delete'])->name('admin-dm-tai-lieu-delete-id')->middleware('role:Admin');
-
     });
 
     Route::get('dia-chi', [DMDiaChiController::class, 'list'])->name('admin-danh-muc-dia-chi')->middleware('role:Manager,Admin');

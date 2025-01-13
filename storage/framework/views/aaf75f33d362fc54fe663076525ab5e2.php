@@ -20,11 +20,13 @@
                         <?php $__currentLoopData = $danhsach; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $ct): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <?php
                             $lv = App\Models\DMLinhVuc::find($ct['id_dm_linh_vuc']);
+                            if($lv) $ten_lv = $lv['ten'];
+                            else $ten_lv = '';
                         ?>
                             <tr>
                                 <td class="text-center"><?php echo e($k+1); ?></td>
                                 <td><?php echo e($ct['ten']); ?></td>
-                                <td><?php echo e($lv['ten']); ?></td>
+                                <td><?php echo e($ten_lv); ?></td>
                                 <td class="text-center" style="width:80px;">
                                     <a href="<?php echo e(env('APP_URL')); ?>admin/danh-muc/nganh-nghe/delete/<?php echo e($ct['_id']); ?>" onclick="return confirm('Chắc chắn xóa?');" ><i class="fa fa-trash text-danger"></i></a>
                                     <a href="<?php echo e(env('APP_URL')); ?>admin/danh-muc/nganh-nghe/edit/<?php echo e($ct['_id']); ?>"><i class="fas fa-pencil-alt"></i></a>

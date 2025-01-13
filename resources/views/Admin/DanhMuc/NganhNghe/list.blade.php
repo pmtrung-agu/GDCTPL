@@ -20,11 +20,13 @@
                         @foreach($danhsach as $k => $ct)
                         @php
                             $lv = App\Models\DMLinhVuc::find($ct['id_dm_linh_vuc']);
+                            if($lv) $ten_lv = $lv['ten'];
+                            else $ten_lv = '';
                         @endphp
                             <tr>
                                 <td class="text-center">{{ $k+1 }}</td>
                                 <td>{{ $ct['ten'] }}</td>
-                                <td>{{ $lv['ten'] }}</td>
+                                <td>{{ $ten_lv }}</td>
                                 <td class="text-center" style="width:80px;">
                                     <a href="{{ env('APP_URL') }}admin/danh-muc/nganh-nghe/delete/{{ $ct['_id'] }}" onclick="return confirm('Chắc chắn xóa?');" ><i class="fa fa-trash text-danger"></i></a>
                                     <a href="{{ env('APP_URL') }}admin/danh-muc/nganh-nghe/edit/{{ $ct['_id'] }}"><i class="fas fa-pencil-alt"></i></a>
