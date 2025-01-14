@@ -66,7 +66,7 @@
                 </div>
                 <div class="card-box">
                     <h2 class="text-center">PHẦN A</h2> 
-                    <h3><i class="far fa-address-card text-primary"></i> Trụ cột 1: Trải nghiệm số cho khách hàng </h3>
+                    <h3><i class="fas fa-clinic-medical text-primary"></i> Trụ cột 1: Trải nghiệm số cho khách hàng </h3>
                     <table class="table table-border table-striped table-bodered">
                         <thead>
                             <tr>
@@ -92,7 +92,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <h3><i class="far fa-address-card text-primary"></i> Trụ cột 2: Chiến lược </h3>
+                    <h3><i class="fas fa-clinic-medical text-primary"></i> Trụ cột 2: Chiến lược </h3>
                     <table class="table table-border table-striped table-bodered">
                         <thead>
                             <tr>
@@ -110,7 +110,7 @@
                         </tbody>
                     </table>
 
-                    <h3><i class="far fa-address-card text-primary"></i> Trụ cột 3: Hạ tầng và Công nghệ số</h3>
+                    <h3><i class="fas fa-clinic-medical text-primary"></i> Trụ cột 3: Hạ tầng và Công nghệ số</h3>
                     <table class="table table-border table-striped table-bodered">
                         <thead>
                             <tr>
@@ -137,7 +137,7 @@
                         </tbody>
                     </table>
 
-                    <h3><i class="far fa-address-card text-primary"></i> Trụ cột 4: Vận hành</h3>
+                    <h3><i class="fas fa-clinic-medical text-primary"></i> Trụ cột 4: Vận hành</h3>
                     <table class="table table-border table-striped table-bodered">
                         <thead>
                             <tr>
@@ -164,7 +164,7 @@
                         </tbody>
                     </table>
 
-                    <h3><i class="far fa-address-card text-primary"></i> Trụ cột 5: Chuyển đổi số văn hóa doanh nghiệp</h3>
+                    <h3><i class="fas fa-clinic-medical text-primary"></i> Trụ cột 5: Chuyển đổi số văn hóa doanh nghiệp</h3>
                     <table class="table table-border table-striped table-bodered">
                         <thead>
                             <tr>
@@ -191,7 +191,7 @@
                         </tbody>
                     </table>
 
-                    <h3><i class="far fa-address-card text-primary"></i> Trụ cột 6: Dữ liệu và tài sản thông tin</h3>
+                    <h3><i class="fas fa-clinic-medical text-primary"></i> Trụ cột 6: Dữ liệu và tài sản thông tin</h3>
                     <table class="table table-border table-striped table-bodered">
                         <thead>
                             <tr>
@@ -217,7 +217,7 @@
                     <h2 class="text-center">PHẦN B</h2> 
                     <div class="row">
                         <div class="col-6 col-md-4 card-box">
-                            <h3><i class="far fa-address-card text-primary"></i> 7.1. Quản trị</h3>
+                            <h3><i class="fas fa-users-cog text-primary"></i> 7.1. Quản trị</h3>
                             <table class="table table-border table-striped table-bodered">
                                 <thead>
                                     <tr>
@@ -238,7 +238,7 @@
                             </table>
                         </div>
                         <div class="col-6 col-md-4 card-box">
-                            <h3><i class="far fa-address-card text-primary"></i> 7.2. Chiến lược</h3>
+                            <h3><i class=" fas fa-user-check text-primary"></i> 7.2. Chiến lược</h3>
                             <table class="table table-border table-striped table-bodered">
                                 <thead>
                                     <tr>
@@ -259,7 +259,7 @@
                             </table>
                         </div>
                         <div class="col-6 col-md-4 card-box">
-                            <h3><i class="far fa-address-card text-primary"></i> 7.3. Văn hóa</h3>
+                            <h3><i class="fas fa-users text-primary"></i> 7.3. Văn hóa</h3>
                             <table class="table table-border table-striped table-bodered">
                                 <thead>
                                     <tr>
@@ -282,7 +282,7 @@
                     </div>
                     <div class="row">
                         <div class="col-6 col-md-4 card-box">
-                            <h3><i class="far fa-address-card text-primary"></i> 7.4. Công nghệ và kết nối: tiến trình</h3>
+                            <h3><i class="fab fa-connectdevelop text-primary"></i> 7.4. Công nghệ và kết nối: tiến trình</h3>
                             <table class="table table-border table-striped table-bodered">
                                 <thead>
                                     <tr>
@@ -303,7 +303,7 @@
                             </table>
                         </div>
                         <div class="col-6 col-md-4 card-box">
-                            <h3><i class="far fa-address-card text-primary"></i> 7.5. Công nghệ và kết nối: Mức độ</h3>
+                            <h3><i class="fab fa-xbox text-primary"></i> 7.5. Công nghệ và kết nối: Mức độ</h3>
                             <table class="table table-border table-striped table-bodered">
                                 <thead>
                                     <tr>
@@ -324,7 +324,7 @@
                             </table>
                         </div>
                         <div class="col-6 col-md-4 card-box">
-                            <h3><i class="far fa-address-card text-primary"></i> 7.6. Nhân lực</h3>
+                            <h3><i class=" fas fa-user-graduate text-primary"></i> 7.6. Nhân lực</h3>
                             <table class="table table-border table-striped table-bodered">
                                 <thead>
                                     <tr>
@@ -350,7 +350,7 @@
                     <div class="row">
                         <div class="col-12 col-md-8">
                             <h2 class="text-center">PHẦN C</h2>
-                            <h3><i class="far fa-address-card text-primary"></i> 8. Rào cản</h3>
+                            <h3><i class="fas fa-not-equal text-primary"></i> 8. Rào cản</h3>
                             <table class="table table-border table-striped table-bodered">
                                 <thead>
                                     <tr>
@@ -372,7 +372,7 @@
                         </div>
                         <div class="col-12 col-md-4">
                             <h2 class="text-center">PHẦN D</h2> 
-                            <h3><i class="far fa-address-card text-primary"></i> 8. Rào cản</h3>
+                            <h3><i class="fas fa-user-tie text-primary"></i> 9. Ý kiến của doanh nghiệp</h3>
                             <table class="table table-border table-striped table-bodered">
                                 <thead>
                                     <tr>

@@ -13,12 +13,12 @@ return [
         array('8.9','Sợ rò rỉ dữ liệu cá nhân/ doanh nghiệp','4.2','0.85')
     ),
     'bang_3' => array(
-        array(1,'Trải nghiệm số cho khách hàng',0.2),
-        array(2,'Chiến lược số',0.08),
-        array(3,'Hạ tầng và Công nghệ số',0.25),
-        array(4,'Vận hành',0.2),
-        array(5,'Chuyển đổi số văn hóa doanh nghiệp',0.16),
-        array(6,'Dữ liệu và tài sản thông tin',0.11)
+        array(1,'Trải nghiệm số cho khách hàng',0.203, 25),
+        array(2,'Chiến lược số',0.078, 28),
+        array(3,'Hạ tầng và Công nghệ số',0.25, 46),
+        array(4,'Vận hành',0.203, 61),
+        array(5,'Chuyển đổi số văn hóa doanh nghiệp',0.156, 73),
+        array(6,'Dữ liệu và tài sản thông tin',0.109, 82)
     )
 ]
 ?>

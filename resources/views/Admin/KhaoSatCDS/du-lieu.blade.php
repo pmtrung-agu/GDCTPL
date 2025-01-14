@@ -16,7 +16,8 @@
                                 <th>Lĩnh vực hoạt động</th>
                                 <th>Ngành nghề</th>
                                 <th>Ngày thành lập</th>
-                                <th>Địa chỉ</th>
+                                <th>Tổng điểm</th>
+                                <th>Mức độ CĐS</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,7 +29,8 @@
                                    <td>{{ $ds[3] }}</td>
                                    <td>{{ $ds[4] }}</td>
                                    <td>{{ date("d/m/Y", strtotime($ds[5])) }}</td>
-                                   <td>{{ $ds[7] }}</td>
+                                   <td class="text-center bold text-danger">{{ $ds[83] }}</td>
+                                   <td class="text-center bold text-danger">{{ $ds[84] }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

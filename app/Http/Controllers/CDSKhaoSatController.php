@@ -22,8 +22,11 @@ class CDSKhaoSatController extends Controller
     function phan_tich(Request $request) {
         $so_luong = CDSKhaoSat::count();
         $huyen = CDSKhaoSat::groupBy(6)->get();
+        $nganh = CDSKhaoSat::groupBy(4)->get();
+        $linhvuc = CDSKhaoSat::groupBy(3)->get();
         $bang_1 = Config::get('data_phan_tich.bang_1');
         $bang_3 = Config::get('data_phan_tich.bang_3');
-        return view('Admin.KhaoSatCDS.phan-tich')->with(compact('so_luong','huyen', 'bang_1','bang_3'));
+        $danhsach = CDSKhaoSat::All();
+        return view('Admin.KhaoSatCDS.phan-tich')->with(compact('so_luong','huyen', 'bang_1','bang_3', 'nganh', 'linhvuc', 'danhsach'));
     }
 }
