@@ -22,11 +22,33 @@ class CDSKhaoSatController extends Controller
     function phan_tich(Request $request) {
         $so_luong = CDSKhaoSat::count();
         $huyen = CDSKhaoSat::groupBy(6)->get();
-        $nganh = CDSKhaoSat::groupBy(4)->get();
+        $nganh = CDSKhaoSat::groupBy(groups: 4)->get();
         $linhvuc = CDSKhaoSat::groupBy(3)->get();
         $bang_1 = Config::get('data_phan_tich.bang_1');
         $bang_3 = Config::get('data_phan_tich.bang_3');
         $danhsach = CDSKhaoSat::All();
         return view('Admin.KhaoSatCDS.phan-tich')->with(compact('so_luong','huyen', 'bang_1','bang_3', 'nganh', 'linhvuc', 'danhsach'));
+    }
+
+    function doanh_nghiep(Request $request) {
+        $so_luong = CDSKhaoSat::count();
+        $linhvuc = CDSKhaoSat::groupBy(3)->get();
+        $bang_1 = Config::get('data_phan_tich.bang_1');
+        $bang_3 = Config::get('data_phan_tich.bang_3');
+        $danhsach = CDSKhaoSat::All();
+        $dn = $request->input('doanh_nghiep');
+        $lv = $request->input('linh_vuc');
+        if($lv) {
+            $doanh_nghiep = CDSKhaoSat::where(3,'=', $lv)->get();
+        } else {
+            $doanh_nghiep = '';
+        }
+        return view('Admin.KhaoSatCDS.doanh-nghiep')->with(compact('so_luong', 'bang_1','bang_3', 'linhvuc', 'danhsach', 'doanh_nghiep','lv', 'dn'));
+    }
+    function doanh_nghiep_linh_vuc(Request $request, $lv = '') {
+        $danhsach = CDSKhaoSat::where(3,'=', $lv)->get();
+        foreach($danhsach as $ds){
+            echo '<option value="'.$ds[1].'">'.$ds[1].'</option>';
+        }
     }
 }

@@ -46,7 +46,7 @@ class AuthController extends Controller
 
   function authenticate(Request $request){
     $data = $request->all();
-    $destination = isset($data['destination']) ? $data['destination'] : '';
+    $destination = isset($data['url']) ? $data['url'] : '';
     $remember = isset($data['remember_login']) ? intval($data['remember_login']) : 0;
     
     if (Auth::attempt(['username' => $data['username'], 'password' => $data['password'], 'active' => 1], $remember)) {

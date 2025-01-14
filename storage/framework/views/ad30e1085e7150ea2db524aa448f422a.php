@@ -13,26 +13,34 @@
                             <table class="table table-border table-striped table-bodered">
                                 <thead>                                   
                                     <tr>
-                                        <?php for($i=0;$i<=3;$i++): ?>
-                                            <th><?php echo e($bang_1[0][$i]); ?></th>
-                                        <?php endfor; ?>
+                                      <th>STT</th>
+                                      <th>Rào cảng</th>
+                                      <th>Mức độ khó khắn</th>
+                                      <th>Tỷ lệ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php for($row=1;$row<=9;$row++): ?>
+
+                                    <?php $__currentLoopData = $bang_1; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b1): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php
+                                        $sum[$b1[2]] = 0;
+                                        foreach($danhsach as $ds) {
+                                            $sum[$b1[2]] += intval($ds[$b1[2]]);
+                                        }
+                                        $mucdo = $sum[$b1[2]]/$so_luong;
+                                        $tyle = $mucdo/5*100;
+                                    ?>
                                     <tr>
-                                        <?php for($col=0;$col<=3;$col++): ?>
-                                            <?php if($col==3): ?>
-                                                <td class="bold"><?php echo e($bang_1[$row][$col]*100); ?>%</td>
-                                            <?php else: ?> 
-                                            <td><?php echo e($bang_1[$row][$col]); ?></td>
-                                            <?php endif; ?>
-                                        <?php endfor; ?>
+                                        <td><?php echo e($b1[0]); ?></td>
+                                        <td><?php echo e($b1[1]); ?></td>
+                                        <td class="text-right"><?php echo e(number_format($mucdo,1,".",",")); ?></td>
+                                        <td class="text-right"><?php echo e(number_format($tyle,2,".",",")); ?>%</td>
                                     </tr>
-                                    <?php endfor; ?>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>
                         </div>
+
                         <div class="col-12 col-md-5 card-box">
                             <h4 style="font-size:20px;" class="text-danger"><strong>*Bảng 2: Phân bổ doanh nghiệp theo huyện/thị:</strong></h4>
                             <table class="table table-border table-striped table-bodered">
@@ -134,7 +142,7 @@
                                             <tr>
                                                 <td><?php echo e($nn['_id'][4]); ?></td>
                                                 <td class="text-right"><?php echo e($sl); ?></td>
-                                                <td class="text-right"><?php echo e(round($sl/$tt * 100,1)); ?>%</td>
+                                                <td class="text-right"><?php echo e(number_format($sl/$tt * 100,1,".",",")); ?>%</td>
                                             </tr>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </tbody>
@@ -165,12 +173,11 @@
                                                     $sum_b7 += intval($ds[$b3[3]]);
                                                 }
                                                 $mdss = $sum_b7/$tt;
-                                                    
                                             ?>
                                             <tr>
                                                 <td><?php echo e($b3[0]); ?></td>
                                                 <td><?php echo e($b3[1]); ?></td>
-                                                <td class="text-right"><?php echo e(round($mdss,1)); ?></td>
+                                                <td class="text-right"><?php echo e(number_format($mdss,1,".",",")); ?></td>
                                             </tr>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </tbody>
@@ -195,7 +202,7 @@
                                             <tr>
                                                 <td><?php echo e($lv['_id'][3]); ?></td>
                                                 <td class="text-right"><?php echo e($sl); ?></td>
-                                                <td class="text-right"><?php echo e(round($sl/$tt * 100,1)); ?>%</td>
+                                                <td class="text-right"><?php echo e(number_format($sl/$tt * 100,1,".",",")); ?>%</td>
                                             </tr>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </tbody>
@@ -231,7 +238,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row card-box">
                             <div class="col-12 col-md-12">
                                 <h4 style="font-size:20px;" class="text-danger"><strong>*Bảng 8: Mức độ sẵn sàng chuyển đổi số theo ngành</strong></h4>
@@ -268,7 +274,7 @@
                                                 else $tl = 0;
                                                 $sum[$n1['_id'][4]] += ($tl * $b3[2]) ;
                                                  ?>
-                                                <th class="text-right"><?php echo e(round($tl, 1)); ?></th>
+                                                <th class="text-right"><?php echo e(number_format($tl, 1,".",",")); ?></th>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
                                         </tr>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -277,7 +283,59 @@
                                         <tr class="bold bg-warning">
                                             <th colspan="3">Mức độ chuyển đổi số</th>
                                             <?php $__currentLoopData = $nganh; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nn): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <th class="text-right"><?php echo e(round($sum[$nn['_id'][4]],1)); ?></th>
+                                                <th class="text-right"><?php echo e(number_format($sum[$nn['_id'][4]],1,".",".")); ?></th>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row card-box">
+                            <div class="col-12 col-md-12">
+                                <h4 style="font-size:20px;" class="text-danger"><strong>*Bảng 9: Mức độ sẵn sàng chuyển đổi số theo 03 lĩnh vực</strong></h4>
+                                <table class="table table-border table-striped table-bordered">
+                                    <thead>                                   
+                                        <tr>
+                                            <th rowspan="2">STT</th>
+                                            <th rowspan="2">Trụ cột</th>
+                                            <th rowspan="2">Trọng số trụ cột</th>
+                                            <th colspan="<?php echo e(count($linhvuc)); ?>">Lĩnh vực: <?php echo e(count($linhvuc)); ?></th>
+                                        </tr>
+                                        <tr>
+                                            <?php $__currentLoopData = $linhvuc; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <th><?php echo e($lv['_id'][3]); ?></th>
+                                                <?php $sum[$lv['_id'][3]] = 0; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $__currentLoopData = $bang_3; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b3): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <tr>
+                                            <td><?php echo e($b3[0]); ?></td>
+                                            <td><?php echo e($b3[1]); ?></td>
+                                            <td class="text-right"><?php echo e($b3[2]*100); ?>%</td>
+                                           <?php $__currentLoopData = $linhvuc; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php
+                                                $count_h = App\Models\CDSKhaoSat::where(3,'=', strval($lv['_id'][3]))->count();
+                                                $danhsach_h = App\Models\CDSKhaoSat::where(3,'=', $lv['_id'][3])->get();
+                                                $sum[$b3[3]] = 0;
+                                                foreach($danhsach_h as $dsh) {
+                                                    $sum[$b3[3]] += intval($dsh[$b3[3]]);
+                                                }
+                                                if($count_h > 0) $tl = $sum[$b3[3]]/$count_h;
+                                                else $tl = 0;
+                                                $sum[$lv['_id'][3]] += ($tl * $b3[2]) ;
+                                                 ?>
+                                                <th class="text-right"><?php echo e(number_format($tl, 1,".",".")); ?></th>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
+                                        </tr>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="bold bg-warning">
+                                            <th colspan="3">Mức độ chuyển đổi số</th>
+                                            <?php $__currentLoopData = $linhvuc; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <th class="text-right"><?php echo e(number_format($sum[$lv['_id'][3]],1,".",",")); ?></th>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </tr>
                                     </tfoot>

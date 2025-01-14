@@ -67,10 +67,7 @@ return  [
                 array('title' => 'Biểu đồ', 'path' => 'bieu-do'),
                 array('title' => 'Công thức chuyển đổi số', 'path' => 'cong-thuc'),
                 array('title' => 'Kết quả phân tích', 'path' => 'phan-tich'),
-                array('title' => 'Kết quả phân tích', 'path' => 'phan-tich'),
-                array('title' => 'Lĩnh vực Nông nghiệp', 'path' => 'linh-vuc-nong-nghiep'),
-                array('title' => 'Lĩnh vực Thương mại - Dịch vụ', 'path' => 'linh-vuc-thuong-mai-dich-vu'),
-                array('title' => 'Lĩnh vực Công nghiệp - Xây dựng', 'path' => 'linh-vuc-cong-nghiep-xay-dung')
+                array('title' => 'Kết quả theo Doanh nghiệp', 'path' => 'theo-doanh-nghiep')
             )
         ),
     ),

@@ -1,5 +1,5 @@
 @extends('Admin.layout')
-@section('title', 'Dữ liệu khảo sát')
+@section('title', 'Phân tích Dữ liệu khảo sát')
 @section('body')
 <div class="wrapper">
     <div class="container-fluid">
@@ -13,26 +13,34 @@
                             <table class="table table-border table-striped table-bodered">
                                 <thead>                                   
                                     <tr>
-                                        @for($i=0;$i<=3;$i++)
-                                            <th>{{ $bang_1[0][$i] }}</th>
-                                        @endfor
+                                      <th>STT</th>
+                                      <th>Rào cảng</th>
+                                      <th>Mức độ khó khắn</th>
+                                      <th>Tỷ lệ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for($row=1;$row<=9;$row++)
+
+                                    @foreach($bang_1 as $b1)
+                                    @php
+                                        $sum[$b1[2]] = 0;
+                                        foreach($danhsach as $ds) {
+                                            $sum[$b1[2]] += intval($ds[$b1[2]]);
+                                        }
+                                        $mucdo = $sum[$b1[2]]/$so_luong;
+                                        $tyle = $mucdo/5*100;
+                                    @endphp
                                     <tr>
-                                        @for($col=0;$col<=3;$col++)
-                                            @if($col==3)
-                                                <td class="bold">{{ $bang_1[$row][$col]*100 }}%</td>
-                                            @else 
-                                            <td>{{ $bang_1[$row][$col] }}</td>
-                                            @endif
-                                        @endfor
+                                        <td>{{ $b1[0] }}</td>
+                                        <td>{{ $b1[1] }}</td>
+                                        <td class="text-right">{{ number_format($mucdo,1,".",",") }}</td>
+                                        <td class="text-right">{{ number_format($tyle,2,".",",") }}%</td>
                                     </tr>
-                                    @endfor
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
+
                         <div class="col-12 col-md-5 card-box">
                             <h4 style="font-size:20px;" class="text-danger"><strong>*Bảng 2: Phân bổ doanh nghiệp theo huyện/thị:</strong></h4>
                             <table class="table table-border table-striped table-bodered">
@@ -134,7 +142,7 @@
                                             <tr>
                                                 <td>{{ $nn['_id'][4] }}</td>
                                                 <td class="text-right">{{ $sl }}</td>
-                                                <td class="text-right">{{ round($sl/$tt * 100,1) }}%</td>
+                                                <td class="text-right">{{ number_format($sl/$tt * 100,1,".",",") }}%</td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -165,12 +173,11 @@
                                                     $sum_b7 += intval($ds[$b3[3]]);
                                                 }
                                                 $mdss = $sum_b7/$tt;
-                                                    
                                             @endphp
                                             <tr>
                                                 <td>{{ $b3[0] }}</td>
                                                 <td>{{ $b3[1] }}</td>
-                                                <td class="text-right">{{ round($mdss,1) }}</td>
+                                                <td class="text-right">{{ number_format($mdss,1,".",",") }}</td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -195,7 +202,7 @@
                                             <tr>
                                                 <td>{{ $lv['_id'][3] }}</td>
                                                 <td class="text-right">{{ $sl }}</td>
-                                                <td class="text-right">{{ round($sl/$tt * 100,1) }}%</td>
+                                                <td class="text-right">{{ number_format($sl/$tt * 100,1,".",",") }}%</td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -231,7 +238,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row card-box">
                             <div class="col-12 col-md-12">
                                 <h4 style="font-size:20px;" class="text-danger"><strong>*Bảng 8: Mức độ sẵn sàng chuyển đổi số theo ngành</strong></h4>
@@ -268,7 +274,7 @@
                                                 else $tl = 0;
                                                 $sum[$n1['_id'][4]] += ($tl * $b3[2]) ;
                                                  @endphp
-                                                <th class="text-right">{{ round($tl, 1) }}</th>
+                                                <th class="text-right">{{ number_format($tl, 1,".",",") }}</th>
                                             @endforeach 
                                         </tr>
                                         @endforeach
@@ -277,7 +283,59 @@
                                         <tr class="bold bg-warning">
                                             <th colspan="3">Mức độ chuyển đổi số</th>
                                             @foreach($nganh as $nn)
-                                                <th class="text-right">{{ round($sum[$nn['_id'][4]],1) }}</th>
+                                                <th class="text-right">{{ number_format($sum[$nn['_id'][4]],1,".",".") }}</th>
+                                            @endforeach
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row card-box">
+                            <div class="col-12 col-md-12">
+                                <h4 style="font-size:20px;" class="text-danger"><strong>*Bảng 9: Mức độ sẵn sàng chuyển đổi số theo 03 lĩnh vực</strong></h4>
+                                <table class="table table-border table-striped table-bordered">
+                                    <thead>                                   
+                                        <tr>
+                                            <th rowspan="2">STT</th>
+                                            <th rowspan="2">Trụ cột</th>
+                                            <th rowspan="2">Trọng số trụ cột</th>
+                                            <th colspan="{{ count($linhvuc) }}">Lĩnh vực: {{ count($linhvuc) }}</th>
+                                        </tr>
+                                        <tr>
+                                            @foreach($linhvuc as $lv)
+                                                <th>{{ $lv['_id'][3] }}</th>
+                                                @php $sum[$lv['_id'][3]] = 0; @endphp
+                                            @endforeach
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($bang_3 as $b3)
+                                        <tr>
+                                            <td>{{ $b3[0] }}</td>
+                                            <td>{{ $b3[1] }}</td>
+                                            <td class="text-right">{{ $b3[2]*100 }}%</td>
+                                           @foreach($linhvuc as $lv)
+                                                @php
+                                                $count_h = App\Models\CDSKhaoSat::where(3,'=', strval($lv['_id'][3]))->count();
+                                                $danhsach_h = App\Models\CDSKhaoSat::where(3,'=', $lv['_id'][3])->get();
+                                                $sum[$b3[3]] = 0;
+                                                foreach($danhsach_h as $dsh) {
+                                                    $sum[$b3[3]] += intval($dsh[$b3[3]]);
+                                                }
+                                                if($count_h > 0) $tl = $sum[$b3[3]]/$count_h;
+                                                else $tl = 0;
+                                                $sum[$lv['_id'][3]] += ($tl * $b3[2]) ;
+                                                 @endphp
+                                                <th class="text-right">{{ number_format($tl, 1,".",".") }}</th>
+                                            @endforeach 
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="bold bg-warning">
+                                            <th colspan="3">Mức độ chuyển đổi số</th>
+                                            @foreach($linhvuc as $lv)
+                                                <th class="text-right">{{ number_format($sum[$lv['_id'][3]],1,".",",") }}</th>
                                             @endforeach
                                         </tr>
                                     </tfoot>
