@@ -1,5 +1,5 @@
 
-<?php $__env->startSection('title', 'Dữ liệu khảo sát'); ?>
+<?php $__env->startSection('title', 'Phân tích Dữ liệu khảo sát'); ?>
 <?php $__env->startSection('body'); ?>
 <div class="wrapper">
     <div class="container-fluid">

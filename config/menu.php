@@ -65,7 +65,7 @@ return  [
             'childs' => array(
                 array('title' => 'Dữ liệu khảo sát', 'path' => 'du-lieu'),
                 array('title' => 'Biểu đồ', 'path' => 'bieu-do'),
-                array('title' => 'Công thức chuyển đổi số', 'path' => 'cong-thuc'),
+                //array('title' => 'Công thức chuyển đổi số', 'path' => 'cong-thuc'),
                 array('title' => 'Kết quả phân tích', 'path' => 'phan-tich'),
                 array('title' => 'Kết quả theo Doanh nghiệp', 'path' => 'theo-doanh-nghiep')
             )

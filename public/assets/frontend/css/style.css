@@ -5996,7 +5996,7 @@ a.text-theme:hover,
   }
 }
 .header-button .th-btn {
-  min-width: 160px;
+  /*min-width: 160px;*/
 }
 @media (max-width: 1199px) {
   .header-button .th-btn {

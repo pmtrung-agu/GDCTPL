@@ -51,4 +51,8 @@ class CDSKhaoSatController extends Controller
             echo '<option value="'.$ds[1].'">'.$ds[1].'</option>';
         }
     }
+
+    function bieu_do(){
+        return view('Admin.KhaoSatCDS.bieu-do');
+    }
 }

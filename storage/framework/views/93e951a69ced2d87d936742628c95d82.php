@@ -102,7 +102,7 @@
               <div class="col-auto">
                 <div class="header-logo">
                   <a href="<?php echo e(env('APP_URL')); ?>">
-                    <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/logo.png" alt="Cổng thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang" style="height: 90px; width:270px;">
+                    <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/logo.png" alt="Cổng thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang" style="width:250px;">
                   </a>
                 </div>
               </div>
@@ -146,8 +146,8 @@
               </div>
               <div class="col-auto d-none d-lg-block">
                 <div class="header-button">
-                  <a href="<?php echo e(env('APP_URL')); ?>auth/login" class="th-btn d-none d-xl-block">Đăng nhập</a>
-                  <a href="#" class="icon-btn sideMenuToggler">
+                  <a href="<?php echo e(env('APP_URL')); ?>auth/login" class="th-btn d-none d-xl-block" title="Đăng nhập hệ thống"><i class="fas fa-sign-in"></i></a>
+                  <a href="<?php echo e(env('APP_URL')); ?>gio-hang" class="icon-btn sideMenuToggler" title="Giỏ hàng">
                     <i class="fas fa-cart-arrow-down"></i>
                   </a>
                 </div>
