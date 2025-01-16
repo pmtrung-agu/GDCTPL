@@ -69,6 +69,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('khao-sat-muc-do-cds/phan-tich', [CDSKhaoSatController::class, 'phan_tich'])->middleware('role:Admin');
     Route::get('khao-sat-muc-do-cds/theo-doanh-nghiep', [CDSKhaoSatController::class, 'doanh_nghiep'])->middleware('role:Admin');
     Route::get('khao-sat-muc-do-cds/doanh-nghiep/{lv}', [CDSKhaoSatController::class, 'doanh_nghiep_linh_vuc'])->middleware('role:Admin');
+    Route::get('khao-sat-muc-do-cds/theo-nganh-nghe', [CDSKhaoSatController::class, 'nganh_nghe'])->middleware('role:Admin');
     
 
     Route::group(['prefix' => 'danh-muc',  'middleware' => 'checkauth'], function(){

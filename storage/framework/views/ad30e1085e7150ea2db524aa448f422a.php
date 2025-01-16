@@ -105,7 +105,7 @@
                                                 }
                                                 if($count_h > 0) $tl = $sum[$b3[3]]/$count_h;
                                                 else $tl = 0;
-                                                $sum[ $h['_id'][6]] += ($tl * $b3[2]) ;
+                                                $sum[$h['_id'][6]] += ($tl * $b3[2]);
                                             ?>
                                                 <th><?php echo e(round($tl, 1)); ?></th>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -116,7 +116,7 @@
                                         <tr class="bold bg-warning">
                                             <th colspan="3">Mức độ chuyển đổi số</th>
                                             <?php $__currentLoopData = $huyen; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $h): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <th><?php echo e(round($sum[ $h['_id'][6]],1)); ?></th>
+                                                <th><?php echo e(round($sum[$h['_id'][6]],1)); ?></th>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </tr>
                                     </tfoot>

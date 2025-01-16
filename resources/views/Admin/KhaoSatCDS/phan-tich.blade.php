@@ -105,7 +105,7 @@
                                                 }
                                                 if($count_h > 0) $tl = $sum[$b3[3]]/$count_h;
                                                 else $tl = 0;
-                                                $sum[ $h['_id'][6]] += ($tl * $b3[2]) ;
+                                                $sum[$h['_id'][6]] += ($tl * $b3[2]);
                                             @endphp
                                                 <th>{{ round($tl, 1) }}</th>
                                             @endforeach
@@ -116,7 +116,7 @@
                                         <tr class="bold bg-warning">
                                             <th colspan="3">Mức độ chuyển đổi số</th>
                                             @foreach($huyen as $h)
-                                                <th>{{ round($sum[ $h['_id'][6]],1) }}</th>
+                                                <th>{{ round($sum[$h['_id'][6]],1) }}</th>
                                             @endforeach
                                         </tr>
                                     </tfoot>

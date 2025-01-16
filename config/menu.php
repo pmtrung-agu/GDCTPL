@@ -67,7 +67,8 @@ return  [
                 array('title' => 'Biểu đồ', 'path' => 'bieu-do'),
                 //array('title' => 'Công thức chuyển đổi số', 'path' => 'cong-thuc'),
                 array('title' => 'Kết quả phân tích', 'path' => 'phan-tich'),
-                array('title' => 'Kết quả theo Doanh nghiệp', 'path' => 'theo-doanh-nghiep')
+                array('title' => 'Kết quả theo Doanh nghiệp', 'path' => 'theo-doanh-nghiep'),
+                array('title' => 'Kết quả theo Ngành nghề', 'path' => 'theo-nganh-nghe')
             )
         ),
     ),

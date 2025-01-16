@@ -203,7 +203,6 @@
             });
 
             //Chart bar
-
             var optionsBar = {
                 series: [{
                     data: {!! json_encode($bar_data) !!}

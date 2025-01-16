@@ -53,6 +53,23 @@ class CDSKhaoSatController extends Controller
     }
 
     function bieu_do(){
-        return view('Admin.KhaoSatCDS.bieu-do');
+        $so_luong = CDSKhaoSat::count();
+        $linhvuc = CDSKhaoSat::groupBy(3)->get();
+        $bang_1 = Config::get('data_phan_tich.bang_1');
+        $bang_3 = Config::get('data_phan_tich.bang_3');
+        $danhsach = CDSKhaoSat::All();
+        $huyen = CDSKhaoSat::groupBy(6)->get();
+        $nganh = CDSKhaoSat::groupBy(groups: 4)->get();
+        $linhvuc = CDSKhaoSat::groupBy(3)->get();
+        return view('Admin.KhaoSatCDS.bieu-do')->with(compact('so_luong', 'bang_1','bang_3', 'linhvuc', 'danhsach', 'huyen','nganh','linhvuc'));
+    }
+
+    function nganh_nghe(Request $request) {
+        $so_luong = CDSKhaoSat::count();
+        $nn = $request->input('nganh_nghe');
+        $bang_3 = Config::get('data_phan_tich.bang_3');
+        $bang_1 = Config::get('data_phan_tich.bang_1');
+        $nganh = CDSKhaoSat::groupBy(groups: 4)->get();
+        return view('Admin.KhaoSatCDS.nganh-nghe')->with(compact('so_luong', 'nn','bang_3','nganh','bang_1'));
     }
 }

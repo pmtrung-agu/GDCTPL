@@ -1,0 +1,75 @@
+@php
+$chart4_data = [];// [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380];
+$chart4_label = []; // ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan','United States', 'China', 'Germany'];
+foreach($nganh as $nn){
+    $chart4_label[] = $nn['_id'][4];
+    $sl = App\Models\CDSKhaoSat::where(4,'=',$nn['_id'][4])->count();
+    $tl = $sl / $so_luong;
+    $chart4_data[] = number_format($tl*100, 1,".",",");
+}
+@endphp
+
+<div class="card-box">
+    <h4 class="text-center">Biểu đồ 4: Phân bổ doanh nghiệp tham gia khảo sát theo ngành (%)</h4>
+    <div id="Chart_4" class="flot-chart"></div>
+</div>
+
+<script type="text/javascript">
+        //Chart bar
+    var chart4_options = {
+        series: [{
+            data: {!! json_encode($chart4_data) !!}
+        }],
+        chart: {
+            type: 'bar',
+            height: 500,
+        },
+        plotOptions: {
+            bar: {
+                barHeight: '100%',
+                distributed: true,
+                horizontal: true,
+                dataLabels: {
+                    position: 'bottom'
+                },
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            textAnchor: 'start',
+            style: {
+                colors: ['#000']
+            },
+            formatter: function (val, opt) {
+                return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val + "%"
+            },
+            offsetX: 0,
+            dropShadow: {
+                enabled: false
+            }
+        },
+        stroke: {
+            width: 3,
+            colors: ['#fff']
+        },
+        xaxis: {
+            categories: {!! json_encode($chart4_label, JSON_UNESCAPED_UNICODE ) !!},
+        },
+        yaxis: [{
+            labels: {
+                show: false
+            },
+        }],
+        tooltip: {
+            theme: 'dark',
+            x: {
+                show: true
+            },
+            y: {
+                title: {
+                    formatter: function () {return '' },
+                }
+            }
+        }
+    };
+</script>
