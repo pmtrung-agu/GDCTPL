@@ -9,7 +9,13 @@
     <div class="row">
       <div class="col-12">
         <div class="card-box table-responsive">
-            <h3 class="m-t-0"><a href="<?php echo e(env('APP_URL')); ?>admin/user/add?url=<?php echo e(Request::fullUrl()); ?>" class="btn btn-primary"><i class="mdi mdi-account-plus"></i></a> <?php echo e(__('Danh sách Chuyên gia Tư vấn')); ?></h3>
+            <h3 class="m-t-0">
+              <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager')): ?>
+                <a href="<?php echo e(env('APP_URL')); ?>admin/user/add?url=<?php echo e(Request::fullUrl()); ?>" class="btn btn-primary"><i class="mdi mdi-account-plus"></i></a>
+              <?php else: ?>
+                <i class="fas fa-users text-primary"></i>
+              <?php endif; ?>
+               <?php echo e(__('Danh sách Chuyên gia Tư vấn')); ?></h3>
             <?php if($users): ?>
             <div class="row">
                 <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -29,6 +35,7 @@
                                 <p>Điện thoại: <?php echo e(isset($user['phone']) ? $user['phone'] : ''); ?></p>
                                 <p style="font-weight:bold;"><?php echo e($user['ghi_chu']); ?></p>
                             </div>
+                            <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager')): ?>
                             <ul class="social-links list-inline">
                                 <li class="list-inline-item">
                                     <a href="<?php echo e(env('APP_URL')); ?>admin/user/delete/<?php echo e($user['_id']); ?>?url=<?php echo e(Request::fullUrl()); ?>" onclick="return confirm('Chắc chắn xóa?')"><i class="fa fa-trash"></i></a>
@@ -38,6 +45,7 @@
                                     <a href="<?php echo e(env('APP_URL')); ?>admin/user/edit/<?php echo e($user['_id']); ?>?url=<?php echo e(Request::fullUrl()); ?>"><i class="fa fa-pencil-alt" title="Chỉnh sửa tài khoản người dùng"></i></a>
                                 </li>
                             </ul>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div> <!-- end col -->

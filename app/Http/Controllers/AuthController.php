@@ -137,10 +137,12 @@ class AuthController extends Controller
     return view('Admin.page_not_permis');
   }
   function dashboard(){
-    $so_luong = DoanhNghiep::count();
+    $cds_soluong = CDSKhaoSat::count();
     $sl_linhvuc = CDSKhaoSat::groupBy(3)->get();
     $sl_nganhnghe = CDSKhaoSat::groupBy(groups: 4)->get();
     $sl_chuyengia = User::where('roles','Expert')->count();
-    return view('Admin.dashboard')->with(compact('so_luong','sl_linhvuc','sl_nganhnghe','sl_chuyengia'));
+    $dn_soluong = DoanhNghiep::count();
+    $dn_hoivien = DoanhNghiep::where('hoivienhiephoi','=',true)->orWhere('hoivienhiephoi','=',1)->count();
+    return view('Admin.dashboard')->with(compact('cds_soluong','sl_linhvuc','sl_nganhnghe','sl_chuyengia', 'dn_soluong','dn_hoivien'));
   }
 }

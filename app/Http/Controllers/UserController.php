@@ -234,8 +234,14 @@ class UserController extends Controller {
       }
     }
   }
-
   function profiles() {
     return view('Admin.User.profiles');
+  }
+
+  static function checkDoanhNghiep($id_doanh_nghiep = '') {
+    $id_doanh_nghiep = ObjectController::ObjectId($id_doanh_nghiep);
+    $c = User::where('id_doanh_nghiep', '=', $id_doanh_nghiep)->first();
+    if($c) return true;
+    else return false;
   }
 }

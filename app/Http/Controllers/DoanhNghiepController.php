@@ -15,6 +15,10 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\FileController;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use App\Models\TuVanCDS;
+use App\Models\NhuCauCDSCDS;
 class DoanhNghiepController extends Controller
 {
     //
@@ -152,5 +156,47 @@ class DoanhNghiepController extends Controller
         DoanhNghiep::destroy($id);
         Session::flash('msg', 'Xóa thành công');
         return redirect(env('APP_URL').'admin/doanh-nghiep');
+    }
+
+    function hoi_vien(Request $request, $id = '') {
+        $ds = DoanhNghiep::find($id);
+        if($ds['hoivienhiephoi'] == 1 || $ds['hoivienhiephoi'] == true) {
+            $ds->hoivienhiephoi = 0;
+            echo '<i class="fas fa-user-times"></i>';
+        } else {
+            $ds->hoivienhiephoi = 1;
+            echo '<i class="fas fa-user-check text-success"></i>';
+        }
+        $ds->save();
+    }
+
+    function tao_tai_khoan(Request $request, $id = '') {
+        $data = DoanhNghiep::find($id);
+        $id_doanh_nghiep = ObjectController::ObjectId($id);
+        $user = User::where('id_doanh_nghiep', '=', $id_doanh_nghiep)->first();
+        if($user) {
+            $db = User::find($user['_id']);
+        } else {
+            $db = new User();
+        }
+        $db->fullname = $data['ten'];
+        $db->username = $data['dienthoai'];
+        $db->password = Hash::make($data['dienthoai']);
+        $db->roles = ['Business'];
+        $db->phone = $data['dienthoai'];
+        $db->address = $data['diachi'];
+        $db->active = 1;
+        $db->ghi_chu = '';        
+        $db->photos = [];
+        $db->id_doanh_nghiep = $id_doanh_nghiep;
+        $db->id_user  = ObjectController::ObjectId($request->session()->get('user._id'));
+        $db->save();
+        echo '<i class="fas fa-users text-danger"></i>';
+    }
+
+    function tu_van() {
+        $danhsach = TuVanCDS::All();
+
+        return view('Admin.DoanhNghiep.tu-van');
     }
 }

@@ -1,5 +1,5 @@
 
-<?php $__env->startSection('title', __('Thêm mới Thông tin Tuyển Sinh')); ?>
+<?php $__env->startSection('title', __('Chỉnh sửa thông tin doanh nghiệp')); ?>
 <?php $__env->startSection('css'); ?>
     <link href="<?php echo e(env('APP_URL')); ?>assets/backend/libs/select2/select2.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="<?php echo e(env('APP_URL')); ?>assets/backend/libs/magnific-popup/magnific-popup.css"/>
@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card-box">
-                    <h3 class="m-t-0"><a href="<?php echo e(env('APP_URl')); ?>admin/doanh-nghiep" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> <?php echo e(__('Trở về')); ?></a> <?php echo e(__('Thêm mới Thông tin')); ?></h3>
+                    <h3 class="m-t-0"><a href="<?php echo e(env('APP_URl')); ?>admin/doanh-nghiep" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> <?php echo e(__('Trở về')); ?></a> <?php echo e(__('Chỉnh sửa thông tin doanh nghiệp')); ?></h3>
                     <form action="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/update" method="post" id="dinhkemform" enctype="multipart/form-data">
                         <?php echo e(csrf_field()); ?>
 
@@ -36,8 +36,9 @@
                                     $diachi = old('address'); $nganhnghe_id = old('nganhnghe_id');
                                     $hoivienhiephoi = old('hoivienhiephoi');
                                 } else if(isset($ds['ten']) && $ds['ten']){
-                                    $ten = $ds['ten']; $slug = $ds['slug'];
-                                    $thu_tu = $ds['thu_tu']; $mota = $ds['mota'];
+                                    $ten = $ds['ten']; $slug = $ds['slug'];$nguoidaidien = $ds['nguoidaidien'];
+                                    $thu_tu = $ds['thu_tu']; $mota = $ds['mota'];$masothue = $ds['masothue'];
+                                    $dienthoai = $ds['dienthoai']; $email = $ds['email'];$website = $ds['website'];
                                     $ngaygianhaphiephoi = Carbon\Carbon::parse($ds['ngaygianhaphiephoi'])->format("d/m/Y");
                                     $trangthai = $ds['trangthai']; $diachi = $ds['diachi'];$nganhnghe_id = $ds['nganhnghe_id'];
                                     $hoivienhiephoi = $ds['hoivienhiephoi'];
@@ -60,25 +61,25 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-2 text-right p-t-00"><?php echo e(__('Người đại diện')); ?></label>
                                 <div class="col-md-4">
-                                    <input type="text" id="nguoidaidien" name="nguoidaidien" class="form-control" placeholder="<?php echo e(__('Người đại diện')); ?>" value="<?php echo e($ten); ?>" required />
+                                    <input type="text" id="nguoidaidien" name="nguoidaidien" class="form-control" placeholder="<?php echo e(__('Người đại diện')); ?>" value="<?php echo e($nguoidaidien); ?>" required />
                                 </div>
                                 <label class="control-label col-md-2 text-right p-t-10"><?php echo e(__('Mã số thuế')); ?></label>
                                 <div class="col-md-4">
-                                    <input type="text" id="masothue" name="masothue" class="form-control" placeholder="<?php echo e(__('Mã số thuế')); ?>" value="<?php echo e($ten); ?>" />
+                                    <input type="text" id="masothue" name="masothue" class="form-control" placeholder="<?php echo e(__('Mã số thuế')); ?>" value="<?php echo e($masothue); ?>" />
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="control-label col-md-2 text-right p-t-00"><?php echo e(__('Điện thoại')); ?></label>
                                 <div class="col-md-2">
-                                    <input type="text" id="dienthoai" name="dienthoai" class="form-control" placeholder="<?php echo e(__('Điện thoại')); ?>" value="<?php echo e($ten); ?>" />
+                                    <input type="text" id="dienthoai" name="dienthoai" class="form-control" placeholder="<?php echo e(__('Điện thoại')); ?>" value="<?php echo e($dienthoai); ?>" />
                                 </div>
                                 <label class="control-label col-md-2 text-right p-t-10"><?php echo e(__('Email')); ?></label>
                                 <div class="col-md-2">
-                                    <input type="text" id="email" name="email" class="form-control" placeholder="<?php echo e(__('Email')); ?>" value="<?php echo e($ten); ?>" />
+                                    <input type="text" id="email" name="email" class="form-control" placeholder="<?php echo e(__('Email')); ?>" value="<?php echo e($email); ?>" />
                                 </div>
                                 <label class="control-label col-md-2 text-right p-t-00"><?php echo e(__('Website')); ?></label>
                                 <div class="col-md-2">
-                                    <input type="text" id="website" name="website" class="form-control" placeholder="<?php echo e(__('Website')); ?>" value="<?php echo e($ten); ?>" />
+                                    <input type="text" id="website" name="website" class="form-control" placeholder="<?php echo e(__('Website')); ?>" value="<?php echo e($website); ?>" />
                                 </div>
                             </div>
                             <div class="row">

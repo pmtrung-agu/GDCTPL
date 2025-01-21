@@ -32,13 +32,16 @@
                                     $nguoidaidien = old('nguoidaidien');$masothue = old('masothue');
                                     $dienthoai = old('dienthoai'); $email = old('email'); $website = old('website');
                                     $mota = old('mota');$ngaygianhaphiephoi = old('ngaygianhaphiephoi'); $trangthai = old('trangthai');
-                                    $diachi = old('address');
+                                    $diachi = old('address'); $hoivienhiephoi = old('hoivienhiephoi');$nganhnghe_id = old('nganhnghe_id');
                                 } else if(isset($ds['ten']) && $ds['ten']){
-                                    $ten = $ds['ten']; $slug = $ds['slug'];
-                                    $thu_tu = $ds['thu_tu']; $mota = $ds['mota'];$ngaygianhaphiephoi = $ds['ngaygianhaphiephoi'];
-                                    $trangthai = $ds['trangthai'];
+                                    $ten = $ds['ten']; $slug = $ds['slug'];$masothue = $ds['masothue'];
+                                    $dienthoai = $ds['dienthoai']; $website = $ds['website'];$email = $ds['email'];
+                                    $mota = $ds['mota'];$nganhnghe_id = $ds['nganhnghe_id'];
+                                    $ngaygianhaphiephoi = Carbon\Carbon::parse($ds['ngaygianhaphiephoi'])->format("d/m/Y");
+                                    $trangthai = $ds['trangthai']; $hoivienhiephoi = $ds['hoivienhiephoi'];
                                 } else {
-                                    $ten = '';$mota = '';$slug='';$thu_tu=0;$mo_ta = '';$trangthai=0;
+                                    $ten = '';$mota = '';$slug='';$dienthoai = ''; $email='';$website = '';
+                                    $trangthai=0;$diachi = '';$nganhnghe_id = '';$masothue = '';$nguoidaidien='';
                                     $ngaygianhaphiephoi = App\Http\Controllers\ObjectController::setDate_dmY();
                                 }
                             ?>
@@ -59,21 +62,21 @@
                                 </div>
                                 <label class="control-label col-md-2 text-right p-t-10"><?php echo e(__('Mã số thuế')); ?></label>
                                 <div class="col-md-4">
-                                    <input type="text" id="masothue" name="masothue" class="form-control" placeholder="<?php echo e(__('Mã số thuế')); ?>" value="<?php echo e($ten); ?>" />
+                                    <input type="text" id="masothue" name="masothue" class="form-control" placeholder="<?php echo e(__('Mã số thuế')); ?>" value="<?php echo e($masothue); ?>" />
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="control-label col-md-2 text-right p-t-00"><?php echo e(__('Điện thoại')); ?></label>
                                 <div class="col-md-2">
-                                    <input type="text" id="dienthoai" name="dienthoai" class="form-control" placeholder="<?php echo e(__('Điện thoại')); ?>" value="<?php echo e($ten); ?>" />
+                                    <input type="text" id="dienthoai" name="dienthoai" class="form-control" placeholder="<?php echo e(__('Điện thoại')); ?>" value="<?php echo e($dienthoai); ?>" />
                                 </div>
                                 <label class="control-label col-md-2 text-right p-t-10"><?php echo e(__('Email')); ?></label>
                                 <div class="col-md-2">
-                                    <input type="text" id="email" name="email" class="form-control" placeholder="<?php echo e(__('Email')); ?>" value="<?php echo e($ten); ?>" />
+                                    <input type="text" id="email" name="email" class="form-control" placeholder="<?php echo e(__('Email')); ?>" value="<?php echo e($email); ?>" />
                                 </div>
                                 <label class="control-label col-md-2 text-right p-t-00"><?php echo e(__('Website')); ?></label>
                                 <div class="col-md-2">
-                                    <input type="text" id="website" name="website" class="form-control" placeholder="<?php echo e(__('Website')); ?>" value="<?php echo e($ten); ?>" />
+                                    <input type="text" id="website" name="website" class="form-control" placeholder="<?php echo e(__('Website')); ?>" value="<?php echo e($website); ?>" />
                                 </div>
                             </div>
                             <div class="row">
@@ -119,16 +122,13 @@
                                     <textarea name="mota" id="mota" class="form-control" ><?php echo e($mota); ?></textarea>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                
-                            </div>
                             <div class="row form-group">
                                 <label class="control-label col-md-2 text-right p-t-10"><?php echo e(__('Ngành nghề')); ?></label>
                                 <div class="col-md-3">
-                                    <select name="ngangnghe_id" id="ngangnghe_id" class="form-control select2" required data-placeholder="Ngành nghể">
+                                    <select name="nganhnghe_id" id="nganhnghe_id" class="form-control select2" required data-placeholder="Ngành nghể">
                                         <option value="">Ngành nghề</option>
                                         <?php $__currentLoopData = $nganhnghe; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nn): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($nn['_id']); ?>"><?php echo e($nn['ten']); ?></option>
+                                            <option value="<?php echo e($nn['_id']); ?>" <?php if(strval($nn['_id'] == $nganhnghe_id)): ?> selected <?php endif; ?>><?php echo e($nn['ten']); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>                                

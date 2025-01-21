@@ -40,7 +40,7 @@
                                     $trangthai = $ds['trangthai']; $hoivienhiephoi = $ds['hoivienhiephoi'];
                                 } else {
                                     $ten = '';$mota = '';$slug='';$dienthoai = ''; $email='';$website = '';
-                                    $trangthai=0;$diachi = '';$nganhnghe_id = '';
+                                    $trangthai=0;$diachi = '';$nganhnghe_id = '';$masothue = '';$nguoidaidien='';
                                     $ngaygianhaphiephoi = App\Http\Controllers\ObjectController::setDate_dmY();
                                 }
                             @endphp

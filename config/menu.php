@@ -5,7 +5,7 @@ return  [
                 'title' 	=> 'Thông tin',
                 'path' 		=> 'thong-tin',
                 'icon'      => 'far fa-newspaper',
-                'role'      => 'Admin,Manager,Business,ABA,Expert,Customer,User'
+                'role'      => 'Admin,Manager,ABA'
         ),
         1 => array(
             'title' 	=> 'Sản phẩm',
@@ -17,7 +17,7 @@ return  [
             'title' 	=> 'Tài liệu',
             'path' 		=> 'tai-lieu',
             'icon'      => 'fas fa-book-open',
-            'role'      => 'Admin,Manager,Business,ABA'
+            'role'      => 'Admin,Manager,ABA'
         ),
         3 => array(
             'title' 	=> 'Doanh nghiệp',
@@ -25,8 +25,8 @@ return  [
             'icon'      => 'fas fa-user-tie',
             'childs'	=> array(
                 array('title' => 'Doanh Nghiệp tham gia', 'path' => 'danh-sach'),
-                array('title' => 'Tư vấn chuyển đổi số', 'path' => 'tu-van-chuyen-doi-so'),
-                array('title' => 'Nhu cầu chuyển đổi số', 'path' => 'nhu-cau-chuyen-doi-so')
+                array('title' => 'Gởi câu hỏi đến Chuyên Gia CĐS', 'path' => 'tu-van-chuyen-doi-so'),
+                array('title' => 'Gởi nhu cầu chuyển đổi số', 'path' => 'nhu-cau-chuyen-doi-so')
             ),
             'role'      => 'Admin,Manager,Business,ABA'
         ),

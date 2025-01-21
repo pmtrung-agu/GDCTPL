@@ -25,7 +25,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group row">
-                                        <label class="control-label col-md-4 text-right p-t-10">Email</label>
+                                        <label class="control-label col-md-4 text-right p-t-10">Email/Điện thoại</label>
                                         <div class="col-md-8">
                                             <input type="text" id="username" name="username" class="form-control" placeholder="Email (tài khoản)" value="{{ Session::get('user.username') }}" required readonly/>
                                         </div>
@@ -63,4 +63,5 @@
         </div>
     </div>
 </div>
+
 @endsection

@@ -1,5 +1,5 @@
 @extends('Admin.layout')
-@section('title', __('Thêm mới Thông tin Tuyển Sinh'))
+@section('title', __('Chỉnh sửa thông tin doanh nghiệp'))
 @section('css')
     <link href="{{ env('APP_URL') }}assets/backend/libs/select2/select2.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ env('APP_URL') }}assets/backend/libs/magnific-popup/magnific-popup.css"/>
@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card-box">
-                    <h3 class="m-t-0"><a href="{{ env('APP_URl') }}admin/doanh-nghiep" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Thêm mới Thông tin') }}</h3>
+                    <h3 class="m-t-0"><a href="{{ env('APP_URl') }}admin/doanh-nghiep" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Chỉnh sửa thông tin doanh nghiệp') }}</h3>
                     <form action="{{ env('APP_URL') }}admin/doanh-nghiep/update" method="post" id="dinhkemform" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $ds['_id'] }}" id="id">
@@ -35,8 +35,9 @@
                                     $diachi = old('address'); $nganhnghe_id = old('nganhnghe_id');
                                     $hoivienhiephoi = old('hoivienhiephoi');
                                 } else if(isset($ds['ten']) && $ds['ten']){
-                                    $ten = $ds['ten']; $slug = $ds['slug'];
-                                    $thu_tu = $ds['thu_tu']; $mota = $ds['mota'];
+                                    $ten = $ds['ten']; $slug = $ds['slug'];$nguoidaidien = $ds['nguoidaidien'];
+                                    $thu_tu = $ds['thu_tu']; $mota = $ds['mota'];$masothue = $ds['masothue'];
+                                    $dienthoai = $ds['dienthoai']; $email = $ds['email'];$website = $ds['website'];
                                     $ngaygianhaphiephoi = Carbon\Carbon::parse($ds['ngaygianhaphiephoi'])->format("d/m/Y");
                                     $trangthai = $ds['trangthai']; $diachi = $ds['diachi'];$nganhnghe_id = $ds['nganhnghe_id'];
                                     $hoivienhiephoi = $ds['hoivienhiephoi'];
@@ -59,25 +60,25 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-2 text-right p-t-00">{{ __('Người đại diện') }}</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="nguoidaidien" name="nguoidaidien" class="form-control" placeholder="{{ __('Người đại diện') }}" value="{{ $ten }}" required />
+                                    <input type="text" id="nguoidaidien" name="nguoidaidien" class="form-control" placeholder="{{ __('Người đại diện') }}" value="{{ $nguoidaidien }}" required />
                                 </div>
                                 <label class="control-label col-md-2 text-right p-t-10">{{ __('Mã số thuế') }}</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="masothue" name="masothue" class="form-control" placeholder="{{ __('Mã số thuế') }}" value="{{ $ten }}" />
+                                    <input type="text" id="masothue" name="masothue" class="form-control" placeholder="{{ __('Mã số thuế') }}" value="{{ $masothue }}" />
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="control-label col-md-2 text-right p-t-00">{{ __('Điện thoại') }}</label>
                                 <div class="col-md-2">
-                                    <input type="text" id="dienthoai" name="dienthoai" class="form-control" placeholder="{{ __('Điện thoại') }}" value="{{ $ten }}" />
+                                    <input type="text" id="dienthoai" name="dienthoai" class="form-control" placeholder="{{ __('Điện thoại') }}" value="{{ $dienthoai }}" />
                                 </div>
                                 <label class="control-label col-md-2 text-right p-t-10">{{ __('Email') }}</label>
                                 <div class="col-md-2">
-                                    <input type="text" id="email" name="email" class="form-control" placeholder="{{ __('Email') }}" value="{{ $ten }}" />
+                                    <input type="text" id="email" name="email" class="form-control" placeholder="{{ __('Email') }}" value="{{ $email }}" />
                                 </div>
                                 <label class="control-label col-md-2 text-right p-t-00">{{ __('Website') }}</label>
                                 <div class="col-md-2">
-                                    <input type="text" id="website" name="website" class="form-control" placeholder="{{ __('Website') }}" value="{{ $ten }}" />
+                                    <input type="text" id="website" name="website" class="form-control" placeholder="{{ __('Website') }}" value="{{ $website }}" />
                                 </div>
                             </div>
                             <div class="row">
