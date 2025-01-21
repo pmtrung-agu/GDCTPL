@@ -6,13 +6,17 @@
   <link rel="stylesheet" href="{{ env('APP_URL') }}assets/backend/libs/magnific-popup/magnific-popup.css"/>
 @endsection
 @section('body')
+@php
+  $link_back = Request::input('url') ? Request::input('url') : env('APP_URL') .'admin/user';
+@endphp
 <div class="wrapper">
   <div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <div class="card-box">
-              <h3 class="m-t-0"><a href="{{ env('APP_URL') }}admin/user" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Chỉnh sửa tài khoản người dùng') }}</h3>
+              <h3 class="m-t-0"><a href="{{ $link_back }}" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Chỉnh sửa tài khoản người dùng') }}</h3>
                     <form action="{{ env('APP_URL') }}admin/user/update" method="post" id="dinhkemform" enctype="multipart/form-data">
+                      <input type="hidden" name="url" id="url" value="{{ $link_back }}">
                       {{ csrf_field() }}
                       <input type="hidden" name="id" id="id" value="{{ $user['_id'] }}" />
                         <div class="form-body">

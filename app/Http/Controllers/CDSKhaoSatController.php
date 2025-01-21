@@ -72,4 +72,24 @@ class CDSKhaoSatController extends Controller
         $nganh = CDSKhaoSat::groupBy(groups: 4)->get();
         return view('Admin.KhaoSatCDS.nganh-nghe')->with(compact('so_luong', 'nn','bang_3','nganh','bang_1'));
     }
+
+    function linh_vuc(Request $request) {
+        $so_luong = CDSKhaoSat::count();
+        $lv = $request->input('linh_vuc');
+        $bang_3 = Config::get('data_phan_tich.bang_3');
+        $bang_1 = Config::get('data_phan_tich.bang_1');
+        $linhvuc = CDSKhaoSat::groupBy(3)->get();
+        return view('Admin.KhaoSatCDS.linh-vuc')->with(compact('so_luong', 'lv','bang_3','linhvuc','bang_1'));
+    }
+
+    function dn_doanh_nghiep(){
+        $so_luong = CDSKhaoSat::count();
+        $danhsach = CDSKhaoSat::paginate(30);
+        return view('Admin.DoanhNghiep.list')->with(compact('danhsach','so_luong'));
+    }
+
+    function dn_doanh_nghiep_chi_tiet(Request $request, $id = '') {
+        $ds = CDSKhaoSat::find($id);
+        return view('Admin.DoanhNghiep.chi-tiet')->with(compact('ds'));
+    }
 }

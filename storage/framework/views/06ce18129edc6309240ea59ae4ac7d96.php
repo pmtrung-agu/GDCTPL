@@ -6,15 +6,19 @@
   <link rel="stylesheet" href="<?php echo e(env('APP_URL')); ?>assets/backend/libs/magnific-popup/magnific-popup.css"/>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('body'); ?>
+<?php
+  $link_back = Request::input('url') ? Request::input('url') : env('APP_URL') .'admin/user';
+?>
 <div class="wrapper">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
         <div class="card-box">
-          <h3 class="m-t-0"><a href="<?php echo e(env('APP_URL')); ?>admin/user" class="btn btn-primary"><i class="mdi mdi-reply-all"></i></a> <?php echo e(__('Thêm tài khoản người dùng')); ?></h3>
-          <form action="<?php echo e(env('APP_URL')); ?>admin/user/create" method="post" id="dinhkemform" enctype="multipart/form-data">
+          <h3 class="m-t-0"><a href="<?php echo e($link_back); ?>" class="btn btn-primary"><i class="mdi mdi-reply-all"></i></a> <?php echo e(__('Thêm tài khoản người dùng')); ?></h3>
+            <form action="<?php echo e(env('APP_URL')); ?>admin/user/create" method="post" id="dinhkemform" enctype="multipart/form-data">
             <?php echo e(csrf_field()); ?>
 
+            <input type="hidden" name="url" id="url" value="<?php echo e($link_back); ?>">
               <div class="form-body">
                   <hr>
                   <?php if($errors->any()): ?>

@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card-box">                    
-                    <h3><i class="far fa-address-card text-primary"></i> Thông tin Doanh nghiệp: {{ $ds[1] }} </h3>
+                    <h3><a href="{{env('APP_URL')}}"><i class="fas fa-reply-all text-primary"></i></a> Thông tin Doanh nghiệp: {{ $ds[1] }} </h3>
                     <table class="table table-border table-striped table-bodered">
                         <tbody>
                             <tr>

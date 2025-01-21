@@ -39,18 +39,21 @@
                                 <span class="pro-user-name ml-1"><?php echo e(Session::get('user.username')); ?><i class="mdi mdi-chevron-down"></i>
                                 </span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right profile-dropdown">
+                            <div class="dropdown-menu dropdown-menu-right profile-dropdown" style="width:250px;">
                                 <!-- item-->
                                 <div class="dropdown-item noti-title">
                                     <h6 class="text-overflow m-0">Welcome !</h6>
                                 </div>
-                                <?php if(Session::get('user.roles') && in_array('Admin', Session::get('user.roles'))): ?>
+                                <?php if(App\Http\Controllers\UserController::is_roles('Admin')): ?>
                                 <a href="<?php echo e(env('APP_URL')); ?>admin/user" class="dropdown-item notify-item">
-                                    <i class="fe-user"></i> <span><?php echo e(__("Tài khoản người dùng")); ?></span>
+                                    <i class="fas fa-users"></i> <span><?php echo e(__("Tài khoản người dùng")); ?></span>
                                 </a>
                                 <?php endif; ?>
+                                <a href="<?php echo e(env('APP_URL')); ?>admin/user/change-password" class="dropdown-item notify-item">
+                                    <i class="fas fa-sync"></i> <span><?php echo e(__("Đổi mật khẩu")); ?></span>
+                                </a>
                                 <a href="<?php echo e(env('APP_URL')); ?>auth/logout" class="dropdown-item notify-item">
-                                    <i class="fe-log-out"></i> <span><?php echo e(__("Đăng xuất")); ?></span>
+                                    <i class="fas fa-sign-out-alt"></i> <span><?php echo e(__("Đăng xuất")); ?></span>
                                 </a>
                             </div>
                         </li>
@@ -79,6 +82,7 @@
                         <?php if($menu): ?>
                         <ul class="navigation-menu">
                             <li><a href="<?php echo e(env('APP_URL')); ?>admin/dashboard" class="has-submenu"><i class="fa fa-home"></i> Dashboard</a></li>
+                            <?php if(App\Http\Controllers\UserController::is_roles('Admin, Manager')): ?>
                             <li class="has-submenu"><a href="#" ><i class="fa fa-tags"></i> Danh mục <div class="arrow-down"></div></a>
                                 <ul class="submenu in">
                                     <li><a href="<?php echo e(env('APP_URL')); ?>admin/danh-muc/linh-vuc">Lĩnh vực</a></li>
@@ -88,7 +92,9 @@
                                     <li><a href="<?php echo e(env('APP_URL')); ?>admin/danh-muc/tai-lieu">Tài liệu</a></li>
                                 </ul>
                             </li>
+                            <?php endif; ?>
                             <?php $__currentLoopData = $menu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if(App\Http\Controllers\UserController::is_roles($m['role'])): ?>
                                 <li class="has-submenu">
                                     <a href="<?php echo e(env('APP_URL')); ?>admin/<?php echo e($m['path']); ?>" class="has-submenu"><i class="<?php echo e($m['icon']); ?>"></i> <?php echo e($m['title']); ?> <?php if(isset($m['childs']) && $m['childs']): ?> <div class="arrow-down"></div> <?php endif; ?></a>
                                     <?php if(isset($m['childs']) && $m['childs']): ?>
@@ -98,8 +104,10 @@
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </ul>
                                     <?php endif; ?>
-                                </li>                           
+                                </li>  
+                                <?php endif; ?>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            
                         </ul>
                         <?php endif; ?>
                         

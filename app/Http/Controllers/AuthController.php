@@ -5,9 +5,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ObjectController;
 use App\Models\User;
+use App\Models\CDSKhaoSat;
+use App\Models\DoanhNghiep;
 use App\Http\Controllers\LogController;
 use Illuminate\Support\Facades\Hash;
-use Session;
+use Illuminate\Support\Facades\Session;
 class AuthController extends Controller
 {
     //
@@ -49,8 +51,8 @@ class AuthController extends Controller
     $destination = isset($data['url']) ? $data['url'] : '';
     $remember = isset($data['remember_login']) ? intval($data['remember_login']) : 0;
     
-    if (Auth::attempt(['username' => $data['username'], 'password' => $data['password'], 'active' => 1], $remember)) {
-      $user = User::where('username', '=', $data['username'])->first();
+    if (Auth::attempt(['username' => $data['username'], 'password' => $data['password'], 'active' => 1], $remember) ||  Auth::attempt(['phone' => $data['username'], 'password' => $data['password'], 'active' => 1], $remember)) {
+      $user = User::where('username', '=', $data['username'])->orWhere('phone', '=', $data['username'])->first();
       $request->session()->put('user', $user);
       $logQuery = array (
         'action' => 'Đăng nhập hệ thống',
@@ -129,13 +131,16 @@ class AuthController extends Controller
     }
   }
 
-  function dashboard(){
-    return view('Admin.dashboard');
-  }
-
   function notPermis(){
     Auth::logout();Session::flush();
     //return redirect()->intended(env('APP_URL').'auth/login');
     return view('Admin.page_not_permis');
+  }
+  function dashboard(){
+    $so_luong = DoanhNghiep::count();
+    $sl_linhvuc = CDSKhaoSat::groupBy(3)->get();
+    $sl_nganhnghe = CDSKhaoSat::groupBy(groups: 4)->get();
+    $sl_chuyengia = User::where('roles','Expert')->count();
+    return view('Admin.dashboard')->with(compact('so_luong','sl_linhvuc','sl_nganhnghe','sl_chuyengia'));
   }
 }

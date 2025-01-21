@@ -6,13 +6,17 @@
   <link rel="stylesheet" href="<?php echo e(env('APP_URL')); ?>assets/backend/libs/magnific-popup/magnific-popup.css"/>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('body'); ?>
+<?php
+  $link_back = Request::input('url') ? Request::input('url') : env('APP_URL') .'admin/user';
+?>
 <div class="wrapper">
   <div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <div class="card-box">
-              <h3 class="m-t-0"><a href="<?php echo e(env('APP_URL')); ?>admin/user" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> <?php echo e(__('Trở về')); ?></a> <?php echo e(__('Chỉnh sửa tài khoản người dùng')); ?></h3>
+              <h3 class="m-t-0"><a href="<?php echo e($link_back); ?>" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> <?php echo e(__('Trở về')); ?></a> <?php echo e(__('Chỉnh sửa tài khoản người dùng')); ?></h3>
                     <form action="<?php echo e(env('APP_URL')); ?>admin/user/update" method="post" id="dinhkemform" enctype="multipart/form-data">
+                      <input type="hidden" name="url" id="url" value="<?php echo e(Request::input('url')); ?>">
                       <?php echo e(csrf_field()); ?>
 
                       <input type="hidden" name="id" id="id" value="<?php echo e($user['_id']); ?>" />

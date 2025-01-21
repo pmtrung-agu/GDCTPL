@@ -39,18 +39,21 @@
                                 <span class="pro-user-name ml-1">{{ Session::get('user.username') }}<i class="mdi mdi-chevron-down"></i>
                                 </span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right profile-dropdown">
+                            <div class="dropdown-menu dropdown-menu-right profile-dropdown" style="width:250px;">
                                 <!-- item-->
                                 <div class="dropdown-item noti-title">
                                     <h6 class="text-overflow m-0">Welcome !</h6>
                                 </div>
-                                @if(Session::get('user.roles') && in_array('Admin', Session::get('user.roles')))
+                                @if(App\Http\Controllers\UserController::is_roles('Admin'))
                                 <a href="{{ env('APP_URL') }}admin/user" class="dropdown-item notify-item">
-                                    <i class="fe-user"></i> <span>{{ __("Tài khoản người dùng") }}</span>
+                                    <i class="fas fa-users"></i> <span>{{ __("Tài khoản người dùng") }}</span>
                                 </a>
                                 @endif
+                                <a href="{{ env('APP_URL') }}admin/user/change-password" class="dropdown-item notify-item">
+                                    <i class="fas fa-sync"></i> <span>{{ __("Đổi mật khẩu") }}</span>
+                                </a>
                                 <a href="{{ env('APP_URL') }}auth/logout" class="dropdown-item notify-item">
-                                    <i class="fe-log-out"></i> <span>{{ __("Đăng xuất") }}</span>
+                                    <i class="fas fa-sign-out-alt"></i> <span>{{ __("Đăng xuất") }}</span>
                                 </a>
                             </div>
                         </li>
@@ -79,6 +82,7 @@
                         @if($menu)
                         <ul class="navigation-menu">
                             <li><a href="{{ env('APP_URL') }}admin/dashboard" class="has-submenu"><i class="fa fa-home"></i> Dashboard</a></li>
+                            @if(App\Http\Controllers\UserController::is_roles('Admin, Manager'))
                             <li class="has-submenu"><a href="#" ><i class="fa fa-tags"></i> Danh mục <div class="arrow-down"></div></a>
                                 <ul class="submenu in">
                                     <li><a href="{{ env('APP_URL') }}admin/danh-muc/linh-vuc">Lĩnh vực</a></li>
@@ -88,7 +92,9 @@
                                     <li><a href="{{ env('APP_URL') }}admin/danh-muc/tai-lieu">Tài liệu</a></li>
                                 </ul>
                             </li>
+                            @endif
                             @foreach($menu as $k => $m)
+                                @if(App\Http\Controllers\UserController::is_roles($m['role']))
                                 <li class="has-submenu">
                                     <a href="{{ env('APP_URL') }}admin/{{ $m['path'] }}" class="has-submenu"><i class="{{ $m['icon'] }}"></i> {{ $m['title']}} @if(isset($m['childs']) && $m['childs']) <div class="arrow-down"></div> @endif</a>
                                     @if(isset($m['childs']) && $m['childs'])
@@ -98,8 +104,10 @@
                                             @endforeach
                                         </ul>
                                     @endif
-                                </li>                           
+                                </li>  
+                                @endif
                             @endforeach
+                            
                         </ul>
                         @endif
                         {{-- <ul class="navigation-menu">

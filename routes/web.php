@@ -14,6 +14,7 @@ use App\Http\Controllers\DMSanPhamController;
 use App\Http\Controllers\DMTaiLieuController;
 use App\Http\Controllers\ThongTinController;
 use App\Http\Controllers\CDSKhaoSatController;
+use App\Http\Controllers\DoanhNghiepController;
 
 use App\Http\Controllers\FrontendController;
 
@@ -52,6 +53,8 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('/', [AuthController::class, 'admin'])->middleware('checkauth');
     Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware('checkauth');
 
+    Route::get('chuyen-gia', [UserController::class, 'chuyen_gia'])->name('admin-thong-tin')->middleware('role:Admin');
+
     Route::get('thong-tin', [ThongTinController::class, 'list'])->name('admin-thong-tin')->middleware('role:Admin');
     Route::get('thong-tin/change-password', [ThongTinController::class, 'change_password'])->name('admin-thong-tin-change-password')->middleware('checkauth');
     Route::post('thong-tin/update-password', [ThongTinController::class, 'update_password'])->name('admin-thong-tin-update-password')->middleware('checkauth');
@@ -70,8 +73,17 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('khao-sat-muc-do-cds/theo-doanh-nghiep', [CDSKhaoSatController::class, 'doanh_nghiep'])->middleware('role:Admin');
     Route::get('khao-sat-muc-do-cds/doanh-nghiep/{lv}', [CDSKhaoSatController::class, 'doanh_nghiep_linh_vuc'])->middleware('role:Admin');
     Route::get('khao-sat-muc-do-cds/theo-nganh-nghe', [CDSKhaoSatController::class, 'nganh_nghe'])->middleware('role:Admin');
+    Route::get('khao-sat-muc-do-cds/theo-linh-vuc', [CDSKhaoSatController::class, 'linh_vuc'])->middleware('role:Admin');
     
-
+    Route::get('doanh-nghiep', [DoanhNghiepController::class, 'list'])->middleware('role:Admin,Manager,Expert,ABA');
+    Route::get('doanh-nghiep/danh-sach', [DoanhNghiepController::class, 'list'])->middleware('role:Admin,Manager,Expert,ABA');
+    Route::get('doanh-nghiep/chi-tiet/{id}', [DoanhNghiepController::class, 'chi_tiet'])->middleware('role:Admin,Manager,ABA');
+    Route::get('doanh-nghiep/add', [DoanhNghiepController::class, 'add'])->middleware('role:Admin,Manager,Expert,Business,ABA');
+    Route::post('doanh-nghiep/create', [DoanhNghiepController::class, 'create'])->middleware('role:Admin,Manager,ABA');
+    Route::get('doanh-nghiep/edit/{id}', [DoanhNghiepController::class, 'edit'])->middleware('role:Admin,Manager,ABA');
+    Route::post('doanh-nghiep/update', [DoanhNghiepController::class, 'update'])->middleware('role:Admin,Manager,ABA');
+    Route::get('doanh-nghiep/delete/{id}', [DoanhNghiepController::class, 'delete'])->middleware('role:Admin,Manager,ABA');
+    
     Route::group(['prefix' => 'danh-muc',  'middleware' => 'checkauth'], function(){
         Route::get('linh-vuc', [DMLinhVucController::class, 'list'])->name('admin-linh-vuc')->middleware('role:Admin');
         Route::get('linh-vuc/change-password', [DMLinhVucController::class, 'change_password'])->name('admin-linh-vuc-change-password')->middleware('checkauth');

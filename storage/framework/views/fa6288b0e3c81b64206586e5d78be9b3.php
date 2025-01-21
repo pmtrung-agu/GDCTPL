@@ -7,7 +7,7 @@
       <div class="row justify-content-center">
         <div class="col-xl-10">
           <div class="hero-style3 text-center">
-          <h3 class="hero-title">DANH NGHIỆP CÓ NHU CẦU VỀ CHUYỂN ĐỔI SỐ VUI LÒNG:</h3>
+          <h3 class="hero-title">DOANH NGHIỆP CÓ NHU CẦU VỀ CHUYỂN ĐỔI SỐ VUI LÒNG:</h3>
             <div class="btn-group justify-content-center">
               <a href="<?php echo e(env('APP_URL')); ?>goi-yeu-cau" class="th-btn">Gởi nhu cầu Chuyển đổi số</a>
               <a href="<?php echo e(env('APP_URL')); ?>tu-van-chuyen-doi-so" class="th-btn style5">Tư vấn Chuyển đổi số</a>

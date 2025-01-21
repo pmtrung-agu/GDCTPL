@@ -59,7 +59,7 @@
                                 if($count_nn > 0) $tl = $sum[$b3[3]]/$count_nn;
                                 else $tl = 0;
                                 $sum[$nnn['_id'][4]] += $tl;
-                                $rada_data[] = $tl;
+                                $rada_data[] = round($tl,1);
                                 $rada_label[]  = $b3[1];                            
                             ?>
                             <tr>
@@ -175,7 +175,7 @@
                 }
                 },
                 xaxis: {
-                categories: <?php echo json_encode($rada_label, JSON_UNESCAPED_UNICODE ); ?>
+                    categories: <?php echo json_encode($rada_label, JSON_UNESCAPED_UNICODE ); ?>
 
                 },
                 yaxis: {

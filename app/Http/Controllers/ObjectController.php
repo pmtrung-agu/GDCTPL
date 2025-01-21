@@ -97,12 +97,17 @@ class ObjectController extends Controller
     }
 
     public static function setDate(){
-        $tz = 'Asia/Ho_Chi_minh';
+        $tz = 'Asia/Ho_Chi_Minh';
         return Carbon::now($tz);
     }
 
+    public static function setDate_dmY(){
+      $tz = 'Asia/Ho_Chi_Minh';
+      return Carbon::now($tz)->format("d/m/Y");
+    }
+
     public static function setConvertDate($date){
-        $tz = new \DateTimeZone('Asia/Ho_Chi_minh'); //Change your timezone
+        $tz = new \DateTimeZone('Asia/Ho_Chi_Minh'); //Change your timezone
         $date = new \MongoDB\BSON\UTCDateTime(strtotime($date)*1000);
         return $date;
     }

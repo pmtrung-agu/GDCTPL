@@ -11,6 +11,7 @@ use App\Models\DMNganhNghe;
 use App\Models\ThongTin;
 use App\Models\NhuCauCDS;
 use App\Models\TuVanCDS;
+use App\Models\CDSKhaoSat;
 class FrontendController extends Controller
 {
     //

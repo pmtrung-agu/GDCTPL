@@ -4,13 +4,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use App\Models\Log;
 use App\Models\DMDiaChi;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Validator;
-use Image, Session, Redirect;
+use Image, Redirect;
 
 class UserController extends Controller {
     private static $roles = array(
@@ -22,7 +23,7 @@ class UserController extends Controller {
             'Customer' => 'Khách hàng',
             'User' => 'Người dùng');
     function __construct(){
-      if(!AuthController::checkAuth()) return view('welcome');
+      if(!AuthController::checkAuth()) { return view('welcome'); }
     }
     static function getRoles(){
       return self::$roles;
@@ -41,6 +42,11 @@ class UserController extends Controller {
     function list(){
       $users = User::orderBy('updated_at','desc')->get();
       return view('Admin.User.list', ['users' => $users, 'roles' => self::$roles]);
+    }
+
+    function chuyen_gia() {
+      $users = User::where('roles','Expert')->orderBy('updated_at','desc')->get();
+      return view('Admin.User.chuyen-gia', ['users' => $users, 'roles' => self::$roles]);
     }
 
     function add(){
@@ -74,6 +80,7 @@ class UserController extends Controller {
       }
       $user->photos = $arr_photo;
       $user->save();
+      if($data['url']) return redirect()->intended($data['url']);
       return redirect()->intended(env('APP_URL').'admin/user');
     }
 
