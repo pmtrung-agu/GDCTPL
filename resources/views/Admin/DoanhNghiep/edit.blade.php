@@ -6,6 +6,9 @@
     <link href="{{ env('APP_URL') }}assets/backend/libs/switchery/switchery.min.css" rel="stylesheet" type="text/css" />
 @endsection
 @section('body')
+@php
+$arr_quy_mo = array('Nhỏ', 'Vừa', 'Siêu Nhỏ', ' Khác')
+@endphp
 <div class="wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -32,19 +35,20 @@
                                     $nguoidaidien = old('nguoidaidien');$masothue = old('masothue');
                                     $dienthoai = old('dienthoai'); $email = old('email'); $website = old('website');
                                     $mota = old('mota');$ngaygianhaphiephoi = old('ngaygianhaphiephoi'); $trangthai = old('trangthai');
-                                    $diachi = old('address'); $nganhnghe_id = old('nganhnghe_id');
-                                    $hoivienhiephoi = old('hoivienhiephoi');
+                                    $diachi = old('address'); $nganhnghe_id = old('nganhnghe_id');$hoivienhiephoi = old('hoivienhiephoi');
+                                    $ngay_thanh_lap = old('ngay_thanh_lap'); $quy_mo = old('quy_mo');
                                 } else if(isset($ds['ten']) && $ds['ten']){
                                     $ten = $ds['ten']; $slug = $ds['slug'];$nguoidaidien = $ds['nguoidaidien'];
                                     $thu_tu = $ds['thu_tu']; $mota = $ds['mota'];$masothue = $ds['masothue'];
                                     $dienthoai = $ds['dienthoai']; $email = $ds['email'];$website = $ds['website'];
                                     $ngaygianhaphiephoi = Carbon\Carbon::parse($ds['ngaygianhaphiephoi'])->format("d/m/Y");
-                                    $trangthai = $ds['trangthai']; $diachi = $ds['diachi'];$nganhnghe_id = $ds['nganhnghe_id'];
-                                    $hoivienhiephoi = $ds['hoivienhiephoi'];
+                                    $trangthai = $ds['trangthai']; $diachi = $ds['diachi'];$nganhnghe_id = $ds['nganhnghe_id'];$hoivienhiephoi = $ds['hoivienhiephoi'];
+                                    $ngay_thanh_lap = $ds['ngay_thanh_lap'];$quy_mo = $ds['quy_mo'];
                                 } else {
                                     $ten = '';$mota = '';$slug='';$thu_tu=0;$mo_ta = '';$trangthai=0;$diachi = '';
                                     $nganhnghe_id = '';$hoivienhiephoi = 0;
                                     $ngaygianhaphiephoi = App\Http\Controllers\ObjectController::setDate_dmY();
+                                    $ngay_thanh_lap = '';$quy_mo='';
                                 }
                             @endphp
                             <div class="form-group row">
@@ -65,6 +69,21 @@
                                 <label class="control-label col-md-2 text-right p-t-10">{{ __('Mã số thuế') }}</label>
                                 <div class="col-md-4">
                                     <input type="text" id="masothue" name="masothue" class="form-control" placeholder="{{ __('Mã số thuế') }}" value="{{ $masothue }}" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-md-2 text-right p-t-00">{{ __('Ngày thành lập') }}</label>
+                                <div class="col-md-4">
+                                    <input type="text" id="ngay_thanh_lap" name="ngay_thanh_lap" class="form-control" placeholder="{{ __('Ngày thành lập') }}" value="{{ $ngay_thanh_lap }}" />
+                                </div>
+                                <label class="control-label col-md-2 text-right p-t-10">{{ __('Quy mô') }}</label>
+                                <div class="col-md-4">
+                                    <select name="quy_mo" id="quy_mo" class="form-control" required>
+                                        <option value="">Quy mô</option>
+                                        @foreach($arr_quy_mo as $qm)
+                                        <option value="{{ $qm }}" @if($qm == $quy_mo) selected @endif>{{ $qm }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -284,10 +303,11 @@
     <script src="{{ env('APP_URL') }}assets/backend/js/drag-arrange.min.js" type="text/javascript"></script>
     <script src="{{ env('APP_URL') }}assets/backend/libs/ckeditor/ckeditor.js"></script>
     <script src="{{ env('APP_URL') }}assets/backend/libs/switchery/switchery.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/backend/libs/jquery-mask-plugin/jquery.mask.min.js"></script>
     <script src="{{ env('APP_URL') }}assets/backend/js/script.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            delete_file();$(".select2").select2();
+            delete_file();$(".select2").select2();$('#ngay_thanh_lap').mask('00/00/0000');$("#ngaygianhaphiephoi").mask('00/00/0000');
             @if($diachi[0])
                 $.get("{{ env('APP_URL') }}admin/dia-chi/get/{{ $diachi[0] }}/{{ $diachi[1] }}", function(huyen){
                     $("#address_2").html(huyen);

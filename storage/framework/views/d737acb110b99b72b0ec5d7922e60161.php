@@ -6,6 +6,9 @@
     <link href="<?php echo e(env('APP_URL')); ?>assets/backend/libs/switchery/switchery.min.css" rel="stylesheet" type="text/css" />
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('body'); ?>
+<?php
+$arr_quy_mo = array('Nhỏ', 'Vừa', 'Siêu Nhỏ', ' Khác')
+?>
 <div class="wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -33,19 +36,20 @@
                                     $nguoidaidien = old('nguoidaidien');$masothue = old('masothue');
                                     $dienthoai = old('dienthoai'); $email = old('email'); $website = old('website');
                                     $mota = old('mota');$ngaygianhaphiephoi = old('ngaygianhaphiephoi'); $trangthai = old('trangthai');
-                                    $diachi = old('address'); $nganhnghe_id = old('nganhnghe_id');
-                                    $hoivienhiephoi = old('hoivienhiephoi');
+                                    $diachi = old('address'); $nganhnghe_id = old('nganhnghe_id');$hoivienhiephoi = old('hoivienhiephoi');
+                                    $ngay_thanh_lap = old('ngay_thanh_lap'); $quy_mo = old('quy_mo');
                                 } else if(isset($ds['ten']) && $ds['ten']){
                                     $ten = $ds['ten']; $slug = $ds['slug'];$nguoidaidien = $ds['nguoidaidien'];
                                     $thu_tu = $ds['thu_tu']; $mota = $ds['mota'];$masothue = $ds['masothue'];
                                     $dienthoai = $ds['dienthoai']; $email = $ds['email'];$website = $ds['website'];
                                     $ngaygianhaphiephoi = Carbon\Carbon::parse($ds['ngaygianhaphiephoi'])->format("d/m/Y");
-                                    $trangthai = $ds['trangthai']; $diachi = $ds['diachi'];$nganhnghe_id = $ds['nganhnghe_id'];
-                                    $hoivienhiephoi = $ds['hoivienhiephoi'];
+                                    $trangthai = $ds['trangthai']; $diachi = $ds['diachi'];$nganhnghe_id = $ds['nganhnghe_id'];$hoivienhiephoi = $ds['hoivienhiephoi'];
+                                    $ngay_thanh_lap = $ds['ngay_thanh_lap'];$quy_mo = $ds['quy_mo'];
                                 } else {
                                     $ten = '';$mota = '';$slug='';$thu_tu=0;$mo_ta = '';$trangthai=0;$diachi = '';
                                     $nganhnghe_id = '';$hoivienhiephoi = 0;
                                     $ngaygianhaphiephoi = App\Http\Controllers\ObjectController::setDate_dmY();
+                                    $ngay_thanh_lap = '';$quy_mo='';
                                 }
                             ?>
                             <div class="form-group row">
@@ -66,6 +70,21 @@
                                 <label class="control-label col-md-2 text-right p-t-10"><?php echo e(__('Mã số thuế')); ?></label>
                                 <div class="col-md-4">
                                     <input type="text" id="masothue" name="masothue" class="form-control" placeholder="<?php echo e(__('Mã số thuế')); ?>" value="<?php echo e($masothue); ?>" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-md-2 text-right p-t-00"><?php echo e(__('Ngày thành lập')); ?></label>
+                                <div class="col-md-4">
+                                    <input type="text" id="ngay_thanh_lap" name="ngay_thanh_lap" class="form-control" placeholder="<?php echo e(__('Ngày thành lập')); ?>" value="<?php echo e($ngay_thanh_lap); ?>" />
+                                </div>
+                                <label class="control-label col-md-2 text-right p-t-10"><?php echo e(__('Quy mô')); ?></label>
+                                <div class="col-md-4">
+                                    <select name="quy_mo" id="quy_mo" class="form-control" required>
+                                        <option value="">Quy mô</option>
+                                        <?php $__currentLoopData = $arr_quy_mo; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qm): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($qm); ?>" <?php if($qm == $quy_mo): ?> selected <?php endif; ?>><?php echo e($qm); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">

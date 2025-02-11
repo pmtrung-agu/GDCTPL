@@ -10,12 +10,14 @@
                 <?php echo $__env->make('Admin.KhaoSatCDS.bieu-do-5', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <?php echo $__env->make('Admin.KhaoSatCDS.bieu-do-7', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <?php echo $__env->make('Admin.KhaoSatCDS.bieu-do-9', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <?php echo $__env->make('Admin.KhaoSatCDS.bieu-do-11', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             </div>
             <div class="col-12 col-md-6">
                 <?php echo $__env->make('Admin.KhaoSatCDS.bieu-do-2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <?php echo $__env->make('Admin.KhaoSatCDS.bieu-do-4', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <?php echo $__env->make('Admin.KhaoSatCDS.bieu-do-6', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <?php echo $__env->make('Admin.KhaoSatCDS.bieu-do-8', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <?php echo $__env->make('Admin.KhaoSatCDS.bieu-do-10', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             </div>
         </div>
     </div>
@@ -37,12 +39,14 @@
             var chart7 = new ApexCharts(document.querySelector("#Chart_7"), chart7_options);
             var chart8 = new ApexCharts(document.querySelector("#Chart_8"), chart8_options);
             var chart9 = new ApexCharts(document.querySelector("#Chart_9"), chart9_options);
+            var chart10 = new ApexCharts(document.querySelector("#Chart_10"), chart10_options);
+            var chart11 = new ApexCharts(document.querySelector("#Chart_11"), chart11_options);
             chart1.render(); chart2.render();chart3.render();chart4.render();chart5.render();
-            chart6.render();chart7.render();chart8.render();chart9.render();
+            chart6.render();chart7.render();chart8.render();chart9.render();chart10.render();
+            chart11.render();
             
         });
     </script>
-
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('Admin.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Lara_Projects\ABAPortal\resources\views/Admin/KhaoSatCDS/bieu-do.blade.php ENDPATH**/ ?>

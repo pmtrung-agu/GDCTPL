@@ -26,8 +26,10 @@ class CDSKhaoSatController extends Controller
         $linhvuc = CDSKhaoSat::groupBy(3)->get();
         $bang_1 = Config::get('data_phan_tich.bang_1');
         $bang_3 = Config::get('data_phan_tich.bang_3');
+        $bang_10 = Config::get('data_phan_tich.bang_10');
+        $bang_11 = Config::get('data_phan_tich.bang_11');
         $danhsach = CDSKhaoSat::All();
-        return view('Admin.KhaoSatCDS.phan-tich')->with(compact('so_luong','huyen', 'bang_1','bang_3', 'nganh', 'linhvuc', 'danhsach'));
+        return view('Admin.KhaoSatCDS.phan-tich')->with(compact('so_luong','huyen', 'bang_1','bang_3', 'nganh', 'linhvuc', 'danhsach','bang_10','bang_11'));
     }
 
     function doanh_nghiep(Request $request) {
@@ -57,11 +59,13 @@ class CDSKhaoSatController extends Controller
         $linhvuc = CDSKhaoSat::groupBy(3)->get();
         $bang_1 = Config::get('data_phan_tich.bang_1');
         $bang_3 = Config::get('data_phan_tich.bang_3');
+        $bang_10 = Config::get('data_phan_tich.bang_10');
+        $bang_11 = Config::get('data_phan_tich.bang_11');
         $danhsach = CDSKhaoSat::All();
         $huyen = CDSKhaoSat::groupBy(6)->get();
         $nganh = CDSKhaoSat::groupBy(groups: 4)->get();
         $linhvuc = CDSKhaoSat::groupBy(3)->get();
-        return view('Admin.KhaoSatCDS.bieu-do')->with(compact('so_luong', 'bang_1','bang_3', 'linhvuc', 'danhsach', 'huyen','nganh','linhvuc'));
+        return view('Admin.KhaoSatCDS.bieu-do')->with(compact('so_luong', 'bang_1','bang_3', 'linhvuc', 'danhsach', 'huyen','nganh','linhvuc','bang_10', 'bang_11'));
     }
 
     function nganh_nghe(Request $request) {

@@ -13,6 +13,16 @@
                             <i class="fas fa-users text-primary"></i>
                         @endif
                         Danh sách Doanh nghiệp tham gia: {{ $so_luong }} </h3>
+                    <form action="{{ env('APP_URL') }}admin/doanh-nghiep/danh-sach" method="GET" id="DNForm">
+                        <div class="row form-group">
+                            <div class="col-12 col-md-4">
+                                <input type="text"  name="q" id="q" value="{{ $q }}" class="form-control" placeholder="Tên doanh nghiệp">
+                            </div>
+                            <div class="col-12 col-md-2">
+                                <button type="submit" name="submit" value="OK" class="btn btn-primary">Tìm kiếm</button>
+                            </div>
+                        </div>
+                    </form>
                     <table class="table table-border table-striped table-bodered">
                         <thead>
                             <tr>
@@ -22,22 +32,22 @@
                                 <th>Mã số thuế</th>
                                 <th>Điện thoại</th>
                                 @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
-                                <th>TVHH</th>
+                                <th>Thành viên HHDN</th>
                                 @endif
                                 <th>#</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @php $stt = 1; $count = count($danhsach); $page=Request::input('page') ? Request::input('page') : 1;  @endphp
+                            @php $stt = 1; $page=Request::input('page') ? Request::input('page') : 1;$count = 30;// count($danhsach);  @endphp
                             @foreach($danhsach as $ds)
                                 <tr>
-                                   <td>{{ $stt + $count * ($page-1) }}</td> 
+                                   <td>{{ $stt + $count * (intval($page)-1) }}</td> 
                                    <td><a href="{{ env('APP_URL') }}admin/doanh-nghiep/chi-tiet/{{ $ds['_id'] }}">{{ $ds['ten'] }}</a></td>
                                    <td>{{ $ds['nguoidaidien'] }}</td>
                                    <td>{{ $ds['masothue'] }}</td>
                                    <td>{{ $ds['dienthoai'] }}</td>
                                    @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
-                                   <td>
+                                   <td class="text-center">
                                     <a href="{{ env('APP_URL') }}admin/doanh-nghiep/hoi-vien/{{ $ds['_id'] }}" class="set-hoi-vien">
                                         @if($ds['hoivienhiephoi']) <i class="fas fa-user-check text-success"></i>
                                         @else <i class="fas fa-user-times text-muted"></i> @endif
@@ -49,9 +59,11 @@
                                     @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
                                         @if(App\Http\Controllers\UserController::is_roles('Admin') &&
                                             App\Http\Controllers\UserController::checkDoanhNghiep($ds['_id']) == false)
-                                                <a href="{{ env('APP_URL') }}admin/doanh-nghiep/tao-tai-khoan/{{ $ds['_id'] }}" class="tao-tai-khoan"><i class="fas fa-user text-muted"></i></a>
+                                            @if($ds['dienthoai'])
+                                                <a href="{{ env('APP_URL') }}admin/doanh-nghiep/tao-tai-khoan/{{ $ds['_id'] }}" class="tao-tai-khoan" title="Tạo tài khoản cho Doanh nghiệp"><i class="fas fa-user text-muted"></i></a>
+                                            @endif
                                         @else 
-                                        <a href="{{ env('APP_URL') }}admin/doanh-nghiep/tao-tai-khoan/{{ $ds['_id'] }}" class="tao-tai-khoan"><i class="fas fa-users text-danger"></i></a>
+                                        <a href="{{ env('APP_URL') }}admin/doanh-nghiep/tao-tai-khoan/{{ $ds['_id'] }}" class="tao-tai-khoan" title="Đã tạo tài khoản cho Doanh nghiệp"><i class="fas fa-users text-danger"></i></a>
                                         @endif
                                         <a href="{{ env('APP_URL') }}admin/doanh-nghiep/delete/{{ $ds['_id'] }}" onclick="return confirm('Chắc chắn xóa?');" ><i class="fa fa-trash text-danger"></i></a>
                                     @endif
@@ -64,7 +76,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $danhsach->withPath(env('APP_URL').'admin/doanh-nghiep/danh-sach') }}
+                    {{ $danhsach->withPath(env('APP_URL').'admin/doanh-nghiep/danh-sach?q='.$q) }}
                 </div>
             </div>
         </div>

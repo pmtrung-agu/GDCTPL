@@ -291,7 +291,7 @@
                             </div>
                         </div>
                         <div class="row card-box">
-                            <div class="col-12 col-md-12">
+                            <div class="col-12 col-md-6">
                                 <h4 style="font-size:20px;" class="text-danger"><strong>*Bảng 9: Mức độ sẵn sàng chuyển đổi số theo 03 lĩnh vực</strong></h4>
                                 <table class="table table-border table-striped table-bordered">
                                     <thead>                                   
@@ -340,6 +340,42 @@
                                         </tr>
                                     </tfoot>
                                 </table>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <h4 style="font-size:20px;" class="text-danger"><strong>*Bảng 10: Mức độ đầu tư vào chuyển đổi số</strong></h4>
+                                <table class="table table-border table-striped table-bordered">
+                                <thead>                                   
+                                    <tr>
+                                        <th>Mức độ</th>
+                                        <th>Số lượng doanh nghiệp</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $__currentLoopData = $bang_10; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b10): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr>
+                                        <td class="text-center"><?php echo e($b10[0]); ?></td>
+                                        <td class="text-center"><?php echo e($b10[1]); ?></td>
+                                    </tr>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </tbody>
+                                </table>
+                                <h4 style="font-size:20px;" class="text-danger"><strong>*Bảng 11: Quy mô doanh nghiệp tham gia khảo sát</strong></h4>
+                                <table class="table table-border table-striped table-bordered">
+                                    <thead>                                   
+                                        <tr>
+                                            <th>Quy mô</th>
+                                            <th>Số lượng doanh nghiệp</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $__currentLoopData = $bang_11; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b11): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <tr>
+                                            <td class="text-center"><?php echo e($b11[0]); ?></td>
+                                            <td class="text-center"><?php echo e($b11[1]); ?></td>
+                                        </tr>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </tbody>
+                                    </table>
                             </div>
                         </div>
                     </div>

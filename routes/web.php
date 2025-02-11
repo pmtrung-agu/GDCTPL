@@ -12,7 +12,9 @@ use App\Http\Controllers\DMNganhNgheController;
 use App\Http\Controllers\DMThongTinController;
 use App\Http\Controllers\DMSanPhamController;
 use App\Http\Controllers\DMTaiLieuController;
+use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\ThongTinController;
+use App\Http\Controllers\TaiLieuController;
 use App\Http\Controllers\CDSKhaoSatController;
 use App\Http\Controllers\DoanhNghiepController;
 
@@ -55,6 +57,15 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
 
     Route::get('chuyen-gia', [UserController::class, 'chuyen_gia'])->name('admin-thong-tin')->middleware('role:Admin,Manager,Business,ABA');
 
+    Route::get('san-pham', [SanPhamController::class, 'list'])->name('admin-san-pham')->middleware('role:Admin,Manager,ABA');
+    Route::get('san-pham/change-password', [SanPhamController::class, 'change_password'])->name('admin-san-pham-change-password')->middleware('role:Admin,Manager,Business,ABA');
+    Route::post('san-pham/update-password', [SanPhamController::class, 'update_password'])->name('admin-san-pham-update-password')->middleware('role:Admin,Manager,Business,ABA');
+    Route::get('san-pham/add', [SanPhamController::class, 'add'])->name('admin-san-pham-add')->middleware('role:Admin,Manager,Business,ABA');
+    Route::post('san-pham/create', [SanPhamController::class, 'create'])->name('admin-san-pham-create')->middleware('role:Admin,Manager,Business,ABA');
+    Route::get('san-pham/edit/{id}', [SanPhamController::class, 'edit'])->name('admin-san-pham-edit-id')->middleware('role:Admin,Manager,Business,ABA');
+    Route::post('san-pham/update', [SanPhamController::class,'update'])->name('admin-san-pham-update')->middleware('role:Admin,Manager,Business,ABA');
+    Route::get('san-pham/delete/{id}', [SanPhamController::class, 'delete'])->name('admin-san-pham-delete-id')->middleware('role:Admin,Manager,Business,ABA');
+
     Route::get('thong-tin', [ThongTinController::class, 'list'])->name('admin-thong-tin')->middleware('role:Admin,Manager,ABA');
     Route::get('thong-tin/change-password', [ThongTinController::class, 'change_password'])->name('admin-thong-tin-change-password')->middleware('role:Admin,Manager,Business,ABA');
     Route::post('thong-tin/update-password', [ThongTinController::class, 'update_password'])->name('admin-thong-tin-update-password')->middleware('role:Admin,Manager,Business,ABA');
@@ -63,6 +74,15 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('thong-tin/edit/{id}', [ThongTinController::class, 'edit'])->name('admin-thong-tin-edit-id')->middleware('role:Admin,Manager,Business,ABA');
     Route::post('thong-tin/update', [ThongTinController::class,'update'])->name('admin-thong-tin-update')->middleware('role:Admin,Manager,Business,ABA');
     Route::get('thong-tin/delete/{id}', [ThongTinController::class, 'delete'])->name('admin-thong-tin-delete-id')->middleware('role:Admin,Manager,Business,ABA');
+
+    Route::get('tai-lieu', [TaiLieuController::class, 'list'])->name('admin-tai-lieu')->middleware('role:Admin,Manager,ABA');
+    Route::get('tai-lieu/change-password', [TaiLieuController::class, 'change_password'])->name('admin-tai-lieu-change-password')->middleware('role:Admin,Manager,Business,ABA');
+    Route::post('tai-lieu/update-password', [TaiLieuController::class, 'update_password'])->name('admin-tai-lieu-update-password')->middleware('role:Admin,Manager,Business,ABA');
+    Route::get('tai-lieu/add', [TaiLieuController::class, 'add'])->name('admin-tai-lieu-add')->middleware('role:Admin,Manager,Business,ABA');
+    Route::post('tai-lieu/create', [TaiLieuController::class, 'create'])->name('admin-tai-lieu-create')->middleware('role:Admin,Manager,Business,ABA');
+    Route::get('tai-lieu/edit/{id}', [TaiLieuController::class, 'edit'])->name('admin-tai-lieu-edit-id')->middleware('role:Admin,Manager,Business,ABA');
+    Route::post('tai-lieu/update', [TaiLieuController::class,'update'])->name('admin-tai-lieu-update')->middleware('role:Admin,Manager,Business,ABA');
+    Route::get('tai-lieu/delete/{id}', [TaiLieuController::class, 'delete'])->name('admin-tai-lieu-delete-id')->middleware('role:Admin,Manager,Business,ABA');
 
     
     Route::get('khao-sat-muc-do-cds', [CDSKhaoSatController::class, 'du_lieu'])->middleware('role:Admin,Manager,Business,ABA');
@@ -86,9 +106,19 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('doanh-nghiep/hoi-vien/{id}', [DoanhNghiepController::class, 'hoi_vien'])->middleware('role:Admin,Manager,ABA');
     Route::get('doanh-nghiep/tao-tai-khoan/{id}', [DoanhNghiepController::class, 'tao_tai_khoan'])->middleware('role:Admin,Manager,ABA');
     Route::get('doanh-nghiep/tu-van-chuyen-doi-so', [DoanhNghiepController::class, 'tu_van'])->middleware('role:Admin,Manager,ABA,Business');
-    Route::post('doanh-nghiep/hoi-dap-chuyen-doi-so/{group_id}', [DoanhNghiepController::class, 'hoi_dap'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::get('doanh-nghiep/tu-van-chuyen-doi-so/add', [DoanhNghiepController::class, 'tu_van_add'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::post('doanh-nghiep/tu-van-chuyen-doi-so/create', [DoanhNghiepController::class, 'tu_van_create'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::get('doanh-nghiep/tu-van-chuyen-doi-so/chi-tiet/{id}', [DoanhNghiepController::class, 'tu_van_chi_tiet'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::post('doanh-nghiep/tu-van-chuyen-doi-so/chi-tiet/update', [DoanhNghiepController::class, 'tu_van_update'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::get('doanh-nghiep/tu-van-chuyen-doi-so/tinh-trang/{id}', [DoanhNghiepController::class, 'tu_van_tinh_trang'])->middleware('role:Admin,Manager,ABA');
     
-    
+    Route::get('doanh-nghiep/nhu-cau-chuyen-doi-so', [DoanhNghiepController::class, 'nhu_cau'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::get('doanh-nghiep/nhu-cau-chuyen-doi-so/add', [DoanhNghiepController::class, 'nhu_cau_add'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::post('doanh-nghiep/nhu-cau-chuyen-doi-so/create', [DoanhNghiepController::class, 'nhu_cau_create'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::get('doanh-nghiep/nhu-cau-chuyen-doi-so/chi-tiet/{id}', [DoanhNghiepController::class, 'nhu_cau_chi_tiet'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::post('doanh-nghiep/nhu-cau-chuyen-doi-so/chi-tiet/update', [DoanhNghiepController::class, 'nhu_cau_update'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::get('doanh-nghiep/nhu-cau-chuyen-doi-so/tinh-trang/{id}', [DoanhNghiepController::class, 'nhu_cau_tinh_trang'])->middleware('role:Admin,Manager,ABA');
+        
     Route::group(['prefix' => 'danh-muc',  'middleware' => 'checkauth'], function(){
         Route::get('linh-vuc', [DMLinhVucController::class, 'list'])->name('admin-linh-vuc')->middleware('role:Admin');
         Route::get('linh-vuc/change-password', [DMLinhVucController::class, 'change_password'])->name('admin-linh-vuc-change-password')->middleware('checkauth');

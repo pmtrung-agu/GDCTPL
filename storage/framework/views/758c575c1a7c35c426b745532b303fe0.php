@@ -13,6 +13,16 @@
                             <i class="fas fa-users text-primary"></i>
                         <?php endif; ?>
                         Danh sách Doanh nghiệp tham gia: <?php echo e($so_luong); ?> </h3>
+                    <form action="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/danh-sach" method="GET" id="DNForm">
+                        <div class="row form-group">
+                            <div class="col-12 col-md-4">
+                                <input type="text"  name="q" id="q" value="<?php echo e($q); ?>" class="form-control" placeholder="Tên doanh nghiệp">
+                            </div>
+                            <div class="col-12 col-md-2">
+                                <button type="submit" name="submit" value="OK" class="btn btn-primary">Tìm kiếm</button>
+                            </div>
+                        </div>
+                    </form>
                     <table class="table table-border table-striped table-bodered">
                         <thead>
                             <tr>
@@ -22,22 +32,22 @@
                                 <th>Mã số thuế</th>
                                 <th>Điện thoại</th>
                                 <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
-                                <th>TVHH</th>
+                                <th>Thành viên HHDN</th>
                                 <?php endif; ?>
                                 <th>#</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $stt = 1; $count = count($danhsach); $page=Request::input('page') ? Request::input('page') : 1;  ?>
+                            <?php $stt = 1; $page=Request::input('page') ? Request::input('page') : 1;$count = 30;// count($danhsach);  ?>
                             <?php $__currentLoopData = $danhsach; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ds): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                   <td><?php echo e($stt + $count * ($page-1)); ?></td> 
+                                   <td><?php echo e($stt + $count * (intval($page)-1)); ?></td> 
                                    <td><a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/chi-tiet/<?php echo e($ds['_id']); ?>"><?php echo e($ds['ten']); ?></a></td>
                                    <td><?php echo e($ds['nguoidaidien']); ?></td>
                                    <td><?php echo e($ds['masothue']); ?></td>
                                    <td><?php echo e($ds['dienthoai']); ?></td>
                                    <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
-                                   <td>
+                                   <td class="text-center">
                                     <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/hoi-vien/<?php echo e($ds['_id']); ?>" class="set-hoi-vien">
                                         <?php if($ds['hoivienhiephoi']): ?> <i class="fas fa-user-check text-success"></i>
                                         <?php else: ?> <i class="fas fa-user-times text-muted"></i> <?php endif; ?>
@@ -49,9 +59,11 @@
                                     <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
                                         <?php if(App\Http\Controllers\UserController::is_roles('Admin') &&
                                             App\Http\Controllers\UserController::checkDoanhNghiep($ds['_id']) == false): ?>
-                                                <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/tao-tai-khoan/<?php echo e($ds['_id']); ?>" class="tao-tai-khoan"><i class="fas fa-user text-muted"></i></a>
+                                            <?php if($ds['dienthoai']): ?>
+                                                <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/tao-tai-khoan/<?php echo e($ds['_id']); ?>" class="tao-tai-khoan" title="Tạo tài khoản cho Doanh nghiệp"><i class="fas fa-user text-muted"></i></a>
+                                            <?php endif; ?>
                                         <?php else: ?> 
-                                        <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/tao-tai-khoan/<?php echo e($ds['_id']); ?>" class="tao-tai-khoan"><i class="fas fa-users text-danger"></i></a>
+                                        <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/tao-tai-khoan/<?php echo e($ds['_id']); ?>" class="tao-tai-khoan" title="Đã tạo tài khoản cho Doanh nghiệp"><i class="fas fa-users text-danger"></i></a>
                                         <?php endif; ?>
                                         <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/delete/<?php echo e($ds['_id']); ?>" onclick="return confirm('Chắc chắn xóa?');" ><i class="fa fa-trash text-danger"></i></a>
                                     <?php endif; ?>
@@ -64,7 +76,7 @@
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
-                    <?php echo e($danhsach->withPath(env('APP_URL').'admin/doanh-nghiep/danh-sach')); ?>
+                    <?php echo e($danhsach->withPath(env('APP_URL').'admin/doanh-nghiep/danh-sach?q='.$q)); ?>
 
                 </div>
             </div>

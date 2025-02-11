@@ -18,6 +18,26 @@ return [
         array(4,'Vận hành',0.203, 61),
         array(5,'Chuyển đổi số văn hóa doanh nghiệp',0.156, 73),
         array(6,'Dữ liệu và tài sản thông tin',0.109, 82)
+    ),
+    'bang_10' => array(
+        array('0',263, 'Hoàn toàn không'),
+        array('1',14, 'Có nhưng hầu như không đủ'),
+        array('2',10, 'Có tương đối, hầu như đáp ứng các nhu cầu khi cần'),
+        array('3',8,'Đáp ứng trung bình'),
+        array('4 & 5',10, 'Luôn ưu tiên, đáp ứng đầy đủ khi cần')
+    ), 
+    'bang_11' => array(
+        array('Nhỏ',199),
+        array('Siêu nhỏ',83),
+        array('Vừa',23)
+    ),
+    'nhu_cau' => array(
+        'Xây dựng phần mềm quản lý',
+        'Xây dựng website giới thiệu',
+        'Xây dựng Website TMĐT',
+        'Khảo sát và Tư vấn Chuyển đổi số Doanh nghiệp',
+        'Tập huấn về Chuyển đổi số Doanh nghiệp',
+        'Nhu cầu khác'
     )
 ]
 ?>
