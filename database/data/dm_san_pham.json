@@ -1,0 +1,9 @@
+{"_id":{"$oid":"677c7fe16b5b9cda110f0908"},"ten":"Đặc sản","slug":"dac-san","ghi_chu":null,"thu_tu":1,"updated_at":{"$date":"2025-01-07T01:14:09.655Z"},"created_at":{"$date":"2025-01-07T01:14:09.655Z"}}
+{"_id":{"$oid":"677de7876b5b9cda110f0913"},"ten":"Hàng tiêu dùng","slug":"hang-tieu-dun","ghi_chu":null,"thu_tu":2,"updated_at":{"$date":"2025-01-08T02:48:39.807Z"},"created_at":{"$date":"2025-01-08T02:48:39.807Z"}}
+{"_id":{"$oid":"677de7976b5b9cda110f0914"},"ten":"Gạo - Nếp","slug":"gao-nep","ghi_chu":null,"thu_tu":3,"updated_at":{"$date":"2025-01-08T02:48:55.06Z"},"created_at":{"$date":"2025-01-08T02:48:55.06Z"}}
+{"_id":{"$oid":"677de7b66b5b9cda110f0915"},"ten":"Thực phẩm","slug":"thuc-pham","ghi_chu":null,"thu_tu":4,"updated_at":{"$date":"2025-01-08T02:49:30.447Z"},"created_at":{"$date":"2025-01-08T02:49:26.007Z"}}
+{"_id":{"$oid":"677de7c36b5b9cda110f0916"},"ten":"Thủy sản","slug":"thuy-san","ghi_chu":null,"thu_tu":5,"updated_at":{"$date":"2025-01-08T02:49:39.005Z"},"created_at":{"$date":"2025-01-08T02:49:39.005Z"}}
+{"_id":{"$oid":"677de7d26b5b9cda110f0917"},"ten":"Thủ công mỹ nghệ","slug":"thu-cong-my-nghe","ghi_chu":null,"thu_tu":6,"updated_at":{"$date":"2025-01-08T02:49:54.43Z"},"created_at":{"$date":"2025-01-08T02:49:54.43Z"}}
+{"_id":{"$oid":"677de7da6b5b9cda110f0918"},"ten":"Rau, Củ, Quả","slug":"rau-cu-qua","ghi_chu":null,"thu_tu":7,"updated_at":{"$date":"2025-01-08T02:50:02.667Z"},"created_at":{"$date":"2025-01-08T02:50:02.667Z"}}
+{"_id":{"$oid":"677de7eb6b5b9cda110f0919"},"ten":"Trà - Cà phê","slug":"tra-ca-phe","ghi_chu":null,"thu_tu":8,"updated_at":{"$date":"2025-01-08T02:50:19.265Z"},"created_at":{"$date":"2025-01-08T02:50:19.265Z"}}
+{"_id":{"$oid":"677de7f86b5b9cda110f091a"},"ten":"Mỹ phẩm - Dược phẩm","slug":"my-pham-duoc-pham","ghi_chu":null,"thu_tu":9,"updated_at":{"$date":"2025-01-08T02:50:32.065Z"},"created_at":{"$date":"2025-01-08T02:50:32.065Z"}}

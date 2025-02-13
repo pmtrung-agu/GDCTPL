@@ -8,5 +8,5 @@ class SanPham extends Model
 {
     //
     protected $connection = 'mongodb';
-    protected $table = 'tai_lieu';
+    protected $table = 'san_pham';
 }

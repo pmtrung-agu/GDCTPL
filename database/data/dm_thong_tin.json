@@ -1,0 +1,4 @@
+{"_id":{"$oid":"677c7d976b5b9cda110f0904"},"ten":"Chuyển đổi số","slug":"chuyen-doi-so","ghi_chu":null,"thu_tu":1,"updated_at":{"$date":"2025-01-07T01:04:23.659Z"},"created_at":{"$date":"2025-01-07T01:04:23.659Z"}}
+{"_id":{"$oid":"677c7e686b5b9cda110f0905"},"ten":"Sự kiện","slug":"su-kien","ghi_chu":null,"thu_tu":2,"updated_at":{"$date":"2025-01-07T01:07:52.753Z"},"created_at":{"$date":"2025-01-07T01:07:52.753Z"}}
+{"_id":{"$oid":"677c7e756b5b9cda110f0906"},"ten":"Doanh nghiệp","slug":"doanh-nghiep","ghi_chu":null,"thu_tu":3,"updated_at":{"$date":"2025-01-07T01:08:05.924Z"},"created_at":{"$date":"2025-01-07T01:08:05.924Z"}}
+{"_id":{"$oid":"677c7e7f6b5b9cda110f0907"},"ten":"Xã hội","slug":"xa-hoi","ghi_chu":null,"thu_tu":4,"updated_at":{"$date":"2025-01-07T01:08:15.282Z"},"created_at":{"$date":"2025-01-07T01:08:15.282Z"}}

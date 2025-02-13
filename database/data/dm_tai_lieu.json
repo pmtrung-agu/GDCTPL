@@ -1,0 +1,4 @@
+{"_id":{"$oid":"677cd9c36b5b9cda110f090c"},"ten":"Văn bản","slug":"van-ban","ghi_chu":null,"thu_tu":1,"updated_at":{"$date":"2025-01-07T07:43:06.526Z"},"created_at":{"$date":"2025-01-07T07:37:39.689Z"}}
+{"_id":{"$oid":"677cdaa66b5b9cda110f090d"},"ten":"Tri thức","slug":"tri-thuc","ghi_chu":null,"thu_tu":2,"updated_at":{"$date":"2025-01-07T07:41:26.364Z"},"created_at":{"$date":"2025-01-07T07:41:26.364Z"}}
+{"_id":{"$oid":"677cdb816b5b9cda110f090e"},"ten":"Video Chuyển đổi số","slug":"video-chuyen-doi-so","ghi_chu":null,"thu_tu":3,"updated_at":{"$date":"2025-01-07T07:45:05.719Z"},"created_at":{"$date":"2025-01-07T07:45:05.719Z"}}
+{"_id":{"$oid":"677cdb956b5b9cda110f090f"},"ten":"Thông tin hỏi đáp","slug":"thong-tin-hoi-dap","ghi_chu":null,"thu_tu":4,"updated_at":{"$date":"2025-01-07T07:45:25.71Z"},"created_at":{"$date":"2025-01-07T07:45:25.71Z"}}

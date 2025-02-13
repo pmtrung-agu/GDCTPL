@@ -99,7 +99,7 @@
         <div class="menu-area">
           <div class="container">
             <div class="row align-items-center justify-content-between">
-              <div class="col-auto">
+              <div class="col-auto" style="width:21%;">
                 <div class="header-logo">
                   <a href="{{ env('APP_URL') }}">
                     <img src="{{ env('APP_URL') }}assets/frontend/img/logo.png" alt="Cổng thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang" style="width:250px;">

@@ -77,8 +77,8 @@ return  [
                 array('title' => 'Doanh nghiệp tham gia', 'path' => 'doanh-nghiep-tham-gia'),
                 array('title' => 'Tư vấn chuyển đổi số', 'path' => 'tu-van-chuyen-doi-so'),
                 array('title' => 'Gởi nhu cầu chuyển đổi số', 'path' => 'goi-yeu-cau'),
-                array('title' => 'Khảo sát mức độ CĐS', 'path' => 'khao-sat-muc-do-cds'),
-                array('title' => 'Đăng ký thành viên', 'path' => 'dang-ky-thanh-vien')
+                //array('title' => 'Khảo sát mức độ CĐS', 'path' => 'khao-sat-muc-do-cds'),
+                //array('title' => 'Đăng ký thành viên', 'path' => 'dang-ky-thanh-vien')
             )
         ),
         4 => array(

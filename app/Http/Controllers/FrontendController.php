@@ -53,7 +53,12 @@ class FrontendController extends Controller
 
     function san_pham(Request $request, $taxonomy = '') {
         $danhsach = SanPham::paginate(30);
-        return view('Frontend.san-pham')->with(compact('danhsach'));
+        $tax = DMSanPham::where('slug', '=', $taxonomy)->first();
+        return view('Frontend.san-pham')->with(compact('danhsach', 'tax'));
+    }
+    function san_pham_chi_tiet(Request $request, $slug = '') {
+        $ds = SanPham::where('slug', '=', $slug)->first();
+        return view('Frontend.san-pham-chi-tiet')->with(compact('ds'));
     }
 
     function goi_yeu_cau(){
