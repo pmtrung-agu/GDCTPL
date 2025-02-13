@@ -1,4 +1,5 @@
 @extends('Admin.layout')
+@section('title', 'Chỉnh sửa sản phẩm')
 @section('css')
   <link href="{{ env('APP_URL') }}assets/backend/libs/summernote/summernote-lite.css" rel="stylesheet" />
   <link href="{{ env('APP_URL') }}assets/backend/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
@@ -6,6 +7,8 @@
   <link rel="stylesheet" href="{{ env('APP_URL') }}assets/backend/libs/magnific-popup/css/magnific-popup.css"/>
 @endsection
 @section('body')
+<div class="wrapper">
+  <div class="container-fluid">
 <div class="row">
 	<div class="col-12">
     	<div class="card-box table-responsive">
@@ -206,6 +209,8 @@
         </form>
     	</div>
     </div>
+</div>
+  </div>
 </div>
 @endsection
 @section('js')

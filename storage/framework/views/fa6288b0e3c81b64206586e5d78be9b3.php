@@ -147,6 +147,7 @@
     </div>
 </section>
 <?php endif; ?>
+<?php if($chuyen_gia): ?>
 <section class="team-sec space-top bg-smoke4">
     <div class="container z-index-common">
       <div class="title-area text-center">
@@ -156,28 +157,32 @@
       <div class="slider-area">
         <div class="swiper th-slider has-shadow" id="teamSlider1" data-slider-options='{"loop":true,"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1300":{"slidesPerView":"4"}}}'>
           <div class="swiper-wrapper">
-            <?php for($i=1;$i<6;$i++): ?>
+            <?php $__currentLoopData = $chuyen_gia; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cg): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="swiper-slide">
               <div class="th-team team-card">
                 <div class="box-img">
-                  <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/team/dtnghi.png" alt="Team">
+                  <?php if(isset($cg['photos'][0]['aliasname']) && $cg['photos'][0]['aliasname']): ?>
+                    <img src="<?php echo e(env('APP_URL')); ?>storage/images/origin/<?php echo e($cg['photos'][0]['aliasname']); ?>" alt="<?php echo e($cg['title']); ?>">
+                  <?php else: ?>
+                    <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/team/dtnghi.png" alt="<?php echo e($cg['fullname']); ?>">
+                  <?php endif; ?>
                 </div>
                 <div class="box-content">
                   <div>
                     <h3 class="box-title">
-                      <a href="#">Đoàn Thanh Nghị</a>
+                      <a href="#" onclick="return false;"><?php echo e($cg['fullname']); ?></a>
                     </h3>
-                    <span class="team-desig">Chuyên gia tư vấn TƯ VẤN KINH DOANH - CHUYỂN ĐỔI SỐ DOANH NGHIỆP</span>
+                    <span class="team-desig"><?php echo e($cg['ghi_chu']); ?></span>
                   </div>
                   <div class="team-social">
                     <div class="icon-btn">
                       <i class="fa-light fa-plus"></i>
                     </div>
                     <div class="th-social">
-                      <a target="_blank" href="tel:">
+                      <a target="_blank" href="tel:<?php echo e($cg['phone']); ?>">
                         <i class="fas fa-mobile-alt"></i>
                       </a>
-                      <a target="_blank" href="mailto:">
+                      <a target="_blank" href="mailto:<?php echo e($cg['username']); ?>">
                         <i class="fas fa-envelope"></i>
                       </a>
                     </div>
@@ -185,41 +190,8 @@
                 </div>
               </div>
             </div>
-            <div class="swiper-slide">
-                <div class="th-team team-card">
-                  <div class="box-img">
-                    <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/team/pmtrung.jpg" alt="Team">
-                  </div>
-                  <div class="box-content">
-                    <div>
-                      <h3 class="box-title">
-                        <a href="team-details.html">Phan Minh Trung</a>
-                      </h3>
-                      <span class="team-desig">Chuyên gia tư vấn TƯ VẤN KINH DOANH - CHUYỂN ĐỔI SỐ DOANH NGHIỆP</span>
-                    </div>
-                    <div class="team-social">
-                      <div class="icon-btn">
-                        <i class="fa-light fa-plus"></i>
-                      </div>
-                      <div class="th-social">
-                        <a target="_blank" href="https://facebook.com/">
-                          <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a target="_blank" href="https://twitter.com/">
-                          <i class="fab fa-twitter"></i>
-                        </a>
-                        <a target="_blank" href="https://instagram.com/">
-                          <i class="fab fa-instagram"></i>
-                        </a>
-                        <a target="_blank" href="https://linkedin.com/">
-                          <i class="fab fa-linkedin-in"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <?php endfor; ?>
+            
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </div>
         </div>
         <button data-slider-prev="#teamSlider1" class="slider-arrow style3 slider-prev">
@@ -230,30 +202,35 @@
         </button>
       </div>
     </div>
-  </section>
-<?php if($thong_tin): ?>
+</section>
+<?php endif; ?>
+<?php if($tai_lieu): ?>
   <section class="th-blog-wrapper space-top">
     <div class="container">
         <div class="title-area text-center">
             <span class="sub-title sub-title2">Thông tin & Sự kiện</span>
-            <h2 class="sec-title sec-title2">Videos <span>Chuyển đổi số</span> </h2>
+            <h2 class="sec-title sec-title2">Tài liệu <span>Chuyển đổi số</span> </h2>
         </div>
       <div class="row">
-        <?php $__currentLoopData = $thong_tin; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <?php $__currentLoopData = $tai_lieu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tl): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="col-xxl-4 col-lg-4 col-md-4">
           <div class="th-blog blog-single has-post-thumbnail">
             <div class="blog-img">
-              <a href="blog-details.html">
-                <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/blog/blog-s-1-1.jpg" alt="<?php echo e($tt['title']); ?>" style="height:250px;">
+              <a href="<?php echo e(env('APP_URL')); ?>tai-lieu-chi-tiet/<?php echo e($tl['slug']); ?>">
+                <?php if(isset($tl['photos'][0]['aliasname']) && $tl['photos'][0]['aliasname']): ?>
+                  <img src="<?php echo e(env('APP_URL')); ?>storage/images/thumb_360x200/<?php echo e($tl['photos'][0]['aliasname']); ?>" alt="<?php echo e($tt['ten']); ?>">
+                <?php else: ?>
+                  <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/blog/blog-s-1-1.jpg" alt="Blog Image" style="height:250px;">
+                <?php endif; ?>
               </a>
             </div>
             <div class="blog-content">
               <div class="blog-meta">
-                <a href="blog.html">
+                <a href="<?php echo e(env('APP_URL')); ?>tai-lieu-chi-tiet/<?php echo e($tl['slug']); ?>">
                   <i class="fa-regular fa-calendar"></i>10 July, 2024 </a>
               </div>
               <h2 class="blog-title">
-                <a href="blog-details.html"><?php echo e($tt['ten']); ?></a>
+                <a href="<?php echo e(env('APP_URL')); ?>tai-lieu-chi-tiet/<?php echo e($tl['slug']); ?>"><?php echo e($tt['ten']); ?></a>
               </h2>
             </div>
           </div>

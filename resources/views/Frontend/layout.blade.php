@@ -146,10 +146,10 @@
               </div>
               <div class="col-auto d-none d-lg-block">
                 <div class="header-button">
-                  <a href="{{ env('APP_URL') }}auth/login" class="th-btn d-none d-xl-block" title="Đăng nhập hệ thống"><i class="fas fa-sign-in"></i></a>
-                  <a href="{{ env('APP_URL') }}gio-hang" class="icon-btn sideMenuToggler" title="Giỏ hàng">
+                  <a href="{{ env('APP_URL') }}auth/login" class="th-btn d-none d-xl-block" title="Đăng nhập hệ thống"><i class="fas fa-sign-in"></i> Đăng nhập</a>
+                  {{-- <a href="{{ env('APP_URL') }}gio-hang" class="icon-btn sideMenuToggler" title="Giỏ hàng">
                     <i class="fas fa-cart-arrow-down"></i>
-                  </a>
+                  </a> --}}
                 </div>
               </div>
             </div>

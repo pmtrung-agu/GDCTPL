@@ -1,4 +1,5 @@
 
+<?php $__env->startSection('title', 'Chỉnh sửa sản phẩm'); ?>
 <?php $__env->startSection('css'); ?>
   <link href="<?php echo e(env('APP_URL')); ?>assets/backend/libs/summernote/summernote-lite.css" rel="stylesheet" />
   <link href="<?php echo e(env('APP_URL')); ?>assets/backend/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
@@ -6,6 +7,8 @@
   <link rel="stylesheet" href="<?php echo e(env('APP_URL')); ?>assets/backend/libs/magnific-popup/css/magnific-popup.css"/>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('body'); ?>
+<div class="wrapper">
+  <div class="container-fluid">
 <div class="row">
 	<div class="col-12">
     	<div class="card-box table-responsive">
@@ -207,6 +210,8 @@
         </form>
     	</div>
     </div>
+</div>
+  </div>
 </div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>

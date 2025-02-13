@@ -5,19 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DMDiaChi;
 use App\Models\DMThongTin;
-use App\Models\DMSanPham;
 use App\Models\DMLinhVuc;
 use App\Models\DMNganhNghe;
 use App\Models\ThongTin;
+use App\Models\DMTaiLieu;
+use App\Models\TaiLieu;
+use App\Models\User;
 use App\Models\NhuCauCDS;
 use App\Models\TuVanCDS;
 use App\Models\CDSKhaoSat;
+use App\Models\DMSanPham;
+use App\Models\SanPham;
+
+
 class FrontendController extends Controller
 {
     //
     function index()    {
         $thong_tin = ThongTin::orderBy('updated_at', 'desc')->paginate(6);
-        return view('Frontend.index')->with(compact('thong_tin'));
+        $tai_lieu = TaiLieu::orderBy('updated_at', 'desc')->paginate(6);
+        $chuyen_gia = User::where('roles','Expert')->get();
+        return view('Frontend.index')->with(compact('thong_tin','tai_lieu', 'chuyen_gia'));
     }
 
     function thong_tin(Request $request, $taxonomy = '') {
@@ -31,6 +39,23 @@ class FrontendController extends Controller
         $bai_viet_moi = ThongTin::orderBy('updated_at', 'desc')->paginate(6);
         return view('Frontend.thong-tin-chi-tiet')->with(compact('ds', 'bai_viet_moi'));
     }
+
+    function tai_lieu(Request $request, $taxonomy = '') {
+        $danhsach = TaiLieu::where('tags', $taxonomy)->get();
+        $tax = DMTaiLieu::where('slug', '=', $taxonomy)->first();
+        return view('Frontend.tai-lieu')->with(compact('danhsach', 'tax'));
+    }
+    function tai_lieu_chi_tiet(Request $request, $slug = '') {
+        $ds = TaiLieu::where('slug', '=', $slug)->first();
+        $bai_viet_moi = TaiLieu::orderBy('updated_at', 'desc')->paginate(6);
+        return view('Frontend.tai-lieu-chi-tiet')->with(compact('ds', 'bai_viet_moi'));
+    }
+
+    function san_pham(Request $request, $taxonomy = '') {
+        $danhsach = SanPham::paginate(30);
+        return view('Frontend.san-pham')->with(compact('danhsach'));
+    }
+
     function goi_yeu_cau(){
         return view('Frontend.goi-yeu-cau');
     }

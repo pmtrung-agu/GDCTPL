@@ -147,6 +147,7 @@
     </div>
 </section>
 @endif
+@if($chuyen_gia)
 <section class="team-sec space-top bg-smoke4">
     <div class="container z-index-common">
       <div class="title-area text-center">
@@ -156,28 +157,32 @@
       <div class="slider-area">
         <div class="swiper th-slider has-shadow" id="teamSlider1" data-slider-options='{"loop":true,"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1300":{"slidesPerView":"4"}}}'>
           <div class="swiper-wrapper">
-            @for($i=1;$i<6;$i++)
+            @foreach($chuyen_gia as $cg)
             <div class="swiper-slide">
               <div class="th-team team-card">
                 <div class="box-img">
-                  <img src="{{ env('APP_URL') }}assets/frontend/img/team/dtnghi.png" alt="Team">
+                  @if(isset($cg['photos'][0]['aliasname']) && $cg['photos'][0]['aliasname'])
+                    <img src="{{ env('APP_URL') }}storage/images/origin/{{ $cg['photos'][0]['aliasname'] }}" alt="{{ $cg['title'] }}">
+                  @else
+                    <img src="{{ env('APP_URL') }}assets/frontend/img/team/dtnghi.png" alt="{{ $cg['fullname'] }}">
+                  @endif
                 </div>
                 <div class="box-content">
                   <div>
                     <h3 class="box-title">
-                      <a href="#">Đoàn Thanh Nghị</a>
+                      <a href="#" onclick="return false;">{{ $cg['fullname'] }}</a>
                     </h3>
-                    <span class="team-desig">Chuyên gia tư vấn TƯ VẤN KINH DOANH - CHUYỂN ĐỔI SỐ DOANH NGHIỆP</span>
+                    <span class="team-desig">{{ $cg['ghi_chu'] }}</span>
                   </div>
                   <div class="team-social">
                     <div class="icon-btn">
                       <i class="fa-light fa-plus"></i>
                     </div>
                     <div class="th-social">
-                      <a target="_blank" href="tel:">
+                      <a target="_blank" href="tel:{{ $cg['phone'] }}">
                         <i class="fas fa-mobile-alt"></i>
                       </a>
-                      <a target="_blank" href="mailto:">
+                      <a target="_blank" href="mailto:{{ $cg['username'] }}">
                         <i class="fas fa-envelope"></i>
                       </a>
                     </div>
@@ -185,41 +190,8 @@
                 </div>
               </div>
             </div>
-            <div class="swiper-slide">
-                <div class="th-team team-card">
-                  <div class="box-img">
-                    <img src="{{ env('APP_URL') }}assets/frontend/img/team/pmtrung.jpg" alt="Team">
-                  </div>
-                  <div class="box-content">
-                    <div>
-                      <h3 class="box-title">
-                        <a href="team-details.html">Phan Minh Trung</a>
-                      </h3>
-                      <span class="team-desig">Chuyên gia tư vấn TƯ VẤN KINH DOANH - CHUYỂN ĐỔI SỐ DOANH NGHIỆP</span>
-                    </div>
-                    <div class="team-social">
-                      <div class="icon-btn">
-                        <i class="fa-light fa-plus"></i>
-                      </div>
-                      <div class="th-social">
-                        <a target="_blank" href="https://facebook.com/">
-                          <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a target="_blank" href="https://twitter.com/">
-                          <i class="fab fa-twitter"></i>
-                        </a>
-                        <a target="_blank" href="https://instagram.com/">
-                          <i class="fab fa-instagram"></i>
-                        </a>
-                        <a target="_blank" href="https://linkedin.com/">
-                          <i class="fab fa-linkedin-in"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            @endfor
+            
+            @endforeach
           </div>
         </div>
         <button data-slider-prev="#teamSlider1" class="slider-arrow style3 slider-prev">
@@ -230,30 +202,35 @@
         </button>
       </div>
     </div>
-  </section>
-@if($thong_tin)
+</section>
+@endif
+@if($tai_lieu)
   <section class="th-blog-wrapper space-top">
     <div class="container">
         <div class="title-area text-center">
             <span class="sub-title sub-title2">Thông tin & Sự kiện</span>
-            <h2 class="sec-title sec-title2">Videos <span>Chuyển đổi số</span> </h2>
+            <h2 class="sec-title sec-title2">Tài liệu <span>Chuyển đổi số</span> </h2>
         </div>
       <div class="row">
-        @foreach ($thong_tin as $tt)
+        @foreach ($tai_lieu as $tl)
         <div class="col-xxl-4 col-lg-4 col-md-4">
           <div class="th-blog blog-single has-post-thumbnail">
             <div class="blog-img">
-              <a href="blog-details.html">
-                <img src="{{ env('APP_URL') }}assets/frontend/img/blog/blog-s-1-1.jpg" alt="{{ $tt['title'] }}" style="height:250px;">
+              <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $tl['slug'] }}">
+                @if(isset($tl['photos'][0]['aliasname']) && $tl['photos'][0]['aliasname'])
+                  <img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $tl['photos'][0]['aliasname'] }}" alt="{{ $tt['ten'] }}">
+                @else
+                  <img src="{{ env('APP_URL') }}assets/frontend/img/blog/blog-s-1-1.jpg" alt="Blog Image" style="height:250px;">
+                @endif
               </a>
             </div>
             <div class="blog-content">
               <div class="blog-meta">
-                <a href="blog.html">
+                <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $tl['slug'] }}">
                   <i class="fa-regular fa-calendar"></i>10 July, 2024 </a>
               </div>
               <h2 class="blog-title">
-                <a href="blog-details.html">{{ $tt['ten'] }}</a>
+                <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $tl['slug'] }}">{{ $tt['ten'] }}</a>
               </h2>
             </div>
           </div>
