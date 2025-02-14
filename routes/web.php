@@ -41,6 +41,11 @@ Route::get('thong-tin/tai-ve/{id}/{key}', [ThongTinController::class, 'download'
 Route::get('goi-yeu-cau', [FrontendController::class, 'goi_yeu_cau']);
 Route::post('goi-yeu-cau-submit', [FrontendController::class, 'goi_yeu_cau_submit']);
 
+Route::get('chuyen-gia', [FrontendController::class, 'chuyen_gia']);
+Route::get('chuyen-gia/danh-sach', [FrontendController::class, 'chuyen_gia']);
+Route::get('chuyen-gia/goi-tin-nhan-den-chuyen-gia', function(){
+    return redirect(env('APP_URL') . 'admin/doanh-nghiep/tu-van-chuyen-doi-so');
+});
 
 Route::get('auth/login', [AuthController::class, 'getLogin'])->name('auth-login-get');
 Route::get('auth/logout', [AuthController::class, 'logout'])->name('auth-logout-get');
@@ -64,7 +69,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('/', [AuthController::class, 'admin'])->middleware('checkauth');
     Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware('checkauth');
 
-    Route::get('chuyen-gia', [UserController::class, 'chuyen_gia'])->name('admin-thong-tin')->middleware('role:Admin,Manager,Business,ABA');
+    Route::get('chuyen-gia', [UserController::class, 'chuyen_gia'])->name('admin-thong-tin')->middleware('role:Admin,Manager,Business,ABA');  
 
     Route::get('san-pham', [SanPhamController::class, 'list'])->name('admin-san-pham')->middleware('role:Admin,Manager,ABA');
     Route::get('san-pham/change-password', [SanPhamController::class, 'change_password'])->name('admin-san-pham-change-password')->middleware('role:Admin,Manager,Business,ABA');

@@ -62,7 +62,8 @@ class FrontendController extends Controller
     }
 
     function goi_yeu_cau(){
-        return view('Frontend.goi-yeu-cau');
+        return redirect(env('APP_URL').'admin/doanh-nghiep/nhu-cau-chuyen-doi-so');
+        //return view('Frontend.goi-yeu-cau');
     }
     function goi_yeu_cau_submit(Request $request){
         $ho_ten = $request->input('ho_ten');
@@ -82,7 +83,8 @@ class FrontendController extends Controller
     }
 
     function tu_van_chuyen_doi_so(){
-        return view('Frontend.tu-van-cds');
+        return redirect(env('APP_URL').'admin/doanh-nghiep/tu-van-chuyen-doi-so');
+        //return view('Frontend.tu-van-cds');
     }
 
     function tu_van_chuyen_doi_so_submit(Request $request){
@@ -93,8 +95,6 @@ class FrontendController extends Controller
         $nhu_cau = $request->input('nhu_cau');
         $noi_dung = $request->input('noi_dung');
         
-        
-
         $db = new TuVanCDS();
         $db->id_group = $id_group ? ObjectController::ObjectId($id_group) : ObjectController::Id();
         $db->ho_ten = $ho_ten;
@@ -105,5 +105,10 @@ class FrontendController extends Controller
         $db->save();
         return "Gởi câu hỏi chuyển đồi số thành công!\nChuyên gia sẽ liên hệ giải đáp sớm nhất có thể.\nCám ơn đã gởi thông tin.";
     }
+
+    function chuyen_gia(Request $request) {
+        $danhsach = User::where('roles', 'Expert')->get();
+        return view('Frontend.chuyen-gia')->with(compact('danhsach'));
+      }
 
 }

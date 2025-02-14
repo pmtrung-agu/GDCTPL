@@ -9,8 +9,8 @@
           <div class="hero-style3 text-center">
           <h3 class="hero-title">DOANH NGHIỆP CÓ NHU CẦU VỀ CHUYỂN ĐỔI SỐ VUI LÒNG:</h3>
             <div class="btn-group justify-content-center">
-              <a href="<?php echo e(env('APP_URL')); ?>goi-yeu-cau" class="th-btn">Gởi nhu cầu Chuyển đổi số</a>
-              <a href="<?php echo e(env('APP_URL')); ?>tu-van-chuyen-doi-so" class="th-btn style5">Tư vấn Chuyển đổi số</a>
+              <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/nhu-cau-chuyen-doi-so" class="th-btn">Gởi nhu cầu Chuyển đổi số</a>
+              <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/tu-van-chuyen-doi-so" class="th-btn style5">Tư vấn Chuyển đổi số</a>
             </div>
           </div>
         </div>
@@ -250,8 +250,8 @@
               <p class="cta-text2">Các doanh nghiệp có nhu cầu xây dựng phần mềm quản lý, Website doanh nghiệp,... vui lòng chọn Gởi yêu cầu chuyển đổi số hoặc cần tư vấn về chuyển đổi số doanh nghiệp vui lòng chọ Tư vấn chuyển đổi số.</p>
             </div>
             <div class="btn-group justify-content-center">
-              <a href="<?php echo e(env('APP_URL')); ?>goi-yeu-cau" class="th-btn style3">Gởi nhu cầu chuyển đổi số</a>
-              <a href="<?php echo e(env('APP_URL')); ?>tu-van-chuyen-doi-so" class="th-btn style6">Tư vấn chuyển đổi số</a>
+              <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/nhu-cau-chuyen-doi-so" class="th-btn style3">Gởi nhu cầu chuyển đổi số</a>
+              <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/tu-van-chuyen-doi-so" class="th-btn style6">Tư vấn chuyển đổi số</a>
             </div>
           </div>
         </div>

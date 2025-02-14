@@ -40,7 +40,7 @@
                         <img src="{{ env('APP_URL') }}assets/backend/images/logo_sm.png" style="height:30px;"/>
                       @endif
                     </td>
-                    <td><a href="{{ env('APP_URL') }}chi-tiet-san-pham/{{ $ds['slug'] }}" target="_blank">{{ $ds['code'] }}</a></td>
+                    <td><a href="{{ env('APP_URL') }}san-pham-chi-tiet/{{ $ds['slug'] }}" target="_blank">{{ $ds['code'] }}</a></td>
                     <td>{{ $ds['title'] }}</td>
                     <td class="text-right">{{ number_format($ds['prices'],0, ",", ".") }}</td>
                     <td class="text-center">

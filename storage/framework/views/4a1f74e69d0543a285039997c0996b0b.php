@@ -41,7 +41,7 @@
                         <img src="<?php echo e(env('APP_URL')); ?>assets/backend/images/logo_sm.png" style="height:30px;"/>
                       <?php endif; ?>
                     </td>
-                    <td><a href="<?php echo e(env('APP_URL')); ?>chi-tiet-san-pham/<?php echo e($ds['slug']); ?>" target="_blank"><?php echo e($ds['code']); ?></a></td>
+                    <td><a href="<?php echo e(env('APP_URL')); ?>san-pham-chi-tiet/<?php echo e($ds['slug']); ?>" target="_blank"><?php echo e($ds['code']); ?></a></td>
                     <td><?php echo e($ds['title']); ?></td>
                     <td class="text-right"><?php echo e(number_format($ds['prices'],0, ",", ".")); ?></td>
                     <td class="text-center">

@@ -12,7 +12,9 @@
                     <?php
                         $date_post = App\Http\Controllers\ObjectController::getDate($ds['updated_at'], "d/m/Y");
                     ?>
+                    <img src="<?php echo e(env('APP_URL')); ?>storage/images/origin/<?php echo e($ds['photos'][0]['aliasname']); ?>" style="width:100%"/>
                     <a href="#"> <i class="fa-regular fa-calendar"></i> <?php echo e($date_post); ?></a>
+                    <p><?php echo e($ds['description']); ?></p>
                     <?php echo $ds['content']; ?>
 
                 </div>
