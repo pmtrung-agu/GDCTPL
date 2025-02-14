@@ -30,9 +30,9 @@
                   <i class="fa-regular fa-calendar"></i> {{ $date_post }} </a>
               </div>
               <h2 class="blog-title">
-                <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $tt['slug'] }}">{{ $tt['ten'] }}</a>
+                <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $tt['slug'] }}" title="{{ $tt['ten'] }}" alt="{{ $tt['ten'] }}">{{ Str::limit($tt['ten'],85) }}</a>
               </h2>
-              <p class="blog-text">{{ $tt['mo_ta'] }}</p>
+              <p class="blog-text" alt="{{ $tt['mo_ta'] }}" title="{{ $tt['mo_ta'] }}">{{ Str::limit($tt['mo_ta'], 85) }}</p>
             </div>
           </div>
         </div>

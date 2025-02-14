@@ -35,6 +35,9 @@ Route::get('san-pham-chi-tiet/{slug}', [FrontendController::class, 'san_pham_chi
 Route::get('goi-yeu-cau', [FrontendController::class, 'goi_yeu_cau']);
 Route::get('tu-van-chuyen-doi-so', [FrontendController::class, 'tu_van_chuyen_doi_so']);
 Route::post('tu-van-chuyen-doi-so-submit', [FrontendController::class, 'tu_van_chuyen_doi_so_submit']);
+Route::get('doanh-nghiep/doanh-nghiep-tham-gia', [FrontendController::class, 'doanh_nghiep_tham_gia']);
+Route::get('doanh-nghiep/chi-tiet/{slug}', [FrontendController::class, 'doanh_nghiep_chi_tiet']);
+
 Route::get('doanh-nghiep/goi-yeu-cau', [FrontendController::class, 'goi_yeu_cau']);
 Route::get('doanh-nghiep/tu-van-chuyen-doi-so', [FrontendController::class, 'tu_van_chuyen_doi_so']);
 Route::get('thong-tin/tai-ve/{id}/{key}', [ThongTinController::class, 'download']);
@@ -44,7 +47,7 @@ Route::post('goi-yeu-cau-submit', [FrontendController::class, 'goi_yeu_cau_submi
 Route::get('chuyen-gia', [FrontendController::class, 'chuyen_gia']);
 Route::get('chuyen-gia/danh-sach', [FrontendController::class, 'chuyen_gia']);
 Route::get('chuyen-gia/goi-tin-nhan-den-chuyen-gia', function(){
-    return redirect(env('APP_URL') . 'admin/doanh-nghiep/tu-van-chuyen-doi-so');
+    return redirect(env('APP_URL') . 'admin/doanh-nghiep/tu-van-chuyen-doi-so/add');
 });
 
 Route::get('auth/login', [AuthController::class, 'getLogin'])->name('auth-login-get');

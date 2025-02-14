@@ -13,7 +13,7 @@
         </div>
         <div class="col-auto">
           <div class="sec-btn">
-            <a href="{{env('APP_URL')}}admin/doanh-nghiep/tu-van-chuyen-doi-so" class="th-btn">Gởi câu hỏi</a>
+            <a href="{{env('APP_URL')}}admin/doanh-nghiep/tu-van-chuyen-doi-so/add" class="th-btn">Gởi câu hỏi</a>
           </div>
         </div>
       </div>
@@ -30,10 +30,10 @@
             @endif
             </div>
             <h3 class="box-title">
-              <a href="{{env('APP_URL')}}admin/doanh-nghiep/tu-van-chuyen-doi-so">{{ $ds['fullname'] }}</a>
+              <a href="{{env('APP_URL')}}admin/doanh-nghiep/tu-van-chuyen-doi-so/add">{{ $ds['fullname'] }}</a>
             </h3>
             <p class="box-text">{{ $ds['ghi_chu'] }}</p>
-            <a href="{{env('APP_URL')}}admin/doanh-nghiep/tu-van-chuyen-doi-so" class="th-btn">Gởi câu hỏi tư vấn <i class="fa-regular fa-arrow-right"></i>
+            <a href="{{env('APP_URL')}}admin/doanh-nghiep/tu-van-chuyen-doi-so/add" class="th-btn">Gởi câu hỏi tư vấn <i class="fa-regular fa-arrow-right"></i>
             </a>
           </div>
         </div>

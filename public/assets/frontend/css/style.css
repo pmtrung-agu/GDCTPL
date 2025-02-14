@@ -7220,7 +7220,9 @@ blockquote.has-very-dark-gray-color {
     padding: 30px;
   }
   .blog-single .blog-title {
-    font-size: 28px;
+    font-size: 20px;
+    
+    overflow: hidden;
   }
   .share-links {
     --blog-space-x: 20px;
@@ -13538,8 +13540,8 @@ span.select2-selection.select2-selection--single:focus {
 }
 .team-details img {
   width: 100%;
-  height: 511px;
-  object-fit: cover;
+  /*height: 511px;
+  object-fit: cover;*/
   border-radius: 30px;
 }
 @media (max-width: 1199px) {
@@ -13598,14 +13600,12 @@ span.select2-selection.select2-selection--single:focus {
   -ms-flex-align: center;
   align-items: center;
   gap: 20px;
-  border-top: 1px solid rgba(27, 31, 37, 0.1);
   padding: 20px 0 20px 20px;
 }
 .about-info-wrap {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   max-width: 600px;
-  border-bottom: 1px solid rgba(27, 31, 37, 0.1);
   margin-bottom: 40px;
 }
 @media (max-width: 767px) {
@@ -13624,7 +13624,7 @@ span.select2-selection.select2-selection--single:focus {
   }
 }
 .about-info:not(:first-child) {
-  border-left: 1px solid rgba(27, 31, 37, 0.1);
+  /*border-left: 1px solid rgba(27, 31, 37, 0.1);*/
 }
 @media (max-width: 767px) {
   .about-info:not(:first-child) {

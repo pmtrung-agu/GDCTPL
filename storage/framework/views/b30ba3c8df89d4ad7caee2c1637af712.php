@@ -30,9 +30,9 @@
                   <i class="fa-regular fa-calendar"></i> <?php echo e($date_post); ?> </a>
               </div>
               <h2 class="blog-title">
-                <a href="<?php echo e(env('APP_URL')); ?>thong-tin-chi-tiet/<?php echo e($tt['slug']); ?>"><?php echo e($tt['ten']); ?></a>
+                <a href="<?php echo e(env('APP_URL')); ?>thong-tin-chi-tiet/<?php echo e($tt['slug']); ?>" alt="<?php echo e($tt['ten']); ?>" title="<?php echo e($tt['ten']); ?>"><?php echo e(Str::limit($tt['ten'],85)); ?></a>
               </h2>
-              <p class="blog-text"><?php echo e($tt['mo_ta']); ?></p>
+              <p class="blog-text" alt="<?php echo e($tt['mo_ta']); ?>" title="<?php echo e($tt['mo_ta']); ?>"><?php echo e(Str::limit($tt['mo_ta'],140)); ?></p>
             </div>
           </div>
         </div>

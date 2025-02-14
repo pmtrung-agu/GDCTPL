@@ -126,7 +126,7 @@
                 @if(isset($tt['photos'][0]['aliasname']) && $tt['photos'][0]['aliasname'])
                   <img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $tt['photos'][0]['aliasname'] }}" alt="{{ $tt['ten'] }}">
                 @else
-                  <img src="{{ env('APP_URL') }}assets/frontend/img/blog/blog-s-1-1.jpg" alt="Blog Image" style="height:250px;">
+                  <img src="{{ env('APP_URL') }}assets/frontend/img/blog/blog-s-1-1.jpg" alt="{{ $tt['ten'] }}" style="height:250px;">
                 @endif
               </a>
             </div>
@@ -136,9 +136,9 @@
                   <i class="fa-regular fa-calendar"></i> {{ $date_post }} </a>
               </div>
               <h2 class="blog-title">
-                <a href="{{ env('APP_URL') }}thong-tin-chi-tiet/{{ $tt['slug'] }}">{{ $tt['ten'] }}</a>
+                <a href="{{ env('APP_URL') }}thong-tin-chi-tiet/{{ $tt['slug'] }}" alt="{{ $tt['ten'] }}" title="{{ $tt['ten'] }}">{{ Str::limit($tt['ten'],85) }}</a>
               </h2>
-              <p class="blog-text">{{ $tt['mo_ta'] }}</p>
+              <p class="blog-text" title="{{ $tt['mo_ta'] }}" alt="{{ $tt['mo_ta'] }}">{{ Str::limit($tt['mo_ta'], 140) }}</p>
             </div>
           </div>
         </div>
@@ -190,7 +190,6 @@
                 </div>
               </div>
             </div>
-            
             @endforeach
           </div>
         </div>
@@ -213,6 +212,9 @@
         </div>
       <div class="row">
         @foreach ($tai_lieu as $tl)
+        @php
+          $date_post = App\Http\Controllers\ObjectController::getDate($tl['date_post'], "d/m/Y");
+        @endphp
         <div class="col-xxl-4 col-lg-4 col-md-4">
           <div class="th-blog blog-single has-post-thumbnail">
             <div class="blog-img">
@@ -227,10 +229,10 @@
             <div class="blog-content">
               <div class="blog-meta">
                 <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $tl['slug'] }}">
-                  <i class="fa-regular fa-calendar"></i>10 July, 2024 </a>
+                  <i class="fa-regular fa-calendar"></i>{{ $date_post }} </a>
               </div>
               <h2 class="blog-title">
-                <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $tl['slug'] }}">{{ $tt['ten'] }}</a>
+                <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $tl['slug'] }}" title="{{ $tt['ten'] }}" alt="{{ $tt['ten'] }}">{{ Str::limit($tt['ten'],85) }}</a>
               </h2>
             </div>
           </div>
@@ -250,8 +252,8 @@
               <p class="cta-text2">Các doanh nghiệp có nhu cầu xây dựng phần mềm quản lý, Website doanh nghiệp,... vui lòng chọn Gởi yêu cầu chuyển đổi số hoặc cần tư vấn về chuyển đổi số doanh nghiệp vui lòng chọ Tư vấn chuyển đổi số.</p>
             </div>
             <div class="btn-group justify-content-center">
-              <a href="{{ env('APP_URL') }}admin/doanh-nghiep/nhu-cau-chuyen-doi-so" class="th-btn style3">Gởi nhu cầu chuyển đổi số</a>
-              <a href="{{ env('APP_URL') }}admin/doanh-nghiep/tu-van-chuyen-doi-so" class="th-btn style6">Tư vấn chuyển đổi số</a>
+              <a href="{{ env('APP_URL') }}admin/doanh-nghiep/nhu-cau-chuyen-doi-so/add" class="th-btn style3">Gởi nhu cầu chuyển đổi số</a>
+              <a href="{{ env('APP_URL') }}admin/doanh-nghiep/tu-van-chuyen-doi-so/add" class="th-btn style6">Tư vấn chuyển đổi số</a>
             </div>
           </div>
         </div>

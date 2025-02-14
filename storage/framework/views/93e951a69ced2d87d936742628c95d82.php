@@ -188,9 +188,9 @@
                 <div class="menu-all-pages-container">
                   <ul class="menu">
                     <li><a href="https://thaiminhnguyen.vn">Công ty TNHH MTV TMDV Thái Minh Nguyên</a></li>
-                    <li><a href="https://myphammyhanh.com">Công ty TNHH Mỹ Phẩm Mỹ Hạnh</a></li>
+                    <li><a href="https://ytetaigia247.com/">Y Tế Tại Gia 247</a></li>
                     <li><a href="https://xnta.afiex.com.vn">Xí nghiệp chế biến Thức ăn Chăn nuôi và Thủy sản AFIEX</a></li>
-                    <li><a href="https://thantaiviet.com">Công ty TNHH Khải Duyên</a></li>
+                    <li><a href="https://myphammyhanh.com">Công ty TNHH Mỹ Phẩm Mỹ Hạnh</a></li>
                   </ul>
                 </div>
               </div>

@@ -126,7 +126,7 @@
                 <?php if(isset($tt['photos'][0]['aliasname']) && $tt['photos'][0]['aliasname']): ?>
                   <img src="<?php echo e(env('APP_URL')); ?>storage/images/thumb_360x200/<?php echo e($tt['photos'][0]['aliasname']); ?>" alt="<?php echo e($tt['ten']); ?>">
                 <?php else: ?>
-                  <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/blog/blog-s-1-1.jpg" alt="Blog Image" style="height:250px;">
+                  <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/blog/blog-s-1-1.jpg" alt="<?php echo e($tt['ten']); ?>" style="height:250px;">
                 <?php endif; ?>
               </a>
             </div>
@@ -136,9 +136,9 @@
                   <i class="fa-regular fa-calendar"></i> <?php echo e($date_post); ?> </a>
               </div>
               <h2 class="blog-title">
-                <a href="<?php echo e(env('APP_URL')); ?>thong-tin-chi-tiet/<?php echo e($tt['slug']); ?>"><?php echo e($tt['ten']); ?></a>
+                <a href="<?php echo e(env('APP_URL')); ?>thong-tin-chi-tiet/<?php echo e($tt['slug']); ?>" alt="<?php echo e($tt['ten']); ?>" title="<?php echo e($tt['ten']); ?>"><?php echo e(Str::limit($tt['ten'],85)); ?></a>
               </h2>
-              <p class="blog-text"><?php echo e($tt['mo_ta']); ?></p>
+              <p class="blog-text" title="<?php echo e($tt['mo_ta']); ?>" alt="<?php echo e($tt['mo_ta']); ?>"><?php echo e(Str::limit($tt['mo_ta'], 140)); ?></p>
             </div>
           </div>
         </div>
@@ -190,7 +190,6 @@
                 </div>
               </div>
             </div>
-            
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </div>
         </div>
@@ -213,6 +212,9 @@
         </div>
       <div class="row">
         <?php $__currentLoopData = $tai_lieu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tl): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <?php
+          $date_post = App\Http\Controllers\ObjectController::getDate($tl['date_post'], "d/m/Y");
+        ?>
         <div class="col-xxl-4 col-lg-4 col-md-4">
           <div class="th-blog blog-single has-post-thumbnail">
             <div class="blog-img">
@@ -227,10 +229,10 @@
             <div class="blog-content">
               <div class="blog-meta">
                 <a href="<?php echo e(env('APP_URL')); ?>tai-lieu-chi-tiet/<?php echo e($tl['slug']); ?>">
-                  <i class="fa-regular fa-calendar"></i>10 July, 2024 </a>
+                  <i class="fa-regular fa-calendar"></i><?php echo e($date_post); ?> </a>
               </div>
               <h2 class="blog-title">
-                <a href="<?php echo e(env('APP_URL')); ?>tai-lieu-chi-tiet/<?php echo e($tl['slug']); ?>"><?php echo e($tt['ten']); ?></a>
+                <a href="<?php echo e(env('APP_URL')); ?>tai-lieu-chi-tiet/<?php echo e($tl['slug']); ?>" title="<?php echo e($tt['ten']); ?>" alt="<?php echo e($tt['ten']); ?>"><?php echo e(Str::limit($tt['ten'],85)); ?></a>
               </h2>
             </div>
           </div>
@@ -250,8 +252,8 @@
               <p class="cta-text2">Các doanh nghiệp có nhu cầu xây dựng phần mềm quản lý, Website doanh nghiệp,... vui lòng chọn Gởi yêu cầu chuyển đổi số hoặc cần tư vấn về chuyển đổi số doanh nghiệp vui lòng chọ Tư vấn chuyển đổi số.</p>
             </div>
             <div class="btn-group justify-content-center">
-              <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/nhu-cau-chuyen-doi-so" class="th-btn style3">Gởi nhu cầu chuyển đổi số</a>
-              <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/tu-van-chuyen-doi-so" class="th-btn style6">Tư vấn chuyển đổi số</a>
+              <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/nhu-cau-chuyen-doi-so/add" class="th-btn style3">Gởi nhu cầu chuyển đổi số</a>
+              <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/tu-van-chuyen-doi-so/add" class="th-btn style6">Tư vấn chuyển đổi số</a>
             </div>
           </div>
         </div>

@@ -16,7 +16,7 @@ use App\Models\TuVanCDS;
 use App\Models\CDSKhaoSat;
 use App\Models\DMSanPham;
 use App\Models\SanPham;
-
+use App\Models\DoanhNghiep;
 
 class FrontendController extends Controller
 {
@@ -62,7 +62,7 @@ class FrontendController extends Controller
     }
 
     function goi_yeu_cau(){
-        return redirect(env('APP_URL').'admin/doanh-nghiep/nhu-cau-chuyen-doi-so');
+        return redirect(env('APP_URL').'admin/doanh-nghiep/nhu-cau-chuyen-doi-so/add');
         //return view('Frontend.goi-yeu-cau');
     }
     function goi_yeu_cau_submit(Request $request){
@@ -109,6 +109,21 @@ class FrontendController extends Controller
     function chuyen_gia(Request $request) {
         $danhsach = User::where('roles', 'Expert')->get();
         return view('Frontend.chuyen-gia')->with(compact('danhsach'));
-      }
+    }
+
+    function doanh_nghiep_tham_gia(Request $request) {
+        $q = $request->input('q');
+        if($q) {
+            $danhsach = DoanhNghiep::where('ten','regex', '/.*'.$q.'/i')->paginate(15);
+        } else {
+            $danhsach = DoanhNghiep::paginate(30);
+        }
+       return view('Frontend.doanh-nghiep-tham-gia')->with(compact('danhsach','q'));
+    }
+
+    function doanh_nghiep_chi_tiet(Request $request, $slug = '') {
+        $ds = DoanhNghiep::where('slug', '=', $slug)->first();
+        return view('Frontend.doanh-nghiep-chi-tiet')->with(compact('ds'));
+    }
 
 }

@@ -304,10 +304,11 @@ $arr_quy_mo = array('Nhỏ', 'Vừa', 'Siêu Nhỏ', ' Khác')
     <script src="<?php echo e(env('APP_URL')); ?>assets/backend/js/drag-arrange.min.js" type="text/javascript"></script>
     <script src="<?php echo e(env('APP_URL')); ?>assets/backend/libs/ckeditor/ckeditor.js"></script>
     <script src="<?php echo e(env('APP_URL')); ?>assets/backend/libs/switchery/switchery.min.js"></script>
+    <script src="<?php echo e(env('APP_URL')); ?>assets/backend/libs/jquery-mask-plugin/jquery.mask.min.js"></script>
     <script src="<?php echo e(env('APP_URL')); ?>assets/backend/js/script.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            delete_file();$(".select2").select2();
+            delete_file();$(".select2").select2();$('#ngay_thanh_lap').mask('00/00/0000');$("#ngaygianhaphiephoi").mask('00/00/0000');
             <?php if($diachi[0]): ?>
                 $.get("<?php echo e(env('APP_URL')); ?>admin/dia-chi/get/<?php echo e($diachi[0]); ?>/<?php echo e($diachi[1]); ?>", function(huyen){
                     $("#address_2").html(huyen);
