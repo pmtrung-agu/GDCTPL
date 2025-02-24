@@ -103,11 +103,10 @@ class DoanhNghiepController extends Controller
         $data = $request->all();
         $validator = Validator::make($request->all(), [
             'slug' => 'required|unique:doanh_nghiep,_id,'.$data['id'],
-            'ten' => 'required',
-            'dienthoai' => 'required'
+            'ten' => 'required'
         ]);
         if ($validator->fails()) {
-            return redirect(env('APP_URL').'admin/danh-nghiep/add')->withErrors($validator)->withInput();
+            return redirect(env('APP_URL').'admin/danh-nghiep/edit')->withErrors($validator)->withInput();
         }
         
         $arr_photo = array();

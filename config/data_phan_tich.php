@@ -38,6 +38,12 @@ return [
         'Khảo sát và Tư vấn Chuyển đổi số Doanh nghiệp',
         'Tập huấn về Chuyển đổi số Doanh nghiệp',
         'Nhu cầu khác'
+    ), 
+    'nhu_cau_kngt' => array(
+        'Cần mua',
+        'Cần bán',
+        'Cần cung cấp',
+        'Khác'
     )
 ]
 ?>

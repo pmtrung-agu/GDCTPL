@@ -26,7 +26,8 @@ return  [
             'childs'	=> array(
                 array('title' => 'Doanh Nghiệp tham gia', 'path' => 'danh-sach'),
                 array('title' => 'Gởi câu hỏi đến Chuyên Gia CĐS', 'path' => 'tu-van-chuyen-doi-so'),
-                array('title' => 'Gởi nhu cầu chuyển đổi số', 'path' => 'nhu-cau-chuyen-doi-so')
+                array('title' => 'Gởi nhu cầu chuyển đổi số', 'path' => 'nhu-cau-chuyen-doi-so'),
+                array('title' => 'Kết nối giao thương', 'path' => 'ket-noi-giao-thuong')
             ),
             'role'      => 'Admin,Manager,Business,ABA'
         ),
@@ -77,7 +78,7 @@ return  [
                 array('title' => 'Doanh nghiệp tham gia', 'path' => 'doanh-nghiep-tham-gia'),
                 array('title' => 'Tư vấn chuyển đổi số', 'path' => 'tu-van-chuyen-doi-so'),
                 array('title' => 'Gởi nhu cầu chuyển đổi số', 'path' => 'goi-yeu-cau'),
-                //array('title' => 'Khảo sát mức độ CĐS', 'path' => 'khao-sat-muc-do-cds'),
+                array('title' => 'Kết nối giao thương', 'path' => 'ket-noi-giao-thuong'),
                 //array('title' => 'Đăng ký thành viên', 'path' => 'dang-ky-thanh-vien')
             )
         ),

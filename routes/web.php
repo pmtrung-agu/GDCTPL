@@ -17,6 +17,7 @@ use App\Http\Controllers\ThongTinController;
 use App\Http\Controllers\TaiLieuController;
 use App\Http\Controllers\CDSKhaoSatController;
 use App\Http\Controllers\DoanhNghiepController;
+use App\Http\Controllers\KetNoiGiaoThuongController;
 
 use App\Http\Controllers\FrontendController;
 
@@ -41,8 +42,11 @@ Route::get('doanh-nghiep/chi-tiet/{slug}', [FrontendController::class, 'doanh_ng
 Route::get('doanh-nghiep/goi-yeu-cau', [FrontendController::class, 'goi_yeu_cau']);
 Route::get('doanh-nghiep/tu-van-chuyen-doi-so', [FrontendController::class, 'tu_van_chuyen_doi_so']);
 Route::get('thong-tin/tai-ve/{id}/{key}', [ThongTinController::class, 'download']);
+Route::get('tai-lieu/tai-ve/{id}/{key}', [TaiLieuController::class, 'download']);
 Route::get('goi-yeu-cau', [FrontendController::class, 'goi_yeu_cau']);
 Route::post('goi-yeu-cau-submit', [FrontendController::class, 'goi_yeu_cau_submit']);
+
+Route::get('doanh-nghiep/ket-noi-giao-thuong', [FrontendController::class, 'ket_noi_giao_thuong']);
 
 Route::get('chuyen-gia', [FrontendController::class, 'chuyen_gia']);
 Route::get('chuyen-gia/danh-sach', [FrontendController::class, 'chuyen_gia']);
@@ -135,7 +139,12 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('doanh-nghiep/nhu-cau-chuyen-doi-so/chi-tiet/{id}', [DoanhNghiepController::class, 'nhu_cau_chi_tiet'])->middleware('role:Admin,Manager,ABA,Business');
     Route::post('doanh-nghiep/nhu-cau-chuyen-doi-so/chi-tiet/update', [DoanhNghiepController::class, 'nhu_cau_update'])->middleware('role:Admin,Manager,ABA,Business');
     Route::get('doanh-nghiep/nhu-cau-chuyen-doi-so/tinh-trang/{id}', [DoanhNghiepController::class, 'nhu_cau_tinh_trang'])->middleware('role:Admin,Manager,ABA');
-        
+
+    Route::get('doanh-nghiep/ket-noi-giao-thuong', [KetNoiGiaoThuongController::class, 'list'])->middleware('role:Admin,Manager,ABA');
+    Route::get('doanh-nghiep/ket-noi-giao-thuong/add', [KetNoiGiaoThuongController::class, 'add'])->middleware('role:Admin,Manager,ABA');
+    Route::post('doanh-nghiep/ket-noi-giao-thuong/create', [KetNoiGiaoThuongController::class, 'create'])->middleware('role:Admin,Manager,ABA');
+    Route::get('doanh-nghiep/ket-noi-giao-thuong/delete/{id}', [KetNoiGiaoThuongController::class, 'delete'])->middleware('role:Admin,Manager,ABA');
+           
     Route::group(['prefix' => 'danh-muc',  'middleware' => 'checkauth'], function(){
         Route::get('linh-vuc', [DMLinhVucController::class, 'list'])->name('admin-linh-vuc')->middleware('role:Admin');
         Route::get('linh-vuc/change-password', [DMLinhVucController::class, 'change_password'])->name('admin-linh-vuc-change-password')->middleware('checkauth');

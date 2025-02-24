@@ -24,7 +24,7 @@
                                 @endif
                             </div>
                             <div class="media-body">
-                                <h5 class="mt-0 bold">{{ $u['fullname'] }}</h5>
+                                <h5 class="mt-0 bold">{{ isset($u['fullname']) ? $u['fullname'] : '' }}</h5>
                                 <p class="font-18 mb-0">
                                     {!! $nd['noi_dung'] !!}
                                 </p>

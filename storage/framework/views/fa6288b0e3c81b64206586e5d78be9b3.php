@@ -121,7 +121,7 @@
         ?>
         <div class="col-xxl-4 col-lg-4 col-md-4">
           <div class="th-blog blog-single has-post-thumbnail">
-            <div class="blog-img">
+            <div class="blog-img" style="height:150px; overflow: hidden;">
               <a href="<?php echo e(env('APP_URL')); ?>thong-tin-chi-tiet/<?php echo e($tt['slug']); ?>">
                 <?php if(isset($tt['photos'][0]['aliasname']) && $tt['photos'][0]['aliasname']): ?>
                   <img src="<?php echo e(env('APP_URL')); ?>storage/images/thumb_360x200/<?php echo e($tt['photos'][0]['aliasname']); ?>" alt="<?php echo e($tt['ten']); ?>">
@@ -135,10 +135,10 @@
                 <a href="<?php echo e(env('APP_URL')); ?>thong-tin-chi-tiet/<?php echo e($tt['slug']); ?>">
                   <i class="fa-regular fa-calendar"></i> <?php echo e($date_post); ?> </a>
               </div>
-              <h2 class="blog-title">
-                <a href="<?php echo e(env('APP_URL')); ?>thong-tin-chi-tiet/<?php echo e($tt['slug']); ?>" alt="<?php echo e($tt['ten']); ?>" title="<?php echo e($tt['ten']); ?>"><?php echo e(Str::limit($tt['ten'],85)); ?></a>
+              <h2 class="blog-title" style="height: 90px; overflow:hidden;">
+                <a href="<?php echo e(env('APP_URL')); ?>thong-tin-chi-tiet/<?php echo e($tt['slug']); ?>" alt="<?php echo e($tt['ten']); ?>" title="<?php echo e($tt['ten']); ?>"><?php echo e(Str::limit($tt['ten'],70)); ?></a>
               </h2>
-              <p class="blog-text" title="<?php echo e($tt['mo_ta']); ?>" alt="<?php echo e($tt['mo_ta']); ?>"><?php echo e(Str::limit($tt['mo_ta'], 140)); ?></p>
+              <p class="blog-text" title="<?php echo e($tt['mo_ta']); ?>" alt="<?php echo e($tt['mo_ta']); ?>" style="height: 100px;overflow:hidden;"><?php echo e(Str::limit($tt['mo_ta'], 140)); ?></p>
             </div>
           </div>
         </div>
@@ -217,7 +217,7 @@
         ?>
         <div class="col-xxl-4 col-lg-4 col-md-4">
           <div class="th-blog blog-single has-post-thumbnail">
-            <div class="blog-img">
+            <div class="blog-img" style="height:150px; overflow: hidden;">
               <a href="<?php echo e(env('APP_URL')); ?>tai-lieu-chi-tiet/<?php echo e($tl['slug']); ?>">
                 <?php if(isset($tl['photos'][0]['aliasname']) && $tl['photos'][0]['aliasname']): ?>
                   <img src="<?php echo e(env('APP_URL')); ?>storage/images/thumb_360x200/<?php echo e($tl['photos'][0]['aliasname']); ?>" alt="<?php echo e($tt['ten']); ?>">
@@ -231,7 +231,7 @@
                 <a href="<?php echo e(env('APP_URL')); ?>tai-lieu-chi-tiet/<?php echo e($tl['slug']); ?>">
                   <i class="fa-regular fa-calendar"></i><?php echo e($date_post); ?> </a>
               </div>
-              <h2 class="blog-title">
+              <h2 class="blog-title" style="height: 90px; overflow:hidden;">
                 <a href="<?php echo e(env('APP_URL')); ?>tai-lieu-chi-tiet/<?php echo e($tl['slug']); ?>" title="<?php echo e($tt['ten']); ?>" alt="<?php echo e($tt['ten']); ?>"><?php echo e(Str::limit($tt['ten'],85)); ?></a>
               </h2>
             </div>

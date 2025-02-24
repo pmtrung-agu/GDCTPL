@@ -145,7 +145,7 @@ $arr_quy_mo = array('Nhỏ', 'Vừa', 'Siêu Nhỏ', ' Khác')
                             </div>
                             <div class="row form-group">
                                 <label class="control-label col-md-2 text-right p-t-10"><?php echo e(__('Ngành nghề')); ?></label>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <select name="nganhnghe_id" id="nganhnghe_id" class="form-control select2" required data-placeholder="Ngành nghể">
                                         <option value="">Ngành nghề</option>
                                         <?php $__currentLoopData = $nganhnghe; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nn): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -153,18 +153,16 @@ $arr_quy_mo = array('Nhỏ', 'Vừa', 'Siêu Nhỏ', ' Khác')
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>                                
-                                <div class="col-md-3 switchery-demo">
+                                <div class="col-md-4 switchery-demo">
                                     <b><?php echo e(__('Trạng thái')); ?>: </b>
                                     <input type="checkbox" name="trangthai" id="trangthai" checked="checked" class="js-switch" data-plugin="switchery" data-color="#009efb" value="1" <?php if($trangthai): ?> checked <?php endif; ?>/>
                                     Hội viên HHDN:&nbsp;&nbsp;&nbsp;
                                     <input type="checkbox" name="hoivienhiephoi" id="hoivienhiephoi" class="js-switch" data-plugin="switchery" data-color="#009efb" value="1"/>
                                 </div>
-                                
                                 <label class="control-label col-md-2 text-right p-t-10"><?php echo e(__('Ngày gia nhập HHDN')); ?></label>
                                 <div class="col-md-2">
                                     <input type="text" id="ngaygianhaphiephoi" name="ngaygianhaphiephoi" class="form-control" placeholder="__/__/_____" value="<?php echo e($ngaygianhaphiephoi); ?>" />
                                 </div>
-                                
                             </div>
                             <div class="card-box bg-light">
                                 <div class="row">

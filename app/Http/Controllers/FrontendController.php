@@ -17,6 +17,7 @@ use App\Models\CDSKhaoSat;
 use App\Models\DMSanPham;
 use App\Models\SanPham;
 use App\Models\DoanhNghiep;
+use App\Models\KetNoiGiaoThuong;
 
 class FrontendController extends Controller
 {
@@ -124,6 +125,11 @@ class FrontendController extends Controller
     function doanh_nghiep_chi_tiet(Request $request, $slug = '') {
         $ds = DoanhNghiep::where('slug', '=', $slug)->first();
         return view('Frontend.doanh-nghiep-chi-tiet')->with(compact('ds'));
+    }
+
+    function ket_noi_giao_thuong(Request $request) {
+        $danhsach = KetNoiGiaoThuong::paginate(30);
+        return view('Frontend.ket-noi-giao-thuong')->with(compact('danhsach'));
     }
 
 }

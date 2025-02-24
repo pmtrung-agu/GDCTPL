@@ -45,15 +45,15 @@
                 <div class="widget widget_tag_cloud">
                     <h3 class="widget_title">Đính kèm</h3>
                     <div class="tagcloud">
-                    @foreach($ds['attachments'] as $kk => $dk)
-                      <a href="{{ env('APP_URL') }}thong-tin/tai-ve/{{ $ds['_id'] }}/{{ $kk }}"><i class="fa fa-file"></i> {{ $dk['title'] }}</a>
-                    @endforeach
+                      @foreach($ds['attachments'] as $kk => $dk)
+                        <a href="{{ env('APP_URL') }}thong-tin/tai-ve/{{ $ds['_id'] }}/{{ $kk }}"><i class="fa fa-file"></i> {{ $dk['title'] }}</a>
+                      @endforeach
                     </div>
                   </div>
-                </div>
                 @endif
-            </div>
+              </div>
           </div>
+        </div>
         </div>
         @php
             $dm_thong_tin = App\Models\DMThongTin::All();

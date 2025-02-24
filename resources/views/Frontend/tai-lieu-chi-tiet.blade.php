@@ -26,7 +26,7 @@
                             @php
                                 $t = App\Models\DMTaiLieu::where('slug', '=', $tag)->first();
                             @endphp
-                                <a href="{{ env('APP_URL') }}thong-tin/{{ $tag }}">{{ $t['ten'] }}</a>    
+                                <a href="{{ env('APP_URL') }}tai-lieu/{{ $tag }}">{{ $t['ten'] }}</a>    
                             @endforeach
                         </div>
                         </div> 
@@ -46,7 +46,7 @@
                             <h3 class="widget_title">Đính kèm</h3>
                             <div class="tagcloud">
                                 @foreach($ds['attachments'] as $kk => $dk)
-                                <a href="{{ env('APP_URL') }}thong-tin/tai-ve/{{ $ds['_id'] }}/{{ $kk }}"><i class="fa fa-file"></i> {{ $dk['title'] }}</a>
+                                <a href="{{ env('APP_URL') }}tai-lieu/tai-ve/{{ $ds['_id'] }}/{{ $kk }}"><i class="fa fa-file"></i> {{ $dk['title'] }}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                     @foreach($bai_viet_moi as $bvm)
                     <div class="recent-post">
                         <div class="media-img">
-                            <a href="{{ env('APP_URL') }}thong-tin-chi-tiet/{{ $bvm['slug'] }}">
+                            <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $bvm['slug'] }}">
                                 @if(isset($bvm['photos'][0]['aliasname']) && $bvm['photos'][0]['aliasname'])
                                 <img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $bvm['photos'][0]['aliasname'] }}" alt="{{ $bvm['ten'] }}">
                                 @else
@@ -87,13 +87,13 @@
                         </div>
                         <div class="media-body">
                             <h4 class="post-title">
-                            <a class="text-inherit" href="{{ env('APP_URL') }}thong-tin-chi-tiet/{{ $bvm['slug'] }}" title="{{ $bvm['ten'] }}" alt="{{ $bvm['ten'] }}">{{ Str::limit($bvm['ten'], 50) }}</a>
+                            <a class="text-inherit" href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $bvm['slug'] }}" title="{{ $bvm['ten'] }}" alt="{{ $bvm['ten'] }}">{{ Str::limit($bvm['ten'], 50) }}</a>
                             </h4>
                             @php
                                 $date_post = App\Http\Controllers\ObjectController::getDate($bvm['date_post'], "d/m/Y");
                             @endphp
                             <div class="recent-post-meta">
-                            <a href="{{ env('APP_URL') }}thong-tin-chi-tiet/{{ $bvm['slug'] }}">{{ $date_post }}</a>
+                            <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $bvm['slug'] }}">{{ $date_post }}</a>
                             </div>
                         </div>
                     </div>

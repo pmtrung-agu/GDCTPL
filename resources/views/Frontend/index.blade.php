@@ -121,7 +121,7 @@
         @endphp
         <div class="col-xxl-4 col-lg-4 col-md-4">
           <div class="th-blog blog-single has-post-thumbnail">
-            <div class="blog-img">
+            <div class="blog-img" style="height:150px; overflow: hidden;">
               <a href="{{ env('APP_URL') }}thong-tin-chi-tiet/{{ $tt['slug'] }}">
                 @if(isset($tt['photos'][0]['aliasname']) && $tt['photos'][0]['aliasname'])
                   <img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $tt['photos'][0]['aliasname'] }}" alt="{{ $tt['ten'] }}">
@@ -135,10 +135,10 @@
                 <a href="{{ env('APP_URL') }}thong-tin-chi-tiet/{{ $tt['slug'] }}">
                   <i class="fa-regular fa-calendar"></i> {{ $date_post }} </a>
               </div>
-              <h2 class="blog-title">
-                <a href="{{ env('APP_URL') }}thong-tin-chi-tiet/{{ $tt['slug'] }}" alt="{{ $tt['ten'] }}" title="{{ $tt['ten'] }}">{{ Str::limit($tt['ten'],85) }}</a>
+              <h2 class="blog-title" style="height: 90px; overflow:hidden;">
+                <a href="{{ env('APP_URL') }}thong-tin-chi-tiet/{{ $tt['slug'] }}" alt="{{ $tt['ten'] }}" title="{{ $tt['ten'] }}">{{ Str::limit($tt['ten'],70) }}</a>
               </h2>
-              <p class="blog-text" title="{{ $tt['mo_ta'] }}" alt="{{ $tt['mo_ta'] }}">{{ Str::limit($tt['mo_ta'], 140) }}</p>
+              <p class="blog-text" title="{{ $tt['mo_ta'] }}" alt="{{ $tt['mo_ta'] }}" style="height: 100px;overflow:hidden;">{{ Str::limit($tt['mo_ta'], 140) }}</p>
             </div>
           </div>
         </div>
@@ -217,7 +217,7 @@
         @endphp
         <div class="col-xxl-4 col-lg-4 col-md-4">
           <div class="th-blog blog-single has-post-thumbnail">
-            <div class="blog-img">
+            <div class="blog-img" style="height:150px; overflow: hidden;">
               <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $tl['slug'] }}">
                 @if(isset($tl['photos'][0]['aliasname']) && $tl['photos'][0]['aliasname'])
                   <img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $tl['photos'][0]['aliasname'] }}" alt="{{ $tt['ten'] }}">
@@ -231,7 +231,7 @@
                 <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $tl['slug'] }}">
                   <i class="fa-regular fa-calendar"></i>{{ $date_post }} </a>
               </div>
-              <h2 class="blog-title">
+              <h2 class="blog-title" style="height: 90px; overflow:hidden;">
                 <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $tl['slug'] }}" title="{{ $tt['ten'] }}" alt="{{ $tt['ten'] }}">{{ Str::limit($tt['ten'],85) }}</a>
               </h2>
             </div>
