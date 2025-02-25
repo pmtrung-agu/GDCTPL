@@ -54,12 +54,12 @@ return  [
         ),
         6 => array(
             'title' 	=> 'HHDN',
-            'path' 		=> 'hhdn',
+            'path' 		=> 'hiep-hoi-doanh-nghiep',
             'icon'      => 'fas fa-book-open',
             'role'      => 'Admin,Manager,ABA',
             'childs' => array(
-                array('title' => 'Quản lý Văn bản', 'path' => 'quan-ly-van-ban'),
-                array('title' => 'Quản lý Hội phí', 'path' => 'quan-ly-hoi-phi'),
+                array('title' => 'Quản lý Văn bản', 'path' => 'van-ban'),
+                array('title' => 'Quản lý Hội phí', 'path' => 'hoi-phi'),
             )
         )
     ),
