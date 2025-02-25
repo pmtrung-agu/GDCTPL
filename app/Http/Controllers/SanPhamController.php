@@ -49,7 +49,7 @@ class SanPhamController extends Controller
         if(UserController::is_roles('Admin, Manager')){
             $sellers = User::where('roles', 'Business')->get();
         } else {
-            $sellers = User::where('_id', '=', $id_user)->orderBy('created_at','desc')->first();
+            $sellers = User::where('_id', '=', $id_user)->orderBy('created_at','desc')->get();
         }
     	return view('Admin.SanPham.add')->with(compact('product_categories', 'sellers', 'id_user'));
     }

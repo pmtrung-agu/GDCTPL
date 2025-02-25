@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use App\Models\KetNoiGiaoThuong;
 use App\Models\DMNganhNghe;
+use App\Models\User;
 class KetNoiGiaoThuongController extends Controller
 {
     //
@@ -46,5 +47,40 @@ class KetNoiGiaoThuongController extends Controller
         $db->save();
         Session::flash('msg', 'Cập nhật thành công');
         return redirect(env('APP_URL') .'admin/doanh-nghiep/ket-noi-giao-thuong');
+    }
+
+    function chi_tiet(Request $request, $id = '') {
+        $ds = KetNoiGiaoThuong::find($id);
+        $dn = User::find($ds['id_user']);
+        return view('Admin.KetNoiGiaoThuong.chi-tiet')->with(compact('ds','dn'));
+    }
+
+    function delete(Request $request, $id = '') {
+        /*$data = KetNoiGiaoThuong::find($id);
+        if($data['photos']){
+            foreach($data['photos'] as $p){
+                ImageController::remove($p['aliasname']);
+            }
+        }
+        if($data['attachments']){
+            foreach($data['attachments'] as $dk){
+                FileController::remove($dk['aliasname']);
+            }
+        }*/
+        KetNoiGiaoThuong::destroy($id);
+        Session::flash('msg', 'Xóa thành công');
+        return redirect(env('APP_URL').'admin/doanh-nghiep/ket-noi-giao-thuong');
+    }
+
+    function tinh_trang(Request $request, $id = '') {
+        $ds = KetNoiGiaoThuong::find($id);
+        if($ds['tinh_trang'] == 0) {
+            $ds->tinh_trang = 1;
+            echo '<span class="badge badge-success">Đã duyệt</span>';
+        } else {
+            $ds->tinh_trang = 0;
+            echo '<span class="badge badge-danger">Chờ duyệt</span>';
+        }
+        $ds->save();
     }
 }

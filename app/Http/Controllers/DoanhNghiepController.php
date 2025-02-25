@@ -316,4 +316,8 @@ class DoanhNghiepController extends Controller
         }
         $ds->save();
     }
+
+    function san_pham(){
+        return redirect(env('APP_URL').'admin/san-pham');
+    }
 }

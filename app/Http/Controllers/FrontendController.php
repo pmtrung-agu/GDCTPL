@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Config;
 use Illuminate\Http\Request;
 use App\Models\DMDiaChi;
 use App\Models\DMThongTin;
@@ -128,8 +128,14 @@ class FrontendController extends Controller
     }
 
     function ket_noi_giao_thuong(Request $request) {
-        $danhsach = KetNoiGiaoThuong::paginate(30);
-        return view('Frontend.ket-noi-giao-thuong')->with(compact('danhsach'));
+        $nc = $request->input('nc');
+        $danhsach = KetNoiGiaoThuong::where('_id', 'exists', true);
+        if($nc) {
+            $danhsach = $danhsach->where('nhu_cau', '=', $nc);
+        }
+        $danhsach = $danhsach->where('tinh_trang','=', 1)->orderBy('updated_at', 'desc')->paginate(30);
+        $nhu_cau = Config::get('data_phan_tich.nhu_cau_kngt');
+        return view('Frontend.ket-noi-giao-thuong')->with(compact('danhsach','nhu_cau','nc'));
     }
 
 }

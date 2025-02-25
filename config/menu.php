@@ -7,12 +7,12 @@ return  [
                 'icon'      => 'far fa-newspaper',
                 'role'      => 'Admin,Manager,ABA'
         ),
-        1 => array(
+        /*1 => array(
             'title' 	=> 'Sản phẩm',
             'path' 		=> 'san-pham',
             'icon'      => 'fab fa-product-hunt',
             'role'      => 'Admin,Manager,Business,ABA'
-        ),
+        ),*/
         2 => array(
             'title' 	=> 'Tài liệu',
             'path' 		=> 'tai-lieu',
@@ -24,6 +24,7 @@ return  [
             'path' 		=> 'doanh-nghiep',
             'icon'      => 'fas fa-user-tie',
             'childs'	=> array(
+                array('title' => 'Sản phẩm', 'path' => 'san-pham'),
                 array('title' => 'Doanh Nghiệp tham gia', 'path' => 'danh-sach'),
                 array('title' => 'Gởi câu hỏi đến Chuyên Gia CĐS', 'path' => 'tu-van-chuyen-doi-so'),
                 array('title' => 'Gởi nhu cầu chuyển đổi số', 'path' => 'nhu-cau-chuyen-doi-so'),
@@ -51,6 +52,16 @@ return  [
                 array('title' => 'Kết quả theo Lĩnh vực', 'path' => 'theo-linh-vuc')
             )
         ),
+        6 => array(
+            'title' 	=> 'HHDN',
+            'path' 		=> 'hhdn',
+            'icon'      => 'fas fa-book-open',
+            'role'      => 'Admin,Manager,ABA',
+            'childs' => array(
+                array('title' => 'Quản lý Văn bản', 'path' => 'quan-ly-van-ban'),
+                array('title' => 'Quản lý Hội phí', 'path' => 'quan-ly-hoi-phi'),
+            )
+        )
     ),
 
 

@@ -78,9 +78,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
 
     Route::get('chuyen-gia', [UserController::class, 'chuyen_gia'])->name('admin-thong-tin')->middleware('role:Admin,Manager,Business,ABA');  
 
-    Route::get('san-pham', [SanPhamController::class, 'list'])->name('admin-san-pham')->middleware('role:Admin,Manager,ABA');
-    Route::get('san-pham/change-password', [SanPhamController::class, 'change_password'])->name('admin-san-pham-change-password')->middleware('role:Admin,Manager,Business,ABA');
-    Route::post('san-pham/update-password', [SanPhamController::class, 'update_password'])->name('admin-san-pham-update-password')->middleware('role:Admin,Manager,Business,ABA');
+    Route::get('san-pham', [SanPhamController::class, 'list'])->name('admin-san-pham')->middleware('role:Admin,Manager,ABA,Business');
     Route::get('san-pham/add', [SanPhamController::class, 'add'])->name('admin-san-pham-add')->middleware('role:Admin,Manager,Business,ABA');
     Route::post('san-pham/create', [SanPhamController::class, 'create'])->name('admin-san-pham-create')->middleware('role:Admin,Manager,Business,ABA');
     Route::get('san-pham/edit/{id}', [SanPhamController::class, 'edit'])->name('admin-san-pham-edit-id')->middleware('role:Admin,Manager,Business,ABA');
@@ -117,6 +115,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('khao-sat-muc-do-cds/theo-linh-vuc', [CDSKhaoSatController::class, 'linh_vuc'])->middleware('role:Admin,Manager,Business,ABA');
     
     Route::get('doanh-nghiep', [DoanhNghiepController::class, 'list'])->middleware('role:Admin,Manager,Expert,ABA,Business');
+    Route::get('doanh-nghiep/san-pham', [DoanhNghiepController::class, 'san_pham'])->middleware('role:Admin,Manager,ABA,Business');
     Route::get('doanh-nghiep/danh-sach', [DoanhNghiepController::class, 'list'])->middleware('role:Admin,Manager,Expert,ABA,Business');
     Route::get('doanh-nghiep/chi-tiet/{id}', [DoanhNghiepController::class, 'chi_tiet'])->middleware('role:Admin,Manager,ABA,Business');
     Route::get('doanh-nghiep/add', [DoanhNghiepController::class, 'add'])->middleware('role:Admin,Manager,Expert,Business,ABA');
@@ -140,9 +139,12 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::post('doanh-nghiep/nhu-cau-chuyen-doi-so/chi-tiet/update', [DoanhNghiepController::class, 'nhu_cau_update'])->middleware('role:Admin,Manager,ABA,Business');
     Route::get('doanh-nghiep/nhu-cau-chuyen-doi-so/tinh-trang/{id}', [DoanhNghiepController::class, 'nhu_cau_tinh_trang'])->middleware('role:Admin,Manager,ABA');
 
-    Route::get('doanh-nghiep/ket-noi-giao-thuong', [KetNoiGiaoThuongController::class, 'list'])->middleware('role:Admin,Manager,ABA');
-    Route::get('doanh-nghiep/ket-noi-giao-thuong/add', [KetNoiGiaoThuongController::class, 'add'])->middleware('role:Admin,Manager,ABA');
-    Route::post('doanh-nghiep/ket-noi-giao-thuong/create', [KetNoiGiaoThuongController::class, 'create'])->middleware('role:Admin,Manager,ABA');
+    Route::get('doanh-nghiep/ket-noi-giao-thuong', [KetNoiGiaoThuongController::class, 'list'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::get('doanh-nghiep/ket-noi-giao-thuong/add', [KetNoiGiaoThuongController::class, 'add'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::post('doanh-nghiep/ket-noi-giao-thuong/create', [KetNoiGiaoThuongController::class, 'create'])->middleware('role:Admin,Manager,ABA');    
+    Route::get('doanh-nghiep/ket-noi-giao-thuong/chi-tiet/{id}', [KetNoiGiaoThuongController::class, 'chi_tiet'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::get('doanh-nghiep/ket-noi-giao-thuong/tinh-trang/{id}', [KetNoiGiaoThuongController::class, 'tinh_trang'])->middleware('role:Admin,Manager,ABA');
+
     Route::get('doanh-nghiep/ket-noi-giao-thuong/delete/{id}', [KetNoiGiaoThuongController::class, 'delete'])->middleware('role:Admin,Manager,ABA');
            
     Route::group(['prefix' => 'danh-muc',  'middleware' => 'checkauth'], function(){

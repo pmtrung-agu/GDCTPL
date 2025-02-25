@@ -13,6 +13,9 @@
                             <tr>
                                 <th>Nhu cầu</th>
                                 <th>Tình trạng</th>
+                                <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                <th>#</th>
+                                <?php endif; ?>
                             </tr>
                         </thead>
                         <tbody>
@@ -22,20 +25,27 @@
                             $nn = App\Models\DMNganhNghe::find($ds['nganhnghe_id']);
                             ?>
                             <tr>
-                                <td><a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/ket-noi-giao-thuong/chi-tiet/<?php echo e($ds['_id']); ?>">[<?php echo e($nn['ten']); ?>] - <?php echo e($dn['fullname']); ?> - <?php echo e($ds['nhu_cau']); ?> </a></td>
+                                <td>
+                                    <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/ket-noi-giao-thuong/chi-tiet/<?php echo e($ds['_id']); ?>" data-toggle="modal" data-target="#ChiTietModal" class="chi-tiet">[<?php echo e($nn['ten']); ?>] - <?php echo e($dn['fullname']); ?> - <?php echo e($ds['nhu_cau']); ?> </a>
+                                </td>
                                 <td class="text-center" style="vertical-align: middle;">
                                     <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
                                     <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/ket-noi-giao-thuong/tinh-trang/<?php echo e($ds['_id']); ?>" class="tinh-trang">
                                         <?php if($ds['tinh_trang'] == 0): ?> <span class="badge badge-danger">Chờ duyệt</span>
-                                        <?php else: ?> <span class="badge badge-success">Hoàn thành</span>
+                                        <?php else: ?> <span class="badge badge-success">Đã duyệt</span>
                                         <?php endif; ?>
                                     </a>
                                     <?php else: ?> 
                                         <?php if($ds['tinh_trang'] == 0): ?> <span class="badge badge-danger">Chờ duyệt</span>
-                                        <?php else: ?> <span class="badge badge-success">Hoàn thành</span>
+                                        <?php else: ?> <span class="badge badge-success">Đã duyệt</span>
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 </td>
+                                <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                    <td class="text-center">
+                                        <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/ket-noi-giao-thuong/delete/<?php echo e($ds['_id']); ?>" class="text-danger" onclick="return confirm('Chắc chắn xóa?')"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                <?php endif; ?>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
@@ -46,6 +56,21 @@
         </div>
     </div>
 </div>
+<div id="ChiTietModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Nội dung chi tiết</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="ChiTietHTML">
+                ...
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
 <script type="text/javascript">
@@ -57,6 +82,12 @@
                 _this.html(html)
             });
             e.preventDefault();
+        });
+        $(".chi-tiet").click(function(){
+            var _href = $(this).attr("href");
+            $.get(_href, function(html){
+                $("#ChiTietHTML").html(html);
+            });
         });
     });
 </script>
