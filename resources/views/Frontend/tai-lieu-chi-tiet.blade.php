@@ -4,7 +4,7 @@
 <section class="th-blog-wrapper blog-details space-top space-extra-bottom">
     <div class="container">
       <div class="row">
-        <div class="col-xxl-8 col-lg-7">
+        <div class="col-xxl-8 col-lg-8">
             <div class="th-blog blog-single">
                 <div class="blog-content">
                 <div class="blog-meta">
@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xxl-4 col-lg-5">
+        <div class="col-xxl-4 col-lg-4">
             @php
             $dm_thong_tin = App\Models\DMTaiLieu::All();
             @endphp

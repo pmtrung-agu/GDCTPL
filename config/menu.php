@@ -90,6 +90,7 @@ return  [
                 array('title' => 'Tư vấn chuyển đổi số', 'path' => 'tu-van-chuyen-doi-so'),
                 array('title' => 'Gởi nhu cầu chuyển đổi số', 'path' => 'goi-yeu-cau'),
                 array('title' => 'Kết nối giao thương', 'path' => 'ket-noi-giao-thuong'),
+                //array('title' => 'Mô hình CĐS tại các Doanh nghiệp', 'path' => 'mo-hinh-chuyen-doi-so')
                 //array('title' => 'Đăng ký thành viên', 'path' => 'dang-ky-thanh-vien')
             )
         ),

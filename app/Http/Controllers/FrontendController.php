@@ -30,7 +30,7 @@ class FrontendController extends Controller
     }
 
     function thong_tin(Request $request, $taxonomy = '') {
-        $danhsach = ThongTin::where('tags', $taxonomy)->get();
+        $danhsach = ThongTin::where('tags', $taxonomy)->orderBy('updated_at', 'desc')->get();
         $tax = DMThongTin::where('slug', '=', $taxonomy)->first();
         return view('Frontend.thong-tin')->with(compact('danhsach', 'tax'));
     }
@@ -136,6 +136,10 @@ class FrontendController extends Controller
         $danhsach = $danhsach->where('tinh_trang','=', 1)->orderBy('updated_at', 'desc')->paginate(30);
         $nhu_cau = Config::get('data_phan_tich.nhu_cau_kngt');
         return view('Frontend.ket-noi-giao-thuong')->with(compact('danhsach','nhu_cau','nc'));
+    }
+
+    function mo_hinh_cds(Request $request, $mo_hinh = '') {
+        return view('Frontend.mo-hinh-cds');
     }
 
 }

@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use App\Http\Controllers\ObjectController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\FileController;
 use App\Models\ThongTin;
 use App\Models\DMThongTin;
 
@@ -155,6 +156,12 @@ class ThongTinController extends Controller
         if($data['photos']){
             foreach($data['photos'] as $p){
                 ImageController::remove($p['aliasname']);
+            }
+        }
+
+        if($data['attachments']) {
+            foreach($data['attachments'] as $dk) {
+                FileController::remove($dk['aliasname']);
             }
         }
         ThongTin::destroy($id);

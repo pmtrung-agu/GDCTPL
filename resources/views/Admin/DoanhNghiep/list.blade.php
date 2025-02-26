@@ -68,7 +68,7 @@
                                         <a href="{{ env('APP_URL') }}admin/doanh-nghiep/delete/{{ $ds['_id'] }}" onclick="return confirm('Chắc chắn xóa?');" ><i class="fa fa-trash text-danger"></i></a>
                                     @endif
                                     @if((App\Http\Controllers\UserController::is_roles('Business') && $ds['_id'] == Session::get('user.id_doanh_nghiep')) || App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
-                                        <a href="{{ env('APP_URL') }}admin/doanh-nghiep/edit/{{ $ds['_id'] }}"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="{{ env('APP_URL') }}admin/doanh-nghiep/edit/{{ $ds['_id'] }}?page={{ $page }}"><i class="fas fa-pencil-alt"></i></a>
                                     @endif
                                     </td>
                                 </tr>

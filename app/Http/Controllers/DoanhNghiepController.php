@@ -106,7 +106,7 @@ class DoanhNghiepController extends Controller
             'ten' => 'required'
         ]);
         if ($validator->fails()) {
-            return redirect(env('APP_URL').'admin/danh-nghiep/edit')->withErrors($validator)->withInput();
+            return redirect(env('APP_URL').'admin/danh-nghiep/edit?page='.$data['page'])->withErrors($validator)->withInput();
         }
         
         $arr_photo = array();
@@ -143,7 +143,7 @@ class DoanhNghiepController extends Controller
         $db->attachments = $arr_dinhkem;
         $db->save();
         Session::flash('msg', 'Cập nhật thành công');
-        return redirect(env('APP_URL') .'admin/doanh-nghiep');
+        return redirect(env('APP_URL') .'admin/doanh-nghiep?page='.$data['page']);
     }
 
     function delete(Request $request, $id = '') {

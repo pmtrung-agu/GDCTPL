@@ -18,6 +18,7 @@ $arr_quy_mo = array('Nhỏ', 'Vừa', 'Siêu Nhỏ', ' Khác')
                     <form action="{{ env('APP_URL') }}admin/doanh-nghiep/update" method="post" id="dinhkemform" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $ds['_id'] }}" id="id">
+                        <input type="hidden" name="page" id="page" value="{{ Request::input('page') }}">
                         <div class="form-body">
                             <hr />
                             @if($errors->any())

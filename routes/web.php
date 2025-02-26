@@ -40,6 +40,7 @@ Route::get('goi-yeu-cau', [FrontendController::class, 'goi_yeu_cau']);
 Route::get('tu-van-chuyen-doi-so', [FrontendController::class, 'tu_van_chuyen_doi_so']);
 Route::post('tu-van-chuyen-doi-so-submit', [FrontendController::class, 'tu_van_chuyen_doi_so_submit']);
 Route::get('doanh-nghiep/doanh-nghiep-tham-gia', [FrontendController::class, 'doanh_nghiep_tham_gia']);
+Route::get('doanh-nghiep/mo-hinh-chuyen-doi-so', [FrontendController::class, 'mo_hinh_cds']);
 Route::get('doanh-nghiep/chi-tiet/{slug}', [FrontendController::class, 'doanh_nghiep_chi_tiet']);
 
 Route::get('doanh-nghiep/goi-yeu-cau', [FrontendController::class, 'goi_yeu_cau']);
@@ -152,7 +153,16 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
 
     Route::group(['prefix' => 'hiep-hoi-doanh-nghiep',  'middleware' => 'checkauth'], function(){
         Route::get('hoi-phi', [HoiPhiController::class ,'list'])->middleware('role:Admin,Manager,ABA');
+        
         Route::get('van-ban', [VanBanController::class ,'list'])->middleware('role:Admin,Manager,ABA');
+        Route::get('van-ban/add', [VanBanController::class ,'add'])->middleware('role:Admin,Manager,ABA');
+        Route::post('van-ban/create', [VanBanController::class ,'create'])->middleware('role:Admin,Manager,ABA');
+        Route::get('van-ban/edit/{id}', [VanBanController::class ,'edit'])->middleware('role:Admin,Manager,ABA');
+        Route::post('van-ban/update', [VanBanController::class ,'update'])->middleware('role:Admin,Manager,ABA');
+        Route::get('van-ban/delete/{id}', [VanBanController::class ,'delete'])->middleware('role:Admin,Manager,ABA');
+        Route::get('van-ban-chi-tiet/{id}', [VanBanController::class ,'chi_tiet'])->middleware('role:Admin,Manager,ABA');
+        Route::post('van-ban/send-email', [VanBanController::class ,'send_email'])->middleware('role:Admin,Manager,ABA');
+        
     });
            
     Route::group(['prefix' => 'danh-muc',  'middleware' => 'checkauth'], function(){

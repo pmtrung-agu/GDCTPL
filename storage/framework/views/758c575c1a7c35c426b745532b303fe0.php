@@ -68,7 +68,7 @@
                                         <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/delete/<?php echo e($ds['_id']); ?>" onclick="return confirm('Chắc chắn xóa?');" ><i class="fa fa-trash text-danger"></i></a>
                                     <?php endif; ?>
                                     <?php if((App\Http\Controllers\UserController::is_roles('Business') && $ds['_id'] == Session::get('user.id_doanh_nghiep')) || App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
-                                        <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/edit/<?php echo e($ds['_id']); ?>"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/edit/<?php echo e($ds['_id']); ?>?page=<?php echo e($page); ?>"><i class="fas fa-pencil-alt"></i></a>
                                     <?php endif; ?>
                                     </td>
                                 </tr>
