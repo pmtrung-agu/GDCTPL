@@ -36,14 +36,28 @@
                             @endif
                         </td>
                     </tr>
+                    @php
+                        $id_van_ban = App\Http\Controllers\ObjectController::ObjectId($ds['_id']);
+                        $send_list = App\Models\SendEmail::where('id_van_ban','=', $id_van_ban)->get();
+                    @endphp
                     <tr>
                         <th>Danh sách Email đã gởi:</th>
-                        <td></td>
+                        <td>
+                            @if($send_list)
+                            @foreach ($send_list as $sl)
+                                @php
+                                    $createdAt = \Carbon\Carbon::parse($sl['created_at']);
+                                    $createdAt= $createdAt->format("d/m/Y H:i");
+                                @endphp
+                                <span class="badge badge-success">{{ $sl['email'] }}: {{ $createdAt }}</span>
+                            @endforeach
+                            @endif
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="card-box row bg-info">
+        <div class="card-box row bg-warning">
             <div class="col-12">
                 <h3 class="m-t-0"><a href="{{ env('APP_URL') }}admin/hiep-hoi-doanh-nghiep/van-ban" class="btn btn-primary btn-sm"><i class="fas fa-reply-all"></i> </a> {{ __('Gởi email') }}</h3>
             </div>

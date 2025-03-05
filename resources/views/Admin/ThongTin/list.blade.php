@@ -61,7 +61,6 @@
                                     @endforeach
                                 @endif
                             </td>
-
                             <td class="text-center">
                                 <a href="{{ env('APP_URL') }}admin/thong-tin/delete/{{ $ds['_id'] }}" onclick="return confirm('Chắc chắc xóa?')"><i class="fas fa-trash text-danger"></i></a>&nbsp;
                                 <a href="{{ env('APP_URL') }}admin/thong-tin/edit/{{ $ds['_id'] }}"><i class="fas fa-pencil-alt"></i></a>

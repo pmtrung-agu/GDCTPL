@@ -43,7 +43,6 @@
             </tr>
         </tbody>
     </table>
-
 <script src="{{ env('APP_URL') }}assets/backend/js/vendor.min.js"></script>
 <!-- App js -->
 <script src="{{ env('APP_URL') }}assets/backend/js/app.min.js"></script>

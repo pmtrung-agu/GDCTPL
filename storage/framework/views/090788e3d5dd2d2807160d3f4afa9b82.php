@@ -36,14 +36,28 @@
                             <?php endif; ?>
                         </td>
                     </tr>
+                    <?php
+                        $id_van_ban = App\Http\Controllers\ObjectController::ObjectId($ds['_id']);
+                        $send_list = App\Models\SendEmail::where('id_van_ban','=', $id_van_ban)->get();
+                    ?>
                     <tr>
                         <th>Danh sách Email đã gởi:</th>
-                        <td></td>
+                        <td>
+                            <?php if($send_list): ?>
+                            <?php $__currentLoopData = $send_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sl): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php
+                                    $createdAt = \Carbon\Carbon::parse($sl['created_at']);
+                                    $createdAt= $createdAt->format("d/m/Y H:i");
+                                ?>
+                                <span class="badge badge-success"><?php echo e($sl['email']); ?>: <?php echo e($createdAt); ?></span>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="card-box row bg-info">
+        <div class="card-box row bg-warning">
             <div class="col-12">
                 <h3 class="m-t-0"><a href="<?php echo e(env('APP_URL')); ?>admin/hiep-hoi-doanh-nghiep/van-ban" class="btn btn-primary btn-sm"><i class="fas fa-reply-all"></i> </a> <?php echo e(__('Gởi email')); ?></h3>
             </div>

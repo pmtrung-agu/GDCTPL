@@ -153,7 +153,13 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
 
     Route::group(['prefix' => 'hiep-hoi-doanh-nghiep',  'middleware' => 'checkauth'], function(){
         Route::get('hoi-phi', [HoiPhiController::class ,'list'])->middleware('role:Admin,Manager,ABA');
-        
+        Route::get('hoi-phi/add', [HoiPhiController::class ,'add'])->middleware('role:Admin,Manager,ABA');
+        Route::post('hoi-phi/create', [HoiPhiController::class ,'create'])->middleware('role:Admin,Manager,ABA');
+        Route::get('hoi-phi/edit/{id}', [HoiPhiController::class ,'edit'])->middleware('role:Admin,Manager,ABA');
+        Route::post('hoi-phi/update', [HoiPhiController::class ,'update'])->middleware('role:Admin,Manager,ABA');
+        Route::get('hoi-phi/thong-ke-theo-nam', [HoiPhiController::class ,'thong_ke_theo_nam'])->middleware('role:Admin,Manager,ABA');
+        Route::get('hoi-phi/delete/{id}', [HoiPhiController::class ,'delete'])->middleware('role:Admin');
+
         Route::get('van-ban', [VanBanController::class ,'list'])->middleware('role:Admin,Manager,ABA');
         Route::get('van-ban/add', [VanBanController::class ,'add'])->middleware('role:Admin,Manager,ABA');
         Route::post('van-ban/create', [VanBanController::class ,'create'])->middleware('role:Admin,Manager,ABA');

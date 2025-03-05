@@ -176,12 +176,15 @@ class VanBanController extends Controller
         Mail::send('Admin.VanBan.email', $data, function($message) use ($email_list, $trich_yeu, $vb) {
             $message->to($email_list)->subject('[HHDNAG] - ' . $trich_yeu);
             $message->from('trungminhphan@gmail.com', 'HIỆP HỘI DOANH NGHIỆP TỈNH AN GIANG');
+            
             /*foreach ($vb['attachments'] as $dk){
                 $file = Storage::disk('public')->path('files/' . $dk['aliasname']);
                 $message->attach($file);
             }*/
-            echo 'Đã gởi mail thành công';
+            return view('Admin.VanBan.send')->with(compact('email_list'));
+            //echo 'Đã gởi mail thành công';
         });
+        
 
     }
 

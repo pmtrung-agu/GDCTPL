@@ -10,4 +10,10 @@ class HoiPhi extends Model
 
     protected $connection = 'mongodb';
     protected $table = 'hoi_phi';
+
+    protected function casts() {
+        return [
+            'ngay_thu' => 'datetime'
+        ];
+    }
 }
