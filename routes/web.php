@@ -152,6 +152,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('doanh-nghiep/ket-noi-giao-thuong/delete/{id}', [KetNoiGiaoThuongController::class, 'delete'])->middleware('role:Admin,Manager,ABA');
 
     Route::group(['prefix' => 'hiep-hoi-doanh-nghiep',  'middleware' => 'checkauth'], function(){
+        Route::get('/', [HoiPhiController::class ,'list'])->middleware('role:Admin,Manager,ABA');
         Route::get('hoi-phi', [HoiPhiController::class ,'list'])->middleware('role:Admin,Manager,ABA');
         Route::get('hoi-phi/add', [HoiPhiController::class ,'add'])->middleware('role:Admin,Manager,ABA');
         Route::post('hoi-phi/create', [HoiPhiController::class ,'create'])->middleware('role:Admin,Manager,ABA');
