@@ -29,12 +29,17 @@
                                 if(old('so_hieu') != null){
                                     $so_hieu = old('so_hieu');$date_post = old('date_post');
                                     $trich_yeu = old('trich_yeu');$mo_ta = old('mo_ta');
+                                    $id_don_vi = old('id_don_vi'); $ngay_ky = old('ngay_ky');
+                                    $nguoi_ky = old('nguoi_ky');
                                 } else if(isset($ds['so_hieu']) && $ds['so_hieu']){
                                     $so_hieu = $ds['so_hieu'];$date_post = $ds['date_post'];
                                     $trich_yeu = $ds['trich_yeu'];$mo_ta = $ds['mo_ta'];
+                                    $id_don_vi = $ds['id_don_vi']; $ngay_ky = $ds['ngay_ky'];
+                                    $nguoi_ky = $ds['nguoi_ky'];
                                 } else {
                                     $so_hieu = '';$date_post = App\Http\Controllers\ObjectController::setDate();$tin_moi=0;
-                                    $trich_yeu = '';$mo_ta = '';
+                                    $trich_yeu = '';$mo_ta = '';$id_don_vi =''; $ngay_ky = App\Http\Controllers\ObjectController::setDate();
+                                    $nguoi_ky = '';
                                 }
                             ?>
                             <div class="form-group row">
@@ -44,15 +49,34 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="control-label col-md-2 text-right p-t-10"><?php echo e(__('Trích yếu')); ?></label>
+                                <label class="control-label col-md-2 text-right p-t-10"><?php echo e(__('Trích yếu')); ?></label>    
                                 <div class="col-12 col-md-10">
-                                    <textarea name="trich_yeu" id="trich_yeu" class="form-control" required placeholder="<?php echo e(__('Trích yếu')); ?>" style="height:100px;" required><?php echo e($trich_yeu); ?></textarea>
+                                    <input type="text" name="trich_yeu" id="trich_yeu" class="form-control" required placeholder="<?php echo e(__('Trích yếu')); ?>" required value="<?php echo e($trich_yeu); ?>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-md-2 text-right p-t-10"><?php echo e(__('Đơn vị ban hành')); ?></label>
+                                <div class="col-md-3">
+                                    <select name="id_don_vi" id="id_don_vi" class="form-control select2" data-placeholder="Chọn đơn vị phát hành">
+                                        <option value=""></option>
+                                        <?php $__currentLoopData = $don_vi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($dv['_id']); ?>"><?php echo e($dv['ten']); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select>
+                                </div>
+                                <label class="control-label col-md-1 text-right p-t-10"><?php echo e(__('Ngày ký')); ?></label>
+                                <div class="col-md-2">
+                                    <input type="text" id="ngay_ky" name="ngay_ky" class="form-control" placeholder="<?php echo e(__(key: 'Ngày ký')); ?>" value="<?php echo e($ngay_ky); ?>"  />
+                                </div>
+                                <label class="control-label col-md-1 text-right p-t-10"><?php echo e(__('Ngày ký')); ?></label>
+                                <div class="col-md-3">
+                                    <input type="text" id="nguoi_ky" name="nguoi_ky" class="form-control" placeholder="<?php echo e(__(key: 'Người ký')); ?>" value="<?php echo e($nguoi_ky); ?>" />
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="control-label col-md-2 text-right p-t-10"><?php echo e(__('Mô tả chi tiết')); ?></label>
                                 <div class="col-12 col-md-10">
-                                    <textarea name="mo_ta" id="mo_ta" class="form-control" required placeholder="Mô tả chi tiết: Ngày ký, Người ký, Cơ quan ban hành,..." style="height:100px;"><?php echo e($mo_ta); ?></textarea>
+                                    <textarea name="mo_ta" id="mo_ta" class="form-control" required placeholder="Mô tả chi tiết thông tin văn bản,..." style="height:100px;"><?php echo e($mo_ta); ?></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">

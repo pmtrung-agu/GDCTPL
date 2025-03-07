@@ -30,14 +30,17 @@
                                 if(old('so_hieu') != null){
                                     $so_hieu = old('so_hieu');$date_post = old('date_post');
                                     $trich_yeu = old('trich_yeu');$mo_ta = old('mo_ta');
-                                    $tagg = old('tags');
+                                    $tagg = old('tags');$id_don_vi = old('id_don_vi'); $ngay_ky = old('ngay_ky');
+                                    $nguoi_ky = old('nguoi_ky');
                                 } else if(isset($ds['so_hieu']) && $ds['so_hieu']){
                                     $so_hieu = $ds['so_hieu'];$date_post = $ds['date_post'];
                                     $trich_yeu = $ds['trich_yeu'];$mo_ta = $ds['mo_ta'];
-                                    $tagg = $ds['tags'];
+                                    $tagg = $ds['tags'];$id_don_vi = $ds['id_don_vi']; $ngay_ky = $ds['ngay_ky'];
+                                    $nguoi_ky = $ds['nguoi_ky'];
                                 } else {
                                     $so_hieu = '';$date_post = App\Http\Controllers\ObjectController::setDate();$tin_moi=0;
-                                    $trich_yeu = '';$mo_ta = ''; $tagg = '';
+                                    $trich_yeu = '';$mo_ta = ''; $tagg = '';$id_don_vi =''; $ngay_ky = App\Http\Controllers\ObjectController::setDate();
+                                    $nguoi_ky = '';
                                 }
                             @endphp
                             <div class="form-group row">
@@ -49,7 +52,26 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-2 text-right p-t-10">{{ __('Trích yếu') }}</label>
                                 <div class="col-12 col-md-10">
-                                    <textarea name="trich_yeu" id="trich_yeu" class="form-control" required placeholder="{{ __('Trích yếu') }}" style="height:100px;" required>{{ $trich_yeu }}</textarea>
+                                    <input type="text" name="trich_yeu" id="trich_yeu" class="form-control" required placeholder="{{ __('Trích yếu') }}" required value="{{ $trich_yeu }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-md-2 text-right p-t-10">{{ __('Đơn vị ban hành') }}</label>
+                                <div class="col-md-3">
+                                    <select name="id_don_vi" id="id_don_vi" class="form-control select2" data-placeholder="Chọn đơn vị phát hành">
+                                        <option value=""></option>
+                                        @foreach($don_vi as $dv)
+                                            <option value="{{ $dv['_id'] }}" @if($dv['_id'] == $id_don_vi) selected @endif>{{ $dv['ten'] }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <label class="control-label col-md-1 text-right p-t-10">{{ __('Ngày ký') }}</label>
+                                <div class="col-md-2">
+                                    <input type="text" id="ngay_ky" name="ngay_ky" class="form-control" placeholder="{{ __(key: 'Ngày ký') }}" value="{{ $ngay_ky }}"  />
+                                </div>
+                                <label class="control-label col-md-1 text-right p-t-10">{{ __('Ngày ký') }}</label>
+                                <div class="col-md-3">
+                                    <input type="text" id="nguoi_ky" name="nguoi_ky" class="form-control" placeholder="{{ __(key: 'Người ký') }}" value="{{ $nguoi_ky }}" />
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -213,7 +235,7 @@
     <script src="{{ env('APP_URL') }}assets/backend/js/script.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            delete_file();$(".select2").select2();
+            delete_file();$(".select2").select2({allowClear: true});
             var options = {
                 filebrowserImageBrowseUrl: '{{ env('APP_URL') }}laravel-filemanager?type=Images',
                 filebrowserImageUploadUrl: '{{ env('APP_URL') }}laravel-filemanager/upload?type=Images&_token=',

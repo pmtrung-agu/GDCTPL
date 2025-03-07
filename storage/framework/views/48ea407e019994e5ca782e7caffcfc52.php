@@ -91,6 +91,7 @@
                                     <li><a href="<?php echo e(env('APP_URL')); ?>admin/danh-muc/san-pham">Sản phẩm</a></li>
                                     <li><a href="<?php echo e(env('APP_URL')); ?>admin/danh-muc/tai-lieu">Tài liệu</a></li>
                                     <li><a href="<?php echo e(env('APP_URL')); ?>admin/danh-muc/van-ban">Văn bản</a></li>
+                                    <li><a href="<?php echo e(env('APP_URL')); ?>admin/danh-muc/don-vi">Đơn vị</a></li>
                                 </ul>
                             </li>
                             <?php endif; ?>

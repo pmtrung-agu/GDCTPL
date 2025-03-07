@@ -21,6 +21,7 @@ use App\Http\Controllers\KetNoiGiaoThuongController;
 use App\Http\Controllers\HoiPhiController;
 use App\Http\Controllers\VanBanController;
 use App\Http\Controllers\DMVanBanController;
+use App\Http\Controllers\DMDonViController;
 
 use App\Http\Controllers\FrontendController;
 
@@ -214,6 +215,13 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
         Route::get('van-ban/edit/{id}', [DMVanBanController::class, 'edit'])->name('admin-dm-van-ban-edit-id')->middleware('role:Admin');
         Route::post('van-ban/update', [DMVanBanController::class,'update'])->name('admin-dm-van-ban-update')->middleware('role:Admin');
         Route::get('van-ban/delete/{id}', [DMVanBanController::class, 'delete'])->name('admin-dm-van-ban-delete-id')->middleware('role:Admin');
+
+        Route::get('don-vi', [DMDonViController::class, 'list'])->name('admin-dm-don-vi')->middleware('role:Admin');
+        Route::get('don-vi/add', [DMDonViController::class, 'add'])->name('admin-dm-don-vi-add')->middleware('role:Admin');
+        Route::post('don-vi/create', [DMDonViController::class, 'create'])->name('admin-dm-don-vi-create')->middleware('role:Admin');
+        Route::get('don-vi/edit/{id}', [DMDonViController::class, 'edit'])->name('admin-dm-don-vi-edit-id')->middleware('role:Admin');
+        Route::post('don-vi/update', [DMDonViController::class,'update'])->name('admin-dm-don-vi-update')->middleware('role:Admin');
+        Route::get('don-vi/delete/{id}', [DMDonViController::class, 'delete'])->name('admin-dm-don-vi-delete-id')->middleware('role:Admin');
     });
 
     Route::get('dia-chi', [DMDiaChiController::class, 'list'])->name('admin-danh-muc-dia-chi')->middleware('role:Manager,Admin');

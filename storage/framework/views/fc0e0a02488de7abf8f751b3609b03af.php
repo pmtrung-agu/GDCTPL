@@ -13,6 +13,22 @@
                 <hr />
                 <form method="GET" action="<?php echo e(env('APP_URL')); ?>admin/hiep-hoi-doanh-nghiep/van-ban">
                     <div class="row form-group">
+                        <div class="col-md-3">
+                            <select name="taxonomy" id="taxonomy" class="form-control select2" data-placeholder="Chọn phân loại">
+                                <option value="">Chọn phân loại</option>
+                                <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($tag['slug']); ?>" <?php if($tag['slug']== $taxonomy): ?> selected <?php endif; ?>><?php echo e($tag['ten']); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select name="id_don_vi" id="id_don_vi" class="form-control select2" data-placeholder="Chọn đơn vị phát hành">
+                                <option value=""></option>
+                                <?php $__currentLoopData = $don_vi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($dv['_id']); ?>" <?php if($dv['_id'] == $id_don_vi): ?> selected <?php endif; ?>><?php echo e($dv['ten']); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </select>
+                        </div>
                         <div class="col-12 col-md-4">
                             <input type="text" name="keywords" id="keywords" value="<?php echo e($keywords); ?>" placeholder="Tìm Tên" class="form-control">
                         </div>
@@ -82,7 +98,7 @@
     <script type="text/javascript" src="<?php echo e(env('APP_URL')); ?>assets/backend/libs/select2/select2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $(".select2").select2();
+            $(".select2").select2({allowClear:true});
             <?php if(Session::get('msg') != null && Session::get('msg')): ?>
             $.toast({
                 heading:"Thông báo",

@@ -9,4 +9,10 @@ class VanBan extends Model
     //
     protected $connection = 'mongodb';
     protected $table = 'van_ban';
+
+    protected function casts() {
+        return [
+            'ngay_ky' => 'datetime'
+        ];
+    }
 }

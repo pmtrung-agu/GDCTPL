@@ -21,6 +21,17 @@
                         <td><?php echo e($ds['trich_yeu']); ?></td>
                     </tr>
                     <tr>
+                        <th>Cơ quan ban hành</th>
+                        <td><?php echo e($ds['trich_yeu']); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Ngày ký</th>
+                        <td><?php echo e(\Carbon\Carbon::parse($ds['ngay_ky'])->format("d/m/Y")); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Người ký</th>
+                        <td><?php echo e($ds['nguoi_ky']); ?></td>
+                    <tr>
                         <th>Mô tả</th>
                         <td><?php echo e($ds['mo_ta']); ?></td>
                     </tr>

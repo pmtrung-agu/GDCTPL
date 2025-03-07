@@ -14,6 +14,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\FileController;
 use App\Models\VanBan;
 use App\Models\DMVanBan;
+use App\Models\DMDonVi;
 use App\Models\SendEmail;
 use Illuminate\Support\Facades\Mail;
 
@@ -24,20 +25,33 @@ class VanBanController extends Controller
         $tags = DMVanBan::All();
         return $tags;
     }
-    function list(Request $request,  $taxonomy = '') {
+    function list(Request $request) {
         $keywords = $request->input('keywords');
+        $id_don_vi = $request->input('id_don_vi');
+        $taxonomy = $request->input('taxonomy');
         $tags = self::get_tags();
+        $don_vi = DMDonVi::All();
         $danhsach = VanBan::where('_id', 'exists', true);
         if($keywords){
-            $danhsach = $danhsach->where('ten', 'regexp', '/.*'.$keywords.'/i');
+            $danhsach = $danhsach->orWhere('so_hieu', 'regexp', '/.*'.$keywords.'/i')
+                                ->orWhere('trich_yeu', 'regexp', '/.*'.$keywords.'/i')
+                                ->orWhere('trich_yeu_kho_dau', 'regexp', '/.*'.$keywords.'/i')
+                                ->orWhere('mo_ta', 'regexp', '/.*'.$keywords.'/i')
+                                ->orWhere('mo_ta_khong_dau', 'regexp', '/.*'.$keywords.'/i')
+                                ->orWhere('nguoi_ky', 'regexp', '/.*'.$keywords.'/i');
+
+        }
+        if($taxonomy) {
+            $danhsach = $danhsach->where('id_don_vi', $taxonomy);
         }
         $danhsach = $danhsach->orderBy('thu_thu', 'asc')->paginate(30);
-        return view('Admin.VanBan.list')->with(compact('danhsach', 'keywords', 'tags', 'taxonomy'));
+        return view('Admin.VanBan.list')->with(compact('danhsach', 'keywords', 'tags', 'taxonomy','id_don_vi','don_vi'));
     }
 
     function add(Request $request){
         $tags = self::get_tags();
-        return view('Admin.VanBan.add')->with(compact('tags'));
+        $don_vi = DMDonVi::All();
+        return view('Admin.VanBan.add')->with(compact('tags','don_vi'));
     }
 
     function create(Request $request){
@@ -71,6 +85,9 @@ class VanBanController extends Controller
         $db->so_hieu = $data['so_hieu'];
         $db->trich_yeu = $data['trich_yeu'];
         $db->trich_yeu_khong_day = Str::Slug($data['trich_yeu'], " ");
+        $db->id_don_vi = $data['id_don_vi'] ? ObjectController::ObjectId($data['id_don_vi']) : '';
+        $db->ngay_ky = $data['ngay_ky'];
+        $db->nguoi_ky = $data['nguoi_ky'];
         $db->mo_ta = $data['mo_ta'];
         $db->mo_ta_khong_dau = Str::Slug($data['mo_ta'], " ");
         $db->tags = isset($data['tags']) ? $data['tags'] : [];
@@ -86,7 +103,8 @@ class VanBanController extends Controller
     function edit(Request $request, $id = ''){
         $ds = VanBan::find($id);
         $tags = self::get_tags();
-        return view('Admin.VanBan.edit')->with(compact('ds','tags'));
+        $don_vi = DMDonVi::All();
+        return view('Admin.VanBan.edit')->with(compact('ds','tags','don_vi'));
     }
 
     function update(Request $request, $id = ''){
@@ -117,6 +135,9 @@ class VanBanController extends Controller
         $db->so_hieu = $data['so_hieu'];
         $db->trich_yeu = $data['trich_yeu'];
         $db->trich_yeu_khong_day = Str::Slug($data['trich_yeu'], " ");
+        $db->id_don_vi = $data['id_don_vi'] ? ObjectController::ObjectId($data['id_don_vi']) : '';
+        $db->ngay_ky = $data['ngay_ky'];
+        $db->nguoi_ky = $data['nguoi_ky'];
         $db->mo_ta = $data['mo_ta'];
         $db->mo_ta_khong_dau = Str::Slug($data['mo_ta'], " ");
         $db->tags = isset($data['tags']) ? $data['tags'] : [];
@@ -181,11 +202,9 @@ class VanBanController extends Controller
                 $file = Storage::disk('public')->path('files/' . $dk['aliasname']);
                 $message->attach($file);
             }*/
-            return view('Admin.VanBan.send')->with(compact('email_list'));
             //echo 'Đã gởi mail thành công';
         });
-        
-
+        return view('Admin.VanBan.send')->with(compact('email_list'));
     }
 
 }
