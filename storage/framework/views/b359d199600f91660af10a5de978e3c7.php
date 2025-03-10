@@ -61,7 +61,6 @@
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 <?php endif; ?>
                             </td>
-
                             <td class="text-center">
                                 <a href="<?php echo e(env('APP_URL')); ?>admin/thong-tin/delete/<?php echo e($ds['_id']); ?>" onclick="return confirm('Chắc chắc xóa?')"><i class="fas fa-trash text-danger"></i></a>&nbsp;
                                 <a href="<?php echo e(env('APP_URL')); ?>admin/thong-tin/edit/<?php echo e($ds['_id']); ?>"><i class="fas fa-pencil-alt"></i></a>

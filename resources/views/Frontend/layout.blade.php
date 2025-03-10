@@ -237,6 +237,6 @@
     <script src="{{ env('APP_URL') }}assets/frontend/js/nice-select.min.js"></script>
     <script src="{{ env('APP_URL') }}assets/frontend/js/wow.min.js"></script>
     <script src="{{ env('APP_URL') }}assets/frontend/js/main.js"></script>
-    @section('is') @show
+    @section('js') @show
   </body>
 </html>

@@ -60,10 +60,10 @@ return  [
             'childs' => array(
                 array('title' => 'Quản lý Văn bản', 'path' => 'van-ban'),
                 array('title' => 'Quản lý Hội phí', 'path' => 'hoi-phi'),
+                array('title' => 'Thông báo', 'path' => 'thong-bao'),
             )
         )
     ),
-
 
     'menu-home' => array(
         0 => array(
@@ -90,6 +90,7 @@ return  [
                 array('title' => 'Tư vấn chuyển đổi số', 'path' => 'tu-van-chuyen-doi-so'),
                 array('title' => 'Gởi nhu cầu chuyển đổi số', 'path' => 'goi-yeu-cau'),
                 array('title' => 'Kết nối giao thương', 'path' => 'ket-noi-giao-thuong'),
+                array('title' => 'Thông báo của HHDN', 'path' => 'thong-bao-cua-hhdn'),
                 //array('title' => 'Mô hình CĐS tại các Doanh nghiệp', 'path' => 'mo-hinh-chuyen-doi-so')
                 //array('title' => 'Đăng ký thành viên', 'path' => 'dang-ky-thanh-vien')
             )

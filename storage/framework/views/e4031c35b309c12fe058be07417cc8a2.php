@@ -4,7 +4,7 @@
 <section class="th-blog-wrapper blog-details space-top space-extra-bottom">
     <div class="container">
       <div class="row">
-        <div class="col-xxl-8 col-lg-7">
+        <div class="col-xxl-8 col-lg-8">
           <div class="th-blog blog-single">
             <div class="blog-content">
               <div class="blog-meta">
@@ -46,20 +46,20 @@
                 <div class="widget widget_tag_cloud">
                     <h3 class="widget_title">Đính kèm</h3>
                     <div class="tagcloud">
-                    <?php $__currentLoopData = $ds['attachments']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kk => $dk): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                      <a href="<?php echo e(env('APP_URL')); ?>thong-tin/tai-ve/<?php echo e($ds['_id']); ?>/<?php echo e($kk); ?>"><i class="fa fa-file"></i> <?php echo e($dk['title']); ?></a>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                      <?php $__currentLoopData = $ds['attachments']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kk => $dk): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <a href="<?php echo e(env('APP_URL')); ?>thong-tin/tai-ve/<?php echo e($ds['_id']); ?>/<?php echo e($kk); ?>"><i class="fa fa-file"></i> <?php echo e($dk['title']); ?></a>
+                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                   </div>
-                </div>
                 <?php endif; ?>
-            </div>
+              </div>
           </div>
+        </div>
         </div>
         <?php
             $dm_thong_tin = App\Models\DMThongTin::All();
         ?>
-        <div class="col-xxl-4 col-lg-5">
+        <div class="col-xxl-4 col-lg-4">
           <aside class="sidebar-area">
             <div class="widget widget_categories">
               <h3 class="widget_title">Thông tin</h3>

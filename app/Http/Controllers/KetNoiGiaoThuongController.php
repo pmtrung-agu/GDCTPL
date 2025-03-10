@@ -37,12 +37,19 @@ class KetNoiGiaoThuongController extends Controller
         $noi_dung = array(
             array('noi_dung' => $data['noi_dung'], 'id_user' =>ObjectController::ObjectId($id_user))
         );
+        $arr_photo = array();
+        if(isset($data['hinhanh_aliasname'])){
+          foreach($data['hinhanh_aliasname'] as $key => $value){
+            array_push($arr_photo, array('aliasname' => $value, 'filename' => $data['hinhanh_filename'][$key], 'title' => $data['hinhanh_title'][$key]));
+          }
+        }
         $db = new KetNoiGiaoThuong();
         $db->ma = strtoupper(uniqid());
         $db->nganhnghe_id = ObjectController::ObjectId($data['nganhnghe_id']);
         $db->nhu_cau = $data['nhu_cau'];
         $db->noi_dung = $noi_dung;
         $db->id_user = ObjectController::ObjectId($id_user);
+        $db->photos = $arr_photo;
         $db->tinh_trang = 0;
         $db->save();
         Session::flash('msg', 'Cập nhật thành công');
@@ -56,13 +63,13 @@ class KetNoiGiaoThuongController extends Controller
     }
 
     function delete(Request $request, $id = '') {
-        /*$data = KetNoiGiaoThuong::find($id);
+        $data = KetNoiGiaoThuong::find($id);
         if($data['photos']){
             foreach($data['photos'] as $p){
                 ImageController::remove($p['aliasname']);
             }
         }
-        if($data['attachments']){
+        /*if($data['attachments']){
             foreach($data['attachments'] as $dk){
                 FileController::remove($dk['aliasname']);
             }

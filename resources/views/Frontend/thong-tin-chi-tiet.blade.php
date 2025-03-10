@@ -1,5 +1,9 @@
 @extends('Frontend.layout')
 @section('title', $ds['ten'])
+@section('css')
+  <link rel="stylesheet" type="text/css" href="{{ env('APP_URL') }}assets/frontend/libs/photobox/photobox.css" />
+  <link rel="stylesheet" type="text/css" href="{{ env('APP_URL') }}assets/frontend/libs/photobox/photobox.ie.css" />
+@endsection
 @section('body')
 <section class="th-blog-wrapper blog-details space-top space-extra-bottom">
     <div class="container">
@@ -18,6 +22,30 @@
             </div>
             <div class="share-links clearfix">
               <div class="row justify-content-between">
+                @if(isset($ds['photos']) && $ds['photos'])
+                <div class="row" id="gallery">
+                  <div class="col-12">
+                    <h3 class="widget_title">Hình ảnh</h3>
+                  </div>
+                      @foreach($ds['photos'] as $p)
+                      <div class="col-12 col-md-3" style="padding:10px;">
+                        <a href="{{ env('APP_URL') }}storage/images/origin/{{ $p['aliasname'] }}">
+                          <img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $p['aliasname'] }}" title="{{$p['title']}}" style="width:150px;">
+                        </a>
+                      </div>
+                      @endforeach
+                  </div>
+                @endif
+                @if(isset($ds['attachments']) && $ds['attachments'])
+                <div class="widget widget_tag_cloud">
+                    <h3 class="widget_title">Đính kèm</h3>
+                    <div class="tagcloud">
+                      @foreach($ds['attachments'] as $kk => $dk)
+                        <a href="{{ env('APP_URL') }}thong-tin/tai-ve/{{ $ds['_id'] }}/{{ $kk }}"><i class="fa fa-file"></i> {{ $dk['title'] }}</a>
+                      @endforeach
+                    </div>
+                  </div>
+                @endif
                 @if($ds['tags'])
                 <div class="col-sm-auto">
                   <span class="share-links-title">Tags:</span>
@@ -41,16 +69,6 @@
                     </li>
                   </ul>
                 </div>
-                @if(isset($ds['attachments']) && $ds['attachments'])
-                <div class="widget widget_tag_cloud">
-                    <h3 class="widget_title">Đính kèm</h3>
-                    <div class="tagcloud">
-                      @foreach($ds['attachments'] as $kk => $dk)
-                        <a href="{{ env('APP_URL') }}thong-tin/tai-ve/{{ $ds['_id'] }}/{{ $kk }}"><i class="fa fa-file"></i> {{ $dk['title'] }}</a>
-                      @endforeach
-                    </div>
-                  </div>
-                @endif
               </div>
           </div>
         </div>
@@ -105,4 +123,13 @@
       </div>
     </div>
   </section>
+@endsection
+
+@section('js')
+<script src="{{ env('APP_URL') }}assets/frontend/libs/photobox/jquery.photobox.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#gallery').photobox('a',{ time:0 });
+  });
+</script>
 @endsection

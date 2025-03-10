@@ -235,6 +235,6 @@
     <script src="<?php echo e(env('APP_URL')); ?>assets/frontend/js/nice-select.min.js"></script>
     <script src="<?php echo e(env('APP_URL')); ?>assets/frontend/js/wow.min.js"></script>
     <script src="<?php echo e(env('APP_URL')); ?>assets/frontend/js/main.js"></script>
-    <?php $__env->startSection('is'); ?> <?php echo $__env->yieldSection(); ?>
+    <?php $__env->startSection('js'); ?> <?php echo $__env->yieldSection(); ?>
   </body>
 </html><?php /**PATH E:\Lara_Projects\ABAPortal\resources\views/Frontend/layout.blade.php ENDPATH**/ ?>

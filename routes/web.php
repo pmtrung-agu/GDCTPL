@@ -22,7 +22,8 @@ use App\Http\Controllers\HoiPhiController;
 use App\Http\Controllers\VanBanController;
 use App\Http\Controllers\DMVanBanController;
 use App\Http\Controllers\DMDonViController;
-
+use App\Http\Controllers\ThongBaoController;
+use App\Http\Controllers\DeXuatKienNghiController;
 use App\Http\Controllers\FrontendController;
 
 Route::get('/', [FrontendController::class, 'index']);
@@ -43,6 +44,7 @@ Route::post('tu-van-chuyen-doi-so-submit', [FrontendController::class, 'tu_van_c
 Route::get('doanh-nghiep/doanh-nghiep-tham-gia', [FrontendController::class, 'doanh_nghiep_tham_gia']);
 Route::get('doanh-nghiep/mo-hinh-chuyen-doi-so', [FrontendController::class, 'mo_hinh_cds']);
 Route::get('doanh-nghiep/chi-tiet/{slug}', [FrontendController::class, 'doanh_nghiep_chi_tiet']);
+Route::get('doanh-nghiep/thong-bao-cua-hhdn', [FrontendController::class, 'thong_bao_hhdn']);
 
 Route::get('doanh-nghiep/goi-yeu-cau', [FrontendController::class, 'goi_yeu_cau']);
 Route::get('doanh-nghiep/tu-van-chuyen-doi-so', [FrontendController::class, 'tu_van_chuyen_doi_so']);
@@ -170,6 +172,16 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
         Route::get('van-ban/delete/{id}', [VanBanController::class ,'delete'])->middleware('role:Admin,Manager,ABA');
         Route::get('van-ban-chi-tiet/{id}', [VanBanController::class ,'chi_tiet'])->middleware('role:Admin,Manager,ABA');
         Route::post('van-ban/send-email', [VanBanController::class ,'send_email'])->middleware('role:Admin,Manager,ABA');
+
+        Route::get('thong-bao', [ThongBaoController::class ,'list'])->middleware('role:Admin,Manager,ABA');
+        Route::get('thong-bao/add', [ThongBaoController::class ,'add'])->middleware('role:Admin,Manager,ABA');
+        Route::post('thong-bao/create', [ThongBaoController::class ,'create'])->middleware('role:Admin,Manager,ABA');
+        Route::get('thong-bao/edit/{id}', [ThongBaoController::class ,'edit'])->middleware('role:Admin,Manager,ABA');
+        Route::post('thong-bao/update', [ThongBaoController::class ,'update'])->middleware('role:Admin,Manager,ABA');
+        Route::get('thong-bao/delete/{id}', [ThongBaoController::class ,'delete'])->middleware('role:Admin,Manager,ABA');
+        Route::get('thong-bao/chi-tiet/{id}', [ThongBaoController::class ,'chi_tiet'])->middleware('role:Admin,Manager,ABA');
+        Route::get('thong-bao/download/{id}/{key}', [ThongBaoController::class ,'download'])->middleware('role:Admin,Manager,ABA');
+        Route::post('thong-bao/send-email', [ThongBaoController::class ,'send_email'])->middleware('role:Admin,Manager,ABA');
         
     });
            

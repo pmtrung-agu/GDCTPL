@@ -142,4 +142,8 @@ class FrontendController extends Controller
         return view('Frontend.mo-hinh-cds');
     }
 
+    function thong_bao_hhdn(){
+        return view('Frontend.thong-bao-hhdn');
+    }
+
 }
