@@ -125,7 +125,7 @@
             </div>
           </div>
           <div class="form-actions">
-              <a href="{{ env('APP_URL') }}admin/product" class="btn btn-light"><i class="fa fa-reply-all"></i> Trở về</a>
+              <a href="{{ env('APP_URL') }}admin/hiep-hoi-doanh-nghiep/hoi-phi" class="btn btn-light"><i class="fa fa-reply-all"></i> Trở về</a>
               <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Cập nhật</button>
           </div>
         </form>

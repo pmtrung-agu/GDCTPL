@@ -30,16 +30,16 @@
                                     $so_hieu = old('so_hieu');$date_post = old('date_post');
                                     $trich_yeu = old('trich_yeu');$mo_ta = old('mo_ta');
                                     $id_don_vi = old('id_don_vi'); $ngay_ky = old('ngay_ky');
-                                    $nguoi_ky = old('nguoi_ky');
+                                    $nguoi_ky = old('nguoi_ky');$tagss = old('tags');
                                 } else if(isset($ds['so_hieu']) && $ds['so_hieu']){
                                     $so_hieu = $ds['so_hieu'];$date_post = $ds['date_post'];
                                     $trich_yeu = $ds['trich_yeu'];$mo_ta = $ds['mo_ta'];
                                     $id_don_vi = $ds['id_don_vi']; $ngay_ky = $ds['ngay_ky'];
-                                    $nguoi_ky = $ds['nguoi_ky'];
+                                    $nguoi_ky = $ds['nguoi_ky'];$tagss = $ds['tags'];
                                 } else {
                                     $so_hieu = '';$date_post = App\Http\Controllers\ObjectController::setDate();$tin_moi=0;
                                     $trich_yeu = '';$mo_ta = '';$id_don_vi =''; $ngay_ky = App\Http\Controllers\ObjectController::setDate();
-                                    $nguoi_ky = '';
+                                    $nguoi_ky = '';$tagss=array();
                                 }
                             ?>
                             <div class="form-group row">
@@ -60,7 +60,7 @@
                                     <select name="id_don_vi" id="id_don_vi" class="form-control select2" data-placeholder="Chọn đơn vị phát hành">
                                         <option value=""></option>
                                         <?php $__currentLoopData = $don_vi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($dv['_id']); ?>"><?php echo e($dv['ten']); ?></option>
+                                            <option value="<?php echo e($dv['_id']); ?>" <?php if($dv['_id'] == $id_don_vi): ?> selected <?php endif; ?>><?php echo e($dv['ten']); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
@@ -85,7 +85,7 @@
                                     <select name="tags[]" id="tags" class="form-control select2" multiple required data-placeholder="Chọn phân loại">
                                         <option value="">Chọn phân loại</option>
                                         <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($tag['slug']); ?>"><?php echo e($tag['ten']); ?></option>
+                                            <option value="<?php echo e($tag['slug']); ?>" <?php if(in_array($tag['slug'], $tagss)): ?> selected <?php endif; ?>><?php echo e($tag['ten']); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>

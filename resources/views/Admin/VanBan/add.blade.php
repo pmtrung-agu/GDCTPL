@@ -39,7 +39,7 @@
                                 } else {
                                     $so_hieu = '';$date_post = App\Http\Controllers\ObjectController::setDate();$tin_moi=0;
                                     $trich_yeu = '';$mo_ta = '';$id_don_vi =''; $ngay_ky = App\Http\Controllers\ObjectController::setDate();
-                                    $nguoi_ky = '';$tagss='';
+                                    $nguoi_ky = '';$tagss=array();
                                 }
                             @endphp
                             <div class="form-group row">

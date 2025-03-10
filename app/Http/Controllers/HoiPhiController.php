@@ -1,9 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\ObjectController;
@@ -44,30 +42,34 @@ class HoiPhiController extends Controller
         }
 
         $nam = intval($data['nam']);
+        $id_doanh_nghiep = $data['id_doanh_nghiep'];        
+        if($id_doanh_nghiep){
+            foreach($id_doanh_nghiep as $id_dn){
+                $id_dn = ObjectController::ObjectId($id_dn);
+                $check = HoiPhi::where('nam','=',$nam)->where('id_doanh_nghiep','=',$id_dn)->first();
+                if(!$check) {
+                    //return redirect(env('APP_URL').'admin/hiep-hoi-doanh-nghiep/hoi-phi/add')->withErrors(['msg' => 'Doanh nghiệp đóng Hội phí rồi - Năm ' . $data['nam']])->withInput();
+                    $arr_photo = array();
+                    if(isset($data['hinhanh_aliasname'])){
+                    foreach($data['hinhanh_aliasname'] as $key => $value){
+                        array_push($arr_photo, array('aliasname' => $value, 'filename' => $data['hinhanh_filename'][$key], 'title' => $data['hinhanh_title'][$key]));
+                    }
+                    }
+                    $dn = DoanhNghiep::find($id_dn);
+                    $db = new HoiPhi();
+                    $db->nam = $nam;
+                    $db->id_doanh_nghiep = $id_dn;
+                    $db->ten_doanh_nghiep = $dn['ten'];
+                    $db->so_tien = ObjectController::convertStr2Number_1($data['so_tien']);
+                    $db->ngay_thu = $data['ngay_thu'];
+                    $db->noi_dung = $data['noi_dung'];
+                    $db->id_user = ObjectController::ObjectId($request->session()->get('user._id'));
+                    $db->photos = $arr_photo;
+                    $db->save();
+                }
+            }
+        }
 
-        $id_doanh_nghiep = ObjectController::ObjectId($data['id_doanh_nghiep']);        
-        $check = HoiPhi::where('nam','=',$nam)->where('id_doanh_nghiep','=',$id_doanh_nghiep)->first();
-        if($check) {
-            return redirect(env('APP_URL').'admin/hiep-hoi-doanh-nghiep/hoi-phi/add')->withErrors(['msg' => 'Doanh nghiệp đóng Hội phí rồi - Năm ' . $data['nam']])->withInput();
-        }
-        
-        $arr_photo = array();
-        if(isset($data['hinhanh_aliasname'])){
-          foreach($data['hinhanh_aliasname'] as $key => $value){
-            array_push($arr_photo, array('aliasname' => $value, 'filename' => $data['hinhanh_filename'][$key], 'title' => $data['hinhanh_title'][$key]));
-          }
-        }
-        $dn = DoanhNghiep::find($id_doanh_nghiep);
-        $db = new HoiPhi();
-        $db->nam = $nam;
-        $db->id_doanh_nghiep = $id_doanh_nghiep;
-        $db->ten_doanh_nghiep = $dn['ten'];
-        $db->so_tien = ObjectController::convertStr2Number_1($data['so_tien']);
-        $db->ngay_thu = $data['ngay_thu'];
-        $db->noi_dung = $data['noi_dung'];
-        $db->id_user = ObjectController::ObjectId($request->session()->get('user._id'));
-        $db->photos = $arr_photo;
-        $db->save();
         return redirect()->intended(env('APP_URL').'admin/hiep-hoi-doanh-nghiep/hoi-phi');
     }
 

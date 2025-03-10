@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card-box">
-                    <h3 class="m-t-0"><a href="<?php echo e(env('APP_URl')); ?>admin/hiep-hoi-doanh-nghiep/van-ban" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> <?php echo e(__('Trở về')); ?></a> <?php echo e(__('Chỉnh sửa Văn bản')); ?></h3>
+                    <h3 class="m-t-0"><a href="<?php echo e(env('APP_URL')); ?>admin/hiep-hoi-doanh-nghiep/van-ban" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> <?php echo e(__('Trở về')); ?></a> <?php echo e(__('Chỉnh sửa Văn bản')); ?></h3>
                     <form action="<?php echo e(env('APP_URL')); ?>admin/hiep-hoi-doanh-nghiep/van-ban/update" method="post" id="dinhkemform" enctype="multipart/form-data">
                         <?php echo e(csrf_field()); ?>
 

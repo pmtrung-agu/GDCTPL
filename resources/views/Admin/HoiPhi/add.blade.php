@@ -46,7 +46,7 @@
                   <div class="form-group row">
                       <label class="control-label col-md-2 text-right p-t-10">Doanh nghiệp</label>
                       <div class="col-md-10">
-                          <select name="id_doanh_nghiep" id="id_doanh_nghiep" class="form-control select2" required data-placeholder="Chọn Doanh nghiệp">
+                          <select name="id_doanh_nghiep[]" id="id_doanh_nghiep" class="form-control select2" required data-placeholder="Chọn Doanh nghiệp" multiple>
                             <option value="">Chọn Doanh nghiệp</option>
                             @if($doanhnghiep)
                               @foreach($doanhnghiep as $dn)

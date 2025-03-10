@@ -21,6 +21,13 @@
                 <th>Số hiệu</th>
                 <td><?php echo e($van_ban['so_hieu']); ?></td>
             </tr>
+            <?php
+                $dv = App\Models\DMDonVi::find($van_ban['id_don_vi']);
+            ?>
+            <tr>
+                <th>Đơn vị ban hành</th>
+                <td><?php echo e($dv['ten']); ?></td>
+            </tr>
             <tr>
                 <th>Trích yếu</th>
                 <td><?php echo e($van_ban['trich_yeu']); ?></td>
