@@ -12,7 +12,7 @@
                 <div class="card-box">
                     <h2><a href="{{ env('APP_URL') }}admin/hiep-hoi-doanh-nghiep/thong-bao" class="btn btn-primary btn-sm"><i class="fa fa-reply-all"></i> Trở về</a> {{ $ds['tieu_de'] }}</h2>
                     <div class="lead">
-                    {!! $ds['noi_dung'] !!}
+                        {!! $ds['noi_dung'] !!}
                     </div>
                     @if($ds['photos'])
                     <div class="row">
@@ -24,7 +24,7 @@
                         @foreach($ds['photos'] as $p)
                             <div class="col-12 col-md-3">
                                 <a href="{{ env('APP_URL') }}storage/images/origin/{{ $p['aliasname'] }}">
-                                <img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $p['aliasname'] }}" alt="" title="{{ $p['title'] }}">
+                                    <img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $p['aliasname'] }}" alt="" title="{{ $p['title'] }}" style="width:100%;">
                                 </a>
                             </div>
                         @endforeach

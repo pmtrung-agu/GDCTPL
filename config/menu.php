@@ -28,7 +28,8 @@ return  [
                 array('title' => 'Doanh Nghiệp tham gia', 'path' => 'danh-sach'),
                 array('title' => 'Gởi câu hỏi đến Chuyên Gia CĐS', 'path' => 'tu-van-chuyen-doi-so'),
                 array('title' => 'Gởi nhu cầu chuyển đổi số', 'path' => 'nhu-cau-chuyen-doi-so'),
-                array('title' => 'Kết nối giao thương', 'path' => 'ket-noi-giao-thuong')
+                array('title' => 'Kết nối giao thương', 'path' => 'ket-noi-giao-thuong'),
+                array('title' => 'Đề xuất - Kiến nghị', 'path' => 'de-xuat-kien-nghi')
             ),
             'role'      => 'Admin,Manager,Business,ABA'
         ),
@@ -91,6 +92,7 @@ return  [
                 array('title' => 'Gởi nhu cầu chuyển đổi số', 'path' => 'goi-yeu-cau'),
                 array('title' => 'Kết nối giao thương', 'path' => 'ket-noi-giao-thuong'),
                 array('title' => 'Thông báo của HHDN', 'path' => 'thong-bao-cua-hhdn'),
+                array('title' => 'Đề xuất - Kiến nghị', 'path' => 'de-xuat-kien-nghi'),
                 //array('title' => 'Mô hình CĐS tại các Doanh nghiệp', 'path' => 'mo-hinh-chuyen-doi-so')
                 //array('title' => 'Đăng ký thành viên', 'path' => 'dang-ky-thanh-vien')
             )

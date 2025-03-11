@@ -18,7 +18,7 @@ use App\Models\DMSanPham;
 use App\Models\SanPham;
 use App\Models\DoanhNghiep;
 use App\Models\KetNoiGiaoThuong;
-
+use App\Models\ThongBao;
 class FrontendController extends Controller
 {
     //
@@ -142,8 +142,18 @@ class FrontendController extends Controller
         return view('Frontend.mo-hinh-cds');
     }
 
-    function thong_bao_hhdn(){
-        return view('Frontend.thong-bao-hhdn');
+    function thong_bao_hhdn(Request $request){
+        $q = $request->input('q');
+        if($q) {
+            $danhsach = ThongBao::where('tieu_de', 'regexp', '/.*'.$q.'/i')
+                        ->orWhere('noi_dung', 'regexp', '/.*'.$q.'/i')
+                        ->orderBy('updated_at', 'desc')
+                        ->paginate(20);
+        } else {
+            $danhsach = ThongBao::orderBy('updated_at', 'desc')->paginate(20);
+        }
+        
+        return view('Frontend.thong-bao-hhdn')->with(compact('danhsach', 'q'));
     }
 
 }

@@ -25,7 +25,8 @@
                             @endphp
                             <tr>
                                 <td>
-                                    <a href="{{ env('APP_URL') }}admin/hiep-hoi-doanh-nghiep/thong-bao/chi-tiet/{{ $ds['_id'] }}" class="chi-tiet">[{{ $ds['tieu_de'] }}]</a>
+                                    <a href="{{ env('APP_URL') }}admin/hiep-hoi-doanh-nghiep/thong-bao/chi-tiet/{{ $ds['_id'] }}" class="chi-tiet">{{ $ds['tieu_de'] }} </a>
+                                    <small>{{ \Carbon\Carbon::parse($ds['updated_at'])->format("d/m/Y H:i") }}</small>
                                 </td>
                                 @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
                                     <td class="text-center">

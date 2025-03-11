@@ -25,7 +25,8 @@
                             ?>
                             <tr>
                                 <td>
-                                    <a href="<?php echo e(env('APP_URL')); ?>admin/hiep-hoi-doanh-nghiep/thong-bao/chi-tiet/<?php echo e($ds['_id']); ?>" class="chi-tiet">[<?php echo e($ds['tieu_de']); ?>]</a>
+                                    <a href="<?php echo e(env('APP_URL')); ?>admin/hiep-hoi-doanh-nghiep/thong-bao/chi-tiet/<?php echo e($ds['_id']); ?>" class="chi-tiet"><?php echo e($ds['tieu_de']); ?> </a>
+                                    <small><?php echo e(\Carbon\Carbon::parse($ds['updated_at'])->format("d/m/Y H:i")); ?></small>
                                 </td>
                                 <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
                                     <td class="text-center">
