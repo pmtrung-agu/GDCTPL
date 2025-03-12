@@ -160,6 +160,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('doanh-nghiep/de-xuat-kien-nghi/chi-tiet/{id}', [DeXuatKienNghiController::class, 'chi_tiet'])->middleware('role:Admin,Manager,ABA,Business');
     Route::get('doanh-nghiep/de-xuat-kien-nghi/tinh-trang/{id}', [DeXuatKienNghiController::class, 'tinh_trang'])->middleware('role:Admin,Manager,ABA');
     Route::get('doanh-nghiep/de-xuat-kien-nghi/delete/{id}', [DeXuatKienNghiController::class, 'delete'])->middleware('role:Admin,Manager,ABA');
+    Route::get('doanh-nghiep/de-xuat-kien-nghi/download/{id}/{key}', [DeXuatKienNghiController::class, 'download'])->middleware('role:Admin,Manager,ABA');
 
     Route::group(['prefix' => 'hiep-hoi-doanh-nghiep',  'middleware' => 'checkauth'], function(){
         Route::get('/', [HoiPhiController::class ,'list'])->middleware('role:Admin,Manager,ABA');

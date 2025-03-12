@@ -1,7 +1,8 @@
 @extends('Admin.layout')
 @section('title', 'Chi tiết Câu hỏi')
 @section('css')
-    <link href="{{ env('APP_URL') }}assets/backend/libs/select2/select2.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="{{ env('APP_URL') }}assets/frontend/libs/photobox/photobox.css" />
+  <link rel="stylesheet" type="text/css" href="{{ env('APP_URL') }}assets/frontend/libs/photobox/photobox.ie.css" />
 @endsection
 @section('body')
 <div class="wrapper">
@@ -9,7 +10,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card-box">
-                    <h4 class="header-title mb-4"><a href="{{ env('APP_URL') }}admin/doanh-nghiep/de-xuat-kien-nghi" class="btn btn-sm btn-primary"><i class="fa fa-reply-all"></i></a> Nội dung Tư vấn Chuyển đổi số Doanh nghiệp</h4>
+                    <h4 class="header-title mb-4"><a href="{{ env('APP_URL') }}admin/doanh-nghiep/de-xuat-kien-nghi" class="btn btn-sm btn-primary"><i class="fa fa-reply-all"></i></a> Nội dung Đề xuất - Kiến nghị</h4>
                     <div>
                         @foreach($ds['noi_dung'] as $nd)
                         @php
@@ -28,6 +29,36 @@
                                 <p class="font-18 mb-0">
                                     {!! $nd['noi_dung'] !!}
                                 </p>
+                                @if($nd['photos'])
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h2>Hình ảnh</h2>
+                                    </div>
+                                </div>
+                                <div class="row" id="gallery">
+                                    @foreach($nd['photos'] as $p)
+                                        <div class="col-12 col-md-1">
+                                            <a href="{{ env('APP_URL') }}storage/images/origin/{{ $p['aliasname'] }}">
+                                                <img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $p['aliasname'] }}" alt="" title="{{ $p['title'] }}" style="width:100%;">
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                @endif
+                                @if($nd['attachments'])
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h2>Đính kèm</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    @foreach($nd['attachments'] as $k => $dk)
+                                        <div class="col-12 col-md-12">
+                                            <a href="{{ env('APP_URL') }}admin/hiep-hoi-doanh-nghiep/de-xuat-kien-nghi/download/{{ $ds['_id'] }}/{{ $k }}" class="text-danger"><i class="fas fa-download"></i> {{ $dk['title'] }}</a>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                @endif
                             </div>
                         </div>
                         @endforeach
@@ -74,8 +105,10 @@
 @endsection
 @section('js')
     <script src="{{ env('APP_URL') }}assets/backend/libs/ckeditor/ckeditor.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/libs/photobox/jquery.photobox.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+            $('#gallery').photobox('a',{ time:0 });
             var options = {
                 filebrowserImageBrowseUrl: '{{ env('APP_URL') }}laravel-filemanager?type=Images',
                 filebrowserImageUploadUrl: '{{ env('APP_URL') }}laravel-filemanager/upload?type=Images&_token=',
@@ -92,7 +125,6 @@
                 ],
                 removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
             };
-            
             CKEDITOR.replace('noi_dung', options);
         });
     </script>

@@ -1,5 +1,8 @@
 @extends('Admin.layout')
 @section('title', 'Đề xuất kiến nghị')
+@section('css')
+    <link href="{{ env('APP_URL') }}assets/backend/libs/jquery-toast/jquery.toast.min.css" rel="stylesheet" type="text/css" />
+@endsection
 @section('body')
 <div class="wrapper">
     <div class="container-fluid">
@@ -13,6 +16,9 @@
                             <tr>
                                 <th>Đề xuất - Kiến nghị</th>
                                 <th>Tình trạng</th>
+                                @if(App\Http\Controllers\UserController::is_roles('Admin'))
+                                    <th>#</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -32,6 +38,11 @@
                                         @endif
                                     @endif
                                 </td>
+                                @if(App\Http\Controllers\UserController::is_roles('Admin'))
+                                    <td class="text-center">
+                                        <a href="{{ env('APP_URL') }}admin/doanh-nghiep/de-xuat-kien-nghi/delete/{{ $ds['_id'] }}" onclick="return confirm('Chắc chắn xóa?')"><i class="fa fa-trash text-danger"></i></a>
+                                    </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>
@@ -44,8 +55,16 @@
 </div>
 @endsection
 @section('js')
+<script src="{{ env('APP_URL') }}assets/backend/libs/jquery-toast/jquery.toast.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+        @if(Session::get('msg') != null && Session::get('msg'))
+            $.toast({
+                heading:"Thông báo",
+                text:"{{ Session::get('msg') }}",
+                loaderBg:"#3b98b5",icon:"info", hideAfter:3e3,stack:1,position:"top-right"
+            });
+            @endif
         $(".tinh-trang").click(function(e){
             var _link = $(this).attr("href");
             var _this = $(this);

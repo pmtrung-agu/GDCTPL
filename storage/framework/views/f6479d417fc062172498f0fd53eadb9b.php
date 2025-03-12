@@ -1,5 +1,8 @@
 
 <?php $__env->startSection('title', 'Đề xuất kiến nghị'); ?>
+<?php $__env->startSection('css'); ?>
+    <link href="<?php echo e(env('APP_URL')); ?>assets/backend/libs/jquery-toast/jquery.toast.min.css" rel="stylesheet" type="text/css" />
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('body'); ?>
 <div class="wrapper">
     <div class="container-fluid">
@@ -13,6 +16,9 @@
                             <tr>
                                 <th>Đề xuất - Kiến nghị</th>
                                 <th>Tình trạng</th>
+                                <?php if(App\Http\Controllers\UserController::is_roles('Admin')): ?>
+                                    <th>#</th>
+                                <?php endif; ?>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,6 +38,11 @@
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 </td>
+                                <?php if(App\Http\Controllers\UserController::is_roles('Admin')): ?>
+                                    <td class="text-center">
+                                        <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/de-xuat-kien-nghi/delete/<?php echo e($ds['_id']); ?>" onclick="return confirm('Chắc chắn xóa?')"><i class="fa fa-trash text-danger"></i></a>
+                                    </td>
+                                <?php endif; ?>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
@@ -44,8 +55,16 @@
 </div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
+<script src="<?php echo e(env('APP_URL')); ?>assets/backend/libs/jquery-toast/jquery.toast.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+        <?php if(Session::get('msg') != null && Session::get('msg')): ?>
+            $.toast({
+                heading:"Thông báo",
+                text:"<?php echo e(Session::get('msg')); ?>",
+                loaderBg:"#3b98b5",icon:"info", hideAfter:3e3,stack:1,position:"top-right"
+            });
+            <?php endif; ?>
         $(".tinh-trang").click(function(e){
             var _link = $(this).attr("href");
             var _this = $(this);

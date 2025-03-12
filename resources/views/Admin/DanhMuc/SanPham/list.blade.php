@@ -1,4 +1,7 @@
 @extends('Admin.layout')
+@section('css')
+<link href="{{ env('APP_URL') }}assets/backend/libs/jquery-toast/jquery.toast.min.css" rel="stylesheet" type="text/css" />
+@endsection
 @section('body')
 <div class="wrapper">
     <div class="container-fluid">
@@ -41,4 +44,18 @@
         <!-- end row -->
     </div> <!-- end container -->
 </div>
+@endsection
+@section('js')
+<script src="{{ env('APP_URL') }}assets/backend/libs/jquery-toast/jquery.toast.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        @if(Session::get('msg') != null && Session::get('msg'))
+            $.toast({
+                heading:"Thông báo",
+                text:"{{ Session::get('msg') }}",
+                loaderBg:"#3b98b5",icon:"info", hideAfter:3e3,stack:1,position:"top-right"
+            });
+        @endif
+    });
+</script>
 @endsection

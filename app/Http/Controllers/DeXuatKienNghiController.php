@@ -14,7 +14,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\DeXuatKienNghi;
-
+use Illuminate\Support\Str;
+use App\Http\Controllers\ObjectController;
 
 class DeXuatKienNghiController extends Controller
 {
@@ -40,6 +41,13 @@ class DeXuatKienNghiController extends Controller
         $data = $request->all();
         $id_user = $request->session()->get('user._id');
 
+        $arr_photo = array();
+        if(isset($data['hinhanh_aliasname'])){
+          foreach($data['hinhanh_aliasname'] as $key => $value){
+            array_push($arr_photo, array('aliasname' => $value, 'filename' => $data['hinhanh_filename'][$key], 'title' => $data['hinhanh_title'][$key]));
+          }
+        }
+
         $arr_dinhkem = array();
         if(isset($data['file_aliasname']) && $data['file_aliasname']){
             foreach($data['file_aliasname'] as $k => $v){
@@ -48,7 +56,7 @@ class DeXuatKienNghiController extends Controller
         }
         
         $noi_dung = array(
-            array('noi_dung' => $data['noi_dung'], 'attachments' => $arr_dinhkem, 'id_user' =>ObjectController::ObjectId($id_user))
+            array('noi_dung' => $data['noi_dung'], 'photos' => $arr_photo ,'attachments' => $arr_dinhkem, 'id_user' =>ObjectController::ObjectId($id_user))
         );
         
         $db = new DeXuatKienNghi();
@@ -86,6 +94,35 @@ class DeXuatKienNghiController extends Controller
         DeXuatKienNghi::where('_id','=',$id)->push('noi_dung', $noi_dung);
         Session::flash('msg', 'Cập nhật thành công');
         return redirect(env('APP_URL') .'admin/doanh-nghiep/nhu-cau-chuyen-doi-so/chi-tiet/'.$data['id']);
+    }
+
+    function download(Request $request, $id='', $key = 0) {
+        $ds = DeXuatKienNghi::find($id);
+        $key = intval($key);
+        $file_path = storage_path('app/public/files/' . $ds['attachments'][$key]['aliasname']);
+        $name  = Str::slug($ds['attachments'][$key]['title'], '-') . '.' . $ds['attachments'][$key]['type'];
+        return response()->download($file_path, $name);
+    }
+
+    function delete(Request $request, $id = ''){
+        $data = DeXuatKienNghi::find($id);
+        foreach($data['noi_dung'] as $nd) {
+            if(isset($nd['photos']) && $nd['photos']){
+                foreach($nd['photos'] as $p){
+                    ImageController::remove($p['aliasname']);
+                }
+            }
+    
+            if(isset($nd['attachments']) && $nd['attachments']) {
+                foreach($nd['attachments'] as $dk) {
+                    FileController::remove($dk['aliasname']);
+                }
+            }
+        }
+        
+        DeXuatKienNghi::destroy($id);
+        Session::flash('msg', 'Xóa thành công');
+        return redirect(env('APP_URL').'admin/doanh-nghiep/de-xuat-kien-nghi');
     }
 
 }

@@ -1,5 +1,8 @@
 @extends('Admin.layout')
 @section('title', 'Tư vấn chuyển đổi số')
+@section('css')
+<link href="{{ env('APP_URL') }}assets/backend/libs/jquery-toast/jquery.toast.min.css" rel="stylesheet" type="text/css" />
+@endsection
 @section('body')
 <div class="wrapper">
     <div class="container-fluid">
@@ -45,6 +48,7 @@
 @endsection
 @section('js')
 <script type="text/javascript">
+    <script src="{{ env('APP_URL') }}assets/backend/libs/jquery-toast/jquery.toast.min.js"></script>
     $(document).ready(function(){
         $(".tinh-trang").click(function(e){
             var _link = $(this).attr("href");
@@ -54,6 +58,13 @@
             });
             e.preventDefault();
         });
+        @if(Session::get('msg') != null && Session::get('msg'))
+            $.toast({
+                heading:"Thông báo",
+                text:"{{ Session::get('msg') }}",
+                loaderBg:"#3b98b5",icon:"info", hideAfter:3e3,stack:1,position:"top-right"
+            });
+        @endif
     });
 </script>
 

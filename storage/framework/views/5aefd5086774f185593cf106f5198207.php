@@ -31,6 +31,65 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card-box bg-light">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <label class="btn btn-danger">
+                                                <input type="file" name="hinhanh_files[]" class="hinhanh_files btn btn-primary" multiple accept="image/png, image/jpeg, image/jpg, image/gif" placeholder="Chọn hình ảnh" style="display:none;" />
+                                                <i class="fa fa-images"></i> <?php echo e(__('Chọn Hình ảnh')); ?> : (jpg, png, bmp)
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="list_hinhanh">
+                                <?php if(old('hinhanh_aliasname')): ?>
+                                    <?php $__currentLoopData = old('hinhanh_aliasname'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $h): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="col-sm-6 col-md-4 items draggable-element text-center">
+                                            <input type="hidden" name="hinhanh_aliasname[]" value="<?php echo e(old('hinhanh_aliasname')[$k]); ?>" readonly/>
+                                            <input type="hidden" name="hinhanh_filename[]" class="form-control" value="<?php echo e(old('hinhanh_filename')[$k]); ?>" />
+                                            <a href="<?php echo e(env('APP_URL')); ?>storage/images/origin/<?php echo e(old('hinhanh_aliasname')[$k]); ?>" class="image-popup">
+                                            <div class="portfolio-masonry-box">
+                                            <div class="portfolio-masonry-img">
+                                                <img src="<?php echo e(env('APP_URL')); ?>storage/images/thumb_360x200/<?php echo e(old('hinhanh_aliasname')[$k]); ?>" class="thumb-img img-fluid" alt="work-thumbnail">
+                                            </div>
+                                            <div class="portfolio-masonry-detail">
+                                                <p><?php echo e(old('hinhanh_filename')[$k]); ?></p>
+                                            </div>
+                                            </div>
+                                            </a>
+                                            <a href="<?php echo e(env('APP_URL')); ?>image/delete/<?php echo e(old('hinhanh_aliasname')[$k]); ?>" onclick="return false;" class="btn btn-danger btn-sm delete_file" style="position:absolute;top:40px;right:30px;">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                            <input type="text" name="hinhanh_title[]" class="form-control" value="<?php echo e(old('hinhanh_title')[$k]); ?>" />
+                                        </div>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <?php elseif(isset($ds['photos']) && $ds['photos']): ?>
+                                    <?php $__currentLoopData = $ds['photos']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $photo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="col-sm-6 col-md-4 items draggable-element text-center">
+                                            <input type="hidden" name="hinhanh_aliasname[]" value="<?php echo e($photo['aliasname']); ?>" readonly/>
+                                            <input type="hidden" name="hinhanh_filename[]" class="form-control" value="<?php echo e($photo['filename']); ?>" />
+                                            <a href="<?php echo e(env('APP_URL')); ?>storage/images/origin/<?php echo e($photo['aliasname']); ?>" class="image-popup">
+                                            <div class="portfolio-masonry-box">
+                                            <div class="portfolio-masonry-img">
+                                                <img src="<?php echo e(env('APP_URL')); ?>storage/images/thumb_360x200/<?php echo e($photo['aliasname']); ?>" class="thumb-img img-fluid" alt="work-thumbnail">
+                                            </div>
+                                            <div class="portfolio-masonry-detail">
+                                                <p><?php echo e($photo['filename']); ?></p>
+                                            </div>
+                                            </div>
+                                            </a>
+                                            <a href="<?php echo e(env('APP_URL')); ?>image/delete/<?php echo e($photo['aliasname']); ?>" onclick="return false;" class="btn btn-danger btn-sm delete_file" style="position:absolute;top:40px;right:30px;">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                            <input type="text" name="hinhanh_title[]" class="form-control" value="<?php echo e($photo['title']); ?>" />
+                                        </div>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
                         <div class="progress m-b-20" id="progressbar">
                             <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
@@ -108,6 +167,7 @@
     <script src="<?php echo e(env('APP_URL')); ?>assets/backend/js/script.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+            upload_hinhanh("<?php echo e(env('APP_URL')); ?>image/uploads");
             upload_files("<?php echo e(env('APP_URL')); ?>file/uploads");
             $("#progressbar").hide();delete_file();
             var options = {

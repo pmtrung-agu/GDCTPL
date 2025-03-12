@@ -1,7 +1,8 @@
 
 <?php $__env->startSection('title', 'Chi tiết Câu hỏi'); ?>
 <?php $__env->startSection('css'); ?>
-    <link href="<?php echo e(env('APP_URL')); ?>assets/backend/libs/select2/select2.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="<?php echo e(env('APP_URL')); ?>assets/frontend/libs/photobox/photobox.css" />
+  <link rel="stylesheet" type="text/css" href="<?php echo e(env('APP_URL')); ?>assets/frontend/libs/photobox/photobox.ie.css" />
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('body'); ?>
 <div class="wrapper">
@@ -9,7 +10,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card-box">
-                    <h4 class="header-title mb-4"><a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/tu-van-chuyen-doi-so" class="btn btn-sm btn-primary"><i class="fa fa-reply-all"></i></a> Nội dung Tư vấn Chuyển đổi số Doanh nghiệp</h4>
+                    <h4 class="header-title mb-4"><a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/de-xuat-kien-nghi" class="btn btn-sm btn-primary"><i class="fa fa-reply-all"></i></a> Nội dung Đề xuất - Kiến nghị</h4>
                     <div>
                         <?php $__currentLoopData = $ds['noi_dung']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <?php
@@ -29,6 +30,36 @@
                                     <?php echo $nd['noi_dung']; ?>
 
                                 </p>
+                                <?php if($nd['photos']): ?>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h2>Hình ảnh</h2>
+                                    </div>
+                                </div>
+                                <div class="row" id="gallery">
+                                    <?php $__currentLoopData = $nd['photos']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="col-12 col-md-1">
+                                            <a href="<?php echo e(env('APP_URL')); ?>storage/images/origin/<?php echo e($p['aliasname']); ?>">
+                                                <img src="<?php echo e(env('APP_URL')); ?>storage/images/thumb_360x200/<?php echo e($p['aliasname']); ?>" alt="" title="<?php echo e($p['title']); ?>" style="width:100%;">
+                                            </a>
+                                        </div>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </div>
+                                <?php endif; ?>
+                                <?php if($nd['attachments']): ?>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h2>Đính kèm</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <?php $__currentLoopData = $nd['attachments']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $dk): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="col-12 col-md-12">
+                                            <a href="<?php echo e(env('APP_URL')); ?>admin/hiep-hoi-doanh-nghiep/de-xuat-kien-nghi/download/<?php echo e($ds['_id']); ?>/<?php echo e($k); ?>" class="text-danger"><i class="fas fa-download"></i> <?php echo e($dk['title']); ?></a>
+                                        </div>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -37,7 +68,7 @@
                 <?php if($ds['tinh_trang'] == 0): ?>
                 <div class="card-box">
                     <h3 class="m-t-0">Thêm trả lời</h3>
-                    <form action="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/tu-van-chuyen-doi-so/chi-tiet/update" method="post" id="dinhkemform" enctype="multipart/form-data">
+                    <form action="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/de-xuat-kien-nghi/chi-tiet/update" method="post" id="dinhkemform" enctype="multipart/form-data">
                         <?php echo e(csrf_field()); ?>
 
                         <input type="hidden" name="id" id="id" value="<?php echo e($ds['_id']); ?>">
@@ -56,14 +87,14 @@
                                 $noi_dung = old('noi_dung');
                             ?>
                             <div class="form-group row">
-                                <label class="control-label col-md-2 text-right p-t-10"><?php echo e(__('Mô tả')); ?></label>
+                                <label class="control-label col-md-2 text-right p-t-10"><?php echo e(__('Nội dung')); ?></label>
                                 <div class="col-md-10">
                                     <textarea name="noi_dung" id="noi_dung" class="form-control" ><?php echo e($noi_dung); ?></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="form-actions">
-                            <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/tu-van-chuyen-doi-so" class="btn btn-light"><i class="fa fa-reply-all"></i> <?php echo e(__('Trở về')); ?></a>
+                            <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/de-xuat-kien-nghi" class="btn btn-light"><i class="fa fa-reply-all"></i> <?php echo e(__('Trở về')); ?></a>
                             <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> <?php echo e(__('Cập nhật')); ?></button>
                         </div>
                     </form>
@@ -76,8 +107,10 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
     <script src="<?php echo e(env('APP_URL')); ?>assets/backend/libs/ckeditor/ckeditor.js"></script>
+    <script src="<?php echo e(env('APP_URL')); ?>assets/frontend/libs/photobox/jquery.photobox.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+            $('#gallery').photobox('a',{ time:0 });
             var options = {
                 filebrowserImageBrowseUrl: '<?php echo e(env('APP_URL')); ?>laravel-filemanager?type=Images',
                 filebrowserImageUploadUrl: '<?php echo e(env('APP_URL')); ?>laravel-filemanager/upload?type=Images&_token=',
@@ -94,7 +127,6 @@
                 ],
                 removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
             };
-            
             CKEDITOR.replace('noi_dung', options);
         });
     </script>
