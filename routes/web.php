@@ -81,7 +81,7 @@ Route::get('not-permissions', function () {
 
 
 Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
-    Route::get('/', [AuthController::class, 'admin'])->middleware('checkauth');
+    Route::get('/', [AuthController::class, 'dashboard'])->middleware('checkauth');
     Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware('checkauth');
 
     Route::get('chuyen-gia', [UserController::class, 'chuyen_gia'])->name('admin-thong-tin')->middleware('role:Admin,Manager,Business,ABA');  
@@ -157,10 +157,13 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('doanh-nghiep/de-xuat-kien-nghi', [DeXuatKienNghiController::class, 'list'])->middleware('role:Admin,Manager,ABA,Business');
     Route::get('doanh-nghiep/de-xuat-kien-nghi/add', [DeXuatKienNghiController::class, 'add'])->middleware('role:Admin,Manager,ABA,Business');
     Route::post('doanh-nghiep/de-xuat-kien-nghi/create', [DeXuatKienNghiController::class, 'create'])->middleware('role:Admin,Manager,ABA');    
+    Route::post('doanh-nghiep/de-xuat-kien-nghi/chi-tiet/update', [DeXuatKienNghiController::class, 'update'])->middleware('role:Admin,Manager,ABA,Business');
     Route::get('doanh-nghiep/de-xuat-kien-nghi/chi-tiet/{id}', [DeXuatKienNghiController::class, 'chi_tiet'])->middleware('role:Admin,Manager,ABA,Business');
     Route::get('doanh-nghiep/de-xuat-kien-nghi/tinh-trang/{id}', [DeXuatKienNghiController::class, 'tinh_trang'])->middleware('role:Admin,Manager,ABA');
     Route::get('doanh-nghiep/de-xuat-kien-nghi/delete/{id}', [DeXuatKienNghiController::class, 'delete'])->middleware('role:Admin,Manager,ABA');
     Route::get('doanh-nghiep/de-xuat-kien-nghi/download/{id}/{key}', [DeXuatKienNghiController::class, 'download'])->middleware('role:Admin,Manager,ABA');
+    Route::get('doanh-nghiep/thong-bao-hhdn', [ThongBaoController::class, 'list'])->middleware('role:Admin,Manager,ABA,Business');
+    
 
     Route::group(['prefix' => 'hiep-hoi-doanh-nghiep',  'middleware' => 'checkauth'], function(){
         Route::get('/', [HoiPhiController::class ,'list'])->middleware('role:Admin,Manager,ABA');
@@ -187,7 +190,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
         Route::get('thong-bao/edit/{id}', [ThongBaoController::class ,'edit'])->middleware('role:Admin,Manager,ABA');
         Route::post('thong-bao/update', [ThongBaoController::class ,'update'])->middleware('role:Admin,Manager,ABA');
         Route::get('thong-bao/delete/{id}', [ThongBaoController::class ,'delete'])->middleware('role:Admin,Manager,ABA');
-        Route::get('thong-bao/chi-tiet/{id}', [ThongBaoController::class ,'chi_tiet'])->middleware('role:Admin,Manager,ABA');
+        Route::get('thong-bao/chi-tiet/{id}', [ThongBaoController::class ,'chi_tiet'])->middleware('role:Admin,Manager,ABA,Business');
         Route::get('thong-bao/download/{id}/{key}', [ThongBaoController::class ,'download'])->middleware('role:Admin,Manager,ABA');
         Route::post('thong-bao/send-email', [ThongBaoController::class ,'send_email'])->middleware('role:Admin,Manager,ABA');
         

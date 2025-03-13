@@ -9,7 +9,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="card-box">
-                    <h3><a href="{{ env('APP_URL') }}admin/hiep-hoi-doanh-nghiep/thong-bao/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm mới </a> Danh sách Thông báo của HHDN</h3>
+                    <h3>
+                        @if(App\Http\Controllers\UserController::is_roles('Admin,ABA,Manager'))
+                            <a href="{{ env('APP_URL') }}admin/hiep-hoi-doanh-nghiep/thong-bao/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm mới </a>
+                        @else
+                            <i class="fas fa-clipboard-list text-primary"></i>
+                        @endif
+                        Danh sách Thông báo của HHDN</h3>
                     @if($danhsach)
                     <table class="table table-border table-striped table-bodered">
                         <thead>

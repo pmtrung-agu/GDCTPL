@@ -1,5 +1,9 @@
 
 <?php $__env->startSection('title', $ds['ten']); ?>
+<?php $__env->startSection('css'); ?>
+  <link rel="stylesheet" type="text/css" href="<?php echo e(env('APP_URL')); ?>assets/frontend/libs/photobox/photobox.css" />
+  <link rel="stylesheet" type="text/css" href="<?php echo e(env('APP_URL')); ?>assets/frontend/libs/photobox/photobox.ie.css" />
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('body'); ?>
 <section class="th-blog-wrapper blog-details space-top space-extra-bottom">
     <div class="container">
@@ -19,6 +23,30 @@
             </div>
             <div class="share-links clearfix">
               <div class="row justify-content-between">
+                <?php if(isset($ds['photos']) && $ds['photos']): ?>
+                <div class="row" id="gallery">
+                  <div class="col-12">
+                    <h3 class="widget_title">Hình ảnh</h3>
+                  </div>
+                      <?php $__currentLoopData = $ds['photos']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <div class="col-12 col-md-3" style="padding:10px;">
+                        <a href="<?php echo e(env('APP_URL')); ?>storage/images/origin/<?php echo e($p['aliasname']); ?>">
+                          <img src="<?php echo e(env('APP_URL')); ?>storage/images/thumb_360x200/<?php echo e($p['aliasname']); ?>" title="<?php echo e($p['title']); ?>" style="width:150px;">
+                        </a>
+                      </div>
+                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  </div>
+                <?php endif; ?>
+                <?php if(isset($ds['attachments']) && $ds['attachments']): ?>
+                <div class="widget widget_tag_cloud">
+                    <h3 class="widget_title">Đính kèm</h3>
+                    <div class="tagcloud">
+                      <?php $__currentLoopData = $ds['attachments']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kk => $dk): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <a href="<?php echo e(env('APP_URL')); ?>thong-tin/tai-ve/<?php echo e($ds['_id']); ?>/<?php echo e($kk); ?>"><i class="fa fa-file"></i> <?php echo e($dk['title']); ?></a>
+                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </div>
+                  </div>
+                <?php endif; ?>
                 <?php if($ds['tags']): ?>
                 <div class="col-sm-auto">
                   <span class="share-links-title">Tags:</span>
@@ -42,16 +70,6 @@
                     </li>
                   </ul>
                 </div>
-                <?php if(isset($ds['attachments']) && $ds['attachments']): ?>
-                <div class="widget widget_tag_cloud">
-                    <h3 class="widget_title">Đính kèm</h3>
-                    <div class="tagcloud">
-                      <?php $__currentLoopData = $ds['attachments']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kk => $dk): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <a href="<?php echo e(env('APP_URL')); ?>thong-tin/tai-ve/<?php echo e($ds['_id']); ?>/<?php echo e($kk); ?>"><i class="fa fa-file"></i> <?php echo e($dk['title']); ?></a>
-                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </div>
-                  </div>
-                <?php endif; ?>
               </div>
           </div>
         </div>
@@ -106,5 +124,14 @@
       </div>
     </div>
   </section>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js'); ?>
+<script src="<?php echo e(env('APP_URL')); ?>assets/frontend/libs/photobox/jquery.photobox.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#gallery').photobox('a',{ time:0 });
+  });
+</script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('Frontend.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Lara_Projects\ABAPortal\resources\views/Frontend/thong-tin-chi-tiet.blade.php ENDPATH**/ ?>

@@ -1,7 +1,9 @@
 @extends('Admin.layout')
 @section('title', 'Kết nối giao thương')
 @section('css')
-<link href="{{ env('APP_URL') }}assets/backend/libs/jquery-toast/jquery.toast.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ env('APP_URL') }}assets/frontend/libs/photobox/photobox.css" />
+    <link rel="stylesheet" type="text/css" href="{{ env('APP_URL') }}assets/frontend/libs/photobox/photobox.ie.css" />
+    <link href="{{ env('APP_URL') }}assets/backend/libs/jquery-toast/jquery.toast.min.css" rel="stylesheet" type="text/css" />
 @endsection
 @section('body')
 <div class="wrapper">
@@ -15,8 +17,8 @@
                         <thead>
                             <tr>
                                 <th>Nhu cầu</th>
-                                <th>Tình trạng</th>
                                 @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
+                                <th>Tình trạng</th>
                                 <th>#</th>
                                 @endif
                             </tr>
@@ -31,6 +33,7 @@
                                 <td>
                                     <a href="{{ env('APP_URL') }}admin/doanh-nghiep/ket-noi-giao-thuong/chi-tiet/{{ $ds['_id'] }}" data-toggle="modal" data-target="#ChiTietModal" class="chi-tiet">[{{ $nn['ten'] }}] - {{ $dn['fullname'] }} - {{ $ds['nhu_cau'] }} </a>
                                 </td>
+                                @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
                                 <td class="text-center" style="vertical-align: middle;">
                                     @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
                                     <a href="{{ env('APP_URL') }}admin/doanh-nghiep/ket-noi-giao-thuong/tinh-trang/{{ $ds['_id'] }}" class="tinh-trang">
@@ -44,10 +47,9 @@
                                         @endif
                                     @endif
                                 </td>
-                                @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
-                                    <td class="text-center">
-                                        <a href="{{ env('APP_URL') }}admin/doanh-nghiep/ket-noi-giao-thuong/delete/{{ $ds['_id'] }}" class="text-danger" onclick="return confirm('Chắc chắn xóa?')"><i class="fa fa-trash"></i></a>
-                                    </td>
+                                <td class="text-center">
+                                    <a href="{{ env('APP_URL') }}admin/doanh-nghiep/ket-noi-giao-thuong/delete/{{ $ds['_id'] }}" class="text-danger" onclick="return confirm('Chắc chắn xóa?')"><i class="fa fa-trash"></i></a>
+                                </td>
                                 @endif
                             </tr>
                             @endforeach
@@ -77,6 +79,7 @@
 @endsection
 @section('js')
 <script src="{{ env('APP_URL') }}assets/backend/libs/jquery-toast/jquery.toast.min.js"></script>
+<script src="{{ env('APP_URL') }}assets/frontend/libs/photobox/jquery.photobox.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         $(".tinh-trang").click(function(e){
@@ -90,7 +93,7 @@
         $(".chi-tiet").click(function(){
             var _href = $(this).attr("href");
             $.get(_href, function(html){
-                $("#ChiTietHTML").html(html);
+                $("#ChiTietHTML").html(html);$('#gallery').photobox('a',{ time:0 });
             });
         });
         @if(Session::get('msg') != null && Session::get('msg'))

@@ -21,7 +21,12 @@ class KetNoiGiaoThuongController extends Controller
     //
 
     function list(Request $request) {
-        $danhsach = KetNoiGiaoThuong::paginate(30);
+        if(UserController::is_roles('Admin,Manager,ABA')) {
+            $danhsach = KetNoiGiaoThuong::paginate(30);
+        } else {
+            $danhsach = KetNoiGiaoThuong::where('tinh_trang','=', 1)->paginate(30);
+        }
+        
         return view('Admin.KetNoiGiaoThuong.list')->with(compact('danhsach'));
     }
 

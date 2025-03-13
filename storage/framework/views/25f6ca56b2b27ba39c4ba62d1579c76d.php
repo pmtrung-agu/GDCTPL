@@ -1,12 +1,21 @@
 
 <?php $__env->startSection('title', 'Kết nối giao thương'); ?>
+<?php $__env->startSection('css'); ?>
+<link href="<?php echo e(env('APP_URL')); ?>assets/backend/libs/jquery-toast/jquery.toast.min.css" rel="stylesheet" type="text/css" />
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('body'); ?>
 <div class="wrapper">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card-box">
-                    <h3><a href="<?php echo e(env('APP_URL')); ?>admin/hiep-hoi-doanh-nghiep/thong-bao/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm mới </a> Danh sách Thông báo của HHDN</h3>
+                    <h3>
+                        <?php if(App\Http\Controllers\UserController::is_roles('Admin,ABA,Manager')): ?>
+                            <a href="<?php echo e(env('APP_URL')); ?>admin/hiep-hoi-doanh-nghiep/thong-bao/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm mới </a>
+                        <?php else: ?>
+                            <i class="fas fa-clipboard-list text-primary"></i>
+                        <?php endif; ?>
+                        Danh sách Thông báo của HHDN</h3>
                     <?php if($danhsach): ?>
                     <table class="table table-border table-striped table-bodered">
                         <thead>
@@ -46,8 +55,18 @@
 </div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
-
-
+<script src="<?php echo e(env('APP_URL')); ?>assets/backend/libs/jquery-toast/jquery.toast.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        <?php if(Session::get('msg') != null && Session::get('msg')): ?>
+            $.toast({
+                heading:"Thông báo",
+                text:"<?php echo e(Session::get('msg')); ?>",
+                loaderBg:"#3b98b5",icon:"info", hideAfter:3e3,stack:1,position:"top-right"
+            });
+        <?php endif; ?>
+    });
+</script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('Admin.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Lara_Projects\ABAPortal\resources\views/Admin/ThongBao/list.blade.php ENDPATH**/ ?>

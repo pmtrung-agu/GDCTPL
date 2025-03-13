@@ -10,7 +10,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="card-box">
-                    <h2><a href="{{ env('APP_URL') }}admin/hiep-hoi-doanh-nghiep/thong-bao" class="btn btn-primary btn-sm"><i class="fa fa-reply-all"></i> Trở về</a> {{ $ds['tieu_de'] }}</h2>
+                    <h2>
+                        @if(App\Http\Controllers\UserController::is_roles('Admin,ABA,Manager')) <a href="{{ env('APP_URL') }}admin/hiep-hoi-doanh-nghiep/thong-bao" class="btn btn-primary btn-sm"><i class="fa fa-reply-all"></i> Trở về</a>
+                        @else <a href="{{ env('APP_URL') }}admin/doanh-nghiep/thong-bao-hhdn" class="btn btn-primary btn-sm"><i class="fa fa-reply-all"></i> Trở về</a>
+                        @endif
+                        {{ $ds['tieu_de'] }}
+                    </h2>
                     <div class="lead">
                         {!! $ds['noi_dung'] !!}
                     </div>

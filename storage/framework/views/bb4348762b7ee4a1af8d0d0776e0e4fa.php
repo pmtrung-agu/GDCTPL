@@ -1,5 +1,10 @@
 
 <?php $__env->startSection('title', 'Kết nối giao thương'); ?>
+<?php $__env->startSection('css'); ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo e(env('APP_URL')); ?>assets/frontend/libs/photobox/photobox.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo e(env('APP_URL')); ?>assets/frontend/libs/photobox/photobox.ie.css" />
+    <link href="<?php echo e(env('APP_URL')); ?>assets/backend/libs/jquery-toast/jquery.toast.min.css" rel="stylesheet" type="text/css" />
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('body'); ?>
 <div class="wrapper">
     <div class="container-fluid">
@@ -12,8 +17,8 @@
                         <thead>
                             <tr>
                                 <th>Nhu cầu</th>
-                                <th>Tình trạng</th>
                                 <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                <th>Tình trạng</th>
                                 <th>#</th>
                                 <?php endif; ?>
                             </tr>
@@ -28,6 +33,7 @@
                                 <td>
                                     <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/ket-noi-giao-thuong/chi-tiet/<?php echo e($ds['_id']); ?>" data-toggle="modal" data-target="#ChiTietModal" class="chi-tiet">[<?php echo e($nn['ten']); ?>] - <?php echo e($dn['fullname']); ?> - <?php echo e($ds['nhu_cau']); ?> </a>
                                 </td>
+                                <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
                                 <td class="text-center" style="vertical-align: middle;">
                                     <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
                                     <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/ket-noi-giao-thuong/tinh-trang/<?php echo e($ds['_id']); ?>" class="tinh-trang">
@@ -41,10 +47,9 @@
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 </td>
-                                <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
-                                    <td class="text-center">
-                                        <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/ket-noi-giao-thuong/delete/<?php echo e($ds['_id']); ?>" class="text-danger" onclick="return confirm('Chắc chắn xóa?')"><i class="fa fa-trash"></i></a>
-                                    </td>
+                                <td class="text-center">
+                                    <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/ket-noi-giao-thuong/delete/<?php echo e($ds['_id']); ?>" class="text-danger" onclick="return confirm('Chắc chắn xóa?')"><i class="fa fa-trash"></i></a>
+                                </td>
                                 <?php endif; ?>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -73,6 +78,8 @@
 </div><!-- /.modal -->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
+<script src="<?php echo e(env('APP_URL')); ?>assets/backend/libs/jquery-toast/jquery.toast.min.js"></script>
+<script src="<?php echo e(env('APP_URL')); ?>assets/frontend/libs/photobox/jquery.photobox.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         $(".tinh-trang").click(function(e){
@@ -86,9 +93,16 @@
         $(".chi-tiet").click(function(){
             var _href = $(this).attr("href");
             $.get(_href, function(html){
-                $("#ChiTietHTML").html(html);
+                $("#ChiTietHTML").html(html);$('#gallery').photobox('a',{ time:0 });
             });
         });
+        <?php if(Session::get('msg') != null && Session::get('msg')): ?>
+            $.toast({
+                heading:"Thông báo",
+                text:"<?php echo e(Session::get('msg')); ?>",
+                loaderBg:"#3b98b5",icon:"info", hideAfter:3e3,stack:1,position:"top-right"
+            });
+        <?php endif; ?>
     });
 </script>
 

@@ -89,11 +89,28 @@ class DeXuatKienNghiController extends Controller
     function update(Request $request) {
         $data = $request->all();
         $id_user = $request->session()->get('user._id');
-        $noi_dung =  array('noi_dung' => $data['noi_dung'], 'id_user' =>ObjectController::ObjectId($id_user));
+        $arr_photo = array();
+        if(isset($data['hinhanh_aliasname'])){
+          foreach($data['hinhanh_aliasname'] as $key => $value){
+            array_push($arr_photo, array('aliasname' => $value, 'filename' => $data['hinhanh_filename'][$key], 'title' => $data['hinhanh_title'][$key]));
+          }
+        }
+
+        $arr_dinhkem = array();
+        if(isset($data['file_aliasname']) && $data['file_aliasname']){
+            foreach($data['file_aliasname'] as $k => $v){
+              array_push($arr_dinhkem, array('aliasname' => $v, 'filename' => $data['file_filename'][$k], 'title' => $data['file_title'][$k], 'size' => $data['file_size'][$k], 'type' => $data['file_type'][$k]));
+            }
+        }
+        
+        $noi_dung = array(
+            array('noi_dung' => $data['noi_dung'], 'photos' => $arr_photo ,'attachments' => $arr_dinhkem, 'id_user' =>ObjectController::ObjectId($id_user))
+        );
+        
         $id = ObjectController::ObjectId($data['id']);
         DeXuatKienNghi::where('_id','=',$id)->push('noi_dung', $noi_dung);
         Session::flash('msg', 'Cập nhật thành công');
-        return redirect(env('APP_URL') .'admin/doanh-nghiep/nhu-cau-chuyen-doi-so/chi-tiet/'.$data['id']);
+        return redirect(env('APP_URL') .'admin/doanh-nghiep/de-xuat-kien-nghi/chi-tiet/'.$data['id']);
     }
 
     function download(Request $request, $id='', $key = 0) {

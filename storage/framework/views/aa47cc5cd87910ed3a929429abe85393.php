@@ -10,9 +10,15 @@
         <div class="row">
             <div class="col-12">
                 <div class="card-box">
-                    <h2><a href="<?php echo e(env('APP_URL')); ?>admin/hiep-hoi-doanh-nghiep/thong-bao" class="btn btn-primary btn-sm"><i class="fa fa-reply-all"></i> Trở về</a> <?php echo e($ds['tieu_de']); ?></h2>
+                    <h2>
+                        <?php if(App\Http\Controllers\UserController::is_roles('Admin,ABA,Manager')): ?> <a href="<?php echo e(env('APP_URL')); ?>admin/hiep-hoi-doanh-nghiep/thong-bao" class="btn btn-primary btn-sm"><i class="fa fa-reply-all"></i> Trở về</a>
+                        <?php else: ?> <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/thong-bao-hhdn" class="btn btn-primary btn-sm"><i class="fa fa-reply-all"></i> Trở về</a>
+                        <?php endif; ?>
+                        <?php echo e($ds['tieu_de']); ?>
+
+                    </h2>
                     <div class="lead">
-                    <?php echo $ds['noi_dung']; ?>
+                        <?php echo $ds['noi_dung']; ?>
 
                     </div>
                     <?php if($ds['photos']): ?>

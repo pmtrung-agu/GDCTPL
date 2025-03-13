@@ -29,7 +29,8 @@ return  [
                 array('title' => 'Gởi câu hỏi đến Chuyên Gia CĐS', 'path' => 'tu-van-chuyen-doi-so'),
                 array('title' => 'Gởi nhu cầu chuyển đổi số', 'path' => 'nhu-cau-chuyen-doi-so'),
                 array('title' => 'Kết nối giao thương', 'path' => 'ket-noi-giao-thuong'),
-                array('title' => 'Đề xuất - Kiến nghị', 'path' => 'de-xuat-kien-nghi')
+                array('title' => 'Đề xuất - Kiến nghị', 'path' => 'de-xuat-kien-nghi'),
+                array('title' => 'Thông báo của HHDN', 'path' => 'thong-bao-hhdn')
             ),
             'role'      => 'Admin,Manager,Business,ABA'
         ),
