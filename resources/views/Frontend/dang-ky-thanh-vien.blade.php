@@ -7,7 +7,7 @@
       <div class="row gy-4 flex-row-reverse">
         <div class="col-lg-6 col-xl-7">
             
-        <form action="{{ env('APP_URL') }}dang-ky-thanh-vien-submit" method="POST" class="contact-form2 input-smoke ajax-contact">
+        <form action="{{ env('APP_URL') }}doanh-nghiep/dang-ky-thanh-vien-submit" method="POST" class="input-smoke">
             {{ csrf_field() }}
             <div class="title-area mt-n2 mb-40">
                 <h3 class="sec-title">Đăng ký thành viên</h3>
@@ -30,8 +30,7 @@
               <div class="form-btn col-12">
                 <button type="submit" name="submit" value="Ok" class="th-btn">Đăng ký</button>
               </div>
-            </div>
-            
+            </div>            
           </form>
         </div>
         <div class="col-lg-6 col-xl-5">

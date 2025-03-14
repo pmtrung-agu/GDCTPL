@@ -41,6 +41,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if(App\Http\Controllers\UserController::is_roles('Business'))
+                                @php
+                                    $u = App\Models\User::find(Session::get('user._id'));
+                                    $dn = App\Models\DoanhNghiep::find($u['id_doanh_nghiep']);
+                                @endphp
+                                <tr class="bg-warning">
+                                    <td>#</td>
+                                    <td>{{ $dn['ten'] }}</td>
+                                    <td>{{ $dn['nguoidaidien'] }}</td>
+                                    <td>{{ $dn['masothue'] }}</td>
+                                    <td>{{ $dn['dienthoai'] }}</td>
+                                    <td><a href="{{ env('APP_URL') }}admin/doanh-nghiep/edit/{{ $dn['_id'] }}"><i class="fas fa-pencil-alt"></i></a></td>
+                                </tr>
+                            @endif
                             @php $stt = 1; $page=Request::input('page') ? Request::input('page') : 1;$count = 30;// count($danhsach);  @endphp
                             @foreach($danhsach as $ds)
                                 <tr>
@@ -57,7 +71,6 @@
                                     </a>
                                    </td>
                                    @endif
-
                                    <td class="text-center" style="width:80px;">
                                     @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
                                         @if(App\Http\Controllers\UserController::is_roles('Admin') &&

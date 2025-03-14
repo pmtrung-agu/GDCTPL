@@ -41,6 +41,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php if(App\Http\Controllers\UserController::is_roles('Business')): ?>
+                                <?php
+                                    $u = App\Models\User::find(Session::get('user._id'));
+                                    $dn = App\Models\DoanhNghiep::find($u['id_doanh_nghiep']);
+                                ?>
+                                <tr class="bg-warning">
+                                    <td>#</td>
+                                    <td><?php echo e($dn['ten']); ?></td>
+                                    <td><?php echo e($dn['nguoidaidien']); ?></td>
+                                    <td><?php echo e($dn['masothue']); ?></td>
+                                    <td><?php echo e($dn['dienthoai']); ?></td>
+                                    <td><a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/edit/<?php echo e($dn['_id']); ?>"><i class="fas fa-pencil-alt"></i></a></td>
+                                </tr>
+                            <?php endif; ?>
                             <?php $stt = 1; $page=Request::input('page') ? Request::input('page') : 1;$count = 30;// count($danhsach);  ?>
                             <?php $__currentLoopData = $danhsach; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ds): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
@@ -57,7 +71,6 @@
                                     </a>
                                    </td>
                                    <?php endif; ?>
-
                                    <td class="text-center" style="width:80px;">
                                     <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
                                         <?php if(App\Http\Controllers\UserController::is_roles('Admin') &&

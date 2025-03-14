@@ -49,6 +49,8 @@ Route::get('doanh-nghiep/thong-bao-cua-hhdn/tai-ve/{id}/{key}', [ThongBaoControl
 
 Route::get('doanh-nghiep/goi-yeu-cau', [FrontendController::class, 'goi_yeu_cau']);
 Route::get('doanh-nghiep/dang-ky-thanh-vien', [FrontendController::class, 'dang_ky_thanh_vien']);
+Route::post('doanh-nghiep/dang-ky-thanh-vien-submit', [FrontendController::class, 'dang_ky_thanh_vien_submit']);
+
 Route::get('doanh-nghiep/de-xuat-kien-nghi',function(){
     return redirect(env('APP_URL') . 'admin/doanh-nghiep/de-xuat-kien-nghi/add');
 });

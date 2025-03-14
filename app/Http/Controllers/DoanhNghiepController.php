@@ -28,9 +28,9 @@ class DoanhNghiepController extends Controller
         $so_luong = DoanhNghiep::count();
         $q = $request->input('q');
         if($q) {
-            $danhsach = DoanhNghiep::where('ten', 'regex', "/".$q."/i")->paginate(30);
+            $danhsach = DoanhNghiep::where('ten', 'regex', "/".$q."/i")->where('trangthai','=',1)->paginate(30);
         } else {
-            $danhsach = DoanhNghiep::paginate(30);
+            $danhsach = DoanhNghiep::where('trangthai', '=', 1)->paginate(30);
         }
         return view('Admin.DoanhNghiep.list')->with(compact('danhsach', 'so_luong','q'));
     }

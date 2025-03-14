@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 use App\Models\DMDiaChi;
 use App\Models\DMThongTin;
 use App\Models\DMLinhVuc;
@@ -19,6 +21,8 @@ use App\Models\SanPham;
 use App\Models\DoanhNghiep;
 use App\Models\KetNoiGiaoThuong;
 use App\Models\ThongBao;
+use Illuminate\Support\Facades\Mail;
+
 class FrontendController extends Controller
 {
     //
@@ -165,4 +169,65 @@ class FrontendController extends Controller
         return view('Frontend.dang-ky-thanh-vien');
     }
 
+    function dang_ky_thanh_vien_submit(Request $request) {
+        $data = $request->all();
+        
+        /*$check = DoanhNghiep::where('ten', '=', $data['ten'])
+                ->orWhere('dienthoai', '=', $data['dien_thoai'])
+                ->orWhere('email', '=', $data['email'])
+                ->first();*/
+        //$check1 = User::where('username','=',$data['dien_thoai'])->orWhere('username','=',$data['email'])->orWhere('phone','=',$data['dien_thoai'])->first();
+        $blnRegis = false;
+        //if(!$check && !$check1) {
+            /*$id = ObjectController::Id();
+            $db = new DoanhNghiep();
+            $db->_id = $id;
+            $db->ten = $data['ten'];
+            $db->nguoidaidien = '';
+            $db->slug = Str::slug($data['ten']);
+            $db->mota = '';
+            $db->masothue = '';
+            $db->email = $data['email'];
+            $db->diachi = array(89,883,"","");
+            $db->dienthoai = $data['dien_thoai'];
+            $db->website = '';
+            $db->trangthai =  1;
+            $db->hoivienhiephoi = 0;
+            $db->ngaygianhaphiephoi = '';
+            $db->ngayduyetdoanhnghiep = '';
+            $db->nganhnghe_id = '';
+            $db->ngayhuyhoivien = '';
+            $db->photos = array();
+            $db->attachments = array();
+            $db->save();
+
+            //TAO TAI KHOAN NGUOI DUNG
+            $u = new User();
+            $u->fullname = $data['ten'];
+            $u->username = $data['dien_thoai'];
+            $u->password = Hash::make($data['dien_thoai']);
+            $u->roles = ['Business'];
+            $u->phone = $data['dien_thoai'];
+            $u->address = array();
+            $u->active = 1;
+            $u->ghi_chu = '';        
+            $u->photos = [];
+            $u->id_doanh_nghiep = $id;
+            $u->id_user  = '';
+            $u->save();*/
+            
+            //Goi Email
+            $to_name = 'HIỆP HỘI DOANH NGHIỆP TỈNH AN GIANG';
+            $from_email = env('MAIL_FROM_ADDRESS');
+            $email_list = [ $data['email'] ];
+            $ds = array('data' => $data);
+            Mail::send('Frontend.dang-ky-thanh-vien-email', $ds, function($message) use ($email_list) {
+                $message->to($email_list)->subject('ĐĂNG KÝ THÀNH VIÊN THÀNH CÔNG');
+                $message->from('trungminhphan@gmail.com', 'HIỆP HỘI DOANH NGHIỆP TỈNH AN GIANG');
+            });
+            $blnRegis = true;
+        //}
+        
+        return view('Frontend.dang-ky-thanh-vien-submit')->with(compact('blnRegis'));
+    }
 }
