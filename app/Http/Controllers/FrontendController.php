@@ -53,9 +53,14 @@ class FrontendController extends Controller
     }
 
     function san_pham(Request $request, $taxonomy = '') {
-        $danhsach = SanPham::paginate(30);
         $tax = DMSanPham::where('slug', '=', $taxonomy)->first();
-        return view('Frontend.san-pham')->with(compact('danhsach', 'tax'));
+        if($taxonomy) {
+            $danhsach = SanPham::where('status','=', 1)->where('id_product_category',$tax['_id'])->paginate(30);
+        } else {
+            $danhsach = SanPham::where('status','=', 1)->paginate(30);
+        }
+        
+        return view('Frontend.san-pham')->with(compact('danhsach', 'tax', 'taxonomy'));
     }
     function san_pham_chi_tiet(Request $request, $slug = '') {
         $ds = SanPham::where('slug', '=', $slug)->first();
@@ -154,6 +159,10 @@ class FrontendController extends Controller
         }
         
         return view('Frontend.thong-bao-hhdn')->with(compact('danhsach', 'q'));
+    }
+
+    function dang_ky_thanh_vien() {
+        return view('Frontend.dang-ky-thanh-vien');
     }
 
 }

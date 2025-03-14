@@ -48,6 +48,10 @@ Route::get('doanh-nghiep/thong-bao-cua-hhdn', [FrontendController::class, 'thong
 Route::get('doanh-nghiep/thong-bao-cua-hhdn/tai-ve/{id}/{key}', [ThongBaoController::class, 'download']);
 
 Route::get('doanh-nghiep/goi-yeu-cau', [FrontendController::class, 'goi_yeu_cau']);
+Route::get('doanh-nghiep/dang-ky-thanh-vien', [FrontendController::class, 'dang_ky_thanh_vien']);
+Route::get('doanh-nghiep/de-xuat-kien-nghi',function(){
+    return redirect(env('APP_URL') . 'admin/doanh-nghiep/de-xuat-kien-nghi/add');
+});
 Route::get('doanh-nghiep/tu-van-chuyen-doi-so', [FrontendController::class, 'tu_van_chuyen_doi_so']);
 Route::get('thong-tin/tai-ve/{id}/{key}', [ThongTinController::class, 'download']);
 Route::get('tai-lieu/tai-ve/{id}/{key}', [TaiLieuController::class, 'download']);

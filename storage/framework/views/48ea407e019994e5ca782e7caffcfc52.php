@@ -154,5 +154,4 @@
         <!-- App js -->
         <script src="<?php echo e(env('APP_URL')); ?>assets/backend/js/app.min.js"></script>
     </body>
-</html>
-<?php /**PATH E:\Lara_Projects\ABAPortal\resources\views/Admin/layout.blade.php ENDPATH**/ ?>
+</html><?php /**PATH E:\Lara_Projects\ABAPortal\resources\views/Admin/layout.blade.php ENDPATH**/ ?>

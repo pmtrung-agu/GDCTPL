@@ -31,7 +31,7 @@
       <h4 class="color-scheme-wrap-title">
         <i class="fab fa-staylinked me-2"></i>Liên kết
       </h4>
-      <a href="https://aitvplag.phoenixcompany.vn/chat" target="_blank" class="th-btn text-center w-100"> <i class="fas fa-robot me-2"></i> Chatbot Ollama </a>
+      <a href="https://aitvcdsag.phoenixcompany.vn/chat" target="_blank" class="th-btn text-center w-100"> <i class="fas fa-robot me-2"></i> Chatbot Ollama </a>
       <hr />
       <a href="https://ai.cdsdnag.com" class="th-btn text-center w-100" target="_blank"> <i class="fas fa-robot me-2"></i> Chatbot OpenAI </a>
     </div>
@@ -67,7 +67,7 @@
             <ul>
                 <?php $__currentLoopData = $menu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k1 => $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <li class="menu-item-has -children">
-                    <a href="<?php echo e(env('APP_URL')); ?>"><?php echo e($m['title']); ?></a>
+                    <a href="<?php echo e(env('APP_URL')); ?>" onclick="return false;"><?php echo e($m['title']); ?></a>
                     <?php if($k1 == 0 || $k1 == 1 || $k1 ==2): ?>
                             <?php if($k1 == 0): ?> <?php $childs = App\Models\DMThongTin::All(); ?>
                             <?php elseif($k1 == 1): ?> <?php $childs = App\Models\DMSanPham::All(); ?> 

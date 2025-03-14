@@ -31,7 +31,7 @@
       <h4 class="color-scheme-wrap-title">
         <i class="fab fa-staylinked me-2"></i>Liên kết
       </h4>
-      <a href="https://aitvplag.phoenixcompany.vn/chat" target="_blank" class="th-btn text-center w-100"> <i class="fas fa-robot me-2"></i> Chatbot Ollama </a>
+      <a href="https://aitvcdsag.phoenixcompany.vn/chat" target="_blank" class="th-btn text-center w-100"> <i class="fas fa-robot me-2"></i> Chatbot Ollama </a>
       <hr />
       <a href="https://ai.cdsdnag.com" class="th-btn text-center w-100" target="_blank"> <i class="fas fa-robot me-2"></i> Chatbot OpenAI </a>
     </div>
@@ -67,7 +67,7 @@
             <ul>
                 @foreach($menu as $k1 => $m)
                 <li class="menu-item-has -children">
-                    <a href="{{ env('APP_URL') }}">{{ $m['title'] }}</a>
+                    <a href="{{ env('APP_URL') }}" onclick="return false;">{{ $m['title'] }}</a>
                     @if($k1 == 0 || $k1 == 1 || $k1 ==2)
                             @if($k1 == 0) @php $childs = App\Models\DMThongTin::All(); @endphp
                             @elseif($k1 == 1) @php $childs = App\Models\DMSanPham::All(); @endphp 

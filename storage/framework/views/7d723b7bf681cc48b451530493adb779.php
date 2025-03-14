@@ -1,5 +1,8 @@
 
 <?php $__env->startSection('title', 'Tư vấn chuyển đổi số'); ?>
+<?php $__env->startSection('css'); ?>
+<link href="<?php echo e(env('APP_URL')); ?>assets/backend/libs/jquery-toast/jquery.toast.min.css" rel="stylesheet" type="text/css" />
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('body'); ?>
 <div class="wrapper">
     <div class="container-fluid">
@@ -46,6 +49,7 @@
 </div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
+<script src="<?php echo e(env('APP_URL')); ?>assets/backend/libs/jquery-toast/jquery.toast.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         $(".tinh-trang").click(function(e){
@@ -56,6 +60,13 @@
             });
             e.preventDefault();
         });
+        <?php if(Session::get('msg') != null && Session::get('msg')): ?>
+            $.toast({
+                heading:"Thông báo",
+                text:"<?php echo e(Session::get('msg')); ?>",
+                loaderBg:"#3b98b5",icon:"info", hideAfter:3e3,stack:1,position:"top-right"
+            });
+        <?php endif; ?>
     });
 </script>
 

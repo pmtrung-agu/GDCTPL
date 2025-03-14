@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card-box">
-                    <h3><a href="{{ env('APP_URL') }}admin/doanh-nghiep/tu-van-chuyen-doi-so/add" class="btn btn-primary"><i class="fa fa-plus"></i> Thêm mới </a> Danh sách câu hỏi</h3>
+                    <h3><a href="{{ env('APP_URL') }}admin/doanh-nghiep/tu-van-chuyen-doi-so/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm mới </a> Danh sách câu hỏi</h3>
                     @if($danhsach)
                     <table class="table table-border table-striped table-bodered">
                         <thead>
@@ -47,8 +47,8 @@
 </div>
 @endsection
 @section('js')
+<script src="{{ env('APP_URL') }}assets/backend/libs/jquery-toast/jquery.toast.min.js"></script>
 <script type="text/javascript">
-    <script src="{{ env('APP_URL') }}assets/backend/libs/jquery-toast/jquery.toast.min.js"></script>
     $(document).ready(function(){
         $(".tinh-trang").click(function(e){
             var _link = $(this).attr("href");

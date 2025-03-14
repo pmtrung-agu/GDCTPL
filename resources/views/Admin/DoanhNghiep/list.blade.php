@@ -87,8 +87,8 @@
 </div>
 @endsection
 @section('js')
+<script src="{{ env('APP_URL') }}assets/backend/libs/jquery-toast/jquery.toast.min.js"></script>
 <script type="text/javascript">
-    <script src="{{ env('APP_URL') }}assets/backend/libs/jquery-toast/jquery.toast.min.js"></script>
     $(document).ready(function(){
         $(".set-hoi-vien").click(function(e){
             var _link = $(this).attr("href");
@@ -115,5 +115,4 @@
         @endif
     });
 </script>
-
 @endsection
