@@ -47,7 +47,7 @@
                     <h6 class="about-info_title">{{ $ds['nguoidaidien'] }}</h6>
                   </div>
                 </div>
-                <div class="about-info">
+                <div class="about-info" style="padding:0px;">
                   <div class="about-info_icon">
                     <i class="fas fa-envelope"></i>
                   </div>
@@ -69,7 +69,7 @@
                     </h6>
                   </div>
                 </div>
-                <div class="about-info">
+                <div class="about-info" style="padding:0px;">
                   <div class="about-info_icon">
                     <i class="fas fa-fax"></i>
                   </div>
@@ -87,4 +87,18 @@
       </div>
     </div>
 </section>
+@if($ds['mota'])
+<section style="margin-top:-70px;margin-bottom:20px;">
+  <div class="container">
+    <div class="team-details">
+      <div class="row">
+        <div class="col-12 col-md-12">
+          <h3 class="team-about_title">Giới thiệu</h3>
+          {!! $ds['mota'] !!}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+@endif
 @endsection

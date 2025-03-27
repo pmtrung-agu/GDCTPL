@@ -24,8 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        
-                            @foreach($danhsach as $ds)
+                        @foreach($danhsach as $ds)
                             @php
                                 $dn = App\Models\User::find($ds['id_user']);
                                 $nn = App\Models\DMNganhNghe::find($ds['nganhnghe_id']);

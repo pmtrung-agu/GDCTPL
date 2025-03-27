@@ -28,10 +28,6 @@
                         </thead>
                         <tbody>
                             <?php $__currentLoopData = $danhsach; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ds): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <?php
-                            $dn = App\Models\User::find($ds['id_user']);
-                            $nn = App\Models\DMNganhNghe::find($ds['nganhnghe_id']);
-                            ?>
                             <tr>
                                 <td>
                                     <a href="<?php echo e(env('APP_URL')); ?>admin/hiep-hoi-doanh-nghiep/thong-bao/chi-tiet/<?php echo e($ds['_id']); ?>" class="chi-tiet"><?php echo e($ds['tieu_de']); ?> </a>

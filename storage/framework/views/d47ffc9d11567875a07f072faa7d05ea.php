@@ -14,6 +14,291 @@ use App\Models\CDSKhaoSat;
 <div class="wrapper">
     <div class="container-fluid">
         <div class="row">
+            <?php if(UserController::is_roles('Admin,ABA,Manager')): ?>
+            <div class="col-12 col-md-12">
+                <div class="card-box">                    
+                    <h3><i class="fas fa-reply-all text-primary"></i></a> Thông tin mới nhất</h3>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a href="#home" data-toggle="tab" aria-expanded="false" class="nav-link active">
+                               <i class="fe-monitor"></i><span class="d-none d-sm-inline-block ml-2">Đề xuất Kiến nghị</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#profile" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                <i class="fe-user"></i> <span class="d-none d-sm-inline-block ml-2">Kết nối giao thương</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#messages" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="fe-mail"></i> <span class="d-none d-sm-inline-block ml-2">Câu hỏi Tư vấn CĐS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#settings" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="fe-settings"></i> <span class="d-none d-sm-inline-block ml-2">Nhu cầu CĐS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#ThongBao" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="fas fa-basketball-ball"></i> <span class="d-none d-sm-inline-block ml-2">Thông Báo</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#DoanhNghiep" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class=" fas fa-user-tie"></i> <span class="d-none d-sm-inline-block ml-2">Doanh nghiệp mới</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane" id="DoanhNghiep">
+                            <?php $doanhnghiep = App\Models\DoanhNghiep::orderBy('updated_at', 'desc')->take(9)->get(); ?>
+                            <?php if($doanhnghiep): ?>
+                            <table class="table table-border table-striped table-bodered">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tên Doanh nghiệp</th>
+                                        <th>Người đại diện</th>
+                                        <th>Mã số thuế</th>
+                                        <th>Điện thoại</th>
+                                        <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                        <th>Thành viên HHDN</th>
+                                        <?php endif; ?>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $__currentLoopData = $doanhnghiep; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $ddnn): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <tr>
+                                           <td><?php echo e($key+1); ?></td> 
+                                           <td><a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/chi-tiet/<?php echo e($ddnn['_id']); ?>"><?php echo e($ddnn['ten']); ?></a></td>
+                                           <td><?php echo e($ddnn['nguoidaidien']); ?></td>
+                                           <td><?php echo e($ddnn['masothue']); ?></td>
+                                           <td><?php echo e($ddnn['dienthoai']); ?></td>
+                                           <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                           <td class="text-center">
+                                            <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/hoi-vien/<?php echo e($ddnn['_id']); ?>" class="set-hoi-vien">
+                                                <?php if($ddnn['hoivienhiephoi']): ?> <i class="fas fa-user-check text-success"></i>
+                                                <?php else: ?> <i class="fas fa-user-times text-muted"></i> <?php endif; ?>
+                                            </a>
+                                           </td>
+                                           <?php endif; ?>
+                                           <td class="text-center" style="width:80px;">
+                                            <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                                <?php if(App\Http\Controllers\UserController::is_roles('Admin') &&
+                                                    App\Http\Controllers\UserController::checkDoanhNghiep($ddnn['_id']) == false): ?>
+                                                    <?php if($ddnn['dienthoai']): ?>
+                                                        <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/tao-tai-khoan/<?php echo e($ddnn['_id']); ?>" class="tao-tai-khoan" title="Tạo tài khoản cho Doanh nghiệp"><i class="fas fa-user text-muted"></i></a>
+                                                    <?php endif; ?>
+                                                <?php else: ?> 
+                                                <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/tao-tai-khoan/<?php echo e($ddnn['_id']); ?>" class="tao-tai-khoan" title="Đã tạo tài khoản cho Doanh nghiệp"><i class="fas fa-users text-danger"></i></a>
+                                                <?php endif; ?>
+                                                <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/delete/<?php echo e($ddnn['_id']); ?>" onclick="return confirm('Chắc chắn xóa?');" ><i class="fa fa-trash text-danger"></i></a>
+                                            <?php endif; ?>
+                                            <?php if((App\Http\Controllers\UserController::is_roles('Business') && $ddnn['_id'] == Session::get('user.id_doanh_nghiep')) || App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                                <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/edit/<?php echo e($ddnn['_id']); ?>"><i class="fas fa-pencil-alt"></i></a>
+                                            <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </tbody>
+                            </table>
+                            <?php endif; ?>
+                        </div>
+                        <div class="tab-pane show active" id="home">
+                            <?php $dexuatkiennghi = App\Models\DeXuatKienNghi::where('tinh_trang','=', 0)->orderBy('updated_at', 'desc')->take(9)->get(); ?>
+                            <?php if($dexuatkiennghi): ?>
+                                <table class="table table-border table-striped table-bodered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nội dung</th>
+                                            <th>Tình trạng</th>
+                                            <?php if(App\Http\Controllers\UserController::is_roles('Admin')): ?>
+                                                <th>#</th>
+                                            <?php endif; ?>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $__currentLoopData = $dexuatkiennghi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dxkn): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <tr>
+                                            <td><a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/de-xuat-kien-nghi/chi-tiet/<?php echo e($dxkn['_id']); ?>"><?php echo $dxkn['noi_dung'][0]['noi_dung']; ?></a></td>
+                                            <td class="text-center" style="vertical-align: middle;">
+                                                <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                                <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/de-xuat-kien-nghi/tinh-trang/<?php echo e($dxkn['_id']); ?>" class="tinh-trang-dxkn">
+                                                    <?php if($dxkn['tinh_trang'] == 0): ?> <span class="badge badge-danger">Đang diễn ra</span>
+                                                    <?php else: ?> <span class="badge badge-success">Hoàn thành</span>
+                                                    <?php endif; ?>
+                                                </a>
+                                                <?php else: ?> 
+                                                    <?php if($dxkn['tinh_trang'] == 0): ?> <span class="badge badge-danger">Đang diễn ra</span>
+                                                    <?php else: ?> <span class="badge badge-success">Hoàn thành</span>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            </td>
+                                            <?php if(App\Http\Controllers\UserController::is_roles('Admin')): ?>
+                                                <td class="text-center">
+                                                    <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/de-xuat-kien-nghi/delete/<?php echo e($dxkn['_id']); ?>" onclick="return confirm('Chắc chắn xóa?')"><i class="fa fa-trash text-danger"></i></a>
+                                                </td>
+                                            <?php endif; ?>
+                                        </tr>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </tbody>
+                                </table>
+                            <?php endif; ?>
+                        </div>
+                        <div class="tab-pane" id="profile">
+                            <?php $ketnoigiaothuong = App\Models\KetNoiGiaoThuong::where('tinh_trang','=', 0)->orderBy('updated_at', 'desc')->take(9)->get(); ?>
+                            <?php if($ketnoigiaothuong): ?>
+                                <table class="table table-border table-striped table-bodered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nhu cầu</th>
+                                            <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                            <th>Tình trạng</th>
+                                            <th>#</th>
+                                            <?php endif; ?>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php $__currentLoopData = $ketnoigiaothuong; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kngt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php
+                                            $dn = App\Models\User::find($kngt['id_user']);
+                                            $nn = App\Models\DMNganhNghe::find($kngt['nganhnghe_id']);
+                                        ?>
+                                        <tr>
+                                            <td>
+                                                <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/ket-noi-giao-thuong/chi-tiet/<?php echo e($kngt['_id']); ?>" data-toggle="modal" data-target="#ChiTietModal" class="chi-tiet-ket-noi">[<?php echo e($nn['ten']); ?>] - <?php echo e($dn['fullname']); ?> - <?php echo e($kngt['nhu_cau']); ?> </a>
+                                            </td>
+                                            <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                            <td class="text-center" style="vertical-align: middle;">
+                                                <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                                <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/ket-noi-giao-thuong/tinh-trang/<?php echo e($kngt['_id']); ?>" class="tinh-trang-ket-noi">
+                                                    <?php if($kngt['tinh_trang'] == 0): ?> <span class="badge badge-danger">Chờ duyệt</span>
+                                                    <?php else: ?> <span class="badge badge-success">Đã duyệt</span>
+                                                    <?php endif; ?>
+                                                </a>
+                                                <?php else: ?> 
+                                                    <?php if($kngt['tinh_trang'] == 0): ?> <span class="badge badge-danger">Chờ duyệt</span>
+                                                    <?php else: ?> <span class="badge badge-success">Đã duyệt</span>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/ket-noi-giao-thuong/delete/<?php echo e($kngt['_id']); ?>" class="text-danger" onclick="return confirm('Chắc chắn xóa?')"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                            <?php endif; ?>
+                                        </tr>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </tbody>
+                                </table>
+                                <?php endif; ?>
+                        </div>
+                        <div class="tab-pane" id="messages">
+                            <?php $tuvancds = App\Models\TuVanCDS::where('tinh_trang','=', 0)->orderBy('updated_at','desc')->take(9)->get(); ?>
+                            <?php if($tuvancds): ?>
+                            <table class="table table-border table-striped table-bodered">
+                                <thead>
+                                    <tr>
+                                        <th>Câu hỏi</th>
+                                        <th>Tình trạng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $__currentLoopData = $tuvancds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tvcds): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr>
+                                        <td><a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/tu-van-chuyen-doi-so/chi-tiet/<?php echo e($tvcds['_id']); ?>"><?php echo $tvcds['noi_dung'][0]['noi_dung']; ?></a></td>
+                                        <td class="text-center" style="vertical-align: middle;">
+                                            <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                            <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/tu-van-chuyen-doi-so/tinh-trang/<?php echo e($tvcds['_id']); ?>" class="tinh-trang">
+                                                <?php if($tvcds['tinh_trang'] == 0): ?> <span class="badge badge-danger">Đang diễn ra</span>
+                                                <?php else: ?> <span class="badge badge-success">Hoàn thành</span>
+                                                <?php endif; ?>
+                                            </a>
+                                            <?php else: ?> 
+                                                <?php if($tvcds['tinh_trang'] == 0): ?> <span class="badge badge-danger">Đang diễn ra</span>
+                                                <?php else: ?> <span class="badge badge-success">Hoàn thành</span>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </tbody>
+                            </table>
+                            <?php endif; ?>
+                        </div>
+                        <div class="tab-pane" id="settings">
+                            <?php $nhucaucds = App\Models\NhuCauCDS::where('tinh_trang','=',0)->orderBy('updated_at','desc')->take(9)->get(); ?>
+                            <?php if($nhucaucds): ?>
+                            <table class="table table-border table-hovered table-striped table-bodered">
+                                <thead>
+                                    <tr>
+                                        <th>Nhu cầu</th>
+                                        <th>Nội dung</th>
+                                        <th>Tình trạng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $__currentLoopData = $nhucaucds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nccds): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr>
+                                        <td><?php echo e($nccds['nhu_cau']); ?></td>
+                                        <td><a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/nhu-cau-chuyen-doi-so/chi-tiet/<?php echo e($nccds['_id']); ?>"><?php echo $nccds['noi_dung'][0]['noi_dung']; ?></a></td>
+                                        <td class="text-center" style="vertical-align: middle;">
+                                            <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                            <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/nhu-cau-chuyen-doi-so/tinh-trang/<?php echo e($nccds['_id']); ?>" class="tinh-trang-nhu-cau">
+                                                <?php if($nccds['tinh_trang'] == 0): ?> <span class="badge badge-danger">Đang diễn ra</span>
+                                                <?php else: ?> <span class="badge badge-success">Hoàn thành</span>
+                                                <?php endif; ?>
+                                            </a>
+                                            <?php else: ?> 
+                                                <?php if($nccds['tinh_trang'] == 0): ?> <span class="badge badge-danger">Đang diễn ra</span>
+                                                <?php else: ?> <span class="badge badge-success">Hoàn thành</span>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </tbody>
+                            </table>
+                            <?php endif; ?>
+                        </div>
+                        <div class="tab-pane" id="ThongBao">
+                            <?php
+                                $thongbao = App\Models\ThongBao::orderBy('updated_at', 'desc')->take(9)->get();
+                            ?>
+                            <?php if($thongbao): ?>
+                            <table class="table table-border table-striped table-bodered">
+                                <thead>
+                                    <tr>
+                                        <th>Tiêu đề</th>
+                                        <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                        <th>#</th>
+                                        <?php endif; ?>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $__currentLoopData = $thongbao; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tb): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr>
+                                        <td>
+                                            <a href="<?php echo e(env('APP_URL')); ?>admin/hiep-hoi-doanh-nghiep/thong-bao/chi-tiet/<?php echo e($tb['_id']); ?>" class="chi-tiet"><?php echo e($tb['tieu_de']); ?> </a>
+                                            <small><?php echo e(\Carbon\Carbon::parse($tb['updated_at'])->format("d/m/Y H:i")); ?></small>
+                                        </td>
+                                        <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                            <td class="text-center">
+                                                <a href="<?php echo e(env('APP_URL')); ?>admin/hiep-hoi-doanh-nghiep/thong-bao/delete/<?php echo e($tb['_id']); ?>" class="text-danger" onclick="return confirm('Chắc chắn xóa?')"><i class="fa fa-trash"></i></a>
+                                                <a href="<?php echo e(env('APP_URL')); ?>admin/hiep-hoi-doanh-nghiep/thong-bao/edit/<?php echo e($tb['_id']); ?>" class="text-primary"><i class="fas fa-pencil-alt"></i></a>
+                                            </td>
+                                        <?php endif; ?>
+                                    </tr>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </tbody>
+                            </table>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php endif; ?>
             <?php if(UserController::is_roles('Business')): ?>
                 <?php
                     $id_user = Session::get('user._id');
@@ -342,6 +627,46 @@ use App\Models\CDSKhaoSat;
                 $("#ChiTietKetNoiHTML").html(html);
                 $('#gallery').photobox('a',{ time:0 });
             });
+        });
+        $(".tinh-trang-ket-noi").click(function(e){
+            var _link = $(this).attr("href");
+            var _this = $(this);
+            $.get(_link, function(html){
+                _this.html(html)
+            });
+            e.preventDefault();
+        });
+        $(".tinh-trang-dxkn").click(function(e){
+            var _link = $(this).attr("href");
+            var _this = $(this);
+            $.get(_link, function(html){
+                _this.html(html)
+            });
+            e.preventDefault();
+        });
+        $(".tinh-trang-nhu-cau").click(function(e){
+            var _link = $(this).attr("href");
+            var _this = $(this);
+            $.get(_link, function(html){
+                _this.html(html)
+            });
+            e.preventDefault();
+        });
+        $(".set-hoi-vien").click(function(e){
+            var _link = $(this).attr("href");
+            var _this = $(this);
+            $.get(_link, function(html){
+                _this.html(html)
+            });
+            e.preventDefault();
+        });
+        $(".tao-tai-khoan").click(function(e){
+            var _link = $(this).attr("href");
+            var _this = $(this);
+            $.get(_link, function(html){
+                _this.html(html)
+            });
+            e.preventDefault();
         });
     });
 </script>

@@ -16,16 +16,16 @@
                             <i class="fas fa-users text-primary"></i>
                         <?php endif; ?>
                         Danh sách Doanh nghiệp tham gia: <?php echo e($so_luong); ?> </h3>
-                    <form action="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/danh-sach" method="GET" id="DNForm">
-                        <div class="row form-group">
-                            <div class="col-12 col-md-4">
-                                <input type="text"  name="q" id="q" value="<?php echo e($q); ?>" class="form-control" placeholder="Tên doanh nghiệp">
+                        <form action="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/danh-sach" method="GET" id="DNForm">
+                            <div class="row form-group">
+                                <div class="col-12 col-md-4">
+                                    <input type="text"  name="q" id="q" value="<?php echo e($q); ?>" class="form-control" placeholder="Tên doanh nghiệp">
+                                </div>
+                                <div class="col-12 col-md-2">
+                                    <button type="submit" name="submit" value="OK" class="btn btn-primary">Tìm kiếm</button>
+                                </div>
                             </div>
-                            <div class="col-12 col-md-2">
-                                <button type="submit" name="submit" value="OK" class="btn btn-primary">Tìm kiếm</button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
                     <table class="table table-border table-striped table-bodered">
                         <thead>
                             <tr>

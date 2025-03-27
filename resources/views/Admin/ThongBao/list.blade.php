@@ -28,10 +28,6 @@
                         </thead>
                         <tbody>
                             @foreach($danhsach as $ds)
-                            @php
-                            $dn = App\Models\User::find($ds['id_user']);
-                            $nn = App\Models\DMNganhNghe::find($ds['nganhnghe_id']);
-                            @endphp
                             <tr>
                                 <td>
                                     <a href="{{ env('APP_URL') }}admin/hiep-hoi-doanh-nghiep/thong-bao/chi-tiet/{{ $ds['_id'] }}" class="chi-tiet">{{ $ds['tieu_de'] }} </a>

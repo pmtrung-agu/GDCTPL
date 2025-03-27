@@ -77,7 +77,7 @@
               </div>
               <div class="media-body">
                 <span class="contact-item_title">Địa chỉ</span>
-                <span class="contact-item_text">18 Ung Văn Khiêm, P. Đông Xuyên, Tp. Long Xuyên, An Giang</span>
+                <span class="contact-item_text">18 Ung Văn Khiêm, P. Mỹ Xuyên, Tp. Long Xuyên, An Giang</span>
               </div>
             </div>
           </div>

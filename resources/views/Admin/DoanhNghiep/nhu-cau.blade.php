@@ -17,6 +17,9 @@
                                 <th>Nhu cầu</th>
                                 <th>Nội dung</th>
                                 <th>Tình trạng</th>
+                                @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
+                                    <th>#</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -37,6 +40,11 @@
                                         @endif
                                     @endif
                                 </td>
+                                @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
+                                <td class="text-center">
+                                    <a href="{{ env('APP_URL') }}admin/doanh-nghiep/nhu-cau-chuyen-doi-so/delete/{{ $ds['_id'] }}" onclick="return confirm('Chắc chăn xóa?')"><i class="fa fa-trash text-danger"></i></a>
+                                </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>
@@ -69,5 +77,4 @@
         @endif
     });
 </script>
-
 @endsection

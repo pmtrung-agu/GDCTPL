@@ -132,6 +132,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('doanh-nghiep/san-pham', [DoanhNghiepController::class, 'san_pham'])->middleware('role:Admin,Manager,ABA,Business');
     Route::get('doanh-nghiep/danh-sach', [DoanhNghiepController::class, 'list'])->middleware('role:Admin,Manager,Expert,ABA,Business');
     Route::get('doanh-nghiep/chi-tiet/{id}', [DoanhNghiepController::class, 'chi_tiet'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::get('doanh-nghiep/download/{id}/{key}', [DoanhNghiepController::class, 'download'])->middleware('role:Admin,Manager,ABA,Business');
     Route::get('doanh-nghiep/add', [DoanhNghiepController::class, 'add'])->middleware('role:Admin,Manager,Expert,Business,ABA');
     Route::post('doanh-nghiep/create', [DoanhNghiepController::class, 'create'])->middleware('role:Admin,Manager,ABA');
     Route::get('doanh-nghiep/edit/{id}', [DoanhNghiepController::class, 'edit'])->middleware('role:Admin,Manager,ABA,Business');
@@ -142,6 +143,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('doanh-nghiep/tu-van-chuyen-doi-so', [DoanhNghiepController::class, 'tu_van'])->middleware('role:Admin,Manager,ABA,Business');
     Route::get('doanh-nghiep/tu-van-chuyen-doi-so/add', [DoanhNghiepController::class, 'tu_van_add'])->middleware('role:Admin,Manager,ABA,Business');
     Route::post('doanh-nghiep/tu-van-chuyen-doi-so/create', [DoanhNghiepController::class, 'tu_van_create'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::get('doanh-nghiep/tu-van-chuyen-doi-so/delete/{id}', [DoanhNghiepController::class, 'tu_van_delete'])->middleware('role:Admin,Manager');
     Route::get('doanh-nghiep/tu-van-chuyen-doi-so/chi-tiet/{id}', [DoanhNghiepController::class, 'tu_van_chi_tiet'])->middleware('role:Admin,Manager,ABA,Business');
     Route::post('doanh-nghiep/tu-van-chuyen-doi-so/chi-tiet/update', [DoanhNghiepController::class, 'tu_van_update'])->middleware('role:Admin,Manager,ABA,Business');
     Route::get('doanh-nghiep/tu-van-chuyen-doi-so/tinh-trang/{id}', [DoanhNghiepController::class, 'tu_van_tinh_trang'])->middleware('role:Admin,Manager,ABA');
@@ -149,13 +151,14 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('doanh-nghiep/nhu-cau-chuyen-doi-so', [DoanhNghiepController::class, 'nhu_cau'])->middleware('role:Admin,Manager,ABA,Business');
     Route::get('doanh-nghiep/nhu-cau-chuyen-doi-so/add', [DoanhNghiepController::class, 'nhu_cau_add'])->middleware('role:Admin,Manager,ABA,Business');
     Route::post('doanh-nghiep/nhu-cau-chuyen-doi-so/create', [DoanhNghiepController::class, 'nhu_cau_create'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::get('doanh-nghiep/nhu-cau-chuyen-doi-so/delete/{id}', [DoanhNghiepController::class, 'nhu_cau_delete'])->middleware('role:Admin,Manager,ABA');
     Route::get('doanh-nghiep/nhu-cau-chuyen-doi-so/chi-tiet/{id}', [DoanhNghiepController::class, 'nhu_cau_chi_tiet'])->middleware('role:Admin,Manager,ABA,Business');
     Route::post('doanh-nghiep/nhu-cau-chuyen-doi-so/chi-tiet/update', [DoanhNghiepController::class, 'nhu_cau_update'])->middleware('role:Admin,Manager,ABA,Business');
     Route::get('doanh-nghiep/nhu-cau-chuyen-doi-so/tinh-trang/{id}', [DoanhNghiepController::class, 'nhu_cau_tinh_trang'])->middleware('role:Admin,Manager,ABA');
 
     Route::get('doanh-nghiep/ket-noi-giao-thuong', [KetNoiGiaoThuongController::class, 'list'])->middleware('role:Admin,Manager,ABA,Business');
     Route::get('doanh-nghiep/ket-noi-giao-thuong/add', [KetNoiGiaoThuongController::class, 'add'])->middleware('role:Admin,Manager,ABA,Business');
-    Route::post('doanh-nghiep/ket-noi-giao-thuong/create', [KetNoiGiaoThuongController::class, 'create'])->middleware('role:Admin,Manager,ABA');    
+    Route::post('doanh-nghiep/ket-noi-giao-thuong/create', [KetNoiGiaoThuongController::class, 'create'])->middleware('role:Admin,Manager,ABA,Business');    
     Route::get('doanh-nghiep/ket-noi-giao-thuong/chi-tiet/{id}', [KetNoiGiaoThuongController::class, 'chi_tiet'])->middleware('role:Admin,Manager,ABA,Business');
     Route::get('doanh-nghiep/ket-noi-giao-thuong/tinh-trang/{id}', [KetNoiGiaoThuongController::class, 'tinh_trang'])->middleware('role:Admin,Manager,ABA');
     Route::get('doanh-nghiep/ket-noi-giao-thuong/delete/{id}', [KetNoiGiaoThuongController::class, 'delete'])->middleware('role:Admin,Manager,ABA');

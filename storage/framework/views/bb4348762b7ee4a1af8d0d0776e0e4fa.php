@@ -24,10 +24,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $__currentLoopData = $danhsach; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ds): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php $__currentLoopData = $danhsach; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ds): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php
-                            $dn = App\Models\User::find($ds['id_user']);
-                            $nn = App\Models\DMNganhNghe::find($ds['nganhnghe_id']);
+                                $dn = App\Models\User::find($ds['id_user']);
+                                $nn = App\Models\DMNganhNghe::find($ds['nganhnghe_id']);
                             ?>
                             <tr>
                                 <td>

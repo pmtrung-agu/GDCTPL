@@ -1,5 +1,9 @@
 
-<?php $__env->startSection('title', 'Chi tiết - Dữ liệu khảo sát'); ?>
+<?php $__env->startSection('title', 'Chi tiết - Doanh nghiệp'); ?>
+<?php $__env->startSection('css'); ?>
+  <link rel="stylesheet" type="text/css" href="<?php echo e(env('APP_URL')); ?>assets/frontend/libs/photobox/photobox.css" />
+  <link rel="stylesheet" type="text/css" href="<?php echo e(env('APP_URL')); ?>assets/frontend/libs/photobox/photobox.ie.css" />
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('body'); ?>
 <div class="wrapper">
     <div class="container-fluid">
@@ -90,12 +94,28 @@
                         </div>
                         <div class="tab-pane" id="messages1">
                             <div class="card-box">
-                                <h3><i class="fas fa-file-image text-primary"></i> Hỉnh ảnh: <?php echo e($ds[1]); ?> </h3>
+                                <h3><i class="fas fa-file-image text-primary"></i> Hỉnh ảnh:</h3>
+                                <?php if($ds['photos']): ?>
+                                    <div class="row" id="gallery">
+                                        <?php $__currentLoopData = $ds['photos']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="col-12 col-md-3">
+                                            <a href="<?php echo e(env('APP_URL')); ?>storage/images/origin/<?php echo e($p['aliasname']); ?>"><img src="<?php echo e(env('APP_URL')); ?>storage/images/thumb_360x200/<?php echo e($p['aliasname']); ?>" style="width:100%;" /></a>
+                                        </div>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="tab-pane" id="settings1">
                             <div class="card-box">
-                                <h3><i class="fas fa-book-reader text-primary"></i> Đính kèm: <?php echo e($ds[1]); ?> </h3>
+                                <h3><i class="fas fa-book-reader text-primary"></i> Đính kèm: </h3>
+                                <?php if($ds['attachments']): ?>
+                                <ul>
+                                    <?php $__currentLoopData = $ds['attachments']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $dk): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li><a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/download/<?php echo e($ds['_id']); ?>/<?php echo e($key); ?>"><?php echo e($dk['title']); ?></a></li>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </ul>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -104,5 +124,13 @@
         </div>
     </div>
 </div>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
+    <script src="<?php echo e(env('APP_URL')); ?>assets/frontend/libs/photobox/jquery.photobox.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#gallery').photobox('a',{ time:0 });
+        });
+    </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('Admin.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Lara_Projects\ABAPortal\resources\views/Admin/DoanhNghiep/chi-tiet.blade.php ENDPATH**/ ?>

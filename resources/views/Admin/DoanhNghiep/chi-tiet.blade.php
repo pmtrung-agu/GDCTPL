@@ -1,5 +1,9 @@
 @extends('Admin.layout')
-@section('title', 'Chi tiết - Dữ liệu khảo sát')
+@section('title', 'Chi tiết - Doanh nghiệp')
+@section('css')
+  <link rel="stylesheet" type="text/css" href="{{ env('APP_URL') }}assets/frontend/libs/photobox/photobox.css" />
+  <link rel="stylesheet" type="text/css" href="{{ env('APP_URL') }}assets/frontend/libs/photobox/photobox.ie.css" />
+@endsection
 @section('body')
 <div class="wrapper">
     <div class="container-fluid">
@@ -89,12 +93,28 @@
                         </div>
                         <div class="tab-pane" id="messages1">
                             <div class="card-box">
-                                <h3><i class="fas fa-file-image text-primary"></i> Hỉnh ảnh: {{ $ds[1] }} </h3>
+                                <h3><i class="fas fa-file-image text-primary"></i> Hỉnh ảnh:</h3>
+                                @if($ds['photos'])
+                                    <div class="row" id="gallery">
+                                        @foreach($ds['photos'] as $p)
+                                        <div class="col-12 col-md-3">
+                                            <a href="{{ env('APP_URL') }}storage/images/origin/{{ $p['aliasname'] }}"><img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $p['aliasname'] }}" style="width:100%;" /></a>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="tab-pane" id="settings1">
                             <div class="card-box">
-                                <h3><i class="fas fa-book-reader text-primary"></i> Đính kèm: {{ $ds[1] }} </h3>
+                                <h3><i class="fas fa-book-reader text-primary"></i> Đính kèm: </h3>
+                                @if($ds['attachments'])
+                                <ul>
+                                    @foreach($ds['attachments'] as $key => $dk)
+                                    <li><a href="{{ env('APP_URL') }}admin/doanh-nghiep/download/{{ $ds['_id'] }}/{{ $key }}">{{ $dk['title'] }}</a></li>
+                                    @endforeach
+                                </ul>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -103,4 +123,12 @@
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+    <script src="{{ env('APP_URL') }}assets/frontend/libs/photobox/jquery.photobox.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#gallery').photobox('a',{ time:0 });
+        });
+    </script>
 @endsection

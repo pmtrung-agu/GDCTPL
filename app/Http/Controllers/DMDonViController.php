@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\DMDoNVi;
+use App\Models\DMDonVi;
 use App\Models\DMDiaChi;
 class DMDonViController extends Controller
 {

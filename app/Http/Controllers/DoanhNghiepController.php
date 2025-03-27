@@ -216,6 +216,11 @@ class DoanhNghiepController extends Controller
         $nganhnghe = DMNganhNghe::All();
         return view('Admin.DoanhNghiep.tu-van-add')->with(compact('nganhnghe'));
     }
+    function tu_van_delete(Request $request, $id = '') {
+        TuVanCDS::destroy($id);
+        Session::flash('msg', 'Xóa thành công');
+        return redirect(env('APP_URL') .'admin/doanh-nghiep/tu-van-chuyen-doi-so');
+    }
 
     function tu_van_create(Request $request) {
         $data = $request->all();
@@ -272,6 +277,12 @@ class DoanhNghiepController extends Controller
         return view('Admin.DoanhNghiep.nhu-cau-add')->with(compact('nganhnghe', 'nhu_cau'));
     }
 
+    function nhu_cau_delete(Request $request, $id = '') {
+        NhuCauCDS::destroy($id);
+        Session::flash('msg', 'Đã xóa thành công');
+        return redirect(env('APP_URL') .'admin/doanh-nghiep/nhu-cau-chuyen-doi-so');
+    }
+
     function nhu_cau_create(Request $request) {
         $data = $request->all();
         $id_user = $request->session()->get('user._id');
@@ -319,5 +330,13 @@ class DoanhNghiepController extends Controller
 
     function san_pham(){
         return redirect(env('APP_URL').'admin/san-pham');
+    }
+
+    function download(Request $request, $id='', $key = 0) {
+        $ds = DoanhNghiep::find($id);
+        $key = intval($key);
+        $file_path = storage_path('app/public/files/' . $ds['attachments'][$key]['aliasname']);
+        $name  = Str::slug($ds['attachments'][$key]['title'], '-') . '.' . $ds['attachments'][$key]['type'];
+        return response()->download($file_path, $name);
     }
 }

@@ -80,14 +80,14 @@
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                             <?php endif; ?>
-                        <?php endif; ?>
+                      <?php endif; ?>
                     <?php if(isset($m['childs'])): ?>
-                    <ul class="sub-menu">
-                        <?php $__currentLoopData = $m['childs']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <li><a href="<?php echo e(env('APP_URL')); ?><?php echo e($m['path']); ?>"><?php echo e($c['title']); ?></a></li>        
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </ul>    
-                    <?php endif; ?>
+                      <ul class="sub-menu">
+                          <?php $__currentLoopData = $m['childs']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <li><a href="<?php echo e(env('APP_URL')); ?><?php echo e($m['path']); ?>/<?php echo e($c['path']); ?>"><?php echo e($c['title']); ?></a></li>
+                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                      </ul>
+                  <?php endif; ?>
                 </li>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </ul>
@@ -171,7 +171,8 @@
                       <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/logo.png" alt="Cổng thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang" style="width:250px;">
                     </a>
                   </div>
-                  <p class="about-text">Cung cấp thông tin và tư vấn chuyển đổi số cho các doanh nghiệp nhỏ và vừa tỉnh An Giang.</p>
+                  
+                  <p class="about-text">Nôi dung Website trong quá trình hoàn thiện, mọi chi tiết vui lòng góp ý qua email: <b>cict@agu.edu.vn</b></p>
                   <div class="th-social">
                     <a href="https://www.facebook.com/AGUCICT">
                       <i class="fab fa-facebook-f"></i>
@@ -201,9 +202,9 @@
                 <h3 class="widget_title">Thông tin Chuyển đổi số</h3>
                 <div class="menu-all-pages-container">
                   <ul class="menu">
-                    <li><a href="<?php echo e(env('APP_URL')); ?>">Hướng dẫn sử dụng</a></li>
-                    <li><a href="<?php echo e(env('APP_URL')); ?>">Hướng dẫn đăng ký thành viên</a></li>
-                    <li><a href="<?php echo e(env('APP_URL')); ?>">Quy định hoạt động</a></li>
+                    <li><a href="<?php echo e(env('APP_URL')); ?>tai-lieu-chi-tiet/huong-dan-su-dung-website">Hướng dẫn sử dụng</a></li>
+                    <li><a href="<?php echo e(env('APP_URL')); ?>tai-lieu-chi-tiet/huong-dan-dang-ky-thanh-vien">Hướng dẫn đăng ký thành viên</a></li>
+                    <li><a href="<?php echo e(env('APP_URL')); ?>tai-lieu-chi-tiet/quy-dinh-quan-ly-van-hanh-cap-nhat-khai-thac-va-su-dung-he-thong-ai-ho-tro-cac-giai-phap-chuyen-doi-so-trong-doanh-nghiep-nho-va-vua-tai-tinh-an-giang">Quy định sử dụng, quản lý</a></li>
                   </ul>
                 </div>
               </div>
@@ -213,7 +214,7 @@
       </div>
       <div class="copyright-wrap text-center">
         <div class="container">
-          <p class="copyright-text"><i class="fal fa-copyright"></i> 2025. Cổng thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang. </p>
+          <p class="copyright-text"><i class="fal fa-copyright"></i> 2025. Cổng Thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang. <br /> Thực hiện bởi <a href="https://cict.agu.edu.vn" class="text-white bold"><b>Trung tâm Tin học</b></a> Trường Đại học An Giang</p>
         </div>
       </div>
     </footer>

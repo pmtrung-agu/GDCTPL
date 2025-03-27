@@ -16,6 +16,9 @@
                             <tr>
                                 <th>Câu hỏi</th>
                                 <th>Tình trạng</th>
+                                <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                    <th>#</th>
+                                <?php endif; ?>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,6 +38,11 @@
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 </td>
+                                <?php if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA')): ?>
+                                <td class="text-center">
+                                    <a href="<?php echo e(env('APP_URL')); ?>admin/doanh-nghiep/tu-van-chuyen-doi-so/delete/<?php echo e($ds['_id']); ?>" onclick="return confirm('Chắc chăn xóa?')"><i class="fa fa-trash text-danger"></i></a>
+                                </td>
+                                <?php endif; ?>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>

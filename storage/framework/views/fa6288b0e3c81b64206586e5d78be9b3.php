@@ -63,7 +63,7 @@
             </div>
             <div class="swiper-slide">
               <a href="https://dx.gov.vn/" class="brand-box" target="_blank">
-                <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/brand/link5.png" alt="" style="height:50px;">
+                <img src="<?php echo e(env('APP_URL')); ?>assets/frontend/img/brand/link5.jpg" alt="" style="height:50px;">
               </a>
             </div>
             <?php endfor; ?>

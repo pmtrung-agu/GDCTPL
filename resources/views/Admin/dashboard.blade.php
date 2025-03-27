@@ -14,6 +14,291 @@ use App\Models\CDSKhaoSat;
 <div class="wrapper">
     <div class="container-fluid">
         <div class="row">
+            @if(UserController::is_roles('Admin,ABA,Manager'))
+            <div class="col-12 col-md-12">
+                <div class="card-box">                    
+                    <h3><i class="fas fa-reply-all text-primary"></i></a> Thông tin mới nhất</h3>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a href="#home" data-toggle="tab" aria-expanded="false" class="nav-link active">
+                               <i class="fe-monitor"></i><span class="d-none d-sm-inline-block ml-2">Đề xuất Kiến nghị</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#profile" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                <i class="fe-user"></i> <span class="d-none d-sm-inline-block ml-2">Kết nối giao thương</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#messages" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="fe-mail"></i> <span class="d-none d-sm-inline-block ml-2">Câu hỏi Tư vấn CĐS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#settings" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="fe-settings"></i> <span class="d-none d-sm-inline-block ml-2">Nhu cầu CĐS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#ThongBao" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="fas fa-basketball-ball"></i> <span class="d-none d-sm-inline-block ml-2">Thông Báo</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#DoanhNghiep" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class=" fas fa-user-tie"></i> <span class="d-none d-sm-inline-block ml-2">Doanh nghiệp mới</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane" id="DoanhNghiep">
+                            @php $doanhnghiep = App\Models\DoanhNghiep::orderBy('updated_at', 'desc')->take(9)->get(); @endphp
+                            @if($doanhnghiep)
+                            <table class="table table-border table-striped table-bodered">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tên Doanh nghiệp</th>
+                                        <th>Người đại diện</th>
+                                        <th>Mã số thuế</th>
+                                        <th>Điện thoại</th>
+                                        @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
+                                        <th>Thành viên HHDN</th>
+                                        @endif
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($doanhnghiep as $key => $ddnn)
+                                        <tr>
+                                           <td>{{ $key+1 }}</td> 
+                                           <td><a href="{{ env('APP_URL') }}admin/doanh-nghiep/chi-tiet/{{ $ddnn['_id'] }}">{{ $ddnn['ten'] }}</a></td>
+                                           <td>{{ $ddnn['nguoidaidien'] }}</td>
+                                           <td>{{ $ddnn['masothue'] }}</td>
+                                           <td>{{ $ddnn['dienthoai'] }}</td>
+                                           @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
+                                           <td class="text-center">
+                                            <a href="{{ env('APP_URL') }}admin/doanh-nghiep/hoi-vien/{{ $ddnn['_id'] }}" class="set-hoi-vien">
+                                                @if($ddnn['hoivienhiephoi']) <i class="fas fa-user-check text-success"></i>
+                                                @else <i class="fas fa-user-times text-muted"></i> @endif
+                                            </a>
+                                           </td>
+                                           @endif
+                                           <td class="text-center" style="width:80px;">
+                                            @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
+                                                @if(App\Http\Controllers\UserController::is_roles('Admin') &&
+                                                    App\Http\Controllers\UserController::checkDoanhNghiep($ddnn['_id']) == false)
+                                                    @if($ddnn['dienthoai'])
+                                                        <a href="{{ env('APP_URL') }}admin/doanh-nghiep/tao-tai-khoan/{{ $ddnn['_id'] }}" class="tao-tai-khoan" title="Tạo tài khoản cho Doanh nghiệp"><i class="fas fa-user text-muted"></i></a>
+                                                    @endif
+                                                @else 
+                                                <a href="{{ env('APP_URL') }}admin/doanh-nghiep/tao-tai-khoan/{{ $ddnn['_id'] }}" class="tao-tai-khoan" title="Đã tạo tài khoản cho Doanh nghiệp"><i class="fas fa-users text-danger"></i></a>
+                                                @endif
+                                                <a href="{{ env('APP_URL') }}admin/doanh-nghiep/delete/{{ $ddnn['_id'] }}" onclick="return confirm('Chắc chắn xóa?');" ><i class="fa fa-trash text-danger"></i></a>
+                                            @endif
+                                            @if((App\Http\Controllers\UserController::is_roles('Business') && $ddnn['_id'] == Session::get('user.id_doanh_nghiep')) || App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
+                                                <a href="{{ env('APP_URL') }}admin/doanh-nghiep/edit/{{ $ddnn['_id'] }}"><i class="fas fa-pencil-alt"></i></a>
+                                            @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            @endif
+                        </div>
+                        <div class="tab-pane show active" id="home">
+                            @php $dexuatkiennghi = App\Models\DeXuatKienNghi::where('tinh_trang','=', 0)->orderBy('updated_at', 'desc')->take(9)->get(); @endphp
+                            @if($dexuatkiennghi)
+                                <table class="table table-border table-striped table-bodered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nội dung</th>
+                                            <th>Tình trạng</th>
+                                            @if(App\Http\Controllers\UserController::is_roles('Admin'))
+                                                <th>#</th>
+                                            @endif
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($dexuatkiennghi as $dxkn)
+                                        <tr>
+                                            <td><a href="{{ env('APP_URL') }}admin/doanh-nghiep/de-xuat-kien-nghi/chi-tiet/{{ $dxkn['_id'] }}">{!! $dxkn['noi_dung'][0]['noi_dung'] !!}</a></td>
+                                            <td class="text-center" style="vertical-align: middle;">
+                                                @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
+                                                <a href="{{ env('APP_URL') }}admin/doanh-nghiep/de-xuat-kien-nghi/tinh-trang/{{ $dxkn['_id'] }}" class="tinh-trang-dxkn">
+                                                    @if($dxkn['tinh_trang'] == 0) <span class="badge badge-danger">Đang diễn ra</span>
+                                                    @else <span class="badge badge-success">Hoàn thành</span>
+                                                    @endif
+                                                </a>
+                                                @else 
+                                                    @if($dxkn['tinh_trang'] == 0) <span class="badge badge-danger">Đang diễn ra</span>
+                                                    @else <span class="badge badge-success">Hoàn thành</span>
+                                                    @endif
+                                                @endif
+                                            </td>
+                                            @if(App\Http\Controllers\UserController::is_roles('Admin'))
+                                                <td class="text-center">
+                                                    <a href="{{ env('APP_URL') }}admin/doanh-nghiep/de-xuat-kien-nghi/delete/{{ $dxkn['_id'] }}" onclick="return confirm('Chắc chắn xóa?')"><i class="fa fa-trash text-danger"></i></a>
+                                                </td>
+                                            @endif
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @endif
+                        </div>
+                        <div class="tab-pane" id="profile">
+                            @php $ketnoigiaothuong = App\Models\KetNoiGiaoThuong::where('tinh_trang','=', 0)->orderBy('updated_at', 'desc')->take(9)->get(); @endphp
+                            @if($ketnoigiaothuong)
+                                <table class="table table-border table-striped table-bodered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nhu cầu</th>
+                                            @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
+                                            <th>Tình trạng</th>
+                                            <th>#</th>
+                                            @endif
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($ketnoigiaothuong as $kngt)
+                                        @php
+                                            $dn = App\Models\User::find($kngt['id_user']);
+                                            $nn = App\Models\DMNganhNghe::find($kngt['nganhnghe_id']);
+                                        @endphp
+                                        <tr>
+                                            <td>
+                                                <a href="{{ env('APP_URL') }}admin/doanh-nghiep/ket-noi-giao-thuong/chi-tiet/{{ $kngt['_id'] }}" data-toggle="modal" data-target="#ChiTietModal" class="chi-tiet-ket-noi">[{{ $nn['ten'] }}] - {{ $dn['fullname'] }} - {{ $kngt['nhu_cau'] }} </a>
+                                            </td>
+                                            @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
+                                            <td class="text-center" style="vertical-align: middle;">
+                                                @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
+                                                <a href="{{ env('APP_URL') }}admin/doanh-nghiep/ket-noi-giao-thuong/tinh-trang/{{ $kngt['_id'] }}" class="tinh-trang-ket-noi">
+                                                    @if($kngt['tinh_trang'] == 0) <span class="badge badge-danger">Chờ duyệt</span>
+                                                    @else <span class="badge badge-success">Đã duyệt</span>
+                                                    @endif
+                                                </a>
+                                                @else 
+                                                    @if($kngt['tinh_trang'] == 0) <span class="badge badge-danger">Chờ duyệt</span>
+                                                    @else <span class="badge badge-success">Đã duyệt</span>
+                                                    @endif
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="{{ env('APP_URL') }}admin/doanh-nghiep/ket-noi-giao-thuong/delete/{{ $kngt['_id'] }}" class="text-danger" onclick="return confirm('Chắc chắn xóa?')"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                            @endif
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                @endif
+                        </div>
+                        <div class="tab-pane" id="messages">
+                            @php $tuvancds = App\Models\TuVanCDS::where('tinh_trang','=', 0)->orderBy('updated_at','desc')->take(9)->get(); @endphp
+                            @if($tuvancds)
+                            <table class="table table-border table-striped table-bodered">
+                                <thead>
+                                    <tr>
+                                        <th>Câu hỏi</th>
+                                        <th>Tình trạng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($tuvancds as $tvcds)
+                                    <tr>
+                                        <td><a href="{{ env('APP_URL') }}admin/doanh-nghiep/tu-van-chuyen-doi-so/chi-tiet/{{ $tvcds['_id'] }}">{!! $tvcds['noi_dung'][0]['noi_dung'] !!}</a></td>
+                                        <td class="text-center" style="vertical-align: middle;">
+                                            @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
+                                            <a href="{{ env('APP_URL') }}admin/doanh-nghiep/tu-van-chuyen-doi-so/tinh-trang/{{ $tvcds['_id'] }}" class="tinh-trang">
+                                                @if($tvcds['tinh_trang'] == 0) <span class="badge badge-danger">Đang diễn ra</span>
+                                                @else <span class="badge badge-success">Hoàn thành</span>
+                                                @endif
+                                            </a>
+                                            @else 
+                                                @if($tvcds['tinh_trang'] == 0) <span class="badge badge-danger">Đang diễn ra</span>
+                                                @else <span class="badge badge-success">Hoàn thành</span>
+                                                @endif
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            @endif
+                        </div>
+                        <div class="tab-pane" id="settings">
+                            @php $nhucaucds = App\Models\NhuCauCDS::where('tinh_trang','=',0)->orderBy('updated_at','desc')->take(9)->get(); @endphp
+                            @if($nhucaucds)
+                            <table class="table table-border table-hovered table-striped table-bodered">
+                                <thead>
+                                    <tr>
+                                        <th>Nhu cầu</th>
+                                        <th>Nội dung</th>
+                                        <th>Tình trạng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($nhucaucds as $nccds)
+                                    <tr>
+                                        <td>{{ $nccds['nhu_cau'] }}</td>
+                                        <td><a href="{{ env('APP_URL') }}admin/doanh-nghiep/nhu-cau-chuyen-doi-so/chi-tiet/{{ $nccds['_id'] }}">{!! $nccds['noi_dung'][0]['noi_dung'] !!}</a></td>
+                                        <td class="text-center" style="vertical-align: middle;">
+                                            @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
+                                            <a href="{{ env('APP_URL') }}admin/doanh-nghiep/nhu-cau-chuyen-doi-so/tinh-trang/{{ $nccds['_id'] }}" class="tinh-trang-nhu-cau">
+                                                @if($nccds['tinh_trang'] == 0) <span class="badge badge-danger">Đang diễn ra</span>
+                                                @else <span class="badge badge-success">Hoàn thành</span>
+                                                @endif
+                                            </a>
+                                            @else 
+                                                @if($nccds['tinh_trang'] == 0) <span class="badge badge-danger">Đang diễn ra</span>
+                                                @else <span class="badge badge-success">Hoàn thành</span>
+                                                @endif
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            @endif
+                        </div>
+                        <div class="tab-pane" id="ThongBao">
+                            @php
+                                $thongbao = App\Models\ThongBao::orderBy('updated_at', 'desc')->take(9)->get();
+                            @endphp
+                            @if($thongbao)
+                            <table class="table table-border table-striped table-bodered">
+                                <thead>
+                                    <tr>
+                                        <th>Tiêu đề</th>
+                                        @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
+                                        <th>#</th>
+                                        @endif
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($thongbao as $tb)
+                                    <tr>
+                                        <td>
+                                            <a href="{{ env('APP_URL') }}admin/hiep-hoi-doanh-nghiep/thong-bao/chi-tiet/{{ $tb['_id'] }}" class="chi-tiet">{{ $tb['tieu_de'] }} </a>
+                                            <small>{{ \Carbon\Carbon::parse($tb['updated_at'])->format("d/m/Y H:i") }}</small>
+                                        </td>
+                                        @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
+                                            <td class="text-center">
+                                                <a href="{{ env('APP_URL') }}admin/hiep-hoi-doanh-nghiep/thong-bao/delete/{{ $tb['_id'] }}" class="text-danger" onclick="return confirm('Chắc chắn xóa?')"><i class="fa fa-trash"></i></a>
+                                                <a href="{{ env('APP_URL') }}admin/hiep-hoi-doanh-nghiep/thong-bao/edit/{{ $tb['_id'] }}" class="text-primary"><i class="fas fa-pencil-alt"></i></a>
+                                            </td>
+                                        @endif
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
             @if(UserController::is_roles('Business'))
                 @php
                     $id_user = Session::get('user._id');
@@ -342,6 +627,46 @@ use App\Models\CDSKhaoSat;
                 $("#ChiTietKetNoiHTML").html(html);
                 $('#gallery').photobox('a',{ time:0 });
             });
+        });
+        $(".tinh-trang-ket-noi").click(function(e){
+            var _link = $(this).attr("href");
+            var _this = $(this);
+            $.get(_link, function(html){
+                _this.html(html)
+            });
+            e.preventDefault();
+        });
+        $(".tinh-trang-dxkn").click(function(e){
+            var _link = $(this).attr("href");
+            var _this = $(this);
+            $.get(_link, function(html){
+                _this.html(html)
+            });
+            e.preventDefault();
+        });
+        $(".tinh-trang-nhu-cau").click(function(e){
+            var _link = $(this).attr("href");
+            var _this = $(this);
+            $.get(_link, function(html){
+                _this.html(html)
+            });
+            e.preventDefault();
+        });
+        $(".set-hoi-vien").click(function(e){
+            var _link = $(this).attr("href");
+            var _this = $(this);
+            $.get(_link, function(html){
+                _this.html(html)
+            });
+            e.preventDefault();
+        });
+        $(".tao-tai-khoan").click(function(e){
+            var _link = $(this).attr("href");
+            var _this = $(this);
+            $.get(_link, function(html){
+                _this.html(html)
+            });
+            e.preventDefault();
         });
     });
 </script>

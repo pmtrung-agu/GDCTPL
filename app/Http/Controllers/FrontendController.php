@@ -172,14 +172,14 @@ class FrontendController extends Controller
     function dang_ky_thanh_vien_submit(Request $request) {
         $data = $request->all();
         
-        /*$check = DoanhNghiep::where('ten', '=', $data['ten'])
+        $check = DoanhNghiep::where('ten', '=', $data['ten'])
                 ->orWhere('dienthoai', '=', $data['dien_thoai'])
                 ->orWhere('email', '=', $data['email'])
-                ->first();*/
-        //$check1 = User::where('username','=',$data['dien_thoai'])->orWhere('username','=',$data['email'])->orWhere('phone','=',$data['dien_thoai'])->first();
+                ->first();
+        $check1 = User::where('username','=',$data['dien_thoai'])->orWhere('username','=',$data['email'])->orWhere('phone','=',$data['dien_thoai'])->first();
         $blnRegis = false;
-        //if(!$check && !$check1) {
-            /*$id = ObjectController::Id();
+        if(!$check && !$check1) {
+            $id = ObjectController::Id();
             $db = new DoanhNghiep();
             $db->_id = $id;
             $db->ten = $data['ten'];
@@ -214,7 +214,7 @@ class FrontendController extends Controller
             $u->photos = [];
             $u->id_doanh_nghiep = $id;
             $u->id_user  = '';
-            $u->save();*/
+            $u->save();
             
             //Goi Email
             $to_name = 'HIỆP HỘI DOANH NGHIỆP TỈNH AN GIANG';
@@ -226,8 +226,7 @@ class FrontendController extends Controller
                 $message->from('trungminhphan@gmail.com', 'HIỆP HỘI DOANH NGHIỆP TỈNH AN GIANG');
             });
             $blnRegis = true;
-        //}
-        
+        }
         return view('Frontend.dang-ky-thanh-vien-submit')->with(compact('blnRegis'));
     }
 }

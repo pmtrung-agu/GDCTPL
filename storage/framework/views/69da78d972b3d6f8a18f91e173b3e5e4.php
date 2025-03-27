@@ -24,7 +24,7 @@
                                 <?php endif; ?>
                             </div>
                             <div class="media-body">
-                                <h5 class="mt-0 bold"><?php echo e($u['fullname']); ?></h5>
+                                <h5 class="mt-0 bold"><?php echo e(isset($u['fullname']) ? $u['fullname'] : ''); ?></h5>
                                 <p class="font-18 mb-0">
                                     <?php echo $nd['noi_dung']; ?>
 
