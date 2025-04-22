@@ -25,8 +25,10 @@ use App\Http\Controllers\DMDonViController;
 use App\Http\Controllers\ThongBaoController;
 use App\Http\Controllers\DeXuatKienNghiController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\ApiController;
 
 Route::get('/', [FrontendController::class, 'index']);
+Route::get('qrcode', [FrontendController::class, 'qrcode']);
 Route::get('thong-tin', [FrontendController::class, 'thong_tin']);
 Route::get('thong-tin/{taxonomy}', [FrontendController::class, 'thong_tin']);
 Route::get('thong-tin-chi-tiet/{slug}', [FrontendController::class, 'thong_tin_chi_tiet']);
@@ -81,10 +83,22 @@ Route::post('file/upload-json/{fileID}', [FileController::class, 'upload_json'])
 Route::get('file/delete/{filename}', [FileController::class, 'delete'])->middleware('checkauth');
 Route::get('file/download/{filename}', [FileController::class, 'download'])->middleware('checkauth');
 
+Route::get('api/san-pham', [ApiController::class, 'san_pham']);
+Route::get('api/san-pham/{slug}', [ApiController::class, 'san_pham_slug']);
+Route::get('api/thong-tin', [ApiController::class, 'thong_tin']);
+Route::get('api/thong-tin/{slug}', action: [ApiController::class, 'thong_tin_slug']);
+Route::get('api/tai-lieu', [ApiController::class, 'tai_lieu']);
+Route::get('api/tai-lieu/{slug}', [ApiController::class, 'tai_lieu_slug']);
+Route::get('api/doanh-nghiep', [ApiController::class, 'doanh_nghiep']);
+Route::get('api/doanh-nghiep/dang-ky-thanh-vien', [ApiController::class, 'dang_ky_thanh_vien']);
+Route::get('api/doanh-nghiep/dang-nhap', [ApiController::class, 'dang_nhap']);
+Route::get('api/doanh-nghiep/{slug}', [ApiController::class, 'doanh_nghiep_slug']);
+Route::get('api/chuyen-gia', [ApiController::class, 'chuyen_gia']);
+
+
 Route::get('not-permissions', function () {
     return view('Admin.page_not_permis');
 });
-
 
 Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('/', [AuthController::class, 'dashboard'])->middleware('checkauth');

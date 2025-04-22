@@ -41,7 +41,7 @@
                                     @endif
                                 </td>
                                 @if(App\Http\Controllers\UserController::is_roles('Admin,Manager,ABA'))
-                                <td class="text-center">
+                                <td class="text-center" style="vertical-align: middle;">
                                     <a href="{{ env('APP_URL') }}admin/doanh-nghiep/nhu-cau-chuyen-doi-so/delete/{{ $ds['_id'] }}" onclick="return confirm('Chắc chăn xóa?')"><i class="fa fa-trash text-danger"></i></a>
                                 </td>
                                 @endif

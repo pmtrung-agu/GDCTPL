@@ -480,7 +480,7 @@ use App\Models\CDSKhaoSat;
                                     @if($tai_lieu)
                                         <ul>
                                             @foreach($tai_lieu as $tl)
-                                                <li><a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $tl['slug'] }}" target="_blank">{{ $tt['ten'] }} </a> <small style="font-size:10px;">{{ \Carbon\Carbon::parse($tl['updated_at'])->format("d/m/Y H:i") }}</small></li>
+                                                <li><a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $tl['slug'] }}" target="_blank">{{ $tl['ten'] }} </a> <small style="font-size:10px;">{{ \Carbon\Carbon::parse($tl['updated_at'])->format("d/m/Y H:i") }}</small></li>
                                             @endforeach
                                         </ul>
                                     @endif
@@ -600,6 +600,7 @@ use App\Models\CDSKhaoSat;
         </div>
     </div>
 </div>
+
 <div id="ChiTietModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

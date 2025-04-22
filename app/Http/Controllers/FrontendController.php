@@ -33,6 +33,10 @@ class FrontendController extends Controller
         return view('Frontend.index')->with(compact('thong_tin','tai_lieu', 'chuyen_gia'));
     }
 
+    function qrcode() {
+        return \QrCode::size(500)->generate('https://tuicobangangiang.com');
+    }
+
     function thong_tin(Request $request, $taxonomy = '') {
         $danhsach = ThongTin::where('tags', $taxonomy)->orderBy('updated_at', 'desc')->get();
         $tax = DMThongTin::where('slug', '=', $taxonomy)->first();
