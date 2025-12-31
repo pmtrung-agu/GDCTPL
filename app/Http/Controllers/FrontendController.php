@@ -5,22 +5,22 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
-use App\Models\DMDiaChi;
+//use App\Models\DMDiaChi;
 use App\Models\DMThongTin;
-use App\Models\DMLinhVuc;
-use App\Models\DMNganhNghe;
+//use App\Models\DMLinhVuc;
+//use App\Models\DMNganhNghe;
 use App\Models\ThongTin;
 use App\Models\DMTaiLieu;
 use App\Models\TaiLieu;
 use App\Models\User;
-use App\Models\NhuCauCDS;
-use App\Models\TuVanCDS;
-use App\Models\CDSKhaoSat;
-use App\Models\DMSanPham;
-use App\Models\SanPham;
-use App\Models\DoanhNghiep;
-use App\Models\KetNoiGiaoThuong;
-use App\Models\ThongBao;
+//use App\Models\NhuCauCDS;
+//use App\Models\TuVanCDS;
+//use App\Models\CDSKhaoSat;
+//use App\Models\DMSanPham;
+//use App\Models\SanPham;
+//use App\Models\DoanhNghiep;
+//use App\Models\KetNoiGiaoThuong;
+//use App\Models\ThongBao;
 use Illuminate\Support\Facades\Mail;
 
 class FrontendController extends Controller
@@ -28,14 +28,14 @@ class FrontendController extends Controller
     //
     function index()    {
         $thong_tin = ThongTin::orderBy('updated_at', 'desc')->paginate(6);
-        $tai_lieu = TaiLieu::orderBy('updated_at', 'desc')->paginate(6);
-        $chuyen_gia = User::where('roles','Expert')->get();
-        return view('Frontend.index')->with(compact('thong_tin','tai_lieu', 'chuyen_gia'));
+        //$tai_lieu = TaiLieu::orderBy('updated_at', 'desc')->paginate(6);
+        $danhsach = DMTaiLieu::where('id_parent','=','')->get();
+        return view('Frontend.index')->with(compact('thong_tin','danhsach'));
     }
 
-    function qrcode() {
-        return \QrCode::size(500)->generate('https://tuicobangangiang.com');
-    }
+    //function qrcode() {
+    //    return \QrCode::size(500)->generate('https://tuicobangangiang.com');
+    //}
 
     function thong_tin(Request $request, $taxonomy = '') {
         $danhsach = ThongTin::where('tags', $taxonomy)->orderBy('updated_at', 'desc')->get();
@@ -49,18 +49,27 @@ class FrontendController extends Controller
         return view('Frontend.thong-tin-chi-tiet')->with(compact('ds', 'bai_viet_moi'));
     }
 
-    function tai_lieu(Request $request, $taxonomy = '') {
-        $danhsach = TaiLieu::where('tags', $taxonomy)->get();
-        $tax = DMTaiLieu::where('slug', '=', $taxonomy)->first();
-        return view('Frontend.tai-lieu')->with(compact('danhsach', 'tax'));
-    }
-    function tai_lieu_chi_tiet(Request $request, $slug = '') {
-        $ds = TaiLieu::where('slug', '=', $slug)->first();
-        $bai_viet_moi = TaiLieu::orderBy('updated_at', 'desc')->paginate(6);
-        return view('Frontend.tai-lieu-chi-tiet')->with(compact('ds', 'bai_viet_moi'));
+    function tai_lieu() {
+        //$danhsach = TaiLieu::where('tags', $taxonomy)->get();
+        $danhsach = DMTaiLieu::where('id_parent','=','')->get();
+        //$tax = DMTaiLieu::where('slug', '=', $taxonomy)->first();
+        return view('Frontend.tai-lieu')->with(compact('danhsach'));
     }
 
-    function san_pham(Request $request, $taxonomy = '') {
+    function tai_lieu_taxonomy(Request $request, $taxonomy = '') {
+        $danhsach = TaiLieu::where('tags', $taxonomy)->get();
+        $tax = DMTaiLieu::where('slug', '=', $taxonomy)->first();
+        $id_parent = ObjectController::ObjectId($tax['_id']);
+        $child_tax = DMTaiLieu::where('id_parent', '=', $id_parent)->get();
+        return view('Frontend.tai-lieu-taxonomy')->with(compact('danhsach', 'child_tax', 'tax','id_parent'));
+    }
+    function chi_tiet_tai_lieu(Request $request, $slug = '') {
+        $ds = TaiLieu::where('slug', '=', $slug)->first();
+        $danhsach = TaiLieu::where('tags',$ds['tags'])->orderBy('updated_at', 'asc')->get();
+        return view('Frontend.chi-tiet-tai-lieu')->with(compact('ds', 'danhsach'));
+    }
+
+    /*function san_pham(Request $request, $taxonomy = '') {
         $tax = DMSanPham::where('slug', '=', $taxonomy)->first();
         if($taxonomy) {
             $danhsach = SanPham::where('status','=', 1)->where('id_product_category',$tax['_id'])->paginate(30);
@@ -232,5 +241,5 @@ class FrontendController extends Controller
             $blnRegis = true;
         }
         return view('Frontend.dang-ky-thanh-vien-submit')->with(compact('blnRegis'));
-    }
+    }*/
 }

@@ -2,6 +2,12 @@
 return  [
     'menu' => array(
         0 => array(
+            'title' 	=> 'Tài liệu',
+            'path' 		=> 'tai-lieu',
+            'icon'      => 'fas fa-book-open',
+            'role'      => 'Admin,Manager,ABA'
+        ),
+        1 => array(
                 'title' 	=> 'Thông tin',
                 'path' 		=> 'thong-tin',
                 'icon'      => 'far fa-newspaper',
@@ -13,13 +19,8 @@ return  [
             'icon'      => 'fab fa-product-hunt',
             'role'      => 'Admin,Manager,Business,ABA'
         ),*/
-        2 => array(
-            'title' 	=> 'Tài liệu',
-            'path' 		=> 'tai-lieu',
-            'icon'      => 'fas fa-book-open',
-            'role'      => 'Admin,Manager,ABA'
-        ),
-        3 => array(
+        
+        /*3 => array(
             'title' 	=> 'Doanh nghiệp',
             'path' 		=> 'doanh-nghiep',
             'icon'      => 'fas fa-user-tie',
@@ -32,7 +33,7 @@ return  [
                 array('title' => 'Đề xuất - Kiến nghị', 'path' => 'de-xuat-kien-nghi'),
                 array('title' => 'Thông báo của HHDN', 'path' => 'thong-bao-hhdn')
             ),
-            'role'      => 'Admin,Manager,Business,ABA'
+            'role'      => 'Admin,Manager,Business,ABA,Expert'
         ),
         4 => array(
             'title' 	=> 'Chuyên gia',
@@ -64,7 +65,7 @@ return  [
                 array('title' => 'Quản lý Hội phí', 'path' => 'hoi-phi'),
                 array('title' => 'Thông báo', 'path' => 'thong-bao'),
             )
-        )
+        )*/
     ),
 
     'menu-home' => array(

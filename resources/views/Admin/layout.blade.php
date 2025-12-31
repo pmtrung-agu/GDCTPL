@@ -2,9 +2,9 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>@yield('title') | {{ __("CỔNG THÔNG TIN CHUYỂN ĐỔI SỐ DOANH NGHIỆP VỪA VÀ NHỎ TỈNH AN GIANG") }} - {{ __("AGU") }}</title>
+        <title>@yield('title') | {{ __("GIÁO DỤC CHÍNH TRỊ - PHÁP LUẬT") }} - {{ __("AGU") }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="{{ __("CỔNG THÔNG TIN CHUYỂN ĐỔI SỐ DOANH NGHIỆP VỪA VÀ NHỎ TỈNH AN GIANG") }} - {{ __("AGU") }}" name="description" />
+        <meta content="{{ __("GIÁO DỤC CHÍNH TRỊ - PHÁP LUẬT") }} - {{ __("AGU") }}" name="description" />
         <meta content="Phan Minh Trung - trungminhphan@gmail.com" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
@@ -18,7 +18,7 @@
     </head>
     <body>
         <!-- Navigation Bar-->
-        <header id="topnav" style="background-color:#0072c6;">
+        <header id="topnav" style="background-color:#d10700;">
             <!-- Topbar Start -->
             <div class="navbar-custom">
                 <div class="container-fluid">
@@ -62,7 +62,7 @@
                     <div class="logo-box">
                         <a href="{{ env('APP_URL') }}admin" class="logo text-center">
                             <span class="logo-lg">
-                                <img src="{{ env('APP_URL') }}assets/backend/images/logo.png" title="{{ __("CỔNG THÔNG TIN CHUYỂN ĐỔI SỐ DOANH NGHIỆP VỪA VÀ NHỎ TỈNH AN GIANG") }}" height="60">
+                                <img src="{{ env('APP_URL') }}assets/backend/images/logo.png" title="{{ __("GIÁO DỤC CHÍNH TRỊ - PHÁP LUẬT") }}" height="60">
                             </span>
                             <span class="logo-sm">
                                 <img src="{{ env('APP_URL') }}assets/backend/images/logo-sm.png" alt="" height="26">
@@ -85,13 +85,14 @@
                             @if(App\Http\Controllers\UserController::is_roles('Admin, Manager'))
                             <li class="has-submenu"><a href="#" ><i class="fa fa-tags"></i> Danh mục <div class="arrow-down"></div></a>
                                 <ul class="submenu in">
-                                    <li><a href="{{ env('APP_URL') }}admin/danh-muc/linh-vuc">Lĩnh vực</a></li>
-                                    <li><a href="{{ env('APP_URL') }}admin/danh-muc/nganh-nghe">Ngành nghề</a></li>
-                                    <li><a href="{{ env('APP_URL') }}admin/danh-muc/thong-tin">Thông tin</a></li>
-                                    <li><a href="{{ env('APP_URL') }}admin/danh-muc/san-pham">Sản phẩm</a></li>
                                     <li><a href="{{ env('APP_URL') }}admin/danh-muc/tai-lieu">Tài liệu</a></li>
+                                    <li><a href="{{ env('APP_URL') }}admin/danh-muc/thong-tin">Thông tin</a></li>
+                                    
+                                    {{-- -<li><a href="{{ env('APP_URL') }}admin/danh-muc/linh-vuc">Lĩnh vực</a></li>
+                                    <li><a href="{{ env('APP_URL') }}admin/danh-muc/nganh-nghe">Ngành nghề</a></li>
+                                    <li><a href="{{ env('APP_URL') }}admin/danh-muc/san-pham">Sản phẩm</a></li>                                    
                                     <li><a href="{{ env('APP_URL') }}admin/danh-muc/van-ban">Văn bản</a></li>
-                                    <li><a href="{{ env('APP_URL') }}admin/danh-muc/don-vi">Đơn vị</a></li>
+                                    <li><a href="{{ env('APP_URL') }}admin/danh-muc/don-vi">Đơn vị</a></li> --}}
                                 </ul>
                             </li>
                             @endif
@@ -151,7 +152,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        &copy; 2025 {{ __('CỔNG THÔNG TIN CHUYỂN ĐỔI SỐ DOANH NGHIỆP VỪA VÀ NHỎ TỈNH AN GIANG') }}
+                        &copy; 2025 {{ __('GIÁO DỤC CHÍNH TRỊ - PHÁP LUẬT') }}
                     </div>
                 </div>
             </div>

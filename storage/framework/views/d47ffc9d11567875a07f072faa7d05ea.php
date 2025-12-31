@@ -480,7 +480,7 @@ use App\Models\CDSKhaoSat;
                                     <?php if($tai_lieu): ?>
                                         <ul>
                                             <?php $__currentLoopData = $tai_lieu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tl): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <li><a href="<?php echo e(env('APP_URL')); ?>tai-lieu-chi-tiet/<?php echo e($tl['slug']); ?>" target="_blank"><?php echo e($tt['ten']); ?> </a> <small style="font-size:10px;"><?php echo e(\Carbon\Carbon::parse($tl['updated_at'])->format("d/m/Y H:i")); ?></small></li>
+                                                <li><a href="<?php echo e(env('APP_URL')); ?>tai-lieu-chi-tiet/<?php echo e($tl['slug']); ?>" target="_blank"><?php echo e($tl['ten']); ?> </a> <small style="font-size:10px;"><?php echo e(\Carbon\Carbon::parse($tl['updated_at'])->format("d/m/Y H:i")); ?></small></li>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </ul>
                                     <?php endif; ?>
@@ -600,6 +600,7 @@ use App\Models\CDSKhaoSat;
         </div>
     </div>
 </div>
+
 <div id="ChiTietModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

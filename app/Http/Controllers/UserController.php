@@ -31,9 +31,11 @@ class UserController extends Controller {
     static function is_roles($roles) {
       $arr = explode(",", $roles);
       $roles_arr = Session::get('user.roles');
-      foreach($arr as $key => $value) {
-        if(in_array($value, $roles_arr)) {
-          return true;
+      if($arr){
+        foreach($arr as $key => $value) {
+          if($roles_arr && in_array($value, $roles_arr)) {
+            return true;
+          }
         }
       }
       return false;

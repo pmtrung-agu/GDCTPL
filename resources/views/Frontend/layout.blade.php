@@ -1,243 +1,215 @@
-<!doctype html>
-<html class="no-js" lang="vi_VN">
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>@yield('title') - Cổng thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang</title>
-    <meta name="author" content="Phan Minh Trung">
-    <meta name="description" content="Cổng thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang">
-    <meta name="keywords" content="Cổng thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang">
-    <meta name="robots" content="INDEX,FOLLOW">
-    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-    <link rel="icon" type="image/png" href="{{ env('APP_URL') }}assets/frontend/img/favicons/favicon.png">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{{ env('APP_URL') }}assets/frontend/img/favicons/favicon.png">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ env('APP_URL') }}assets/frontend/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ env('APP_URL') }}assets/frontend/css/fontawesome.min.css">
-    <link rel="stylesheet" href="{{ env('APP_URL') }}assets/frontend/css/magnific-popup.min.css">
-    <link rel="stylesheet" href="{{ env('APP_URL') }}assets/frontend/css/swiper-bundle.min.css">
-    <link rel="stylesheet" href="{{ env('APP_URL') }}assets/frontend/css/style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@yield('title', 'Giáo dục Chính trị - Pháp Luật')</title>
+    <link rel="shortcut icon" href="{{ env('APP_URL') }}assets/frontend/images/favicon.ico">
+    <!-- Bootstrap CSS-->
+    <link href="{{ env('APP_URL') }}assets/frontend/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href="{{ env('APP_URL') }}assets/frontend/vendors/font-awesome/css/font-awesome.min.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!-- IE 9-->
+    <!-- Vendors-->
+    <link rel="stylesheet" href="{{ env('APP_URL') }}assets/frontend/vendors/flexslider/flexslider.min.css">
+    <link rel="stylesheet" href="{{ env('APP_URL') }}assets/frontend/vendors/swipebox/css/swipebox.min.css">
+    <link rel="stylesheet" href="{{ env('APP_URL') }}assets/frontend/vendors/slick/slick.min.css">
+    <link rel="stylesheet" href="{{ env('APP_URL') }}assets/frontend/vendors/slick/slick-theme.min.css">
+    <link rel="stylesheet" href="{{ env('APP_URL') }}assets/frontend/vendors/animate.min.css">
+    <link rel="stylesheet" href="{{ env('APP_URL') }}assets/frontend/vendors/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="{{ env('APP_URL') }}assets/frontend/vendors/pageloading/css/component.min.css">
+    <!-- Font-icon-->
+    <link rel="stylesheet" href="{{ env('APP_URL') }}assets/frontend/fonts/font-icon/style.css">
+    <!-- Style-->
+    <link rel="stylesheet" type="text/css" href="{{ env('APP_URL') }}assets/frontend/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="{{ env('APP_URL') }}assets/frontend/css/elements.css">
+    <link rel="stylesheet" type="text/css" href="{{ env('APP_URL') }}assets/frontend/css/extra.css">
+    <link rel="stylesheet" type="text/css" href="{{ env('APP_URL') }}assets/frontend/css/widget.css">
+    <link rel="stylesheet" type="text/css" href="{{ env('APP_URL') }}assets/frontend/css/responsive.css">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ env('APP_URL') }}assets/frontend/css/color.css">-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- Script Loading Page-->
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/html5shiv.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/respond.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/pageloading/js/snap.svg-min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/pageloading/sidebartransition/js/modernizr.custom.js"></script>
     @section('css') @show
   </head>
-  <body class="theme-blue2">
-    <div class="color-scheme-wrap active">
-      <button class="switchIcon">
-        <i class="fab fa-staylinked"></i>
-      </button>
-      <h4 class="color-scheme-wrap-title">
-        <i class="fab fa-staylinked me-2"></i>Liên kết
-      </h4>
-      <a href="https://aitvcdsag.phoenixcompany.vn/chat" target="_blank" class="th-btn text-center w-100"> <i class="fas fa-robot me-2"></i> Chatbot Ollama </a>
-      <hr />
-      <a href="https://ai.cdsdnag.com" class="th-btn text-center w-100" target="_blank"> <i class="fas fa-robot me-2"></i> Chatbot OpenAI </a>
-    </div>
-    <div id="preloader" class="preloader">
-      <button class="th-btn th-radius preloaderCls">Cancel Preloader</button>
-      <div class="preloader">
-        <div class="loading-container">
-          <div class="loading"></div>
-          <div class="preloader-logo">
-            <a class="icon-masking" href="{{ env('APP_URL') }}">
-              <span data-mask-src="{{ env('APP_URL') }}assets/frontend/img/preloader.svg" class="mask-icon"></span>
-              <img src="{{ env('APP_URL') }}assets/frontend/img/preloader.svg" alt="Cổng thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang">
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    @php 
-        $menu = Config::get('menu.menu-home');
-    @endphp
-    <div class="th-menu-wrapper">
-      <div class="th-menu-area text-center">
-        <button class="th-menu-toggle">
-          <i class="fal fa-times"></i>
-        </button>
-        <div class="mobile-logo">
-          <a href="{{ env('APP_URL') }}">
-            <img src="{{ env('APP_URL') }}assets/frontend/img/logo.png" alt="Cổng thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang" style="width:250px;">
-          </a>
-        </div>
-        @if($menu)
-        <div class="th-mobile-menu">
-            <ul>
-                @foreach($menu as $k1 => $m)
-                <li class="menu-item-has -children">
-                    <a href="{{ env('APP_URL') }}" onclick="return false;">{{ $m['title'] }}</a>
-                    @if($k1 == 0 || $k1 == 1 || $k1 ==2)
-                            @if($k1 == 0) @php $childs = App\Models\DMThongTin::All(); @endphp
-                            @elseif($k1 == 1) @php $childs = App\Models\DMSanPham::All(); @endphp 
-                            @elseif($k1 == 2) @php $childs = App\Models\DMTaiLieu::All(); @endphp 
-                            @else @php $childs = ""; @endphp @endif
-                            @if(isset($childs) && $childs)
-                            <ul class="sub-menu">
-                                @foreach($childs as $c)
-                                    <li><a href="{{ env('APP_URL') }}{{ $m['path'] }}/{{ $c['slug'] }}">{{ $c['ten'] }}</a></li>
-                                @endforeach
-                            </ul>
-                            @endif
-                      @endif
-                    @if(isset($m['childs']))
-                      <ul class="sub-menu">
-                          @foreach($m['childs'] as $c)
-                              <li><a href="{{ env('APP_URL') }}{{ $m['path'] }}/{{ $c['path'] }}">{{ $c['title'] }}</a></li>
-                          @endforeach
-                      </ul>
-                  @endif
-                </li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-      </div>
-    </div>
-    <header class="th-header header-layout3">
-      <div class="sticky-wrapper">
-        <div class="menu-area">
-          <div class="container">
-            <div class="row align-items-center justify-content-between">
-              <div class="col-auto" style="width:21%;">
-                <div class="header-logo">
-                  <a href="{{ env('APP_URL') }}">
-                    <img src="{{ env('APP_URL') }}assets/frontend/img/logo.png" alt="Cổng thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang" style="width:250px;">
-                  </a>
+  <body>
+    <div id="pagewrap" class="pagewrap">
+      <div id="html-content" class="wrapper-content">
+        <header class="header-transparent">
+          <div class="header-top top-layout-02">
+            <div class="container">
+              <div class="topbar-left">
+                <div class="topbar-content">
+                  <div class="item"> 
+                    <div class="wg-contact"><i class="fa fa-map-marker"></i><span> Ban Chỉ huy Phòng thủ khu vực 1 - Long Phú</span></div>
+                  </div>
+                  <div class="item"> 
+                    <div class="wg-contact"><i class="fa fa-phone"></i><span> 0325929269</span></div>
+                  </div>
                 </div>
               </div>
-              <div class="col-auto">
-                @if($menu)
-                <nav class="main-menu style2 d-none d-lg-inline-block">
-                  <ul>
-                    @foreach($menu as $k1 => $m)
-                    <li class="menu-item-has-children">
-                        <a href="{{ env('APP_URL')}}">{{ $m['title']}}</a>
-                        @if($k1 == 0 || $k1 == 1 || $k1 ==2)
-                            @if($k1 == 0) @php $childs = App\Models\DMThongTin::All(); @endphp
-                            @elseif($k1 == 1) @php $childs = App\Models\DMSanPham::All(); @endphp 
-                            @elseif($k1 == 2) @php $childs = App\Models\DMTaiLieu::All(); @endphp 
-                            @else @php $childs = ""; @endphp @endif
-                            @if(isset($childs) && $childs)
-                            <ul class="sub-menu">
-                                @foreach($childs as $c)
-                                    <li><a href="{{ env('APP_URL') }}{{ $m['path'] }}/{{ $c['slug'] }}">{{ $c['ten'] }}</a></li>
-                                @endforeach
-                            </ul>
-                            @endif
-                        @endif
-                        @if(isset($m['childs']))
-                            <ul class="sub-menu">
-                                @foreach($m['childs'] as $c)
-                                    <li><a href="{{ env('APP_URL') }}{{ $m['path'] }}/{{ $c['path'] }}">{{ $c['title'] }}</a></li>
-                                @endforeach
-                            </ul>
-                        @endif
+            </div>
+          </div>
+          <div class="header-main">
+            <div class="container">
+              <div class="open-offcanvas">&#9776;</div>
+              {{-- <div class="utility-nav">
+                <div class="dropdown"><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="search-bar dropdown-toggle"><i class="fa fa-search"></i></a>
+                  <div class="dropdown-menu">
+                    <div class="search-form">
+                      <form action="{{ env('APP_URL') }}tim-kiem" method="GET" id="SearchForm">
+                        <div class="input-group">
+                          <input type="text" name="q" value="{{ Request::input('q') }}" placeholder="Tìm kiếm" class="form-control">
+                          <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>--}}
+              <div class="header-logo"><a href="{{ env('APP_URL') }}" class="logo logo-static"><img src="{{ env('APP_URL') }}assets/frontend/images/@yield('logo','logo-yellow.png')" alt="fooday" class="logo-img" style="max-width:400px;"></a><a href="{{ env('APP_URL') }}" class="logo logo-fixed"><img src="{{ env('APP_URL') }}assets/frontend/images/logo-red.png" alt="fooday" class="logo-img"  style="max-width:400px;"></a></div>
+              <nav id="main-nav-offcanvas" class="main-nav-wrapper">
+                <div class="close-offcanvas-wrapper"><span class="close-offcanvas">x</span></div>
+                <div class="main-nav">
+                  <ul id="main-nav" class="nav nav-pills">
+                    <li class="dropdown"><a href="{{ env('APP_URL') }}thong-tin/tin-tuc-su-kien">Tin hoạt động </a>
+                      {{-- <ul class="dropdown-menu">
+                        <li><a href="{{ env('APP_URL') }}thong-tin/tin-tuc-su-kien">Bài viết về Bác</a></li>
+                        <li><a href="{{ env('APP_URL') }}thong-tin/hinh-anh">Hình ảnh</a></li>
+                      </ul> --}}
                     </li>
-                    @endforeach
+                    @php
+                      $dmtailieu = App\Models\DMTaiLieu::where('id_parent','=','')->get();
+                    @endphp
+                    <li class="dropdown"><a href="{{ env('APP_URL') }}tai-lieu">Tài liệu GDCT-PL  <i class="fa fa-arrow-down"></i></a>
+                      @if($dmtailieu)
+                      <ul class="dropdown-menu">
+                        @foreach($dmtailieu as $dmtl)
+                          <li><a href="{{ env('APP_URL') }}tai-lieu/{{ $dmtl['slug'] }}">{{ $dmtl['ten'] }}</a></li>
+                        @endforeach
+                        {{-- -<li><a href="{{ env('APP_URL') }}tai-lieu/tac-pham-ve-ho-chi-minh">Giáo dục nâng cao</a></li> --}}
+                      </ul>
+                      @endif
+                    </li>
+                    {{-- -<li><a href="{{ env('APP_URL') }}thong-tin/videos">Videos</a></li> --}}
+                    {{-- <li><a href="">Liên hệ</a></li> --}}
                   </ul>
-                </nav>
-                @endif
-                <div class="header-button">
-                  <button type="button" class="th-menu-toggle d-inline-block d-lg-none">
-                    <i class="far fa-bars"></i>
-                  </button>
                 </div>
-              </div>
-              <div class="col-auto d-none d-lg-block">
-                <div class="header-button">
-                  <a href="{{ env('APP_URL') }}auth/login" class="th-btn d-none d-xl-block" title="Đăng nhập hệ thống"><i class="fas fa-sign-in"></i> Đăng nhập</a>
-                  {{-- <a href="{{ env('APP_URL') }}gio-hang" class="icon-btn sideMenuToggler" title="Giỏ hàng">
-                    <i class="fas fa-cart-arrow-down"></i>
-                  </a> --}}
+              </nav>
+            </div>
+          </div>
+        </header>
+        <div class="page-container">
+          @section('body') @show
+        </div>
+        <footer>
+          <div class="footer-main">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12 col-md-12">
+                  <div class="ft-widget-area">
+                    <div class="ft-area1">
+                      <div class="swin-wget swin-wget-about">
+                        <div class="wget-about-content">
+                            <h3 class="title" style="color:#fff;">Giáo dục Chính trị - Pháp Luật</h3>
+                        </div>
+                        <div class="about-contact-info clearfix">
+                          <div class="address-info">
+                            <div class="info-content">
+                              <p><i class="fa fa-map-marker"></i> Ban Chỉ huy Phòng thủ khu vực 1 - Long Phú</p>
+                            </div>
+                          </div>
+                          <div class="phone-info">
+                            <div class="info-content">
+                              <p> <i class="fa fa-mobile-phone"></i> 0325929269</p>
+                            </div>
+                          </div>
+                          <div class="email-info">
+                            <div class="info-content">
+                              <p><i class="fa fa-envelope"></i> trantien1371997@gmail.com</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </footer><a id="totop" href="#" class="animated"><i class="fa fa-angle-double-up"></i></a>
       </div>
-    </header>
-    @section('body') @show
-    
-    <footer class="footer-wrapper footer-layout3">
-      <div class="container">
-        <div class="widget-area">
-          <div class="row justify-content-between">
-            <div class="col-md-6 col-xxl-3 col-xl-4">
-              <div class="widget footer-widget">
-                <div class="th-widget-about">
-                  <div class="about-logo">
-                    <a class="icon-masking" href="{{ env('APP_URL') }}">
-                      <span data-mask-src="{{ env('APP_URL') }}assets/frontend/img/logo.png" class="mask-icon"></span>
-                      <img src="{{ env('APP_URL') }}assets/frontend/img/logo.png" alt="Cổng thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang" style="width:250px;">
-                    </a>
-                  </div>
-                  {{-- <p class="about-text">Cung cấp thông tin và tư vấn chuyển đổi số cho các doanh nghiệp nhỏ và vừa tỉnh An Giang.</p> --}}
-                  <p class="about-text">Nôi dung Website trong quá trình hoàn thiện, mọi chi tiết vui lòng góp ý qua email: <b>cict@agu.edu.vn</b></p>
-                  <div class="th-social">
-                    <a href="https://www.facebook.com/AGUCICT">
-                      <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://www.youtube.com/@agucict">
-                      <i class="fab fa-youtube"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-xl-auto">
-              <div class="widget widget_nav_menu footer-widget">
-                <h3 class="widget_title">Doanh nghiệp tham gia</h3>
-                <div class="menu-all-pages-container">
-                  <ul class="menu">
-                    <li><a href="https://thaiminhnguyen.vn">Công ty TNHH MTV TMDV Thái Minh Nguyên</a></li>
-                    <li><a href="https://ytetaigia247.com/">Y Tế Tại Gia 247</a></li>
-                    <li><a href="https://xnta.afiex.com.vn">Xí nghiệp chế biến Thức ăn Chăn nuôi và Thủy sản AFIEX</a></li>
-                    <li><a href="https://myphammyhanh.com">Công ty TNHH Mỹ Phẩm Mỹ Hạnh</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-xl-auto">
-              <div class="widget widget_nav_menu footer-widget">
-                <h3 class="widget_title">Thông tin Chuyển đổi số</h3>
-                <div class="menu-all-pages-container">
-                  <ul class="menu">
-                    <li><a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/huong-dan-su-dung-website">Hướng dẫn sử dụng</a></li>
-                    <li><a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/huong-dan-dang-ky-thanh-vien">Hướng dẫn đăng ký thành viên</a></li>
-                    <li><a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/quy-dinh-quan-ly-van-hanh-cap-nhat-khai-thac-va-su-dung-he-thong-ai-ho-tro-cac-giai-phap-chuyen-doi-so-trong-doanh-nghiep-nho-va-vua-tai-tinh-an-giang">Quy định sử dụng, quản lý</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+      <div id="loader" data-opening="m -5,-5 0,70 90,0 0,-70 z m 5,35 c 0,0 15,20 40,0 25,-20 40,0 40,0 l 0,0 C 80,30 65,10 40,30 15,50 0,30 0,30 z" class="pageload-overlay">
+        <div class="loader-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 80 60" preserveaspectratio="none">
+            <path d="m -5,-5 0,70 90,0 0,-70 z m 5,5 c 0,0 7.9843788,0 40,0 35,0 40,0 40,0 l 0,60 c 0,0 -3.944487,0 -40,0 -30,0 -40,0 -40,0 z"></path>
+          </svg>
+          <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+          </div>
+          <div class="sk-circle sk-circle-out">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
           </div>
         </div>
       </div>
-      <div class="copyright-wrap text-center">
-        <div class="container">
-          <p class="copyright-text"><i class="fal fa-copyright"></i> 2025. Cổng Thông tin Chuyển đổi số Doanh nghiệp nhỏ và vừa tỉnh An Giang. <br /> Thực hiện bởi <a href="https://cict.agu.edu.vn" class="text-white bold"><b>Trung tâm Tin học</b></a> Trường Đại học An Giang</p>
-        </div>
-      </div>
-    </footer>
-    <div class="scroll-top">
-      <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;"></path>
-      </svg>
     </div>
-    <script src="{{ env('APP_URL') }}assets/frontend/js/vendor/jquery-3.7.1.min.js"></script>
-    <script src="{{ env('APP_URL') }}assets/frontend/js/swiper-bundle.min.js"></script>
-    <script src="{{ env('APP_URL') }}assets/frontend/js/bootstrap.min.js"></script>
-    <script src="{{ env('APP_URL') }}assets/frontend/js/jquery.magnific-popup.min.js"></script>
-    <script src="{{ env('APP_URL') }}assets/frontend/js/jquery.counterup.min.js"></script>
-    <script src="{{ env('APP_URL') }}assets/frontend/js/circle-progress.js"></script>
-    <script src="{{ env('APP_URL') }}assets/frontend/js/jquery-ui.min.js"></script>
-    <script src="{{ env('APP_URL') }}assets/frontend/js/imagesloaded.pkgd.min.js"></script>
-    <script src="{{ env('APP_URL') }}assets/frontend/js/isotope.pkgd.min.js"></script>
-    <script src="{{ env('APP_URL') }}assets/frontend/js/tilt.jquery.min.js"></script>
-    <script src="{{ env('APP_URL') }}assets/frontend/js/nice-select.min.js"></script>
-    <script src="{{ env('APP_URL') }}assets/frontend/js/wow.min.js"></script>
-    <script src="{{ env('APP_URL') }}assets/frontend/js/main.js"></script>
+    <!-- jQuery-->
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/jquery-1.10.2.min.js"></script>
+    <!-- Bootstrap JavaScript-->
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Vendors-->
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/flexslider/jquery.flexslider-min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/swipebox/js/jquery.swipebox.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/slick/slick.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/isotope/isotope.pkgd.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/jquery-countTo/jquery.countTo.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/jquery-appear/jquery.appear.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/parallax/parallax.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/gmaps/gmaps.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/audiojs/audio.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/vide/jquery.vide.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/pageloading/js/svgLoader.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/pageloading/js/classie.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/pageloading/sidebartransition/js/sidebarEffects.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/wowjs/wow.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/skrollr.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/vendors/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <!-- Own script-->
+    <script src="{{ env('APP_URL') }}assets/frontend/js/layout.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/js/elements.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/js/widget.js"></script>
+    <script src="{{ env('APP_URL') }}assets/frontend/js/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>
     @section('js') @show
   </body>
 </html>

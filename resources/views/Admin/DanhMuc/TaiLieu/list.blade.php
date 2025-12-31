@@ -8,24 +8,43 @@
         <div class="row">
             <div class="col-12">
                 <div class="card-box">                    
-                    <h3><a href="{{ env('APP_URL') }}admin/danh-muc/tai-lieu/add" class="btn btn-primary"><i class="fa fa-plus"></i> Thêm mới</a> Danh mục Tài liệu</h3>
-                    @if($namhoc)
+                    <h3><a href="{{ env('APP_URL') }}admin/danh-muc/tai-lieu/add?id_parent={{ $id_parent }}" class="btn btn-primary"><i class="fa fa-plus"></i> Thêm mới</a> Danh mục Tài liệu</h3>
+                    @if($id_parent)
+                    @php
+                        $ds = App\Models\DMTaiLieu::find($id_parent);
+                    @endphp
+                        <a href="{{ env('APP_URL') }}admin/danh-muc/tai-lieu"><i class="fa fa-home"></i> Trở về Home</a> 
+                        <i class="fas fa-angle-double-right"></i> {{ $ds['ten'] }}
+                    @endif
+                    @if($danhsach)
                     <table id="demo-foo-filtering" class="table table-striped table-bordered toggle-circle m-b-0" data-page-size="30">
                         <thead>
                             <tr>
                                 <th>STT</th>
+                                <th>Hình</th>
                                 <th>Tên</th>
                                 <th>Thứ tự</th>
                                 <th>#</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($namhoc as $k => $ct)
+                        @foreach($danhsach as $k => $ct)
                             <tr>
                                 <td class="text-center">{{ $k+1 }}</td>
                                 <td>
-                                    {{ $ct['ten'] }} <br />
-                                    <small>{{ $ct['slug'] }}</small>
+                                    @if(isset($ct['photos'][0]['aliasname']) && $ct['photos'][0]['aliasname'])
+                                        <img src="{{ env('APP_URL') }}storage/images/thumb_50/{{ $ct['photos'][0]['aliasname'] }}" alt="{{ $ct['ten'] }}">                                        
+                                    @else
+                                        <img src="{{ env('APP_URL') }}assets/backend/images/logo-sm.png" alt="{{ $ct['ten'] }}">
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($ct['id_parent'] == '')
+                                        <a href="{{ env('APP_URL') }}admin/danh-muc/tai-lieu?id_parent={{ $ct['_id'] }}">{{ $ct['ten'] }}</a>
+                                    @else  
+                                        {{ $ct['ten'] }}
+                                    @endif
+                                    <span class="badge badge-warning"><small>{{ $ct['slug'] }}</small></span>
                                 </td>
                                 <td class="text-center">{{ $ct['thu_tu'] }}</td>
                                 <td class="text-center">

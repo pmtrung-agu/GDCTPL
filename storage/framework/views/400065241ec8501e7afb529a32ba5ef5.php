@@ -1,0 +1,1 @@
+<?php /**PATH E:\Lara_Projects\GDCTPL\resources\views/Frontend/chi-tiet_tai_lieu.blade.php ENDPATH**/ ?>

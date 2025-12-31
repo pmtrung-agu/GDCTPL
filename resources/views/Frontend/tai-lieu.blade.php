@@ -1,45 +1,43 @@
 @extends('Frontend.layout')
-@section('title', $tax['ten'])
+@section('title', 'Tài liệu')
+
 @section('body')
-@if($danhsach)
-<section class="th-blog-wrapper space-top">
+<div class="page-title page-blog">
     <div class="container">
-        <div class="title-area text-center">
-            <span class="sub-title sub-title2">Tài liệu chuyển đổi số</span>
-            <h2 class="sec-title sec-title2"><span>{{ $tax['ten'] }}</span> </h2>
-        </div>
-      <div class="row">
-        @foreach ($danhsach as $tt)
-        @php
-          $date_post = App\Http\Controllers\ObjectController::getDate($tt['date_post'], "d/m/Y");
-        @endphp
-        <div class="col-xxl-4 col-lg-4 col-md-4">
-          <div class="th-blog blog-single has-post-thumbnail">
-            <div class="blog-img" style="height:150px; overflow: hidden;">
-              <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $tt['slug'] }}">
-                @if(isset($tt['photos'][0]['aliasname']) && $tt['photos'][0]['aliasname'])
-                  <img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $tt['photos'][0]['aliasname'] }}" alt="{{ $tt['ten'] }}">
-                @else
-                  <img src="{{ env('APP_URL') }}assets/frontend/img/blog/blog-s-1-1.jpg" alt="Blog Image" style="height:250px;">
-                @endif
-              </a>
-            </div>
-            <div class="blog-content">
-              <div class="blog-meta">
-                <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $tt['slug'] }}">
-                  <i class="fa-regular fa-calendar"></i> {{ $date_post }} </a>
-              </div>
-              <h2 class="blog-title" style="height: 90px; overflow:hidden;">
-                <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $tt['slug'] }}" title="{{ $tt['ten'] }}" alt="{{ $tt['ten'] }}">{{ Str::limit($tt['ten'],85) }}</a>
-              </h2>
-              <p class="blog-text" alt="{{ $tt['mo_ta'] }}" title="{{ $tt['mo_ta'] }}" style="height: 100px;overflow:hidden;">{{ Str::limit($tt['mo_ta'], 85) }}</p>
-            </div>
-          </div>
-        </div>
-        @endforeach
+      <div class="title-wrapper">
+        <div data-top="transform: translateY(0px);opacity:1;" data--120-top="transform: translateY(-30px);opacity:0;" data-anchor-target=".page-title" class="title">Tài liệu</div>
+        <div data-top="opacity:1;" data--120-top="opacity:0;" data-anchor-target=".page-title" class="divider"><span class="line-before"></span><span class="dot"></span><span class="line-after"></span></div>
       </div>
+    </div>
+</div>
+@if($danhsach)
+<section class="product-sesction-02 padding-bottom-100">
+    <div class="container">
+        <div class="swin-sc swin-sc-product products-02 carousel-02">
+            <div class="row">
+                <div class="products nav-slider">
+                    <div class="row slick-padding">
+                        @foreach($danhsach as $ds)
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="blog-item item swin-transition">
+                                <div class="block-img">
+                                    @if(isset($ds['photos'][0]['aliasname']) && $ds['photos'][0]['aliasname'])
+                                        <img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $ds['photos'][0]['aliasname'] }}" alt="{{ $ds['ten'] }}" title="{{ $ds['ten'] }}" class="img img-responsive" style="height:200px;">
+                                    @else 
+                                        <img src="{{ env('APP_URL') }}assets/frontend/images/default_thumb.jpg" alt="{{ $ds['ten'] }}" title="{{ $ds['ten'] }}" class="img img-responsive" style="height:200px;">
+                                    @endif
+                                </div>
+                                <div class="block-content">
+                                    <h5 class="title text-center"><a href="{{ env('APP_URL') }}tai-lieu/{{ $ds['slug'] }}">{{ $ds['ten'] }}</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 @endif
-
 @endsection

@@ -6,40 +6,41 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ObjectController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\DMDiaChiController;
-use App\Http\Controllers\DMLinhVucController;
-use App\Http\Controllers\DMNganhNgheController;
+//use App\Http\Controllers\DMDiaChiController;
+//use App\Http\Controllers\DMLinhVucController;
+//use App\Http\Controllers\DMNganhNgheController;
 use App\Http\Controllers\DMThongTinController;
-use App\Http\Controllers\DMSanPhamController;
+//use App\Http\Controllers\DMSanPhamController;
 use App\Http\Controllers\DMTaiLieuController;
-use App\Http\Controllers\SanPhamController;
+//use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\ThongTinController;
 use App\Http\Controllers\TaiLieuController;
-use App\Http\Controllers\CDSKhaoSatController;
-use App\Http\Controllers\DoanhNghiepController;
-use App\Http\Controllers\KetNoiGiaoThuongController;
-use App\Http\Controllers\HoiPhiController;
-use App\Http\Controllers\VanBanController;
-use App\Http\Controllers\DMVanBanController;
-use App\Http\Controllers\DMDonViController;
-use App\Http\Controllers\ThongBaoController;
-use App\Http\Controllers\DeXuatKienNghiController;
+//use App\Http\Controllers\CDSKhaoSatController;
+//use App\Http\Controllers\DoanhNghiepController;
+//use App\Http\Controllers\KetNoiGiaoThuongController;
+//use App\Http\Controllers\HoiPhiController;
+//use App\Http\Controllers\VanBanController;
+//use App\Http\Controllers\DMVanBanController;
+//use App\Http\Controllers\DMDonViController;
+//use App\Http\Controllers\ThongBaoController;
+//use App\Http\Controllers\DeXuatKienNghiController;
 use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\ApiController;
+#use App\Http\Controllers\ApiController;
 
 Route::get('/', [FrontendController::class, 'index']);
-Route::get('qrcode', [FrontendController::class, 'qrcode']);
+
 Route::get('thong-tin', [FrontendController::class, 'thong_tin']);
 Route::get('thong-tin/{taxonomy}', [FrontendController::class, 'thong_tin']);
 Route::get('thong-tin-chi-tiet/{slug}', [FrontendController::class, 'thong_tin_chi_tiet']);
-Route::get('tai_lieu', [FrontendController::class, 'tai_lieu']);
-Route::get('tai-lieu/{taxonomy}', [FrontendController::class, 'tai_lieu']);
-Route::get('tai-lieu-chi-tiet/{slug}', [FrontendController::class, 'tai_lieu_chi_tiet']);
+Route::get('tai-lieu', [FrontendController::class, 'tai_lieu']);
+
+Route::get('tai-lieu/{taxonomy}', [FrontendController::class, 'tai_lieu_taxonomy']);
+Route::get('chi-tiet-tai-lieu/{slug}', [FrontendController::class, 'chi_tiet_tai_lieu']);
 
 Route::get('san-pham', [FrontendController::class, 'san_pham']);
 Route::get('san-pham/{taxonomy}', [FrontendController::class, 'san_pham']);
 Route::get('san-pham-chi-tiet/{slug}', [FrontendController::class, 'san_pham_chi_tiet']);
-
+/*
 Route::get('goi-yeu-cau', [FrontendController::class, 'goi_yeu_cau']);
 Route::get('tu-van-chuyen-doi-so', [FrontendController::class, 'tu_van_chuyen_doi_so']);
 Route::post('tu-van-chuyen-doi-so-submit', [FrontendController::class, 'tu_van_chuyen_doi_so_submit']);
@@ -69,7 +70,7 @@ Route::get('chuyen-gia/danh-sach', [FrontendController::class, 'chuyen_gia']);
 Route::get('chuyen-gia/goi-tin-nhan-den-chuyen-gia', function(){
     return redirect(env('APP_URL') . 'admin/doanh-nghiep/tu-van-chuyen-doi-so/add');
 });
-
+*/
 Route::get('auth/login', [AuthController::class, 'getLogin'])->name('auth-login-get');
 Route::get('auth/logout', [AuthController::class, 'logout'])->name('auth-logout-get');
 Route::post('auth/login', [AuthController::class,'authenticate'])->name('auth-login-post');;
@@ -83,18 +84,24 @@ Route::post('file/upload-json/{fileID}', [FileController::class, 'upload_json'])
 Route::get('file/delete/{filename}', [FileController::class, 'delete'])->middleware('checkauth');
 Route::get('file/download/{filename}', [FileController::class, 'download'])->middleware('checkauth');
 
-Route::get('api/san-pham', [ApiController::class, 'san_pham']);
+/*Route::get('api/san-pham', [ApiController::class, 'san_pham']);
 Route::get('api/san-pham/{slug}', [ApiController::class, 'san_pham_slug']);
 Route::get('api/thong-tin', [ApiController::class, 'thong_tin']);
 Route::get('api/thong-tin/{slug}', action: [ApiController::class, 'thong_tin_slug']);
+Route::get('api/thong-bao-hhdn', action: [ApiController::class, 'thong_bao_hhdn']);
+Route::get('api/ket-noi-giao-thuong', action: [ApiController::class, 'ket_noi_giao_thuong']);
+Route::get('api/khao-sat-muc-do-cds', action: [ApiController::class, 'khao_sat_muc_do_cds']);
+
 Route::get('api/tai-lieu', [ApiController::class, 'tai_lieu']);
 Route::get('api/tai-lieu/{slug}', [ApiController::class, 'tai_lieu_slug']);
 Route::get('api/doanh-nghiep', [ApiController::class, 'doanh_nghiep']);
+Route::get('api/doanh-nghiep-list', [ApiController::class, 'doanh_nghiep_list']);
 Route::get('api/doanh-nghiep/dang-ky-thanh-vien', [ApiController::class, 'dang_ky_thanh_vien']);
 Route::get('api/doanh-nghiep/dang-nhap', [ApiController::class, 'dang_nhap']);
 Route::get('api/doanh-nghiep/{slug}', [ApiController::class, 'doanh_nghiep_slug']);
 Route::get('api/chuyen-gia', [ApiController::class, 'chuyen_gia']);
-
+Route::get('api/chuyen-gia-list', [ApiController::class, 'chuyen_gia_list']);
+*/
 
 Route::get('not-permissions', function () {
     return view('Admin.page_not_permis');
@@ -103,15 +110,13 @@ Route::get('not-permissions', function () {
 Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('/', [AuthController::class, 'dashboard'])->middleware('checkauth');
     Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware('checkauth');
-
-    Route::get('chuyen-gia', [UserController::class, 'chuyen_gia'])->name('admin-thong-tin')->middleware('role:Admin,Manager,Business,ABA');  
-
-    Route::get('san-pham', [SanPhamController::class, 'list'])->name('admin-san-pham')->middleware('role:Admin,Manager,ABA,Business');
-    Route::get('san-pham/add', [SanPhamController::class, 'add'])->name('admin-san-pham-add')->middleware('role:Admin,Manager,Business,ABA');
-    Route::post('san-pham/create', [SanPhamController::class, 'create'])->name('admin-san-pham-create')->middleware('role:Admin,Manager,Business,ABA');
-    Route::get('san-pham/edit/{id}', [SanPhamController::class, 'edit'])->name('admin-san-pham-edit-id')->middleware('role:Admin,Manager,Business,ABA');
-    Route::post('san-pham/update', [SanPhamController::class,'update'])->name('admin-san-pham-update')->middleware('role:Admin,Manager,Business,ABA');
-    Route::get('san-pham/delete/{id}', [SanPhamController::class, 'delete'])->name('admin-san-pham-delete-id')->middleware('role:Admin,Manager,Business,ABA');
+    Route::get('chuyen-gia', [UserController::class, 'chuyen_gia'])->name('admin-thong-tin')->middleware('role:Admin,Manager,Business,ABA,Expert');  
+    //Route::get('san-pham', [SanPhamController::class, 'list'])->name('admin-san-pham')->middleware('role:Admin,Manager,ABA,Business,Expert');
+    //Route::get('san-pham/add', [SanPhamController::class, 'add'])->name('admin-san-pham-add')->middleware('role:Admin,Manager,Business,ABA,Expert');
+    //Route::post('san-pham/create', [SanPhamController::class, 'create'])->name('admin-san-pham-create')->middleware('role:Admin,Manager,Business,ABA,Expert');
+    //Route::get('san-pham/edit/{id}', [SanPhamController::class, 'edit'])->name('admin-san-pham-edit-id')->middleware('role:Admin,Manager,Business,ABA,Expert');
+    //Route::post('san-pham/update', [SanPhamController::class,'update'])->name('admin-san-pham-update')->middleware('role:Admin,Manager,Business,ABA,Expert');
+    //Route::get('san-pham/delete/{id}', [SanPhamController::class, 'delete'])->name('admin-san-pham-delete-id')->middleware('role:Admin,Manager,Business,ABA,Expert');
 
     Route::get('thong-tin', [ThongTinController::class, 'list'])->name('admin-thong-tin')->middleware('role:Admin,Manager,ABA');
     Route::get('thong-tin/change-password', [ThongTinController::class, 'change_password'])->name('admin-thong-tin-change-password')->middleware('role:Admin,Manager,Business,ABA');
@@ -132,7 +137,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('tai-lieu/delete/{id}', [TaiLieuController::class, 'delete'])->name('admin-tai-lieu-delete-id')->middleware('role:Admin,Manager,Business,ABA');
 
     
-    Route::get('khao-sat-muc-do-cds', [CDSKhaoSatController::class, 'du_lieu'])->middleware('role:Admin,Manager,Business,ABA');
+    /*Route::get('khao-sat-muc-do-cds', [CDSKhaoSatController::class, 'du_lieu'])->middleware('role:Admin,Manager,Business,ABA');
     Route::get('khao-sat-muc-do-cds/du-lieu', [CDSKhaoSatController::class, 'du_lieu'])->middleware('role:Admin,Manager,Business,ABA');
     Route::get('khao-sat-muc-do-cds/bieu-do', [CDSKhaoSatController::class, 'bieu_do'])->middleware('role:Admin,Manager,Business,ABA');
     Route::get('khao-sat-muc-do-cds/chi-tiet/{id}', [CDSKhaoSatController::class, 'chi_tiet'])->middleware('role:Admin,Manager,Business,ABA');
@@ -143,10 +148,10 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('khao-sat-muc-do-cds/theo-linh-vuc', [CDSKhaoSatController::class, 'linh_vuc'])->middleware('role:Admin,Manager,Business,ABA');
     
     Route::get('doanh-nghiep', [DoanhNghiepController::class, 'list'])->middleware('role:Admin,Manager,Expert,ABA,Business');
-    Route::get('doanh-nghiep/san-pham', [DoanhNghiepController::class, 'san_pham'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::get('doanh-nghiep/san-pham', [DoanhNghiepController::class, 'san_pham'])->middleware('role:Admin,Manager,ABA,Business,Expert');
     Route::get('doanh-nghiep/danh-sach', [DoanhNghiepController::class, 'list'])->middleware('role:Admin,Manager,Expert,ABA,Business');
-    Route::get('doanh-nghiep/chi-tiet/{id}', [DoanhNghiepController::class, 'chi_tiet'])->middleware('role:Admin,Manager,ABA,Business');
-    Route::get('doanh-nghiep/download/{id}/{key}', [DoanhNghiepController::class, 'download'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::get('doanh-nghiep/chi-tiet/{id}', [DoanhNghiepController::class, 'chi_tiet'])->middleware('role:Admin,Manager,ABA,Business,Expert');
+    Route::get('doanh-nghiep/download/{id}/{key}', [DoanhNghiepController::class, 'download'])->middleware('role:Admin,Manager,ABA,Business,Expert');
     Route::get('doanh-nghiep/add', [DoanhNghiepController::class, 'add'])->middleware('role:Admin,Manager,Expert,Business,ABA');
     Route::post('doanh-nghiep/create', [DoanhNghiepController::class, 'create'])->middleware('role:Admin,Manager,ABA');
     Route::get('doanh-nghiep/edit/{id}', [DoanhNghiepController::class, 'edit'])->middleware('role:Admin,Manager,ABA,Business');
@@ -185,10 +190,10 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('doanh-nghiep/de-xuat-kien-nghi/tinh-trang/{id}', [DeXuatKienNghiController::class, 'tinh_trang'])->middleware('role:Admin,Manager,ABA');
     Route::get('doanh-nghiep/de-xuat-kien-nghi/delete/{id}', [DeXuatKienNghiController::class, 'delete'])->middleware('role:Admin,Manager,ABA');
     Route::get('doanh-nghiep/de-xuat-kien-nghi/download/{id}/{key}', [DeXuatKienNghiController::class, 'download'])->middleware('role:Admin,Manager,ABA');
-    Route::get('doanh-nghiep/thong-bao-hhdn', [ThongBaoController::class, 'list'])->middleware('role:Admin,Manager,ABA,Business');
+    Route::get('doanh-nghiep/thong-bao-hhdn', [ThongBaoController::class, 'list'])->middleware('role:Admin,Manager,ABA,Business');*/
     
 
-    Route::group(['prefix' => 'hiep-hoi-doanh-nghiep',  'middleware' => 'checkauth'], function(){
+    /*Route::group(['prefix' => 'hiep-hoi-doanh-nghiep',  'middleware' => 'checkauth'], function(){
         Route::get('/', [HoiPhiController::class ,'list'])->middleware('role:Admin,Manager,ABA');
         Route::get('hoi-phi', [HoiPhiController::class ,'list'])->middleware('role:Admin,Manager,ABA');
         Route::get('hoi-phi/add', [HoiPhiController::class ,'add'])->middleware('role:Admin,Manager,ABA');
@@ -217,10 +222,10 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
         Route::get('thong-bao/download/{id}/{key}', [ThongBaoController::class ,'download'])->middleware('role:Admin,Manager,ABA');
         Route::post('thong-bao/send-email', [ThongBaoController::class ,'send_email'])->middleware('role:Admin,Manager,ABA');
         
-    });
+    });*/
            
     Route::group(['prefix' => 'danh-muc',  'middleware' => 'checkauth'], function(){
-        Route::get('linh-vuc', [DMLinhVucController::class, 'list'])->name('admin-linh-vuc')->middleware('role:Admin');
+        /*Route::get('linh-vuc', [DMLinhVucController::class, 'list'])->name('admin-linh-vuc')->middleware('role:Admin');
         Route::get('linh-vuc/add', [DMLinhVucController::class, 'add'])->name('admin-linh-vuc-add')->middleware('role:Admin');
         Route::post('linh-vuc/create', [DMLinhVucController::class, 'create'])->name('admin-linh-vuc-create')->middleware('role:Admin');
         Route::get('linh-vuc/edit/{id}', [DMLinhVucController::class, 'edit'])->name('admin-linh-vuc-edit-id')->middleware('role:Admin');
@@ -233,7 +238,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
         Route::get('nganh-nghe/edit/{id}', [DMNganhNgheController::class, 'edit'])->name('admin-nganh-nghe-edit-id')->middleware('role:Admin');
         Route::post('nganh-nghe/update', [DMNganhNgheController::class,'update'])->name('admin-nganh-nghe-update')->middleware('role:Admin');
         Route::get('nganh-nghe/delete/{id}', [DMNganhNgheController::class, 'delete'])->name('admin-nganh-nghe-delete-id')->middleware('role:Admin');
-
+        */
         Route::get('thong-tin', [DMThongTinController::class, 'list'])->name('admin-dm-thong-tin')->middleware('role:Admin');
         Route::get('thong-tin/add', [DMThongTinController::class, 'add'])->name('admin-dm-thong-tin-add')->middleware('role:Admin');
         Route::post('thong-tin/create', [DMThongTinController::class, 'create'])->name('admin-dm-thong-tin-create')->middleware('role:Admin');
@@ -241,20 +246,20 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
         Route::post('thong-tin/update', [DMThongTinController::class,'update'])->name('admin-dm-thong-tin-update')->middleware('role:Admin');
         Route::get('thong-tin/delete/{id}', [DMThongTinController::class, 'delete'])->name('admin-dm-thong-tin-delete-id')->middleware('role:Admin');
 
-        Route::get('san-pham', [DMSanPhamController::class, 'list'])->name('admin-san-pham')->middleware('role:Admin');
+        /*Route::get('san-pham', [DMSanPhamController::class, 'list'])->name('admin-san-pham')->middleware('role:Admin');
         Route::get('san-pham/add', [DMSanPhamController::class, 'add'])->name('admin-san-pham-add')->middleware('role:Admin');
         Route::post('san-pham/create', [DMSanPhamController::class, 'create'])->name('admin-san-pham-create')->middleware('role:Admin');
         Route::get('san-pham/edit/{id}', [DMSanPhamController::class, 'edit'])->name('admin-san-pham-edit-id')->middleware('role:Admin');
         Route::post('san-pham/update', [DMSanPhamController::class,'update'])->name('admin-san-pham-update')->middleware('role:Admin');
         Route::get('san-pham/delete/{id}', [DMSanPhamController::class, 'delete'])->name('admin-san-pham-delete-id')->middleware('role:Admin');
-
+        */
         Route::get('tai-lieu', [DMTaiLieuController::class, 'list'])->name('admin-dm-tai-lieu')->middleware('role:Admin');
         Route::get('tai-lieu/add', [DMTaiLieuController::class, 'add'])->name('admin-dm-tai-lieu-add')->middleware('role:Admin');
         Route::post('tai-lieu/create', [DMTaiLieuController::class, 'create'])->name('admin-dm-tai-lieu-create')->middleware('role:Admin');
         Route::get('tai-lieu/edit/{id}', [DMTaiLieuController::class, 'edit'])->name('admin-dm-tai-lieu-edit-id')->middleware('role:Admin');
         Route::post('tai-lieu/update', [DMTaiLieuController::class,'update'])->name('admin-dm-tai-lieu-update')->middleware('role:Admin');
         Route::get('tai-lieu/delete/{id}', [DMTaiLieuController::class, 'delete'])->name('admin-dm-tai-lieu-delete-id')->middleware('role:Admin');
-
+        /*
         Route::get('van-ban', [DMVanBanController::class, 'list'])->name('admin-dm-van-ban')->middleware('role:Admin');
         Route::get('van-ban/add', [DMVanBanController::class, 'add'])->name('admin-dm-van-ban-add')->middleware('role:Admin');
         Route::post('van-ban/create', [DMVanBanController::class, 'create'])->name('admin-dm-van-ban-create')->middleware('role:Admin');
@@ -268,9 +273,10 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
         Route::get('don-vi/edit/{id}', [DMDonViController::class, 'edit'])->name('admin-dm-don-vi-edit-id')->middleware('role:Admin');
         Route::post('don-vi/update', [DMDonViController::class,'update'])->name('admin-dm-don-vi-update')->middleware('role:Admin');
         Route::get('don-vi/delete/{id}', [DMDonViController::class, 'delete'])->name('admin-dm-don-vi-delete-id')->middleware('role:Admin');
+        */
     });
 
-    Route::get('dia-chi', [DMDiaChiController::class, 'list'])->name('admin-danh-muc-dia-chi')->middleware('role:Manager,Admin');
+    /*Route::get('dia-chi', [DMDiaChiController::class, 'list'])->name('admin-danh-muc-dia-chi')->middleware('role:Manager,Admin');
     Route::get('dia-chi/{id}', [DMDiaChiController::class, 'list'])->name('admin-danh-muc-dia-chi-id')->middleware('role:Manager,Admin');
     Route::get('dia-chi/add', [DMDiaChiController::class, 'add'])->name('admin-danh-muc-dia-chi-add')->middleware('role:Manager,Admin');
     Route::post('dia-chi/create', [DMDiaChiController::class, 'create'])->name('admin-danh-muc-dia-chi-create')->middleware('role:Manager,Admin');
@@ -281,7 +287,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
     Route::get('dia-chi/get/{id}/{id1}', [DMDiaChiController::class, 'getOptions1'])->name('admin-danh-muc-dia-chi-get-id-id1');
     Route::get('thong-tin-tai-khoan', [UserController::class, 'profiles']);
 
-    
+    */
     Route::get('user', [UserController::class, 'list'])->name('admin-user')->middleware('role:Admin');
     Route::get('user/change-password', [UserController::class, 'change_password'])->name('admin-user-change-password')->middleware('checkauth');
     Route::post('user/update-password', [UserController::class, 'update_password'])->name('admin-user-update-password')->middleware('checkauth');

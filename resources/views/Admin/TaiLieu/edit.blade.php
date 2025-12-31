@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card-box">
-                    <h3 class="m-t-0"><a href="{{ env('APP_URl') }}admin/tai-lieu" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Sửa Tài liệu Chuyển đổi số') }}</h3>
+                    <h3 class="m-t-0"><a href="{{ env('APP_URL') }}admin/tai-lieu" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Sửa Tài liệu Giáo dục Chính trị - Pháp luật') }}</h3>
                     <form action="{{ env('APP_URL') }}admin/tai-lieu/update" method="post" id="dinhkemform" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" name="id" id="id" value="{{ $ds['_id'] }}" placeholder="">

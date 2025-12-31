@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 card-box">
-                <h3 class="m-t-0"><a href="{{ env('APP_URL') }}admin/tai-lieu/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> {{ __('Thêm mới') }}</a> {{ __('Danh sách Tài liệu Chuyển đổi số') }}</h3>
+                <h3 class="m-t-0"><a href="{{ env('APP_URL') }}admin/tai-lieu/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> {{ __('Thêm mới') }}</a> {{ __('Danh sách Tài liệu Giáo dục Chính trị - Pháp luật') }}</h3>
                 <hr />
                 <form method="GET" action="{{ env('APP_URL') }}admin/tai-lieu">
                     <div class="row form-group">
@@ -29,6 +29,7 @@
                             <th style="width:55px;">{{ __('STT') }}</th>
                             <th style="width:55px;">{{ __('Hình') }}</th>
                             <th>{{ __('Tên') }}</th>
+                            <th>Phân loại</th>
                             <th  style="width:100px;">#</th>
                         </tr>
                     </thead>
@@ -42,7 +43,7 @@
                                     <img src="{{ env('APP_URL') }}storage/images/thumb_50/{{ $ds['photos'][0]['aliasname'] }}" title="{{ $ds['ho_ten'] }}" alt="{{ $ds['ho_ten'] }}" style="height:30px;">
                                 </a>
                                 @else
-                                    {{ __('NO PIC') }}
+                                    <img src="{{ env('APP_URL') }}assets/backend/images/logo_sm.png" title="{{ $ds['ho_ten'] }}" alt="{{ $ds['ho_ten'] }}" style="height:30px;">
                                 @endif
                             </td>
                             <td>
@@ -51,17 +52,17 @@
                                 @if(isset($ds['tin_moi']) && $ds['tin_moi'])
                                     <span class="badge badge-danger">NEW</span>
                                 @endif
+                            </td>
+                            <td>
                                 @if(isset($ds['tags']) && $ds['tags'])
                                     @foreach($ds['tags'] as $t)
-                                        @foreach($tags as $tag)
-                                            @if($t == $tag['path'])
-                                                <span class="badge badge-success">{{ $tag['title'] }}</span>
-                                            @endif
-                                        @endforeach
+                                        @php
+                                            $tg = App\Models\DMTaiLieu::where('slug','=', $t)->first();
+                                        @endphp
+                                        <span class="badge badge-success"><i class="fa fa-tag"></i> {{ $tg['ten'] }}</span>
                                     @endforeach
                                 @endif
                             </td>
-
                             <td class="text-center">
                                 <a href="{{ env('APP_URL') }}admin/tai-lieu/delete/{{ $ds['_id'] }}" onclick="return confirm('Chắc chắc xóa?')"><i class="fas fa-trash text-danger"></i></a>&nbsp;
                                 <a href="{{ env('APP_URL') }}admin/tai-lieu/edit/{{ $ds['_id'] }}"><i class="fas fa-pencil-alt"></i></a>

@@ -2,9 +2,9 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>{{ __("CỔNG THÔNG TIN CHUYỂN ĐỔI SỐ DOANH NGHIỆP VỪA VÀ NHỎ TỈNH AN GIANG") }}</title>
+        <title>{{ __("GIÁO DỤC CHÍNH TRỊ - PHÁP LUẬT") }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="{{ __("CỔNG THÔNG TIN CHUYỂN ĐỔI SỐ DOANH NGHIỆP VỪA VÀ NHỎ TỈNH AN GIANG") }}" name="description" />
+        <meta content="{{ __("GIÁO DỤC CHÍNH TRỊ - PHÁP LUẬT") }}" name="description" />
         <meta content="Phan Minh Trung - trungminhphan@gmail.com" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <p class="account-copyright">© 2025 {!! __("CHUYỂN ĐỔI SỐ DOANH NGHIỆP VỪA VÀ NHỎ TỈNH AN GIANG") !!}</p>
+                <p class="account-copyright">© 2025 {!! __("GIÁO DỤC CHÍNH TRỊ - PHÁP LUẬT") !!}</p>
             </div>
         </div>
         <!-- Vendor js -->

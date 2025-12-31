@@ -31,7 +31,9 @@
       <h4 class="color-scheme-wrap-title">
         <i class="fab fa-staylinked me-2"></i>Liên kết
       </h4>
-      <a href="https://aitvcdsag.phoenixcompany.vn/chat" target="_blank" class="th-btn text-center w-100"> <i class="fas fa-robot me-2"></i> Chatbot Ollama </a>
+      <a href="https://chatbot.cdsdnag.com" class="th-btn text-center w-100" target="_blank"> <i class="fas fa-robot me-2"></i> Chatbot RASA </a>
+      <hr />
+      <a href="https://chatbot.cdsdnag.com" target="_blank" class="th-btn text-center w-100"> <i class="fas fa-robot me-2"></i> Chatbot Ollama </a>
       <hr />
       <a href="https://ai.cdsdnag.com" class="th-btn text-center w-100" target="_blank"> <i class="fas fa-robot me-2"></i> Chatbot OpenAI </a>
     </div>
