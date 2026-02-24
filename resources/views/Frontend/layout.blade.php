@@ -52,7 +52,7 @@
                     <div class="wg-contact"><i class="fa fa-map-marker"></i><span> Ban Chỉ huy Phòng thủ khu vực 1 - Long Phú</span></div>
                   </div>
                   <div class="item"> 
-                    <div class="wg-contact"><i class="fa fa-phone"></i><span> 0325929269</span></div>
+                    <div class="wg-contact"><i class="fa fa-phone"></i><span> 02963822521</span></div>
                   </div>
                 </div>
               </div>
@@ -75,7 +75,7 @@
                   </div>
                 </div>
               </div>--}}
-              <div class="header-logo"><a href="{{ env('APP_URL') }}" class="logo logo-static"><img src="{{ env('APP_URL') }}assets/frontend/images/@yield('logo','logo-yellow.png')" alt="fooday" class="logo-img" style="max-width:400px;"></a><a href="{{ env('APP_URL') }}" class="logo logo-fixed"><img src="{{ env('APP_URL') }}assets/frontend/images/logo-red.png" alt="fooday" class="logo-img"  style="max-width:400px;"></a></div>
+              <div class="header-logo"><a href="{{ env('APP_URL') }}" class="logo logo-static"><img src="{{ env('APP_URL') }}assets/frontend/images/@yield('logo','logo-yellow.png')" alt="fooday" class="logo-img" style="max-width:400px;"></a><a href="{{ env('APP_URL') }}" class="logo logo-fixed"><img src="{{ env('APP_URL') }}assets/frontend/images/logo-red.png" alt="fooday" class="logo-img"  style="max-width:280px;"></a></div>
               <nav id="main-nav-offcanvas" class="main-nav-wrapper">
                 <div class="close-offcanvas-wrapper"><span class="close-offcanvas">x</span></div>
                 <div class="main-nav">
@@ -129,7 +129,7 @@
                           </div>
                           <div class="phone-info">
                             <div class="info-content">
-                              <p> <i class="fa fa-mobile-phone"></i> 0325929269</p>
+                              <p> <i class="fa fa-mobile-phone"></i> 02963822521</p>
                             </div>
                           </div>
                           <div class="email-info">

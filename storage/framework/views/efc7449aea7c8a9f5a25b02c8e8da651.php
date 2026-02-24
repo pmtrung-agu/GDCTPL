@@ -49,10 +49,10 @@
               <div class="topbar-left">
                 <div class="topbar-content">
                   <div class="item"> 
-                    <div class="wg-contact"><i class="fa fa-map-marker"></i><span> Ban Chỉ huy Phòng thủ khu vực 1 - Long Phú</span></div>
+                    <div class="wg-contact"><i class="fa fa-map-marker"></i><span>Ban Chỉ Huy Quân sự Châu Phú</span></div>
                   </div>
                   <div class="item"> 
-                    <div class="wg-contact"><i class="fa fa-phone"></i><span> 0325929269</span></div>
+                    <div class="wg-contact"><i class="fa fa-phone"></i><span>+84 123456789</span></div>
                   </div>
                 </div>
               </div>
@@ -71,7 +71,7 @@
                       
                     </li>
                     <?php
-                      $dmtailieu = App\Models\DMTaiLieu::where('id_parent','=','')->get();
+                      $dmtailieu = App\Models\DMTaiLieu::All();
                     ?>
                     <li class="dropdown"><a href="<?php echo e(env('APP_URL')); ?>tai-lieu">Tài liệu GDCT-PL  <i class="fa fa-arrow-down"></i></a>
                       <?php if($dmtailieu): ?>
@@ -83,7 +83,7 @@
                       </ul>
                       <?php endif; ?>
                     </li>
-                    
+                    <li><a href="<?php echo e(env('APP_URL')); ?>thong-tin/videos">Videos</a></li>
                     
                   </ul>
                 </div>
@@ -108,17 +108,17 @@
                         <div class="about-contact-info clearfix">
                           <div class="address-info">
                             <div class="info-content">
-                              <p><i class="fa fa-map-marker"></i> Ban Chỉ huy Phòng thủ khu vực 1 - Long Phú</p>
+                              <p><i class="fa fa-map-marker"></i> Ban chỉ huy Quân sự Châu Phú</p>
                             </div>
                           </div>
                           <div class="phone-info">
                             <div class="info-content">
-                              <p> <i class="fa fa-mobile-phone"></i> 0325929269</p>
+                              <p> <i class="fa fa-mobile-phone"></i> +84 123456789</p>
                             </div>
                           </div>
                           <div class="email-info">
                             <div class="info-content">
-                              <p><i class="fa fa-envelope"></i> trantien1371997@gmail.com</p>
+                              <p><i class="fa fa-envelope"></i> us@gmail.com</p>
                             </div>
                           </div>
                         </div>

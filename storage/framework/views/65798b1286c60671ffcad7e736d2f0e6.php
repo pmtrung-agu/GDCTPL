@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 card-box">
-                <h3 class="m-t-0"><a href="<?php echo e(env('APP_URL')); ?>admin/tai-lieu/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> <?php echo e(__('Thêm mới')); ?></a> <?php echo e(__('Danh sách Tài liệu Giáo dục Chính trị - Pháp luật')); ?></h3>
+                <h3 class="m-t-0"><a href="<?php echo e(env('APP_URL')); ?>admin/tai-lieu/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> <?php echo e(__('Thêm mới')); ?></a> <?php echo e(__('Danh sách Tài liệu Chuyển đổi số')); ?></h3>
                 <hr />
                 <form method="GET" action="<?php echo e(env('APP_URL')); ?>admin/tai-lieu">
                     <div class="row form-group">

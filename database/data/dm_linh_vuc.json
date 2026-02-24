@@ -1,4 +1,0 @@
-{"_id":{"$oid":"67847c273fcf3499e709ee13"},"ten":"Nông nghiệp","ghi_chu":null,"updated_at":{"$date":"2025-01-13T02:54:54.06Z"},"created_at":{"$date":"2025-01-13T02:36:23.846Z"}}
-{"_id":{"$oid":"67847c3e3fcf3499e709ee14"},"ten":"Thương mại - Dịch vụ","ghi_chu":null,"updated_at":{"$date":"2025-01-13T02:54:46.926Z"},"created_at":{"$date":"2025-01-13T02:36:46.985Z"}}
-{"_id":{"$oid":"67847c573fcf3499e709ee15"},"ten":"Công nghiệp - Xây dựng","ghi_chu":null,"updated_at":{"$date":"2025-01-13T02:54:38.839Z"},"created_at":{"$date":"2025-01-13T02:37:11.505Z"}}
-{"_id":{"$oid":"67847e5b3fcf3499e709ee1f"},"ten":"Lĩnh vực khác","ghi_chu":null,"updated_at":{"$date":"2025-01-13T02:45:47.93Z"},"created_at":{"$date":"2025-01-13T02:45:47.93Z"}}

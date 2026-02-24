@@ -18,7 +18,7 @@
     </head>
     <body>
         <!-- Navigation Bar-->
-        <header id="topnav" style="background-color:#d10700;">
+        <header id="topnav" style="background-color:#0072c6;">
             <!-- Topbar Start -->
             <div class="navbar-custom">
                 <div class="container-fluid">

@@ -11,9 +11,9 @@ class DMTaiLieuController extends Controller
 		$id_parent = $request->input('id_parent');
 		if($id_parent) {
 			$id_parent = ObjectController::ObjectId($id_parent);
-			$danhsach = DMTaiLieu::where('id_parent', '=', $id_parent)->orderBy('created_at', 'desc')->get()->toArray();
+			$danhsach = DMTaiLieu::where('id_parent', '=', $id_parent)->orderBy('thu_tu','asc')->orderBy('created_at', 'desc')->get()->toArray();
 		} else {
-			$danhsach = DMTaiLieu::where('id_parent',  '=', '')->orderBy('created_at', 'desc')->get()->toArray();
+			$danhsach = DMTaiLieu::where('id_parent',  '=', '')->orderBy('thu_tu','asc')->orderBy('created_at', 'desc')->get()->toArray();
 		}
     	return view('Admin.DanhMuc.TaiLieu.list')->with(compact('danhsach','id_parent'));
     }
@@ -68,11 +68,12 @@ class DMTaiLieuController extends Controller
 		$db->id_parent = $data['id_parent'] ? ObjectController::ObjectId($data['id_parent']) : '';
 		$db->photos = $arr_photo;
     	$db->save();
-    	return redirect(env('APP_URL').'admin/danh-muc/tai-lieu');
+    	return redirect(env('APP_URL').'admin/danh-muc/tai-lieu?id_parent='.$data['id_parent']);
     }
 
     function delete(Request $request, $id = '') {
+		$dm = DMTaiLieu::find($id);
         DMTaiLieu::destroy($id);
-        return redirect(env('APP_URL').'admin/danh-muc/tai-lieu');
+        return redirect(env('APP_URL').'admin/danh-muc/tai-lieu?id_parent='.$dm['id_parent']);
     }
 }

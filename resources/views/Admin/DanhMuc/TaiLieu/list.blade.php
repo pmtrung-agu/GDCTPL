@@ -40,7 +40,12 @@
                                 </td>
                                 <td>
                                     @if($ct['id_parent'] == '')
+                                        @php
+                                            $id_parent = App\Http\Controllers\ObjectController::ObjectId($ct['_id']);
+                                            $childs = App\Models\DMTaiLieu::where('id_parent','=',$id_parent)->count()
+                                        @endphp
                                         <a href="{{ env('APP_URL') }}admin/danh-muc/tai-lieu?id_parent={{ $ct['_id'] }}">{{ $ct['ten'] }}</a>
+                                        <span class="badge badge-danger">{{ $childs }}</span>
                                     @else  
                                         {{ $ct['ten'] }}
                                     @endif

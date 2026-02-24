@@ -547,7 +547,7 @@ header.header-fixed {
     header.header-fixed .header-main .utility-nav .search-bar {
       line-height: 40px; }
     header.header-fixed .header-main #main-nav > li > a {
-      color: #29272e;
+      color: #fff;
       line-height: 40px; }
 
 /* Header Transparent */
@@ -561,10 +561,10 @@ header.header-fixed {
   display: none; }
 
 .header-transparent.header-fixed > li > a {
-  color: #29272e; }
+  color: #fff; }
 
 .header-transparent.header-fixed .utility-nav .search-bar {
-  color: #29272e; }
+  color: #fff; }
 
 .header-transparent.header-fixed .logo-static {
   display: none; }

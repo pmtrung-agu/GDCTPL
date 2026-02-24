@@ -8,12 +8,17 @@
     font-size: 20px !important;
     color: #ff0400 !important;
   }
+
   iframe { max-width:100% !important;}
- @media screen and (max-width: 768px) {
+  #pdf-container {
+    width: 100% !important;
+  }
+  canvas { max-width: 100% !important;}
+  @media screen and (max-width: 768px) {
     iframe {
       height: 300px !important;
     }
-}
+  }
 .
 </style>
 @endsection

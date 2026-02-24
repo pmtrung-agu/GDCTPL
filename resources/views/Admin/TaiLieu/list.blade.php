@@ -48,7 +48,7 @@
                             </td>
                             <td>
                                 <a href="{{ env('APP_URL') }}tai-lieu-chi-tiet/{{ $ds['slug'] }}" target="_blank"><strong>{{ $ds['ten'] }}</strong></a>
-                                    <span class="badge badge-info">{{ App\Http\Controllers\ObjectController::getDate($ds['date_post'],"d/m/Y H:i") }}</span>
+                                <span class="badge badge-info">{{ App\Http\Controllers\ObjectController::getDate($ds['date_post'],"d/m/Y H:i") }}</span>
                                 @if(isset($ds['tin_moi']) && $ds['tin_moi'])
                                     <span class="badge badge-danger">NEW</span>
                                 @endif
@@ -59,7 +59,9 @@
                                         @php
                                             $tg = App\Models\DMTaiLieu::where('slug','=', $t)->first();
                                         @endphp
-                                        <span class="badge badge-success"><i class="fa fa-tag"></i> {{ $tg['ten'] }}</span>
+                                        @if($tg)
+                                            <span class="badge badge-success"><i class="fa fa-tag"></i> {{ $tg['ten'] }}</span>
+                                        @endif
                                     @endforeach
                                 @endif
                             </td>

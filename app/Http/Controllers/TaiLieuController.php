@@ -18,7 +18,7 @@ class TaiLieuController extends Controller
 {
     //
     static function get_tags(){
-        $tags = DMTaiLieu::All();
+        $tags = DMTaiLieu::where('id_parent','=','')->orderBy('thu_tu', 'asc')->get();
         return $tags;
     }
     function list(Request $request, $taxonomy = '') {

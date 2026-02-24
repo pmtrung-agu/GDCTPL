@@ -64,27 +64,37 @@
                             </div>
                             <div class="form-group row">
                                 <label class="control-label col-md-2 text-right p-t-10">{{ __('Phân loại') }}</label>
-                                <div class="col-md-3">
+                                <div class="col-md-10">
                                     <select name="tags[]" id="tags" class="form-control select2" multiple required data-placeholder="Chọn phân loại">
                                         <option value="">Chọn phân loại</option>
                                         @foreach($tags as $tag)
                                             <option value="{{ $tag['slug'] }}">{{ $tag['ten'] }}</option>
+                                            @php
+                                                $p = App\Http\Controllers\ObjectController::ObjectId($tag['_id']);
+                                                $childs = App\Models\DMTaiLieu::where('id_parent','=', $p)->orderBy('thu_tu', 'asc')->get();
+                                            @endphp
+                                            @if($childs)
+                                                @foreach($childs as $c)
+                                                    <option value="{{ $c['slug'] }}">   |--- {{ $c['ten'] }}</option>
+                                                @endforeach
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
-                                <label class="control-label col-md-1 text-right p-t-10">{{ __('Ngày tạo') }}</label>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-md-2 text-right p-t-10">{{ __('Ngày tạo') }}</label>
                                 <div class="col-md-2">
                                     <input type="text" id="date_post" name="date_post" class="form-control" placeholder="{{ __('Ngày tạo') }}" value="{{ $date_post }}" required />
                                 </div>
-                                <label class="control-label col-md-1 text-right p-t-10">{{ __('Thứ tự') }}</label>
-                                <div class="col-md-1">
+                                <label class="control-label col-md-2 text-right p-t-10">{{ __('Thứ tự') }}</label>
+                                <div class="col-md-2">
                                     <input type="text" id="thu_tu" name="thu_tu" class="form-control" placeholder="{{ __('Thứ tự') }}" value="{{ $thu_tu }}" required />
                                 </div>
                                 <div class="col-md-2 switchery-demo">
                                     <b>{{ __('Tin mới') }}: </b>
                                     <input type="checkbox" name="tin_moi" id="tin_moi" class="js-switch" data-plugin="switchery" data-color="#009efb" value="1" @if($tin_moi) checked @endif/>
                                 </div>
-                                
                             </div>
                             <div class="card-box bg-light">
                                 <div class="row">
